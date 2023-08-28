@@ -6,7 +6,6 @@ const warrentySchema =new Schema(
     {
        
         productid:{
-            type:String,
             require:true
         },
 

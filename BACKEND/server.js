@@ -27,6 +27,9 @@ connection.once("open", () => {
 
 //app.use("/stock", stockRouter);
 //end of access
+const SupplierRouter = require("./routes/SupplierRoutes");
+app.use("/supplier" , SupplierRouter );
+
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
