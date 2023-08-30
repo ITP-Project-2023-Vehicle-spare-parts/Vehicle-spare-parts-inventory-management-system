@@ -28,8 +28,12 @@ connection.once("open", () => {
 //app.use("/stock", stockRouter);
 //end of access
 const SupplierRouter = require("./routes/SupplierRoutes");
+const { notFound, errorHandler } = require("./middlewares/errorHandler");
 app.use("/supplier" , SupplierRouter );
 
+//
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
