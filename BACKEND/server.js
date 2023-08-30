@@ -36,6 +36,8 @@ app.use("/supplier" , SupplierRouter );
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
 
+app.use(notFound);
+app.use(errorHandler);
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
 });
