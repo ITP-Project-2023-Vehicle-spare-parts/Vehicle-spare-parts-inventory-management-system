@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan")
+const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
 const PORT = process.env.PORT || 8000;
 
@@ -30,7 +31,6 @@ connection.once("open", () => {
 //app.use("/stock", stockRouter);
 //end of access
 const SupplierRouter = require("./routes/SupplierRoutes");
-const { notFound, errorHandler } = require("./middlewares/errorHandler");
 app.use("/supplier" , SupplierRouter );
 
 const ClientsRouter = require("./routes/WholeClientsRoutes");

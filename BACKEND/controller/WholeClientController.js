@@ -2,6 +2,12 @@ const Clients = require("../model/WholeClientModel");
 
 const addClients = async (req, res) => {
     try {
+
+        const existingClient = await Supplier.findOne({ SystemEmail: req.body.SystemEmail });
+
+        if (existingClient) {
+            return res.status(400).json({ status: "Error", error: "Client with this email already exists" });
+        }
     
     const ClientsfirstName = req.body.ClientsfirstName;
     const ClientsLastName = req.body.ClientsLastName;

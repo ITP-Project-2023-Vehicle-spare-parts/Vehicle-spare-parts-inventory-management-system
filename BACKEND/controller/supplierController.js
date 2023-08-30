@@ -3,10 +3,12 @@ const Supplier = require("../model/SupplierModel");
 
 const addSupplier = async (req, res) => {
     try {
-        // if(req.body.SupplierStatus){
-        //     req.body.Status = slugify(req.body.SupplierStatus);
-        // }
-        
+      
+        const existingSupplier = await Supplier.findOne({ SystemEmail: req.body.SystemEmail });
+
+        if (existingSupplier) {
+            return res.status(400).json({ status: "Error", error: "Supplier with this email already exists" });
+        }
 
     const CompanyID = req.body.CompanyID;
     const CompanyName = req.body.CompanyName;
