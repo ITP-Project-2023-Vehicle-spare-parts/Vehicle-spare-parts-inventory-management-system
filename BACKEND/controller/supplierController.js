@@ -1,7 +1,13 @@
 const Supplier = require("../model/SupplierModel");
+// const slugify = require("slugify");
 
 const addSupplier = async (req, res) => {
     try {
+        // if(req.body.SupplierStatus){
+        //     req.body.Status = slugify(req.body.SupplierStatus);
+        // }
+        
+
     const CompanyID = req.body.CompanyID;
     const CompanyName = req.body.CompanyName;
     const CompanyEmail = req.body.CompanyEmail;

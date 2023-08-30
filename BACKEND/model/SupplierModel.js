@@ -14,6 +14,8 @@ const supplierSchema = new Schema ({
     },
     CompanyEmail : {
         type :String ,
+        trim :true,
+        
         
     },
     CompanyPhone : {
@@ -38,6 +40,8 @@ const supplierSchema = new Schema ({
     },
     SupplierGender : {
         type :String ,
+        enum :["male" ,"female"],
+
         
     },
     SupplierEmail : {
@@ -46,24 +50,39 @@ const supplierSchema = new Schema ({
     },
     SupplierPhone : {
         type :String,
+        trim : true,
         
     },
     SupplierAddress : {
         type :String ,
         
     },
-    SupplierStatus : {
+    SupplierStatus : { 
         type :String ,
         
+    },
+    Status : {
+        type :String ,
+        
+    },
+    ProvidedBrand : {
+        type :String,
+        enum :["Yamaha" ,"Bajaj","TVS" ,"DSI"] ,
+        default :"Bajaj",
+
+
     },
 
     SystemEmail : {
         type :String ,
+        trim : true,
+        unique : true,
         
     },
 
-     SystemPassword : {
+    SystemPassword : {
         type :String ,
+        trim : true,
         
     },
 })

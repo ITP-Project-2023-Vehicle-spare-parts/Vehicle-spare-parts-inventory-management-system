@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
+const morgan = require("morgan")
 
 const PORT = process.env.PORT || 8000;
 
+app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -29,6 +31,9 @@ connection.once("open", () => {
 //end of access
 const SupplierRouter = require("./routes/SupplierRoutes");
 app.use("/supplier" , SupplierRouter );
+
+const ClientsRouter = require("./routes/WholeClientsRoutes");
+app.use("/clients" , ClientsRouter );
 
 
 app.listen(PORT, () => {
