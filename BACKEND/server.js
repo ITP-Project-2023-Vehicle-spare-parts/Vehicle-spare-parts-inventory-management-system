@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 require("dotenv").config();
-const morgan = require("morgan")
+const morgan = require("morgan");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
 const PORT = process.env.PORT || 8000;
