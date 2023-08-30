@@ -36,6 +36,10 @@ app.use("/supplier" , SupplierRouter );
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
 
+//import product routes to the server.js
+const productRouter = require("./routes/productRoutes");
+app.use("/product", productRouter)
+
 app.use(notFound);
 app.use(errorHandler);
 app.listen(PORT, () => {
