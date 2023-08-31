@@ -15,14 +15,12 @@ const addProduct = asyncHandler(async (req, res) => {
 });
 
 const editProduct = asyncHandler(async(req, res)=>{
-    const {id} = req.params.id;
+    const id = req.params.id;
     try {
         if (req.body.Title){
             req.body.slug = slugify(req.body.Title);
         }
-        const editProduct = await Product.findOneAndUpdate({id}, req.body, {
-            new: true,
-        });
+        const editProduct = await Product.findByIdAndUpdate(id, req.body);
         res.json(editProduct);
     } catch (error) {
         throw new Error(error);
