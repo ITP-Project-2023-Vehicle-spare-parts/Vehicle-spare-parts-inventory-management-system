@@ -47,7 +47,7 @@ const getaProduct = async(req, res)=>{
         res.json(findProduct);
     } catch (err) {
         console.log(err);
-        res.status(500).send({ status: "Error updating Products", error: err.message });
+        res.status(500).send({ status: "Error reterieving Product", error: err.message });
     }
 };
 
@@ -57,7 +57,7 @@ const getAllProduct = async (req, res) => {
         res.json(getallProduct);
     } catch (err) {
         console.log(err);
-        res.status(500).send({ status: "Error updating Products", error: err.message });
+        res.status(500).send({ status: "Error retreiving all Products", error: err.message });
     }
 };
 
