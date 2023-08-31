@@ -5,8 +5,6 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-const { notFound, errorHandler } = require("./middlewares/errorHandler");
-
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
@@ -40,8 +38,6 @@ app.use("/clients" , ClientsRouter );
 const productRouter = require("./routes/productRoutes");
 app.use("/product", productRouter)
 
-app.use(notFound);
-app.use(errorHandler);
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
 });
