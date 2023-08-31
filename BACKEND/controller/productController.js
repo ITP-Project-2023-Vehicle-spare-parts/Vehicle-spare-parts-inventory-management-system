@@ -42,7 +42,7 @@ const removeProduct = async(req, res)=>{
 const getaProduct = async(req, res)=>{
     const id = req.params.id;
     console.log(id);
-    try {
+    try {  
         const findProduct = await Product.findById(id);
         res.json(findProduct);
     } catch (err) {
@@ -53,11 +53,21 @@ const getaProduct = async(req, res)=>{
 
 const getAllProduct = async (req, res) => {
     try {
-        const getallProduct = await Product.find();
-        res.json(getallProduct);
+        const queryObj = { ...req.query };
+        const excludeFields = ["page", "sort", "limit", "fields"];
+        excludeFields.forEach((el) => delete queryObj[el]);
+        console.log(queryObj);
+    
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+        
+        const parsedQuery = JSON.parse(queryStr); // Parse the modified query string
+        const query = Product.find(parsedQuery);
+        const product = await query;
+        res.json(product);
     } catch (err) {
         console.log(err);
-        res.status(500).send({ status: "Error retreiving all Products", error: err.message });
+        res.status(500).send({ status: "Error retrieving all Products", error: err.message });
     }
 };
 
