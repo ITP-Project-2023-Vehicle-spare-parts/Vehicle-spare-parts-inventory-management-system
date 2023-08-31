@@ -39,13 +39,16 @@ var productSchema = new mongoose.Schema({
     },
 
     category:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
+        type: String,
+        required: true,
+        //type: mongoose.Schema.Types.ObjectId,
+        //ref: "Category",
     },
 
     brand:{
         type: String,
-        enum: ["Bajaj", "TVS", "Boxer", "Hero"]
+        //enum: ["Bajaj", "TVS", "Boxer", "Hero"]
+        required: true,
     },
 
     images:{
@@ -54,7 +57,8 @@ var productSchema = new mongoose.Schema({
 
     color:{
         type: String,
-        enum: ["Black", "Red", "Blue", "Yellow"]
+        //enum: ["Black", "Red", "Blue", "Yellow"]
+        required: true,
     },
 
     ratings:{
