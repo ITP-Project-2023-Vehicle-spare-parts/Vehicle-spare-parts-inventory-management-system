@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
+const { errorHandler, notFound} = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
@@ -34,11 +35,21 @@ app.use("/supplier" , SupplierRouter );
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+
 const user = require("./routes/authRoute");
 app.use("/api/user" , user);
 
+<<<<<<< Updated upstream
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
 app.use("/deliveryPerson", deliveryPersonRouter)
+=======
+app.use(notFound);
+app.use(errorHandler);
+
+
+>>>>>>> Stashed changes
 
 //import product routes to the server.js
 
