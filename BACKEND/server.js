@@ -23,11 +23,11 @@ connection.once("open", () => {
     console.log("MongoDB Connection Success!");
 });
 
-//access the stocks.js file
-//const stockRouter = require("./routes/stocks.js");
 
-//app.use("/stock", stockRouter);
-//end of access
+const BranchRouter = require("./routes/BranchRoutes.js");
+app.use("/Branch", BranchRouter);
+
+
 const SupplierRouter = require("./routes/SupplierRoutes");
 app.use("/supplier" , SupplierRouter );
 
