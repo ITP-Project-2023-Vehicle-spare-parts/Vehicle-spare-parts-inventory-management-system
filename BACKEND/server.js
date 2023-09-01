@@ -37,6 +37,9 @@ app.use("/clients" , ClientsRouter );
 const user = require("./routes/authRoute");
 app.use("/api/user" , user);
 
+const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
+app.use("/deliveryPerson", deliveryPersonRouter)
+
 //import product routes to the server.js
 
 
