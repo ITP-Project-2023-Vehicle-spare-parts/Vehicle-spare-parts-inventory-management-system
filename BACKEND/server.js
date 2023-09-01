@@ -41,15 +41,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 const user = require("./routes/authRoute");
 app.use("/api/user" , user);
 
-<<<<<<< Updated upstream
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
 app.use("/deliveryPerson", deliveryPersonRouter)
-=======
+
 app.use(notFound);
 app.use(errorHandler);
 
 
->>>>>>> Stashed changes
+
 
 //import product routes to the server.js
 
