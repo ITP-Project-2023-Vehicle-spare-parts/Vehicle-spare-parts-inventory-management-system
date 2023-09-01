@@ -34,9 +34,11 @@ app.use("/supplier" , SupplierRouter );
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
 
+const user = require("./routes/authRoute");
+app.use("/api/user" , user);
+
 //import product routes to the server.js
-const productRouter = require("./routes/productRoutes");
-app.use("/product", productRouter)
+
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
