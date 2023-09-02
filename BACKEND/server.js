@@ -29,10 +29,10 @@ const BranchRouter = require("./routes/BranchRoutes.js");
 app.use("/Branch", BranchRouter);
 
 const ProductRoutes = require("./routes/productRoutes.js");
-app.use("/Branch", BranchRouter);
+app.use("/product", ProductRoutes);
 
 const SupplierRouter = require("./routes/SupplierRoutes");
-app.use("/product" , ProductRoutes );
+app.use("/supplier" , SupplierRouter );
 
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
