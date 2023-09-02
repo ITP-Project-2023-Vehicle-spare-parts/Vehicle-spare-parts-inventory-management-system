@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-const { errorHandler, notFound} = require("./middlewares/errorHandler");
+//const { errorHandler, notFound} = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
@@ -28,9 +28,11 @@ connection.once("open", () => {
 const BranchRouter = require("./routes/BranchRoutes.js");
 app.use("/Branch", BranchRouter);
 
+const ProductRoutes = require("./routes/productRoutes.js");
+app.use("/Branch", BranchRouter);
 
 const SupplierRouter = require("./routes/SupplierRoutes");
-app.use("/supplier" , SupplierRouter );
+app.use("/product" , ProductRoutes );
 
 const ClientsRouter = require("./routes/WholeClientsRoutes");
 app.use("/clients" , ClientsRouter );
@@ -47,8 +49,8 @@ app.use("/deliveryPerson", deliveryPersonRouter)
 const warrentyRouter = require("./routes/warrentyRoutes");
 app.use("/warrenty", warrentyRouter);
 
-app.use(notFound);
-app.use(errorHandler);
+//app.use(notFound);
+//app.use(errorHandler);
 
 
 
