@@ -23,11 +23,7 @@ connection.once("open", () => {
     console.log("MongoDB Connection Success!");
 });
 
-//access the stocks.js file
-//const stockRouter = require("./routes/stocks.js");
 
-//app.use("/stock", stockRouter);
-//end of access
 const SupplierRouter = require("./routes/SupplierRoutes");
 app.use("/supplier" , SupplierRouter );
 
@@ -37,7 +33,11 @@ app.use("/clients" , ClientsRouter );
 const user = require("./routes/authRoute");
 app.use("/api/user" , user);
 
-//import product routes to the server.js
+
+const enqRouter = require("./routes/enqRoute");
+app.use("/api/enquiry", enqRouter);
+
+
 
 
 app.listen(PORT, () => {

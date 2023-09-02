@@ -1,6 +1,10 @@
 const { generateToken } = require('../config/jwtToken');
 const User = require('../model/userModel');
 const asyncHandler = require("express-async-handler");
+const Product = require("../model/productModel");
+
+
+
 
 const createUser = asyncHandler( async(req,res)=>{
     const email= req.body.email;
@@ -108,7 +112,12 @@ const updateaUser = asyncHandler(async(req,res)=>{
 });
 
 
-
-
-
-module.exports={createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updateaUser};
+  
+module.exports={
+    createUser, 
+    loginUserCtrl, 
+    getallUser, 
+    getaUser, 
+    deleteaUser, 
+    updateaUser,
+};
