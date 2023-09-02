@@ -6,12 +6,12 @@ var userSchema = new mongoose.Schema(
     {
     firstname:{
         type:String,
-        required:true,
+        
         index:true,
     },
     lastname:{
         type:String,
-        required:true,
+        
         index:true,
     },
     email:{
@@ -26,11 +26,11 @@ var userSchema = new mongoose.Schema(
     },
     dob:{
         type:String,
-        required:true,
+        
     },
     address:{
         type:String,
-        required:true,
+        
     },
     mobile:{
         type:String,
@@ -39,7 +39,7 @@ var userSchema = new mongoose.Schema(
     },
     gender:{
         type:String,
-        required:true,
+        
     },
     password:{
         type:String,
@@ -48,8 +48,8 @@ var userSchema = new mongoose.Schema(
     role:{
         type:String,
         default:"user",
+        enum :["user" ,"supplier","admin","client"],
     },
-    addres:[{type: mongoose.Schema.Types.ObjectId, ref:"Addres"}],
 },
 {   
     timestamps: true,
