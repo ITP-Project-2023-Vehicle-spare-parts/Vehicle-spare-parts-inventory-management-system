@@ -83,7 +83,7 @@ const supplierSchema = new Schema ({
         trim : true,
         
     },
-})
+},{timestamps : true})
 
 const Supplier = mongoose.model("Supplier" , supplierSchema);
 
