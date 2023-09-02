@@ -281,7 +281,7 @@ body{
 .sidebar.active .profile #log_out{
     left: 290%;
 }
-/* .home_content {
+.home_content {
     position: absolute;
     height: 100px;
     width: calc(100% - 200%px);
@@ -300,7 +300,7 @@ body{
     color:#1d1b31 ;
     margin: 12px;
     width: max-content;
-} */
+}
 
 
 .component-3-icon {

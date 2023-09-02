@@ -134,9 +134,9 @@ export default function SupplierSideNavigation() {
             </div>
         </div>
 
-        {/* <div className="home_content">
+        <div className="home_content">
             <div className="text">Supplier Dashboard</div>
-        </div> */}
+        </div>
 
         </div>
 
