@@ -44,6 +44,9 @@ app.use("/api/user" , user);
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
 app.use("/deliveryPerson", deliveryPersonRouter)
 
+const warrentyRouter = require("./routes/warrentyRoutes");
+app.use("/warrenty", warrentyRouter);
+
 app.use(notFound);
 app.use(errorHandler);
 
