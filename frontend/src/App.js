@@ -3,6 +3,7 @@ import './App.css';
 import SupplierSideNavigation from "./components/SupplierSideNavigation";
 import AddSupplier from "./components/AddSupplier"
 import AddClient from "./components/AddClient";
+import SupplierProfile from "./components/SupplierProfile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
     <Routes>
       <Route path ="/Admin/sup/add" element={<AddSupplier/>} />
       <Route path ="/Admin/client/add" element={<AddClient/>} />
+      <Route path ="/Admin/Supplier/Profile" element={<SupplierProfile/>} />
     </Routes>
 
 

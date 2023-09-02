@@ -34,10 +34,7 @@ const supplierSchema = new Schema ({
         type :String ,
         
     },
-    SupplierAge : {
-        type :String ,
-        
-    },
+  
     SupplierGender : {
         type :String ,
         enum :["male" ,"female"],
