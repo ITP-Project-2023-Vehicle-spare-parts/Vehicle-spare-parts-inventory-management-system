@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-//const { errorHandler, notFound} = require("./middlewares/errorHandler");
+const { errorHandler, notFound} = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
@@ -49,14 +49,8 @@ app.use("/deliveryPerson", deliveryPersonRouter)
 const warrentyRouter = require("./routes/warrentyRoutes");
 app.use("/warrenty", warrentyRouter);
 
-//app.use(notFound);
-//app.use(errorHandler);
-
-
-
-
-//import product routes to the server.js
-
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`);
