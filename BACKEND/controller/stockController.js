@@ -67,6 +67,26 @@ const Product = require('../model/productModel');
 
 };
 
+const getStock = async (req, res) => {
+
+  try {
+    const allStocks = await Stock.find();
+
+    if (!allStocks || allStocks.length === 0) {
+      res.status(404).send({ status: "No stocks found" });
+      return;
+    }
+
+    res.status(200).send({ status: "Stocks fetched", stocks: allStocks });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ status: "Error with getting stocks", error: err.message });
+  }
+};
+
+
+
+
 
 
 
@@ -77,4 +97,5 @@ const Product = require('../model/productModel');
     module.exports = {
         addStock,
         updateStock,
+        getStock,
     };
