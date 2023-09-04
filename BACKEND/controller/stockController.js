@@ -3,18 +3,18 @@ const Product = require('../model/productModel');
 
  const addStock = async (req, res) => {
     try{
-        const {name, productName,supplierName,dateAdded,stockAmount,additionalDetails,reorderpoint,stockQuantity} = req.body;
+        const {  Title,productName,supplierName,dateAdded,stockAmount,additionalDetails,reorderpoint,stockQuantity} = req.body;
       
-        const product= await Product.findOne({productname:name});
+        const productid= await Product.findOne({Title: productName});
     
     
-        if (!product) {
+        if (!productid) {
           
             return res.status(404).json({ error: 'Product not found' });
           }
     
     const newStock = new Stock({
-        product: product._id,    
+        product: productid._id,    
         productName,
         supplierName,
         dateAdded,
@@ -35,7 +35,7 @@ const Product = require('../model/productModel');
     
     };
 
-    const updateStock = async (req, res) => {
+  const updateStock = async (req, res) => {
 
         
   let stockId = req.params.id;
@@ -66,6 +66,10 @@ const Product = require('../model/productModel');
   })
 
 };
+
+
+
+
 
 
 
