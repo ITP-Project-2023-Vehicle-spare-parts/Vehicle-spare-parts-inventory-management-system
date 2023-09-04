@@ -4,10 +4,21 @@ const Schema =  mongoose.Schema;
 
 const supplierReqSchema = new Schema({
 
-    SupplierID : {
-        
-    }
+    SupplierName : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Supplier",   
+    },
+    dateAdded: {
+        type: Date,
+       default:Date.now,
+      },
 
 
-})
+
+
+
+},{timestamps:true});
+
+const supplierReq = mongoose.model('supplierReq', supplierReqSchema);
+module.exports = supplierReq;
 

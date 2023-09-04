@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import {
   MDBContainer,
@@ -16,6 +18,7 @@ import {
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const Navigate = useNavigate();
 
   function validateLogin() {
     const validate = {
@@ -24,16 +27,28 @@ export default function Login() {
     };
     axios
       .post("http://localhost:8000/api/user/login", validate)
-      .then(() => {
-        alert("Successfully Login!");
+      .then((res) => {
+        console.log(res.data.role);
 
-        // toast.success("Successfully Login!", {
-        //   duration: 3000, // 3 seconds
-        //   position: "top-right", // You can change the position if needed
-        // });
+        if (res.data.role === "admin") {
+          console.log(res.data.role);
+          Navigate("/Admin/client/add");
+        } else if (res.data.role === "supplier") {
+          console.log(res.data.role);
+          Navigate("/Admin/sup/add");
+        } else {
+          console.log(res.data.role);
+        }
+
+        // alert("Successfully Login!");
+
+        toast.success("Successfully Login!", {
+          duration: 3000, // 3 seconds
+          position: "top-center", // You can change the position if needed
+        });
       })
       .catch((err) => {
-        alert(err);
+        toast.error("Login Credential Invalid!!!!");
       });
   }
 
@@ -87,7 +102,7 @@ export default function Login() {
                   <MDBInput
                     wrapperClass="mb-4"
                     label="Email address"
-                    placeholder="enter Email"
+                    placeholder="Enter Email"
                     id="email"
                     type="email"
                     size="lg"
@@ -99,7 +114,7 @@ export default function Login() {
                   <MDBInput
                     wrapperClass="mb-4"
                     label="Password"
-                    placeholder="enter password"
+                    placeholder="Enter password"
                     id="password"
                     type="text"
                     size="lg"

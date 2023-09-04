@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-//const { errorHandler, notFound} = require("./middlewares/errorHandler");
+const { errorHandler, notFound} = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
@@ -49,36 +49,22 @@ app.use("/deliveryPerson", deliveryPersonRouter)
 const warrentyRouter = require("./routes/warrentyRoutes");
 app.use("/warrenty", warrentyRouter);
 
+
 const stockRoutes = require("./routes/stockRoutes.js");
 app.use("/stock", stockRoutes);
 
 //app.use(notFound);
 //app.use(errorHandler);
 
-app.use(express.json());
-
-// Endpoint to fetch product name suggestions
-app.get("/search", async (req, res) => {
-    const { productName } = req.query;
-  
-    try {
-      const suggestions = await Stock.find({
-        category: { $regex: productName, $options: "i" }, // Case-insensitive partial match
-      })
-        .distinct("category")
-        .limit(10); // Limit the number of suggestions
-  
-      res.status(200).json({ suggestions });
-    } catch (error) {
-      console.error("Error fetching suggestions:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  });
 
 
 
 
-//import product routes to the server.js
+
+
+
+app.use(notFound);
+app.use(errorHandler);
 
 
 app.listen(PORT, () => {
