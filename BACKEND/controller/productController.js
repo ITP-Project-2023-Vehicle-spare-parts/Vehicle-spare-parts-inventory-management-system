@@ -157,6 +157,7 @@ const rating = asyncHandler(async (req, res) => {
           new: true,
         }
       );
+      res.json(updateRating);
     } else {
       const rateProduct = await Product.findByIdAndUpdate(
         prodId,
@@ -173,6 +174,7 @@ const rating = asyncHandler(async (req, res) => {
           new: true,
         }
       );
+      res.json(rateProduct);
     }
     const getallratings = await Product.findById(prodId);
     let totalRating = getallratings.ratings.length;
