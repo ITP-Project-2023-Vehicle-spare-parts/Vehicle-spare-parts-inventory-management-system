@@ -55,6 +55,9 @@ app.use("/stock", stockRoutes);
 const categoryRoutes = require("./routes/productCategoryRoute");
 app.use("/category", categoryRoutes);
 
+const brandRoutes = require("./routes/brandRoute");
+app.use("/brand", brandRoutes);
+
 
 app.use(notFound);
 app.use(errorHandler);
