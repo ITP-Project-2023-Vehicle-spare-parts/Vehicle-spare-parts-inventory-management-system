@@ -49,18 +49,11 @@ app.use("/deliveryPerson", deliveryPersonRouter)
 const warrentyRouter = require("./routes/warrentyRoutes");
 app.use("/warrenty", warrentyRouter);
 
-
 const stockRoutes = require("./routes/stockRoutes.js");
 app.use("/stock", stockRoutes);
 
-//app.use(notFound);
-//app.use(errorHandler);
-
-
-
-
-
-
+const categoryRoutes = require("./routes/productCategoryRoute");
+app.use("/category", categoryRoutes);
 
 
 app.use(notFound);
