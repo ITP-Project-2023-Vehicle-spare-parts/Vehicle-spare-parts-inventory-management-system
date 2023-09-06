@@ -35,7 +35,7 @@ export default function SupplierSideNavigation() {
                 <div className="logo">
                     <div className="logo_name">
                     
-                        <img className="component-3-icon" alt="" src="images/CMLogo.png"/>
+                        <img className="component-3-icon" alt="" src="/images/CMLogo.png"/>
                         <div className="topic-text"><span style={{color:"blue"}}>CM</span> Spare</div>
                        
                         
@@ -121,7 +121,7 @@ export default function SupplierSideNavigation() {
             <div className="profile_content">
                 <div className="profile">
                    <div className="profile_details">
-                    <img src="images/me.jpg" alt=""></img>
+                    <img src="/images/me.jpg" alt=""></img>
                     <div className="name_job">
                         <div className="name">Chanuka Devin</div>
                         <div className=""><span style={{color:"#7C7C7C"}}> YAMAHA Company</span></div>
@@ -135,7 +135,7 @@ export default function SupplierSideNavigation() {
         </div>
 
         <div className="home_content">
-            <div className="text">Supplier Dashboard</div>
+            <div className="text"></div>
         </div>
 
         </div>

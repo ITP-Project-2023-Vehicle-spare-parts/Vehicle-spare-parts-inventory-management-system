@@ -17,14 +17,8 @@ const clientSchema = new Schema ({
   ClientsFullName : {
         type :String,
     },
-  ClientsAge : {
-        type :String ,
-        
-    },
-  ClientsGender : {
-        type :String ,
-        
-    },
+ 
+
   ClientsEmail : {
         type :String ,
         
@@ -33,16 +27,27 @@ const clientSchema = new Schema ({
         type :String,
         
     },
-  ClientsAddress : {
+  ClientsState : {
+      type :String ,
+      
+  },
+  ClientsCity : {
+      type :String ,
+      
+  },
+  ClientsPostalCode : {
+      type :String ,
+      
+  },
+  ClientsAdress : {
         type :String ,
-        
-    },
+  },
    ClientsStatus : {
         type :String ,
         
     },
     NoOfBranches : {
-        type : Number,
+        type :String,
     },
 
     SystemEmail : {

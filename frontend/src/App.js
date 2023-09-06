@@ -15,14 +15,17 @@ function App() {
           position="top-center"
           toastOptions={{ duration: 3000 }}
         ></Toaster>
-        {/* <SupplierSideNavigation/> */}
 
         <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Admin/sup/add" element={<AddSupplier />} />
           <Route path="/Admin/sup/add" element={<AddSupplier />} />
           <Route path="/Admin/client/add" element={<AddClient />} />
-          <Route path="/" element={<Login />} />
           <Route path="/Admin/Supplier/Profile" element={<SupplierProfile />} />
         </Routes>
+
+
+
       </div>
     </Router>
   );

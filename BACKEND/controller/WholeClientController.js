@@ -12,12 +12,14 @@ const addClients = async (req, res) => {
     const ClientsfirstName = req.body.ClientsfirstName;
     const ClientsLastName = req.body.ClientsLastName;
     const ClientsFullName = req.body.ClientsFullName;
-    const ClientsAge = req.body.ClientsAge;
-    const ClientsGender = req.body.ClientsGender;
     const ClientsEmail = req.body.ClientsEmail;
     const ClientsPhone = req.body.ClientsPhone;
+    const ClientsState = req.body.ClientsAddress ;
+    const ClientsCity = req.body.ClientsAddress ;
+    const ClientsPostalCode = req.body.ClientsAddress ;
     const ClientsAddress = req.body.ClientsAddress ;
     const ClientsStatus= req.body.ClientsStatus;
+    const NoOfBranches = req.body.NoOfBranches;
     const SystemEmail= req.body.SystemEmail;
     const SystemPassword= req.body.SystemPassword;
 
@@ -26,12 +28,14 @@ const addClients = async (req, res) => {
             ClientsfirstName ,
             ClientsLastName ,
             ClientsFullName,
-            ClientsAge ,
-            ClientsGender,
             ClientsEmail ,
             ClientsPhone ,
+            ClientsState,
+            ClientsCity,
+            ClientsPostalCode,
             ClientsAddress,
             ClientsStatus,
+            NoOfBranches,
             SystemEmail,
             SystemPassword,
         });
@@ -58,7 +62,7 @@ const updateClients = async (req, res) => {
     try {
         const ClientsId = req.params.id;
 
-        const { ClientsfirstName , ClientsLastName , ClientsAge, ClientsGender, ClientsEmail, ClientsPhone,ClientsAddress, SystemPassword,} = req.body;
+        const { ClientsfirstName , ClientsLastName , ClientsAge,ClientsState, ClientsCity,ClientsPostalCode, ClientsGender, ClientsEmail, ClientsPhone,ClientsAddress, SystemPassword,} = req.body;
 
 
         const updateClients = {
@@ -68,6 +72,9 @@ const updateClients = async (req, res) => {
             ClientsGender,
             ClientsEmail ,
             ClientsPhone ,
+            ClientsState,
+            ClientsCity,
+            ClientsPostalCode,
             ClientsAddress,
             SystemPassword,
         };

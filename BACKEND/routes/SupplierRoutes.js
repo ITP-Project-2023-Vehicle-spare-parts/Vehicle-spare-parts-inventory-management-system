@@ -5,8 +5,8 @@ const { authMiddleware, isSupplier,isAdmin} = require("../middlewares/authMiddle
 
 
 
-router.route("/addSupplier").post(authMiddleware,isAdmin,supplierController.addSupplier);
-router.route("/").get(authMiddleware,isAdmin,supplierController.getAllSuppliers);
+router.route("/addSupplier").post(supplierController.addSupplier);
+router.route("/").get(supplierController.getAllSuppliers);
 router.route("/update/:id").put(authMiddleware,isSupplier,supplierController.updateSupplier);
 router.route("/delete/:id").delete(authMiddleware,isAdmin,supplierController.deleteSupplier);
 router.route("/get/:id").get(authMiddleware,isAdmin,supplierController.getSupplierById);
