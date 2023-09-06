@@ -58,6 +58,8 @@ app.use("/category", categoryRoutes);
 const brandRoutes = require("./routes/brandRoute");
 app.use("/brand", brandRoutes);
 
+const colorRoutes = require("./routes/colorRoute");
+app.use("/color", colorRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

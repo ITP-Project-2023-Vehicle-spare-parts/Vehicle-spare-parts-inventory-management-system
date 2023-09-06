@@ -56,17 +56,21 @@ var productSchema = new mongoose.Schema({
     },
 
     color:{
-        type: String,
-        //enum: ["Black", "Red", "Blue", "Yellow"]
-        required: true,
+        type: Array,
     },
 
-    ratings:{
+    tags:{
+        type: Array,
+    },
+
+    ratings:[
+        {
         star: Number,
         comment:String,
         postedby: {type: mongoose.Schema.Types.ObjectId, 
             ref: "User"}
     },
+],
 
     totalrating:{
         type: String,
