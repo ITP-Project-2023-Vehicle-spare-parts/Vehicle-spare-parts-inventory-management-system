@@ -5,6 +5,10 @@ import AddSupplier from "./components/AddSupplier"
 import AddClient from "./components/AddClient";
 import SupplierProfile from "./components/SupplierProfile";
 import Login from "./components/Login";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import About from "./pages/about";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -18,6 +22,12 @@ function App() {
       <Route path ="/Admin/client/add" element={<AddClient/>} />
       <Route path ="/login" element={<Login/>} />
       <Route path ="/Admin/Supplier/Profile" element={<SupplierProfile/>} />
+        <Route path = "/" element={<Layout/>}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About/>}/>
+          <Route path="contact" element={<Contact />}/>
+        </Route>
+      
     </Routes>
 
 
