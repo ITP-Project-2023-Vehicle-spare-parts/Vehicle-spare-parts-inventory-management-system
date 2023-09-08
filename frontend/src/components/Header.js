@@ -22,7 +22,7 @@ const Header = () => {
           <div className='col-2'>
           <p>
             <Link>
-              <img src="/images/CMLogo.png" height="90"/>
+              <img src="/images/CMLogo.png" alt="CMlogo" height="90"/>
             </Link>
           </p>
           </div>
@@ -63,18 +63,19 @@ const Header = () => {
     <header className='header-bottom py-3'>
       <div className='container-xxl'>
         <div className='row'>
-          <div className='col-12'>
+          <center>
+          <div className='col-3'>
             <div className='menu-bottom d-flex align-items-center'>
-              <div></div>
               <div className='menu-links'>
-                <div className='d-flex align-items-center gap-15'>
+                <div className='d-flex align-items-center gap-15 '>
                   <NavLink to="/">Home</NavLink>
                   <NavLink to="/">Store</NavLink>
-                  <NavLink to="/">Contact</NavLink>
+                  <NavLink to="/contact">Contact</NavLink>
                 </div>
               </div>
             </div>
           </div>
+          </center>
         </div>
       </div>
     </header>
