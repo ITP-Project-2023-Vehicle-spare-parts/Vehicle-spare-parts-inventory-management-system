@@ -67,6 +67,8 @@ const Product = require('../model/productModel');
 
 };
 
+//get all stock data
+
 const getStock = async (req, res) => {
 
   try {
@@ -84,6 +86,26 @@ const getStock = async (req, res) => {
   }
 };
 
+//get stock by iD
+const getStockByID= (async (req, res) => {
+
+  let stockId = req.params.id;
+
+  try {
+    const stock = await Stock.findById(stockId);
+    
+    if (!stock) {
+      res.status(404).send({ status: "Stock not found" });
+      return;
+    }
+
+    res.status(200).send({ status: "Stock fetched", stock: stock });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ status: "Error with get stock", error: err.message });
+  }
+});
+
 
 
 
@@ -98,4 +120,5 @@ const getStock = async (req, res) => {
         addStock,
         updateStock,
         getStock,
+        getStockByID,
     };
