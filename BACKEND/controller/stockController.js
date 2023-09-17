@@ -143,6 +143,30 @@ await Stock.deleteOne({ _id: id }); // This line deletes the stock record
   }
 };
 
+// New function to get low stock products
+const getLowStockProducts = async (req, res) => {
+  try {
+    // Find all stocks where stockQuantity is less than reorderPoint
+    const lowStockProducts = await Stock.find();
+
+    if (!lowStockProducts || lowStockProducts.length === 0) {
+      res.status(404).send({ status: "No low stock products found" });
+      return;
+    }
+
+    // Filter low stock products based on reorder point
+    const filteredLowStockProducts = lowStockProducts.filter((stock) => {
+      return stock.stockQuantity < stock.reorderpoint;
+    });
+
+    res.status(200).send({ status: "Low stock products fetched", lowStockProducts: filteredLowStockProducts });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send({ status: "Error with getting low stock products", error: err.message });
+  }
+};
+
+
 
  
 
@@ -162,4 +186,5 @@ await Stock.deleteOne({ _id: id }); // This line deletes the stock record
         getStock,
         getStockByID,
         deleteStock,
+        getLowStockProducts,
     };
