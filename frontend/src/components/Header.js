@@ -21,9 +21,9 @@ const Header = () => {
         <div className='row align-items-center'>
           <div className='col-2'>
           <p>
-            <Link>
+            <NavLink to="/">
               <img src="/images/CMLogo.png" alt="CMlogo" height="90"/>
-            </Link>
+            </NavLink>
           </p>
           </div>
           <div className='col-6'>
@@ -64,13 +64,15 @@ const Header = () => {
       <div className='container-xxl'>
         <div className='row'>
           <center>
-          <div className='col-3'>
+          <div className='col-8'>
             <div className='menu-bottom d-flex align-items-center'>
               <div className='menu-links'>
                 <div className='d-flex align-items-center gap-15 '>
-                  <NavLink to="/">Home</NavLink>
-                  <NavLink to="/">Store</NavLink>
-                  <NavLink to="/contact">Contact</NavLink>
+                  <NavLink to="/" className="px-5">Home</NavLink>
+                  <NavLink to="/store" className="px-5">Store</NavLink>
+                  <NavLink to="/contact" className="px-5">Contact</NavLink>
+                  <NavLink to="/about" className="px-5">About</NavLink>
+                  <NavLink to="/about" className="px-5">News</NavLink>
                 </div>
               </div>
             </div>

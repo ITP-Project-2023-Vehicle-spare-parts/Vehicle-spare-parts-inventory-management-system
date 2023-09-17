@@ -50,15 +50,15 @@ const Footer = () => {
           <div className='col-2'>
            <h4 className='mb-4 text-white'>Our Brands</h4>
            <div className='brand_icons d-flex align-items-center gap-3'>
-              <a href = "">
+              
                 <img src="/images/HeroHonda.png" alt="brand_icons" height="50"></img>
-              </a><br />
-              <a href = "">
+              <br />
+              
               <img src="/images/Bajajlogo.png" alt="brand_icons" height="50"></img>
-              </a><br />
-              <a href = "">
+              <br />
+              
               <img src="/images/Yamaha.png" alt="brand_icons" height="50"></img>
-              </a>
+              
             </div>
           </div>
           <div className='col-2'>

@@ -53,9 +53,12 @@
   --color-FFFFFF: #FFFFFF;
   --color-2A3847: #2A3847;
   --color-87CEEB: #87CEEB;
+  --color-bf4800: #bf4800;
+  --color-f5f5f7: #f5f5f7;
 }
 
 body{
+  width: max-content;
   font-family: 'Rubik', sans-serif;
 }
 
@@ -76,6 +79,25 @@ a{
 .gap-15{
   gap: 15px;
 }
+
+.button{
+  background-color: var(--color-2A3847);
+  color: var(--color-FFFFFF);
+  font-size: 14px;
+  padding: 13px 33px;
+  border-radius: 35px !important;
+}
+
+.button:hover{
+  background-color: var(--color-87CEEB);
+  color: var(--color-bf4800);
+}
+
+.scrollable-content {
+  overflow-y: scroll;
+  max-height: 590px;
+}
+
   
 /*Header CSS */
 .header-top-strip{
@@ -102,11 +124,19 @@ a{
 
 .header-bottom .menu-links a{
   color: var(--color-FFFFFF);
-  font-size: 14px;
+  font-size: 17px;
   line-height: 18px;
   font-weight: 400;
   letter-spacing: 0.3;
   text-transform: uppercase;
+}
+
+.px-5:hover{
+  background-color: var(--color-87CEEB);
+  color: var(--color-bf4800);
+  height: 25px;
+  border-radius: 35px !important;
+  color: var(--color-2A3847) !important;
 }
 /*^^^Header CSS^^^ */
 
@@ -125,3 +155,54 @@ footer .input-group-text{
   padding: 8px 17px;
 }
 /*^^^Footer CSS */
+
+/*Home CSS */
+
+.main-banner-content{
+  top: 10%;
+  left: 5%
+}
+
+.main-banner-content h4{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-bf4800);
+  margin: 0, 0, 12px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.main-banner-content h5{
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 34px;
+  color: var(--color-FFFFFF);
+  letter-spacing: -2px;
+  padding: 0;
+  text-transform: none;
+}
+
+.main-banner-content p{
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--color-FFFFFF);
+  letter-spacing: 0.4px;
+  padding: 0;
+  text-transform: none;
+}
+
+/*home 2nd section */
+.home-wrapper-2{
+  background-color: var(--color-f5f5f7);
+}
+/*^^^home 2nd section^^^ */
+
+/*home 3rd section */
+.categories{
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px #0000001a;
+  padding: 15px;
+}
+/*^^^home 3rd section^^^ */
+/*^^^Home CSS^^^ */
