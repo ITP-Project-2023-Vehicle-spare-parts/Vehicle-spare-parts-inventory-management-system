@@ -106,6 +106,46 @@ const getStockByID= (async (req, res) => {
   }
 });
 
+// Delete a stock record and move it to DeletedStock
+const deleteStock = async (req, res) => {
+  const { id } = req.params;
+  
+ 
+
+  try {
+    const stock = await Stock.findById(id);
+    if (!stock) {
+      return res.status(404).json({ error: 'Stock not found' });
+    }
+
+     // Get the product ID from the stock instance
+     const productId = stock.product;
+
+    // Create a new DeletedStock record
+    const deletedStock = new DeletedStock({
+      product: productId, // Set the product ID from the stock instance
+      productName: stock.productName,
+      supplierName: stock.supplierName,
+      stockAmount: stock.stockAmount,
+      additionalDetails: stock.additionalDetails,
+      reorderpoint: stock.reorderpoint,
+      stockQuantity: stock.stockQuantity,
+    });
+
+    // Save the deleted stock record
+    await deletedStock.save();
+// Delete the original stock record
+await Stock.deleteOne({ _id: id }); // This line deletes the stock record
+
+    res.status(200).json({ status: 'Stock deleted and moved to DeletedStock' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+ 
+
 
 
 
@@ -121,4 +161,5 @@ const getStockByID= (async (req, res) => {
         updateStock,
         getStock,
         getStockByID,
+        deleteStock,
     };
