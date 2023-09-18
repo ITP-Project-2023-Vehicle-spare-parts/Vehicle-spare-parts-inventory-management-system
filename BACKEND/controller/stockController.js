@@ -35,37 +35,48 @@ const Product = require('../model/productModel');
     
     };
 
-  const updateStock = async (req, res) => {
+    //update stock
 
-        
-  let stockId = req.params.id;
-
-  
- 
-
-  //destructure
-  const {productName,stockAmount,additionalDetails,reorderpoint,stockQuantity} = req.body;
-      
-
-  const updateStock = {
-    productName,
-    stockAmount,
-    additionalDetails,
-    reorderpoint,
-    stockQuantity
-   
+    const updateStock = async (req, res) => {
+      const { id } = req.params; // Extract the stock ID from the URL parameter
     
-     
-  }
-
-  const update = await Stock.findByIdAndUpdate(stockId, updateStock).then(() => {
-      res.status(200).send({status: "Stock updated"})
-  }).catch((err) => {
-      console.log(err);
-      res.status(500).send({status: "Error with updating data", error: err.message});
-  })
-
-};
+      try {
+        const { stockQuantity, stockAmount, reorderpoint } = req.body;
+    
+        // Validate if stockQuantity, stockAmount, and reorderpoint are numbers and non-negative
+        if (
+          typeof stockQuantity !== 'number' ||
+          typeof stockAmount !== 'number' ||
+          typeof reorderpoint !== 'number' ||
+          stockQuantity < 0 ||
+          stockAmount < 0 ||
+          reorderpoint < 0
+        ) {
+          return res.status(400).json({ error: 'Invalid input values' });
+        }
+    
+        const stock = await Stock.findById(id);
+        if (!stock) {
+          return res.status(404).json({ error: 'Stock not found' });
+        }
+    
+        // Update stock quantity and amount
+        stock.stockQuantity += stockQuantity;
+        stock.stockAmount += stockAmount;
+        stock.reorderpoint = reorderpoint;
+    
+        // Save the updated stock
+        await stock.save();
+    
+        console.log('Stock updated:', stock);
+    
+        res.status(200).json({ status: 'Stock updated' });
+      } catch (error) {
+        console.error('Error updating stock:', error.message);
+        res.status(500).json({ error: error.message });
+      }
+    };
+    
 
 //get all stock data
 
