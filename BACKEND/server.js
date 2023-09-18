@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
+//test
 mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -45,6 +46,9 @@ app.use("/api/user" , user);
 
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
 app.use("/deliveryPerson", deliveryPersonRouter)
+
+const deliveryOrderRoutes = require("./routes/deliveringOrderRoute");
+app.use("/deliveryOrder", deliveryOrderRoutes);
 
 const warrentyRouter = require("./routes/warrentyRoutes");
 app.use("/warrenty", warrentyRouter);
