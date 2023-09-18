@@ -61,6 +61,10 @@ app.use("/brand", brandRoutes);
 const colorRoutes = require("./routes/colorRoute");
 app.use("/color", colorRoutes);
 
+const deliveryOrderRoutes = require("./routes/deliveringOrderRoute");
+app.use("/deliveryOrder", deliveryOrderRoutes);
+
+
 app.use(notFound);
 app.use(errorHandler);
 
