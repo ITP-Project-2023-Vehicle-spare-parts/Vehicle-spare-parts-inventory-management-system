@@ -35,10 +35,10 @@ const Header = () => {
           <div className='col-4'>
             <div className='header-upper-links d-flex align-items-center justify-content-between'>
               <div>
-                <Link className='d-flex align-items-center gap-10 text-white'>
+                <NavLink to="/wishlist" className='d-flex align-items-center gap-10 text-white'>
                 <img src='/images/wishlist.svg' alt="wishlist"/>
                 <p className='mb-0'>Favourites <br /> wishlist</p>
-                </Link>
+                </NavLink>
               </div>
               <div>
               <Link className='d-flex align-items-center gap-10 text-white'>

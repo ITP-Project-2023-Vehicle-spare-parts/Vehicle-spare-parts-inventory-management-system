@@ -427,3 +427,24 @@ footer .input-group-text{
 }
 
 /*^^^ Contact us page ^^^*/
+
+.wishlist-card .cross{
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.wishlist-card h5.title{
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: var(--color-3E6383);
+}
+
+.wishlist-card h6.price{
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+}
