@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
 import ProductCard from '../components/ProductCard';
+import Color from '../components/Color';
 
 const Store = () => {
   const [grid, setGrid] = useState(4);
-  alert(grid);
+
   return (
     <>
     <Helmet>
@@ -46,16 +47,8 @@ const Store = () => {
                 </div>
                 <h5 className='sub-title'>Colors</h5>
                 <div>
-                    <ul className='colors ps-0'>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                    </ul>
-                </div>
-                
+                    <Color />
+                </div>          
               </div>
             </div>
             <div className='filter-card mb-3'>

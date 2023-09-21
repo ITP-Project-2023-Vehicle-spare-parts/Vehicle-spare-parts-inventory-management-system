@@ -102,6 +102,7 @@ a{
   width: 100%;
 }
   
+
 /*Header CSS */
 .header-top-strip{
   background-color: var(--color-2A3847);
@@ -143,6 +144,7 @@ a{
 }
 /*^^^Header CSS^^^ */
 
+
 /*Footer CSS */
 footer{
   background-color: var(--color-3E6383);
@@ -158,6 +160,7 @@ footer .input-group-text{
   padding: 8px 17px;
 }
 /*^^^Footer CSS */
+
 
 /*Home CSS */
 
@@ -195,11 +198,13 @@ footer .input-group-text{
   text-transform: none;
 }
 
+
 /*home 2nd section */
 .home-wrapper-2{
   background-color: var(--color-f5f5f7);
 }
 /*^^^home 2nd section^^^ */
+
 
 /*home 3rd section */
 .categories{
@@ -210,12 +215,14 @@ footer .input-group-text{
 /*^^^home 3rd section^^^ */
 /*^^^Home CSS^^^ */
 
+
 /* Store */
 .filter-card{
   background-color: var(--color-FFFFFF);
   border-radius: 10px;
   padding: 10px 15px;
 }
+
 
 .filter-title{
   font-size: 16px;
@@ -323,6 +330,7 @@ footer .input-group-text{
 
 /*^^^ Store ^^^*/
 
+
 /* productCard */
 
 .product-card{
@@ -392,3 +400,30 @@ footer .input-group-text{
 }
 
 /* ^^^productCard^^^ */
+
+
+/*Contact us page */
+
+.contact-inner-wrapper{
+  padding: 30px 20px;
+  border-radius: 15px;
+  background-color: var(--color-FFFFFF);
+  gap: 15px;
+}
+
+.contact-inner-wrapper > div{
+  width: 48%;
+}
+
+.contact-title{
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 35px;
+  text-align: left;
+}
+
+.contact-inner-wrapper ul{
+  list-style: none;
+}
+
+/*^^^ Contact us page ^^^*/
