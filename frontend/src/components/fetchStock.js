@@ -46,6 +46,7 @@ function FetchStock() {
                 <Link to={`/update/${stock._id}`} className="btn btn-warning">
                   Update
                 </Link>
+                
                 {/* Button to delete */}
                
               </td>
