@@ -5,6 +5,9 @@ import AddSupplier from "./components/AddSupplier";
 import AddClient from "./components/AddClient";
 import SupplierProfile from "./components/SupplierProfile";
 import Login from "./components/Login";
+import AddStock from './components/stockComponents/addStock';
+import FetchStock from './components/stockComponents/fetchStock';
+
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -22,6 +25,8 @@ function App() {
           <Route path="/Admin/sup/add" element={<AddSupplier />} />
           <Route path="/Admin/client/add" element={<AddClient />} />
           <Route path="/Admin/Supplier/Profile" element={<SupplierProfile />} />
+          <Route path='/add-stock' element={<AddStock />} />
+          <Route path='/fetch-stock' element={<FetchStock/>} />
         </Routes>
 
 
