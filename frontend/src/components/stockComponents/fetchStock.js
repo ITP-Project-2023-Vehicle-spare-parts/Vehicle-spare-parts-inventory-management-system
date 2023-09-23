@@ -20,6 +20,7 @@ function FetchStock() {
   };
 
   return (
+    <form onSubmit={fetchStocks}>
     <div className="container">
       <h1>All Stock</h1>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
@@ -46,6 +47,10 @@ function FetchStock() {
                 <Link to={`/update/${stock._id}`} className="btn btn-warning">
                   Update
                 </Link>
+                <Link to={`/delete/${stock._id}`} className="btn btn-warning">
+                  Delete
+                </Link>
+                
                 {/* Button to delete */}
                
               </td>
@@ -54,6 +59,7 @@ function FetchStock() {
         </tbody>
       </table>
     </div>
+    </form>
   );
 }
 
