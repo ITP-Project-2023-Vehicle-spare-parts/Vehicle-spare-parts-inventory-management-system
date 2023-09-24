@@ -116,6 +116,7 @@ body.AllSupplier {
     border-collapse: collapse;
     padding: 1rem;
     text-align: left;
+    font-size: 18px;
 }
 
 #AllSupplier thead th {
@@ -125,6 +126,7 @@ body.AllSupplier {
     background-color: #d5d1defe;
     cursor: pointer;
     text-transform: capitalize;
+    font-size: 20px;
 }
 
 #AllSupplier tbody tr:nth-child(even) {

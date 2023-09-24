@@ -116,6 +116,7 @@ body.AllClient {
     border-collapse: collapse;
     padding: 1rem;
     text-align: left;
+    font-size: 18px;
 }
 
 #AllClient thead th {
@@ -125,6 +126,7 @@ body.AllClient {
     background-color: #d5d1defe;
     cursor: pointer;
     text-transform: capitalize;
+    font-size: 20px;
 }
 
 #AllClient tbody tr:nth-child(even) {
