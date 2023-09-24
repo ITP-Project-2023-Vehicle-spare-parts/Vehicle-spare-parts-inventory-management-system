@@ -1,62 +1,3 @@
-/*const DeliveryPerson = require('../model/deliverypersonModel')
-//const slugify = require("slugify");
-
-
-const addDeliveryPerson = async (req, res) => {
-    try {
-      
-        const existingDeliveryPerson = await DeliveryPerson.findOne({ deliverypersonUsername: req.body.deliverypersonUsername });
-
-        if (existingDeliveryPerson) {
-            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this username already exists" });
-        }
-
-    const DeliveryPersonID = req.body.DeliveryPersonID;
-    const deliverypersonname = req.body.deliverypersonname;
-    const deliverypersonGender = req.body.deliverypersonGender;
-    const deliverypersonDOB = req.body.deliverypersonDOB;
-    const deliverypersonContactNumber = req.body.deliverypersonContactNumber;
-    const deliverypersonEmail = req.body.deliverypersonEmail;
-    const deliverypersonNIC = req.body.deliverypersonNIC;
-    const deliverypersonAddress = req.body.deliverypersonAddress;
-    const deliverypersonDLN = req.body.deliverypersonDLN;
-    const deliverypersonDLexpire = req.body.deliverypersonDLexpire;
-    const deliverypersonExperience = req.body.deliverypersonExperience;
-    const deliverypersonVehicleType = req.body.deliverypersonVehicleType ;
-    const deliverypersonVehicleNumber= req.body.deliverypersonVehicleNumber;
-    const deliverypersonBranch= req.body.deliverypersonBranch;
-    const deliverypersonUsername= req.body.deliverypersonUsername;
-    const deliverypersonPassword= req.body.deliverypersonPassword;
-    const deliverypersonReEnter= req.body.deliverypersonReEnter;
-        const DeliveryPerson = new DeliveryPerson({
-            DeliveryPersonID ,
-            deliverypersonname ,
-            deliverypersonGender ,
-            deliverypersonDOB ,
-            deliverypersonContactNumber ,
-            deliverypersonEmail ,
-            deliverypersonNIC ,
-            deliverypersonAddress ,
-            deliverypersonDLN,
-            deliverypersonDLexpire ,
-            deliverypersonExperience ,
-            deliverypersonVehicleType,
-            deliverypersonVehicleNumber,
-            deliverypersonBranch,
-            deliverypersonUsername,
-            deliverypersonPassword,
-            deliverypersonReEnter
-
-        });
-
-        await DeliveryPerson.save();
-        res.json("DeliveryPerson Added");
-    } catch (err) {
-        console.log(err);
-        res.status(500).send({ status: "Error adding DeliveryPerson", error: err.message });
-    }
-};
-*/
 const DeliveryPerson = require('../model/deliverypersonModel');
 
 const addDeliveryPerson = async (req, res) => {
@@ -108,37 +49,13 @@ const getAllDeliveryPerson = async (req, res) => {
     }
 };
 
-// const updateDeliveryPerson = async (req, res) => {
-//     try {
-//         const DeliveryPersonsId = req.params.id;
-
-//         const { deliverypersonname ,deliverypersonContactNumber ,deliverypersonEmail ,deliverypersonAddress ,deliverypersonDLexpire,deliverypersonVehicleType,deliverypersonVehicleNumber,deliverypersonBranch} = req.body;
-
-
-//         const updateDeliveryPersons = {
-//             deliverypersonname ,
-//             deliverypersonContactNumber ,
-//             deliverypersonEmail ,
-//             deliverypersonAddress ,
-//             deliverypersonDLexpire,
-//             deliverypersonVehicleType,
-//             deliverypersonVehicleNumber,
-//             deliverypersonBranch
-//         };
-
-//         await DeliveryPerson.findByIdAndUpdate(DeliveryPersonId, updateDeliveryPerson);
-//         res.status(200).send({ status: "DeliveryPerson Updated" });
-//     } catch (err) {
-//         console.log(err);
-//         res.status(500).send({ status: "Error updating DeliveryPerson", error: err.message });
-//     }
-// };
 const updateDeliveryPerson = async (req, res) => {
     try {
-        const DeliveryPersonId = req.params.id; // Correct variable name
+        const DeliveryPersonId = req.params.id;
+        console.log(req.body); // Correct variable name
 
         const { deliverypersonname, deliverypersonContactNumber, deliverypersonEmail, deliverypersonAddress, deliverypersonDLexpire, deliverypersonVehicleType, deliverypersonVehicleNumber, deliverypersonBranch } = req.body;
-
+        console.log(req.params.id);
         const updateDeliveryPersons = {
             deliverypersonname,
             deliverypersonContactNumber,
@@ -150,7 +67,7 @@ const updateDeliveryPerson = async (req, res) => {
             deliverypersonBranch
         };
 
-        await DeliveryPerson.findByIdAndUpdate(DeliveryPersonId, updateDeliveryPersons); // Correct variable name
+        await DeliveryPerson.findByIdAndUpdate(req.params.id , updateDeliveryPersons); // Correct variable name
         res.status(200).send({ status: "DeliveryPerson Updated" });
     } catch (err) {
         console.log(err);
@@ -171,12 +88,28 @@ const deleteDeliveryPerson = async (req, res) => {
     }
 };
 
+const getDeliveryPerson = async (req, res) => {
+    try {
+        const DeliveryPersonID = req.params.id;
+        console.log(req.params.id);
+
+        const DeliveryPersons = await DeliveryPerson.findOne({ DeliveryPersonID: req.params.id });
+        console.log(DeliveryPersons)
+        res.status(200).send({ status: "DeliveryPerson fetched", DeliveryPersons });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching DeliveryPerson", error: err.message });
+    }
+};
+
 const getDeliveryPersonById = async (req, res) => {
     try {
         const DeliveryPersonID = req.params.id;
+        console.log(req.params.id);
 
-        const DeliveryPerson = await DeliveryPerson.findById(DeliveryPersonID);
-        res.status(200).send({ status: "DeliveryPerson fetched", supplier });
+        const DeliveryPersons = await DeliveryPerson.findById(req.params.id );
+        console.log(DeliveryPersons)
+        res.status(200).send({ status: "DeliveryPerson fetched", DeliveryPersons });
     } catch (err) {
         console.log(err);
         res.status(500).send({ status: "Error fetching DeliveryPerson", error: err.message });
@@ -189,6 +122,7 @@ module.exports = {
    updateDeliveryPerson,
     deleteDeliveryPerson,
     getDeliveryPersonById,
+    getDeliveryPerson
 };
 
 

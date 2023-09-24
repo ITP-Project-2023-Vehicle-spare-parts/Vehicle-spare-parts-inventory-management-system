@@ -42,7 +42,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
 const user = require("./routes/authRoute");
-app.use("/api/user" , user);
+app.use("/user" , user);
 
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
 app.use("/deliveryPerson", deliveryPersonRouter)
