@@ -112,7 +112,7 @@ export default function AllSupplier() {
                   <th> Address </th>
                   <th> System Email</th>
                   <th> Provided Brand </th>
-                  <th> Option</th>
+                  <th > Option</th>
                 </tr>
               </thead>
 
