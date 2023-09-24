@@ -57,7 +57,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="/supplier/home">
                     < i className='bx bx-grid-alt'></i>
                     <span className="link-name">Dashboard</span>
                     </Link>
