@@ -8,6 +8,10 @@ const supplierReqSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Supplier",   
     },
+    SupplierEmail : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Supplier", 
+    },
     dateAdded: {
         type: Date,
        default:Date.now,

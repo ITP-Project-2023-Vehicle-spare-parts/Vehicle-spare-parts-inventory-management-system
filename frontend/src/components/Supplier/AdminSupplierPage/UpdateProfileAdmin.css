@@ -1,0 +1,107 @@
+#UpdateProfileAdmin body {
+    margin: 0;
+    padding-top: 20px;
+    color: #2e323c;
+    background: #ffffff;
+    position: relative;
+    height: 100vh;
+}
+#UpdateProfileAdmin .account-settings .user-profile {
+    margin: 1 1 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+    position:relative ;
+    
+    
+}
+
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar:hover input{
+    background-color: #15141434;
+    color: white;
+    font-size: 16px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar .middle{
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar:hover img{
+    opacity: 0.3;
+}
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar:hover .middle{
+    opacity: 1;
+}
+#UpdateProfileAdmin .account-settings .user-profile .user-avatar img{
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+
+    opacity: 1;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    text-align: center;
+}
+#UpdateProfileAdmin .account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+}
+#UpdateProfileAdmin .account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #9fa8b9;
+}
+#UpdateProfileAdmin .account-settings .about {
+    margin: 2rem 0 0 0;
+    text-align: center;
+}
+#UpdateProfileAdmin .account-settings .about h5 {
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+    color: #007ae1;
+}
+#UpdateProfileAdmin .account-settings .about p {
+    font-size: 1rem;
+}
+#UpdateProfileAdmin .form-control {
+    border: 2px solid #073dff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    background: #ffffff;
+    color: #2e323c;
+    box-shadow:#007ae1;
+}
+
+#UpdateProfileAdmin .card {
+    background: #f0eaeacd;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: auto;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .8rem 1rem 0.1rem rgba(6, 6, 6, 0.664);
+   
+   
+}
+
+
+  
+
+ 
+ 
