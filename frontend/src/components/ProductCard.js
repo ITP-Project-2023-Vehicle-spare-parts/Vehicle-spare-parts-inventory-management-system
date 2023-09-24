@@ -31,7 +31,7 @@ const ProductCard = (props) => {
             </div>
             <div className='action-bar position-absolute'>
                 <div className='d-flex flex-column gap-15'>
-                    <Link>
+                    <Link to="product/:id">
                         <img src='images/view.svg' alt='view' />
                     </Link>
                     <Link>

@@ -11,6 +11,7 @@ import About from "./pages/about";
 import Contact from "./pages/Contact";
 import Store from "./pages/store";
 import Wishlist from "./pages/Wishlist";
+import SingleProduct from "./pages/SingleProduct";
 
 function App() {
   return (
@@ -24,11 +25,13 @@ function App() {
       <Route path ="/Admin/client/add" element={<AddClient/>} />
       <Route path ="/login" element={<Login/>} />
       <Route path ="/Admin/Supplier/Profile" element={<SupplierProfile/>} />
+
         <Route path = "/" element={<Layout/>}>
           <Route index element={<Home />} />
           <Route path="about" element={<About/>}/>
           <Route path="contact" element={<Contact />}/>
           <Route path="store" element={<Store />}/>
+          <Route path="store/product/:id" element={<SingleProduct />} />
           <Route path="wishlist" element={<Wishlist />} />
         </Route>
       

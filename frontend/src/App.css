@@ -448,3 +448,38 @@ footer .input-group-text{
   line-height: 22px;
   font-weight: 400;
 }
+
+
+/* Singleproduct */
+
+.main-product-image{
+  padding: 20px;
+  background-color: var(--color-FFFFFF);
+  border-radius: 10px;
+}
+
+.main-product-image>div{
+  border: 1px solid rgba(0, 0, 0, 25);
+}
+
+.main-product-image img{
+  width: 100% !important;
+  height: 500px !important;
+  object-fit: cover;
+}
+
+.main-product-details{
+  padding: 20px;
+  background-color: var(--color-FFFFFF);
+  border-radius: 10px;
+}
+
+.border-bottom{
+  border-bottom: 1px solid rgba(0, 0, 0, 25);
+}
+
+.main-product-details h3.title{
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-2A3847);
+}
