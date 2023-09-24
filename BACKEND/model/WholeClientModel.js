@@ -39,9 +39,7 @@ const clientSchema = new Schema ({
       type :String ,
       
   },
-  ClientsAdress : {
-        type :String ,
-  },
+
    ClientsStatus : {
         type :String ,
         
@@ -49,9 +47,20 @@ const clientSchema = new Schema ({
     NoOfBranches : {
         type :String,
     },
+    role : {
+        type : String,
+        default : "client",
+  
+  
+      },
+    dateAdded: {
+        type: Date,
+        default:Date.now,
+       },
 
     SystemEmail : {
         type :String ,
+        required: true,
         
     },
 

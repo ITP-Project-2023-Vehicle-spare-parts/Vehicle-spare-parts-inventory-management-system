@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap");
+
+
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Popins" ,sans-serif;
+    
+    
+
+}
+
+#AddSupplier body{
+   
+   
+    min-height: 100vh;
+    width: 100%;
+    overflow:auto;
+    
+   
+
+}
+
+#AddSupplier .home_content {
+    margin-top: 0;
+    position: absolute;
+    display: flex;
+    height: 100px;
+    width: calc(100% - 200%px);
+    left: 78px;
+    transition: all 0.5s ease;
+    width: max-content;
+    
+   
+}
+#AddSupplier .sidebar.active .home_content{
+    left:240px ;
+    width: calc(100% - 240%px);
+    
+   
+}
+#AddSupplier .home_content .text{
+    font-size: 25px;
+    font-weight: 500;
+    color:#1d1b31 ;
+    margin-left: 0px;
+    width: max-content;
+    margin-top: 0px;
+    
+}
+#AddSupplier .home_content .text1{
+    font-size: 25px;
+    font-weight: 500;
+    color:#1d1b31 ;
+    margin-left: 750px;
+    width: max-content;
+    
+    
+}
+
+
+
+#AddSupplier .component-3-icon {
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    
+  }
+#AddSupplier .sidebar.active .component-3-icon{
+    opacity: 1;
+    pointer-events: auto;
+
+  }
+
+
+#AddSupplier .nav_list {
+    list-style: none;
+    padding: 0;
+}
+#AddSupplier .nav-link{
+    color: #fff !important ;
+}
+#AddSupplier .nav-link.active {
+    color: #11101d !important;
+}
+
+
+
+/* form */
+
+
+#AddSupplier .container {
+    margin-left: 300px;
+    margin-right: auto;
+    margin-top: 0px;
+    box-shadow: 5px 10px #000000;
+    border-style: outset;
+    border-color: #5d5454d6;
+    background-color: #75cbe082;
+    
+   
+}

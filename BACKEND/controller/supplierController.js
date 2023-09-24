@@ -28,6 +28,8 @@ const addSupplier = async (req, res) => {
     const SupplierAddress = req.body.SupplierAddress;
     const SupplierStatus = req.body.SupplierStatus;
     const ProvidedBrand = req.body.ProvidedBrand;
+    const role = req.body.role;
+    const dateAdded = req.body.dateAdded;
     const SystemEmail = req.body.SystemEmail;
     const SystemPassword = req.body.SystemPassword;
 
@@ -46,8 +48,10 @@ const addSupplier = async (req, res) => {
       SystemPassword,
       SupplierCity,
       SupplierState,
+      role,
       SupplierPostalCode,
       ProvidedBrand,
+      dateAdded,
     });
 
     await newSupplier.save();
@@ -77,6 +81,10 @@ const updateSupplier = async (req, res) => {
     const supplierId = req.params.id;
 
     const {
+      CompanyName,
+      CompanyEmail,
+      CompanyPhone,
+      CompanyAddress,
       SupplierfirstName,
       SupplierLastName,
       SupplierEmail,
@@ -89,6 +97,10 @@ const updateSupplier = async (req, res) => {
     } = req.body;
 
     const updatesupplier = {
+      CompanyName,
+      CompanyEmail,
+      CompanyPhone,
+      CompanyAddress,
       SupplierfirstName,
       SupplierLastName,
       SupplierEmail,

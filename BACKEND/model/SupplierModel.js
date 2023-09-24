@@ -46,9 +46,20 @@ const supplierSchema = new Schema(
     SupplierStatus: {
       type: String,
     },
+    role : {
+      type : String,
+      default : "supplier",
+
+
+    },
+    dateAdded: {
+     type: Date,
+     default:Date.now,
+    },
   
     ProvidedBrand: {
       type: String,
+      default : "Bajaj",
     
     },
 

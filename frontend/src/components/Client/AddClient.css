@@ -3,14 +3,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap");
 
-.topic-text {
+#AddClient .topic-text {
     margin-left: 30px;
     width: max-content;
     font-size: 18px;
     overflow: auto;
 }
 
-*{
+ *{
     margin:0;
     padding: 0;
     box-sizing: border-box;
@@ -19,22 +19,23 @@
 
 }
 
-body{
+#AddClient body{
+    
     position:relative;
     min-height: 100vh;
     width: 100%;
     overflow:auto;
 
-    background-color: #9691ca;
+    
     
 
 }
-.body {
-    overflow: auto;
+#AddClient .body {
+    overflow-y: scroll;
     
 
 }
-.sidebar{
+#AddClient .sidebar{
     position: fixed;
     top: 0;
     left: 0;
@@ -46,11 +47,11 @@ body{
     
 
 }
-.sidebar.active{
+#AddClient .sidebar.active{
     width:240px ;
 }
 
-.sidebar .logo_content .logo{
+#AddClient .sidebar .logo_content .logo{
     color: #fff;
     display: flex;
     height: 50px;
@@ -62,19 +63,19 @@ body{
 
 }
 
-.sidebar.active .logo_content .logo{
+#AddClient .sidebar.active .logo_content .logo{
     opacity: 1;
     pointer-events: auto;
     
 }
-.logo_content .logo i{
+#AddClient .logo_content .logo i{
     font-size: 28px;
     margin-right: 5px;
     
 
 }
 
-.logo_content .logo .logo_name{
+#AddClient .logo_content .logo .logo_name{
     font-size: 20px;
     position: absolute;
     font-weight: 400;
@@ -85,12 +86,12 @@ body{
 
 
 }
-.sidebar.active .logo .logo_name{
+#AddClient .sidebar.active .logo .logo_name{
     opacity: 1;
     pointer-events: auto;
     
 }
-.sidebar #btn{
+#AddClient .sidebar #btn{
     position:absolute ;
     color: #fff;
     left: 45px;
@@ -104,7 +105,7 @@ body{
     opacity: 1;
 
 }
-.sidebar.active #btn{
+#AddClient .sidebar.active #btn{
    
     left: 210px;
     opacity: 1;
@@ -113,11 +114,11 @@ body{
 }
 
 
-.sidebar ul{
+#AddClient .sidebar ul{
     margin-top: 20px;
 
 }
-.sidebar ul li{
+#AddClient .sidebar ul li{
     position:relative ;
     height: 50px;
     width: 100%;
@@ -127,7 +128,7 @@ body{
     border-radius: 12px;
 
 }
-.sidebar .nav_list li .tooltip {
+#AddClient .sidebar .nav_list li .tooltip {
     position: absolute;
     left: 122px;
     top: 0;
@@ -143,11 +144,11 @@ body{
     opacity: 0;
     transition: 0s;
 }
-.sidebar.active .nav_list li .tooltip{
+#AddClient .sidebar.active .nav_list li .tooltip{
     display: none;
 }
 
-.sidebar .nav_list li:hover .tooltip {
+#AddClient .sidebar .nav_list li:hover .tooltip {
     opacity: 1;
     visibility: visible;
     transition: all 0.5s ease;
@@ -155,7 +156,7 @@ body{
 }
 
 
-.sidebar ul li .bx-search{
+#AddClient .sidebar ul li .bx-search{
     position: absolute;
     z-index: 99;
     color: #fff;
@@ -166,7 +167,7 @@ body{
 
 
 }
-.sidebar ul li input{
+#AddClient .sidebar ul li input{
     position: absolute;
     height: 100%;
     width: 100%;
@@ -182,18 +183,18 @@ body{
 
 
 } 
-.sidebar.active ul li input{
+#AddClient .sidebar.active ul li input{
     opacity: 1;
     width: 400%;
     transition: all 0.5s ease;
 } 
-.sidebar ul li .bx-search:hover{
+#AddClient .sidebar ul li .bx-search:hover{
     background: #fff;
     color:#1d1b31 ;
 }
 
 
-.sidebar ul li a{
+#AddClient .sidebar ul li a{
     color :#fff;
     display: flex;
     align-items: center;
@@ -202,11 +203,11 @@ body{
     border-radius: 12px;
     white-space: nowrap;
 }
-.sidebar ul li a:hover{
+#AddClient .sidebar ul li a:hover{
     color: #11101d;
     background: #fff;
 }
-.sidebar ul li a i{
+#AddClient .sidebar ul li a i{
     height: 50px;
     min-width: 50px;
     border-radius: 12px;
@@ -214,7 +215,7 @@ body{
     text-align: center;
 
 }
-.sidebar .link-name{
+#AddClient .sidebar .link-name{
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s ease;
@@ -223,13 +224,13 @@ body{
 
 }
 
-.sidebar.active .link-name{
+#AddClient .sidebar.active .link-name{
     opacity: 1;
     pointer-events: auto;
     
 }
 
-.sidebar .profile_content{
+#AddClient .sidebar .profile_content{
     position: absolute;
     color: #fff;
     bottom: 0;
@@ -237,14 +238,14 @@ body{
     width:100% ;
 
 }
- .sidebar .profile_content .profile{
+#AddClient .sidebar .profile_content .profile{
     position: relative;
     padding: 10px 6px;
     height:60px;
     background:#1d1b31;
 
 }
-.profile_content .profile .profile_details{
+#AddClient .profile_content .profile .profile_details{
     display: flex;
     align-items: center;
     opacity: 0;
@@ -253,32 +254,32 @@ body{
 
 
 }
-.sidebar.active .profile .profile_details{
+#AddClient .sidebar.active .profile .profile_details{
     opacity: 1;
     pointer-events: auto;
 }
-.profile_content .profile .profile_details img{
+#AddClient .profile_content .profile .profile_details img{
     height: 45px;
     width: 45px;
     object-fit: cover;
     border-radius: 12px;
 
 }
-.profile .profile_details .name_job{
+#AddClient .profile .profile_details .name_job{
     margin-left: 10px;
 
 }
-.profile .profile_details .name{
+#AddClient .profile .profile_details .name{
     font-size: 15px;
     font-weight: 400;
 
 }
-.profile .profile_details .job{
+#AddClient .profile .profile_details .job{
     font-size: 22px;
     font-weight: 400;
 
 }
-.profile #log_out{
+#AddClient .profile #log_out{
     position: absolute;
     left :60%;
     bottom :5px;
@@ -290,10 +291,10 @@ body{
     
 
 }
-.sidebar.active .profile #log_out{
+#AddClient .sidebar.active .profile #log_out{
     left: 290%;
 }
-.home_content {
+#AddClient .home_content {
     position: absolute;
     height: 100px;
     width: calc(100% - 200%px);
@@ -301,61 +302,53 @@ body{
     transition: all 0.5s ease;
     width: max-content;
 }
-.sidebar.active .home_content{
+#AddClient .sidebar.active .home_content{
     left:240px ;
     width: calc(100% - 240%px);
     
    
 }
-.home_content .text{
+#AddClient .home_content .text{
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
     margin-left: 0px;
     width: max-content;
 }
-.home_content .text1{
+#AddClient .home_content .text1{
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
-    margin-left: 750px;
+    margin-left: 810px;
     width: max-content;
     
     
 }
-/* .home_content .text2{
-    
-    font-weight: 5000;
-    color:#1d1b31 ;
-    margin-left: 100px;
-    width: max-content;
-    
-    
-} */
 
 
-.component-3-icon {
+
+#AddClient .component-3-icon {
     position: absolute;
     width: 1.5em;
     height: 1.5em;
     display: inline-block;
     
   }
-  .sidebar.active .component-3-icon{
+#AddClient .sidebar.active .component-3-icon{
     opacity: 1;
     pointer-events: auto;
 
   }
 
 
-  .nav_list {
+#AddClient .nav_list {
     list-style: none;
     padding: 0;
 }
-.nav-link{
+#AddClient .nav-link{
     color: #fff !important ;
 }
-.nav-link.active {
+#AddClient .nav-link.active {
     color: #11101d !important;
 }
 
@@ -364,12 +357,14 @@ body{
 /* form */
 
 
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 5px 10px #888888;
+#AddClient .container {
+    margin-left: 300px;
+    overflow: auto;
+    overflow-y: auto;
+    box-shadow: 5px 10px #0d0b0b;
     border-style: outset;
-    border-color: #fff;
+    border-color: #b3a8a8db;
+    background-color: #75cbe082;
     
    
 }

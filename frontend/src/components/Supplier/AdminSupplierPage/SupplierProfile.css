@@ -1,0 +1,565 @@
+/* ===== =====  Poppins Google Font  ===== =====  */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+/* ===== =====>>  Universal Selector  <<===== =====  */
+#SupplierProfile * {
+  
+  margin: 0;
+  font-size: 16px;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+ 
+}
+#SupplierProfile html {
+    font-size: 25px;
+    
+}
+
+
+
+
+/* ===== =====>> Css Variables  <<===== =====  */
+:root {
+  /* =====>>  Font Color  <<===== */
+  --f1-color: #fff;
+  --f2-color: #000;
+  --f3-color: rgba(0, 0, 0, 0.8);
+  --f4-color: rgba(0, 0, 0, 0.6);
+  --f5-color: #0099cc;
+  --f6-color: #88cee6;
+
+  /* =====>>  Background Color  <<===== */
+  --bg1-color: #fff;
+  --bg2-color: #000;
+  --bg3-color: #33ccff;
+  --bg4-color: #33cc33;
+  --bg5-color: #0099cc;
+  --bg6-color: rgba(0, 0, 0, 0.4);
+  --bg7-color: rgba(0, 0, 0, 0.2);
+  --glass-bg: linear-gradient(
+    to right bottom,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.3)
+  );
+  --C-lg-bg: linear-gradient(45deg, #ff3399, #ff9933);
+
+  /* ===== =====>>  Font Size  <<===== =====  */
+  --xxxl-fs: 2.2rem;
+  --xxl-fs: 1.8rem;
+  --xl-fs: 1.6rem;
+  --l-fs: 1.4rem;
+  --m-fs: 1.2rem;
+  --s-fs: 1.1rem;
+  --xs-fs: 1rem;
+
+  /* =====>>  Margin  <<===== */
+  --m-2-5: 2.5rem;
+  --m-1-8: 1.8rem;
+  --m-1-5: 1.5rem;
+  --m-0-6: 0.6rem;
+  --m-0-5: 0.5rem;
+  --m-0-3: 0.3rem;
+
+  /* =====>>  Padding  <<===== */
+  --p-2-5: 2.5rem;
+  --p-1-5: 1.5rem;
+  --p-1-0: 1rem;
+  --p-0-8: 0.8rem;
+  --p-0-5: 0.5rem;
+  --p-0-4: 0.4rem;
+  --p-0-3: 0.3rem;
+}
+
+/* ===== =====>>  Body Css  <<===== =====  */
+#SupplierProfile body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* ===== =====>>  Body Main-Background Css  <<===== =====  */
+/* responsive */
+@media screen and (max-width: 1024px)  {
+    html {
+      font-size: 10px;
+      
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    html {
+      font-size: 8px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    html {
+      font-size: 10px;
+    }
+  
+    /* ===== =====>>  Container Css Start  <<===== ===== */
+    #SupplierProfile .container {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "userProfile"
+        "userDetails"
+        "work_skills"
+        "timeline_about";
+      overflow-x: hidden;
+      overflow-y: inherit;
+      padding: 0;
+      width: 95%;
+      height: 100%;
+      box-shadow: none;
+      
+    }
+  
+    /* ===== =====>>  Container Card Css Start  <<===== ===== */
+    #SupplierProfile .container .card {
+      backdrop-filter: none;
+    }
+  
+    #SupplierProfile .userDetails {
+      margin-bottom: 3rem;
+    }
+  
+    #SupplierProfile .container::before,
+    #SupplierProfile .container::after {
+      display: none;
+    }
+  
+    /* ===== =====>>  Header/Navbar Css Start  <<===== ===== */
+    #SupplierProfile .container header {
+      padding: 2.5rem;
+    } 
+  }
+  
+  @media screen and (max-width: 500px) {
+  .container {
+      width: 100px;
+      overflow: initial;
+    }
+  }
+  
+  @media screen and (max-width: 350px) {
+ .main_bg {
+      animation: none;
+    }
+  }
+
+  #SupplierProfile .main_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: left;
+  z-index: -1;
+  filter: blur(10px);
+}
+
+/* ===== =====>>  Main-Container Css  <<===== =====  */
+#SupplierProfile .container {
+  position: relative;
+  display:grid;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  grid-template-columns: 1.5fr 2.5fr;
+  grid-template-areas:
+    "header header"
+    "userProfile userDetails"
+    "work_skills timeline_about"
+    "work_skills timeline_about";
+  width: 100%;
+  height: 100vh;
+  flex-wrap:none;
+  background: var(--glass-bg);
+  padding: var(--p-1-5);
+  box-shadow: 0 5px 10px rgba(158, 143, 143, 0.896), 0 0 25px rgba(109, 105, 105, 0.805);
+}
+
+/* ===== =====>>  Container Cards Grid-Area Css Start  <<===== =====  */
+#SupplierProfile header {
+  grid-area: header;
+}
+
+#SupplierProfile .userProfile {
+  grid-area: userProfile;
+}
+
+#SupplierProfile .work_skills {
+  grid-area: work_skills;
+}
+
+#SupplierProfile .userDetails {
+  grid-area: userDetails;
+}
+
+#SupplierProfile .timeline_about {
+  grid-area: timeline_about;
+}
+
+/* ===== =====>>  Container Cards Css  <<===== =====  */
+#SupplierProfile .container .card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(3rem);
+  border-radius: 0.7rem;
+  box-shadow: 0 0 25px rgba(49, 60, 86, 0.559);
+  padding: var(--p-1-5);
+}
+
+/* ===== =====>>  Container Header/Navbar Css  <<===== =====  */
+#SupplierProfile .container header {
+  padding: 0 var(--p-2-5);
+}
+
+#SupplierProfile .container header .brandLogo {
+  display: flex;
+  align-items: center;
+}
+
+#SupplierProfile .container header .brandLogo figure img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+#SupplierProfile .container header .brandLogo span {
+  font-size: var(--xl-fs);
+  font-weight: 700;
+  margin-left: var(--m-0-5);
+}
+
+/* ===== =====>>  User Main-Profile Css Start  <<===== ===== */
+#SupplierProfile .container .userProfile {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+#SupplierProfile .container .userProfile .profile figure img {
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+}
+
+/* ===== =====>>  Work & Skills Css Start  <<===== ===== */
+#SupplierProfile .container .work_skills {
+  padding: var(--p-1-5);
+}
+
+#SupplierProfile .work_skills .work .heading,
+#SupplierProfile .work_skills .skills .heading {
+  position: relative;
+  font-size: var(--xs-fs);
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  margin-bottom: var(--m-1-5);
+}
+
+#SupplierProfile .work_skills .work .heading::before,
+#SupplierProfile .work_skills .skills .heading::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 0.1rem;
+  width: 88%;
+  background: var(--bg6-color);
+}
+
+#SupplierProfile .work_skills .work .primary,
+#SupplierProfile .work_skills .work .secondary {
+  position: relative;
+}
+
+#SupplierProfile .work_skills .work .primary h1,
+#SupplierProfile .work_skills .work .secondary h1 {
+  font-size: var(--l-fs);
+  color: var(--f3-color);
+  margin-bottom: var(--m-0-6);
+}
+
+#SupplierProfile .work_skills .work .primary span,
+#SupplierProfile .work_skills .work .secondary span {
+  position: absolute;
+  top: 0;
+  right: 3rem;
+  font-weight: 700;
+  font-size: var(--s-fs);
+  color: var(--f5-color);
+  background: #e6f2ff;
+  padding: var(--p-0-4) var(--p-1-0);
+  border-radius: 0.4rem;
+}
+
+#SupplierProfile .work_skills .work .primary p,
+#SupplierProfile .work_skills .work .secondary p {
+  margin-bottom: var(--m-1-8);
+  font-size: var(--m-fs);
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.6rem;
+}
+
+/* =====>>  Skills Bars Css  <<===== */
+#SupplierProfile .work_skills .skills ul li {
+  position: relative;
+  font-size: var(--m-fs);
+  line-height: 1.8rem;
+  margin: var(--m-0-5);
+  color: var(--f2-color);
+  font-weight: 500;
+}
+
+#SupplierProfile .work_skills .skills ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 0.2rem;
+  background: var(--bg3-color);
+  animation: skills 8s linear infinite;
+  animation-delay: calc(-2s * var(--i));
+}
+
+@keyframes skills {
+  0% {
+    width: 50%;
+    filter: hue-rotate(180deg);
+  }
+
+  50% {
+    width: 0;
+  }
+
+  100% {
+    width: 50%;
+    filter: hue-rotate(0);
+  }
+}
+
+/* ===== =====>>  User Details Css Start  <<===== ===== */
+#SupplierProfile .userDetails {
+  position: relative;
+  padding: var(--p-1-5) var(--p-2-5);
+}
+
+#SupplierProfile .userDetails .userName h1 {
+  font-size: var(--xxxl-fs);
+}
+
+#SupplierProfile .userDetails .userName .map {
+  position: absolute;
+  top: 2.5rem;
+  left: 18.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#SupplierProfile .userDetails .userName .map .ri {
+  margin-right: var(--m-0-3);
+  font-size: var(--m-fs);
+}
+
+#SupplierProfile .userDetails .userName .map span {
+  font-size: var(--s-fs);
+  color: var(--f3-color);
+  font-weight: 700;
+}
+
+#SupplierProfile.userDetails .userName p {
+  font-size: var(--m-fs);
+  font-weight: 700;
+  color: var(--f5-color);
+  margin-bottom: var(--m-1-8);
+}
+
+#SupplierProfile.userDetails .rank {
+  position: relative;
+  margin-bottom: var(--m-1-8);
+}
+
+#SupplierProfile .userDetails .rank .heading {
+  font-size: var(--xs-fs);
+  color: var(--f4-color);
+  text-transform: uppercase;
+  margin-bottom: var(--m-0-6);
+}
+
+#SupplierProfile .userDetails .rank span {
+  font-size: var(--xxl-fs);
+  font-weight: 700;
+}
+
+#SupplierProfile .userDetails .rank .rating {
+  position: absolute;
+  top: 2.7rem;
+  left: 3.5rem;
+}
+
+#SupplierProfile .userDetails .rank .rating .rate {
+  color: var(--f5-color);
+  font-size: var(--l-fs);
+}
+
+#SupplierProfile .userDetails .rank .rating .underrate {
+  color: var(--f6-color);
+}
+
+#SupplierProfile .userDetails .btns ul{
+     display: flex;
+  align-items: center;
+}
+#SupplierProfile .userDetails .btns ul li {
+  display: flex;
+  align-items: center;
+}
+
+#SupplierProfile .userDetails .btns ul li {
+  margin-right: var(--m-2-5);
+  border-radius: 0.5rem;
+}
+
+#SupplierProfile .userDetails .btns ul li .ri {
+  margin-right: var(--m-0-5);
+  font-size: var(--xl-fs);
+}
+
+#SupplierProfile .userDetails .btns ul li a {
+  font-size: var(--l-fs);
+  color: var(--f2-color);
+  font-weight: 500;
+}
+
+#SupplierProfile .userDetails .btns ul .active {
+  background: #e6f2ff;
+  padding: var(--p-0-5) var(--p-1-5);
+}
+
+#SupplierProfile .userDetails .btns ul .active a{
+    color: var(--f5-color);
+}
+#SupplierProfile .userDetails .btns ul .active .ri {
+  color: var(--f5-color);
+}
+
+/* ===== =====>>  Timeline & About Css Start  <<===== ===== */
+#SupplierProfile.timeline_about {
+  padding: var(--p-2-5);
+}
+
+#SupplierProfile .timeline_about .tabs ul {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--m-2-5);
+}
+
+#SupplierProfile .timeline_about .tabs ul::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--bg7-color);
+}
+
+#SupplierProfile .timeline_about .tabs ul li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: var(--m-2-5);
+  padding-bottom: var(--p-0-8);
+  cursor: pointer;
+}
+
+#SupplierProfile .timeline_about .tabs ul li span {
+  font-size: var(--l-fs);
+  font-weight: 500;
+}
+
+#SupplierProfile .timeline_about .tabs ul li .ri {
+  margin-right: var(--m-0-5);
+}
+
+#SupplierProfile .timeline_about .tabs ul .active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--bg5-color);
+}
+
+#SupplierProfile .timeline_about .contact_info .heading{
+  font-size: var(--xs-fs);
+  color: var(--f4-color);
+  text-transform: uppercase;
+  margin-bottom: var(--m-1-5);
+}
+#SupplierProfile .timeline_about .basic_info .heading {
+  font-size: var(--xs-fs);
+  color: var(--f4-color);
+  text-transform: uppercase;
+  margin-bottom: var(--m-1-5);
+}
+
+#SupplierProfile .timeline_about .contact_info ul{
+     margin-bottom: var(--m-1-5);
+}
+#SupplierProfile .timeline_about .basic_info ul {
+  margin-bottom: var(--m-1-5);
+}
+
+#SupplierProfile .timeline_about .contact_info ul li{
+  display: flex;
+  margin: var(--m-0-5) 0;
+}
+#SupplierProfile .timeline_about .basic_info ul li {
+  display: flex;
+  margin: var(--m-0-5) 0;
+}
+
+#SupplierProfile .timeline_about .contact_info ul li h1{
+  font-weight: 500;
+  font-size: var(--m-fs);
+  min-width: 12rem;
+  color: #0082cd;
+}
+#SupplierProfile .timeline_about .basic_info ul li h1 {
+  font-weight: 500;
+  font-size: var(--m-fs);
+  min-width: 12rem;
+  color: #0082cd;
+}
+
+#SupplierProfile .timeline_about .contact_info ul li span{
+     font-size: var(--m-fs);
+}
+#SupplierProfile .timeline_about .basic_info ul li span {
+  font-size: var(--m-fs);
+}
+
+#SupplierProfile .timeline_about .contact_info ul .phone span{
+     color: var(--f5-color);
+}
+#SupplierProfile .timeline_about .contact_info ul .email span{
+     color: var(--f5-color);
+}
+#SupplierProfile .timeline_about .contact_info ul .site span {
+  color: var(--f5-color);
+}
+

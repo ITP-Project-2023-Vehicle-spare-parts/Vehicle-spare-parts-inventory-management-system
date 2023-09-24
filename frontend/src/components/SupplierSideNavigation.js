@@ -26,7 +26,7 @@ export default function SupplierSideNavigation() {
      
    
     return(
-     <div>
+     <div id="SideNavigation">
 
 <div className={`sidebar ${sidebarActive ? "active" : ""}`}>
 
@@ -74,7 +74,7 @@ export default function SupplierSideNavigation() {
                 </li>
                
                 <li>
-                <Link to="/">
+                <Link to="/supplier/analyse">
                 <i className='bx bx-stats'></i>
                     <span className="link-name">Analytics</span>
                     </Link>
@@ -135,7 +135,9 @@ export default function SupplierSideNavigation() {
         </div>
 
         <div className="home_content">
-            <div className="text"></div>
+            <div className="text">
+                
+            </div>
         </div>
 
         </div>

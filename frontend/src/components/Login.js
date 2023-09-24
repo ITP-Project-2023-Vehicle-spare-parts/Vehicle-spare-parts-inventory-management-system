@@ -54,10 +54,9 @@ export default function Login() {
 
   return (
     <div>
-      <body
-        style={{
-          background: "linear-gradient(180deg, #4D6DE3 0%, #C7EEFF 95.83%)",
-        }}
+      <body id="login"
+        style={{display:"flex",height:" 100vh",
+          background: "linear-gradient(180deg, #4D6DE3 0%, #C7EEFF 95.83%)"}}
       >
         <MDBContainer className="my-5">
           <MDBCard>
@@ -80,7 +79,7 @@ export default function Login() {
                       <Image
                         src="images/CMLogo.png"
                         style={{ width: "50px", height: "50px" }}
-                        roundedCircl
+                        roundedCircle
                       />
                     </span>
                     <span className="h1 fw-bold mb-0 ">
