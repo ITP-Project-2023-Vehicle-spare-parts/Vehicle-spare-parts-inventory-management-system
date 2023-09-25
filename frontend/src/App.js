@@ -14,6 +14,9 @@ import UpdateProfileAdmin from "./components/Supplier/AdminSupplierPage/UpdatePr
 import SupplierHome from "./components/SupplierHome";
 import SupplierAnalyse from "./components/Supplier/UserSupplierPage/SupplierAnalyse";
 
+
+
+
 function App() {
   return (
     <Router>
@@ -49,6 +52,20 @@ function App() {
           {/* Supplier Routes */}
           <Route path="/supplier/home" element={<SupplierHome />} />
           <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
+
+
+
+         
+         
+
+
+         
+
+
+         
+
+
+
         </Routes>
       </div>
     </Router>
