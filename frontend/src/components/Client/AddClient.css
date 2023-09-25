@@ -3,311 +3,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap");
 
-#AddClient .topic-text {
-    margin-left: 30px;
-    width: max-content;
-    font-size: 18px;
-    overflow: auto;
-}
 
- *{
-    margin:0;
-    padding: 0;
+#AddClient *{
+    margin: 0;
+    padding: 10;
     box-sizing: border-box;
     font-family: "Popins" ,sans-serif;
     
 
 }
 
-#AddClient body{
-    
-    position:relative;
-    min-height: 100vh;
-    width: 100%;
-    overflow:auto;
-
-    
-    
-
-}
-#AddClient .body {
-    overflow-y: scroll;
-    
-
-}
-#AddClient .sidebar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 78px;
-    background: #11101d;
-    padding: 6px 14px;
-    transition: all 0.5s ease;
-    
-
-}
-#AddClient .sidebar.active{
-    width:240px ;
-}
-
-#AddClient .sidebar .logo_content .logo{
-    color: #fff;
-    display: flex;
-    height: 50px;
-    width: 100%;
-    align-items: center;
-    pointer-events: none;
-    left :50%;
-    opacity: 1;
-
-}
-
-#AddClient .sidebar.active .logo_content .logo{
-    opacity: 1;
-    pointer-events: auto;
-    
-}
-#AddClient .logo_content .logo i{
-    font-size: 28px;
-    margin-right: 5px;
-    
-
-}
-
-#AddClient .logo_content .logo .logo_name{
-    font-size: 20px;
-    position: absolute;
-    font-weight: 400;
-    opacity: 0;
-    pointer-events:none;
-    text-align:left;
-    
 
 
-}
-#AddClient .sidebar.active .logo .logo_name{
-    opacity: 1;
-    pointer-events: auto;
-    
-}
-#AddClient .sidebar #btn{
-    position:absolute ;
-    color: #fff;
-    left: 45px;
-    top: 6px;
-    font-size: 25px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    line-height: 50px;
-    transform: translate(-50%);
-    opacity: 1;
-
-}
-#AddClient .sidebar.active #btn{
-   
-    left: 210px;
-    opacity: 1;
-    
-   
-}
-
-
-#AddClient .sidebar ul{
-    margin-top: 20px;
-
-}
-#AddClient .sidebar ul li{
-    position:relative ;
-    height: 50px;
-    width: 100%;
-    margin: 0 5px;
-    list-style:none;
-    line-height:50px ;
-    border-radius: 12px;
-
-}
-#AddClient .sidebar .nav_list li .tooltip {
-    position: absolute;
-    left: 122px;
-    top: 0;
-    transform: translateY(-50%);
-    border-radius: 6px;
-    height: 35px;
-    width: 122px;
-    background: #fff;
-    line-height: 35px;
-    text-align: center;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    pointer-events:none ;
-    opacity: 0;
-    transition: 0s;
-}
-#AddClient .sidebar.active .nav_list li .tooltip{
-    display: none;
-}
-
-#AddClient .sidebar .nav_list li:hover .tooltip {
-    opacity: 1;
-    visibility: visible;
-    transition: all 0.5s ease;
-    top: 50%;
-}
-
-
-#AddClient .sidebar ul li .bx-search{
-    position: absolute;
-    z-index: 99;
-    color: #fff;
-    font-size: 24px;
-    left: 13px;
-    top: 12px;
-    transition: all 0.5 ease ;
-
-
-}
-#AddClient .sidebar ul li input{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    top:0;
-    border-radius: 12px;
-    outline: none;
-    border: none;
-    background:#1d1b31 ;
-    padding-left: 50px;
-    font-size: 18px;
-    color: #fff;
-
-
-} 
-#AddClient .sidebar.active ul li input{
-    opacity: 1;
-    width: 400%;
-    transition: all 0.5s ease;
-} 
-#AddClient .sidebar ul li .bx-search:hover{
-    background: #fff;
-    color:#1d1b31 ;
-}
-
-
-#AddClient .sidebar ul li a{
-    color :#fff;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-    border-radius: 12px;
-    white-space: nowrap;
-}
-#AddClient .sidebar ul li a:hover{
-    color: #11101d;
-    background: #fff;
-}
-#AddClient .sidebar ul li a i{
-    height: 50px;
-    min-width: 50px;
-    border-radius: 12px;
-    line-height: 50px;
-    text-align: center;
-
-}
-#AddClient .sidebar .link-name{
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s ease;
-    color: #ffffff;
-    
-
-}
-
-#AddClient .sidebar.active .link-name{
-    opacity: 1;
-    pointer-events: auto;
-    
-}
-
-#AddClient .sidebar .profile_content{
-    position: absolute;
-    color: #fff;
-    bottom: 0;
-    left: 0;
-    width:100% ;
-
-}
-#AddClient .sidebar .profile_content .profile{
-    position: relative;
-    padding: 10px 6px;
-    height:60px;
-    background:#1d1b31;
-
-}
-#AddClient .profile_content .profile .profile_details{
-    display: flex;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    white-space: nowrap;
-
-
-}
-#AddClient .sidebar.active .profile .profile_details{
-    opacity: 1;
-    pointer-events: auto;
-}
-#AddClient .profile_content .profile .profile_details img{
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 12px;
-
-}
-#AddClient .profile .profile_details .name_job{
-    margin-left: 10px;
-
-}
-#AddClient .profile .profile_details .name{
-    font-size: 15px;
-    font-weight: 400;
-
-}
-#AddClient .profile .profile_details .job{
-    font-size: 22px;
-    font-weight: 400;
-
-}
-#AddClient .profile #log_out{
-    position: absolute;
-    left :60%;
-    bottom :5px;
-    transform: translateX(-50%);
-    min-width:50px;
-    line-height: 50px;
-    font-size: 24px;
-    border-radius:12px;
-    
-
-}
-#AddClient .sidebar.active .profile #log_out{
-    left: 290%;
-}
 #AddClient .home_content {
-    position: absolute;
-    height: 100px;
-    width: calc(100% - 200%px);
-    left: 78px;
+    position: absolute;  
+    left: 100px;
     transition: all 0.5s ease;
     width: max-content;
 }
-#AddClient .sidebar.active .home_content{
-    left:240px ;
-    width: calc(100% - 240%px);
-    
-   
-}
+
 #AddClient .home_content .text{
     font-size: 25px;
     font-weight: 500;
@@ -324,33 +38,17 @@
     
     
 }
-
-
-
-#AddClient .component-3-icon {
-    position: absolute;
-    width: 1.5em;
-    height: 1.5em;
-    display: inline-block;
-    
-  }
-#AddClient .sidebar.active .component-3-icon{
-    opacity: 1;
-    pointer-events: auto;
-
-  }
-
-
-#AddClient .nav_list {
-    list-style: none;
-    padding: 0;
+#AddClient .form-control {
+    border: 3px solid #073dff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    background: #ffffff;
+    color: #2e323c;
+    box-shadow:#007ae1;
 }
-#AddClient .nav-link{
-    color: #fff !important ;
-}
-#AddClient .nav-link.active {
-    color: #11101d !important;
-}
+
 
 
 
@@ -361,10 +59,12 @@
     margin-left: 300px;
     overflow: auto;
     overflow-y: auto;
-    box-shadow: 5px 10px #0d0b0b;
-    border-style: outset;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem rgba(36, 29, 29, 0.858);
     border-color: #b3a8a8db;
-    background-color: #75cbe082;
+    background-color: #ffffff82;
+    border-radius: 15px;
+    padding: 30px;
     
    
 }

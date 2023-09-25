@@ -2,15 +2,20 @@ import Button from "react-bootstrap/esm/Button";
 import "./AllSupplier.css";
 import "boxicons/css/boxicons.min.css";
 import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef} from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import {useReactToPrint} from 'react-to-print';
+
+
+
 
 // import toast from "react-hot-toast";
 
 export default function AllSupplier() {
   const [Suppliers, setSupplier] = useState([]);
   const [search, setSearch] = useState("");
+  const conponentPDF = useRef();
 
   console.log(search);
 
@@ -51,6 +56,7 @@ export default function AllSupplier() {
           'Deleted!',
           'Your file has been deleted.',
           'success'
+         
         )
       }
     })
@@ -67,6 +73,17 @@ export default function AllSupplier() {
     localStorage.setItem('userID' , id);
 
   }
+
+const genaratePDF = useReactToPrint({
+
+  content : ()=> conponentPDF.current,
+  documentTitle:"Supplier List",
+  onafterprint: ()=> alert('Data Saved In PDF')
+
+  
+});
+
+  
 
   return (
     <div id="AllSupplier">
@@ -92,18 +109,19 @@ export default function AllSupplier() {
                 class="export__file-btn"
                 title="Export File"
               >
-                <i className="bx bx-menu"></i>
+                <i className="bx bx-menu bx-sm"></i>
               </label>
               <input type="checkbox" id="export-file" />
               <div class="export__file-options">
                 <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF">
-                  PDF <img src="/images/pdf.png" alt="" />
+                <label for="export-file" id="toPDF" onClick={genaratePDF}>
+                  PDF <img src="/images/pdf.png" alt="" /> 
                 </label>
               </div>
             </div>
           </section>
           <section class="table__body">
+            <div ref={conponentPDF} style={{width:'100%'}}>
             <table>
               <thead>
                 <tr>
@@ -170,6 +188,7 @@ export default function AllSupplier() {
                 );
               })}
             </table>
+            </div>
           </section>
         </main>
       </body>

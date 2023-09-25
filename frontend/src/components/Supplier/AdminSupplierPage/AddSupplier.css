@@ -5,90 +5,52 @@
 
 
 
-*{
-    margin:0;
-    padding: 0;
+#AddSupplier *{
+    margin: 0;
+    padding: 10;
     box-sizing: border-box;
     font-family: "Popins" ,sans-serif;
     
-    
 
 }
 
-#AddSupplier body{
-   
-   
-    min-height: 100vh;
-    width: 100%;
-    overflow:auto;
-    
-   
 
-}
 
 #AddSupplier .home_content {
-    margin-top: 0;
-    position: absolute;
-    display: flex;
-    height: 100px;
-    width: calc(100% - 200%px);
-    left: 78px;
+    position: absolute;  
+    left: 100px;
     transition: all 0.5s ease;
     width: max-content;
-    
-   
 }
-#AddSupplier .sidebar.active .home_content{
-    left:240px ;
-    width: calc(100% - 240%px);
-    
-   
-}
+
 #AddSupplier .home_content .text{
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
     margin-left: 0px;
     width: max-content;
-    margin-top: 0px;
-    
 }
 #AddSupplier .home_content .text1{
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
-    margin-left: 750px;
+    margin-left: 810px;
     width: max-content;
     
     
 }
-
-
-
-#AddSupplier .component-3-icon {
-    position: absolute;
-    width: 1.5em;
-    height: 1.5em;
-    display: inline-block;
+#AddSupplier .form-control {
+    border: 3px solid #073dff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    background: #ffffff;
+    color: #2e323c;
+    box-shadow:#007ae1;
     
-  }
-#AddSupplier .sidebar.active .component-3-icon{
-    opacity: 1;
-    pointer-events: auto;
-
-  }
-
-
-#AddSupplier .nav_list {
-    list-style: none;
-    padding: 0;
 }
-#AddSupplier .nav-link{
-    color: #fff !important ;
-}
-#AddSupplier .nav-link.active {
-    color: #11101d !important;
-}
+
 
 
 
@@ -97,12 +59,14 @@
 
 #AddSupplier .container {
     margin-left: 300px;
-    margin-right: auto;
-    margin-top: 0px;
-    box-shadow: 5px 10px #000000;
-    border-style: outset;
-    border-color: #5d5454d6;
-    background-color: #75cbe082;
+    overflow: auto;
+    overflow-y: auto;
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem rgba(36, 29, 29, 0.858);
+    border-color: #b3a8a8db;
+    background-color: #ffffff82;
+    border-radius: 15px;
+    padding: 30px;
     
    
 }

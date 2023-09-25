@@ -83,7 +83,7 @@ export default function AddSupplier() {
               <Form.Group as={Col}>
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control
-                  className="shadow-lg p-3 mb-5 bg-white rounded"
+                  className="shadow-lg p-3 mb-2 bg-white rounded"
                   type="text"
                   placeholder="Company Name"
                   id="CompanyName"
@@ -206,14 +206,15 @@ export default function AddSupplier() {
                 <Form.Label>State</Form.Label>
                 <Form.Select
                   className="shadow-lg p-3 mb-5 bg-white rounded"
-                  defaultValue="Bajaj"
+                  defaultValue="Galle"
                   id="SupplierCity"
+                  style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
                   onChange={(e) => {
                     setState(e.target.value);
                   }}
                 >
-                  <option>Choose...</option>
-                  <option>...</option>
+                  <option>Galle</option>
+                  <option>Amabalangoda</option>
                 </Form.Select>
               </Form.Group>
 
@@ -248,6 +249,7 @@ export default function AddSupplier() {
                 className="shadow-lg p-3 mb-5 bg-white rounded"
                 defaultValue=""
                 id=" ProvidedBrand"
+                style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
                 onChange={(e) => {
                   setBrand(e.target.value);
                 }}
@@ -287,7 +289,9 @@ export default function AddSupplier() {
                   id="SystemPassword"
                   onChange={(e) => {
                     setsysPassword(e.target.value);
+                    
                   }}
+                  required="true"
                 />
               </Form.Group>
             </Row>

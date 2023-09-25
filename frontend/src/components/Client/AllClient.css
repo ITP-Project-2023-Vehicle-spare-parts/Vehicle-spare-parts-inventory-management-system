@@ -115,7 +115,7 @@ body.AllClient {
 #AllClient table, th, td {
     border-collapse: collapse;
     padding: 1rem;
-    text-align: left;
+    text-align: center;
     font-size: 18px;
 }
 
