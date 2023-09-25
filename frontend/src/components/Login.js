@@ -35,7 +35,7 @@ export default function Login() {
           Navigate("/Admin/client/add");
         } else if (res.data.role === "supplier") {
           console.log(res.data.role);
-          Navigate("/Admin/sup/add");
+          Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
         }
