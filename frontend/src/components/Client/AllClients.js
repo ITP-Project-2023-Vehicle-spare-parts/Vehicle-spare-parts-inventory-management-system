@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'; // Import jspdf-autotable
 
 export default function AllSupplier() {
   const [clients, setClient] = useState([]);
@@ -46,12 +48,40 @@ export default function AllSupplier() {
       }
     });
 
-    // toast.success("Are you Want To Delete This Supplier!", {
-    //   duration: 3000, // 3 seconds
-    //   position: "top-center", // You can change the position if needed
-    // });
+ 
   }
 
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+    pdf.text('Supplier Report-CMspare', 10, 10);
+   
+
+    const logoURL = '/images/CMLogo.png'; // Replace with the actual path or URL
+    pdf.addImage(logoURL,'PNG', 0.1, 0.1, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight()); // Adjust the coordinates and dimensions as needed
+  
+    // Create a new table for PDF generation without the "Option" column
+    const tableData = clients.map((dataobj) => {
+      return {
+        'Client Name': `${dataobj.ClientsfirstName} ${dataobj.ClientsLastName}`,
+        'Address': dataobj.ClientsCity,
+        'Status': dataobj.ClientsStatus,
+        'System Email': dataobj.SystemEmail,
+        'No Of Branches': dataobj.NoOfBranches,
+      };
+    });
+  
+    // Define columns for the PDF table
+    const columns = Object.keys(tableData[0]);
+  
+    // Generate the PDF table
+    pdf.autoTable({
+      head: [columns],
+      body: tableData.map((data) => Object.values(data)),
+    });
+  
+    // Save the PDF with a specific name
+    pdf.save('Supplier_Details_report.pdf');
+  };
   return (
     <div id="AllClient">
       <body className="AllClient">
@@ -81,14 +111,15 @@ export default function AllSupplier() {
               <input type="checkbox" id="export-file" />
               <div class="export__file-options">
                 <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF">
+                <label for="export-file" id="toPDF" onClick={generatePDF}>
                   PDF <img src="/images/pdf.png" alt="" />
                 </label>
               </div>
             </div>
           </section>
           <section class="table__body">
-            <table>
+          
+            <table id="stock-table">
               <thead>
                 <tr>
                   <th>Client Name </th>
