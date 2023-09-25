@@ -66,19 +66,18 @@ const getallUser = asyncHandler(async(req,res) =>{
 
 //get a single user
 
-const getaUser= asyncHandler(async(req,res)=>{
-    console.log(req.params);
-    const {id}= req.params;
-    try{
-        const getaUser = await User.findById(id);
-        res.json({
-            getaUser,
-        });
+const getaUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongoDbId(id);
 
-    }catch(error){
-        throw new Error(error);
-    }
-   
+  try {
+    const getaUser = await User.findById(id);
+    res.json({
+      getaUser,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 //delete user

@@ -65,6 +65,10 @@ app.use("/brand", brandRoutes);
 const colorRoutes = require("./routes/colorRoute");
 app.use("/color", colorRoutes);
 
+const enqRouter = require("./routes/enqRoute");
+app.use("/enquiry", enqRouter);
+
+
 app.use(notFound);
 app.use(errorHandler);
 
