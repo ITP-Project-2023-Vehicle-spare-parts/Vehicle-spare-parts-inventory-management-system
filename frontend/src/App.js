@@ -53,6 +53,8 @@ function App() {
           <Route path="/supplier/home" element={<SupplierHome />} />
           <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
 
+          
+
 
 
          

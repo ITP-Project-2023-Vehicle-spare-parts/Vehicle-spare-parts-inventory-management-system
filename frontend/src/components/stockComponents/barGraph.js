@@ -10,7 +10,7 @@ const CategoryBarGraph = () => {
 
   useEffect(() => {
     fetchCategoryData();
-  }, []);
+  }, );
 
   const fetchCategoryData = async () => {
     try {
