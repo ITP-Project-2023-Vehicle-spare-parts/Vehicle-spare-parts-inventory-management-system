@@ -13,6 +13,10 @@ import FetchStock from "./components/stockComponents/fetchStock";
 import UpdateProfileAdmin from "./components/Supplier/AdminSupplierPage/UpdateProfileAdmin";
 import SupplierHome from "./components/SupplierHome";
 import SupplierAnalyse from "./components/Supplier/UserSupplierPage/SupplierAnalyse";
+import CategoryPieChart from "./components/stockComponents/pieChart";
+import CategoryBarGraph from "./components/stockComponents/barGraph";
+import LowStock from "./components/stockComponents/lowStock";
+import UpdateStock from "./components/stockComponents/updateStock";
 
 
 
@@ -48,6 +52,13 @@ function App() {
           />
 
           <Route path="/Admin/Sup/Profile/:id" element={<SupplierProfile />} />
+
+
+
+          <Route path="/admin/piechart" element={<CategoryPieChart />} />
+          <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
+          <Route path="/admin/lowstock" element={<LowStock />} />
+          <Route path="/admin/updatestock" element={<UpdateStock />} />
 
           {/* Supplier Routes */}
           <Route path="/supplier/home" element={<SupplierHome />} />
