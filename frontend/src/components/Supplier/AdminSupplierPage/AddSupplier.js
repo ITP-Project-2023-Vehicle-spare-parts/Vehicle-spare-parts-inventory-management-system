@@ -50,16 +50,17 @@ export default function AddSupplier() {
 
     axios
       .post("http://localhost:8000/supplier/addSupplier/", newSupplier)
-        .then((res) => {
-          console.log(res.data);
+      .then((res) => {
+        console.log(res.data.SupplierEmail);
 
-          Navigate("/Admin/sup/All");
-          alert("success")
-          toast.success("Successfully Add Supplier!", {
-            duration: 3000, // 3 seconds
-            position: "top-center", // You can change the position if needed
-          });
-        })
+       
+       
+        toast.success("Successfully Add Supplier!", {
+          duration: 3000, // 3 seconds
+          position: "top-center", // You can change the position if needed
+        });
+        Navigate("/Admin/sup/All");
+      })
       .catch((err) => {
         alert(err.message);
         console.log(err);
@@ -67,7 +68,7 @@ export default function AddSupplier() {
   }
 
   return (
-    <div id="AddSupplier" >
+    <div id="AddSupplier">
       <SupplierSideNavigation />
 
       <div className="home_content">
@@ -90,6 +91,7 @@ export default function AddSupplier() {
                   onChange={(e) => {
                     setCName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -103,6 +105,7 @@ export default function AddSupplier() {
                   onChange={(e) => {
                     setCEmail(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -110,12 +113,14 @@ export default function AddSupplier() {
               <Form.Label>Company Phone</Form.Label>
               <Form.Control
                 className="shadow-lg p-3 mb-5 bg-white rounded"
-                type="CompanyPhone"
+                type="number"
                 placeholder="Enter Company Phone Number"
                 id="CompanyPhone"
                 onChange={(e) => {
                   setCPhone(e.target.value);
                 }}
+                required // Field is required
+                pattern="[0-9]{10}"
               />
             </Form.Group>
 
@@ -128,6 +133,7 @@ export default function AddSupplier() {
                 onChange={(e) => {
                   setcAddress(e.target.value);
                 }}
+                required // Field is required
               />
             </Form.Group>
 
@@ -142,6 +148,7 @@ export default function AddSupplier() {
                   onChange={(e) => {
                     setFName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -155,6 +162,7 @@ export default function AddSupplier() {
                   onChange={(e) => {
                     setLName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -170,19 +178,22 @@ export default function AddSupplier() {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Supplier Phone</Form.Label>
                 <Form.Control
+                  pattern="[0-9]{10}"
                   className="shadow-lg p-3 mb-5 bg-white rounded"
-                  type="text"
+                  type="number"
                   placeholder="Supplier Phone"
                   id="SupplierPhone"
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -191,31 +202,37 @@ export default function AddSupplier() {
               <h2>
                 <b>Supplier Address</b>
               </h2>
-              <Form.Group as={Col}>
-                <Form.Label>City</Form.Label>
-                <Form.Control
-                  className="shadow-lg p-3 mb-5 bg-white rounded"
-                  id="SupplierState"
-                  onChange={(e) => {
-                    setCity(e.target.value);
-                  }}
-                />
-              </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>State</Form.Label>
+                <Form.Label>City</Form.Label>
                 <Form.Select
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   defaultValue="Galle"
                   id="SupplierCity"
-                  style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
-                  onChange={(e) => {
-                    setState(e.target.value);
+                  style={{
+                    border: "3px solid #073dff",
+                    borderRadius: "2px",
+                    fontSize: "1.4rem",
                   }}
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  required // Field is required
                 >
                   <option>Galle</option>
                   <option>Amabalangoda</option>
                 </Form.Select>
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>State</Form.Label>
+                <Form.Control
+                  className="shadow-lg p-3 mb-5 bg-white rounded"
+                  id="SupplierState"
+                  onChange={(e) => {
+                    setState(e.target.value);
+                  }}
+                  required // Field is required
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
@@ -223,9 +240,13 @@ export default function AddSupplier() {
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="SupplierPostalCode"
+                  type="number"
+                  min={0}
+                  max={100}
                   onChange={(e) => {
                     setPostalcode(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -235,11 +256,13 @@ export default function AddSupplier() {
               <Form.Control
                 className="shadow-lg p-3 mb-5 bg-white rounded"
                 as="textarea"
+                placeholder="About Company & Brand..."
                 rows={3}
                 id="SupplierStatus"
                 onChange={(e) => {
                   setStatus(e.target.value);
                 }}
+                required // Field is required
               />
             </Form.Group>
 
@@ -247,9 +270,13 @@ export default function AddSupplier() {
               <Form.Label>Provided Brand</Form.Label>
               <Form.Select
                 className="shadow-lg p-3 mb-5 bg-white rounded"
-                defaultValue=""
+                defaultValue="Bajaj"
                 id=" ProvidedBrand"
-                style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
+                style={{
+                  border: "3px solid #073dff",
+                  borderRadius: "2px",
+                  fontSize: "1.4rem",
+                }}
                 onChange={(e) => {
                   setBrand(e.target.value);
                 }}
@@ -270,13 +297,13 @@ export default function AddSupplier() {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-lightrounded"
-                  type="text"
+                  type="email"
                   placeholder="login Email"
                   id="SystemEmail"
                   onChange={(e) => {
                     setsysEmail(e.target.value);
                   }}
-                  required="true"
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -289,9 +316,8 @@ export default function AddSupplier() {
                   id="SystemPassword"
                   onChange={(e) => {
                     setsysPassword(e.target.value);
-                    
                   }}
-                  required="true"
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
