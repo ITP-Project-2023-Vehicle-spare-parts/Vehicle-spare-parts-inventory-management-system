@@ -482,4 +482,35 @@ footer .input-group-text{
   font-size: 18px;
   font-weight: 600;
   color: var(--color-2A3847);
+  margin-bottom: 10px;
+}
+
+.main-product-details p.price{
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.product-heading{
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-2A3847);
+  margin-bottom: 0px;
+}
+
+.product-data{
+  font-size: 13px;
+  columns: var(--color-3E6383);
+  margin-bottom: 0px;
+}
+
+.product-data-color{
+  margin-bottom: 0px;
+}
+
+.main-product-details a{
+  font-size: 14px;
+  color: #777777;
 }

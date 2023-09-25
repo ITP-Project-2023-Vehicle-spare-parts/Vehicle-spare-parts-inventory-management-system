@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import ProductCard from '../components/ProductCard';
 import ReactImageZoom from 'react-image-zoom';
+import ReactStars from 'react-rating-stars-component';
+import Color from '../components/Color'
+import { Link } from 'react-router-dom';
 
 const SingleProduct = () => {
     const props = {
@@ -37,6 +39,58 @@ const SingleProduct = () => {
                             <h3>
                                 Engine Oils
                             </h3>
+                        </div>
+                        <div className='border-bottom'>
+                            <p className='price'>
+                                Rs.100.00
+                            </p>
+                            <div className='d-flex align-items-center gap-10'>
+                                <ReactStars
+                                count={5}
+                                size={24}
+                                value={4}
+                                edit={false}
+                                activeColor="#ffd700"
+                                />
+                            </div>
+                        </div>
+                        <div className='border-bottom'>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Type : </h3> 
+                                <p className='product-data'>gdsgg</p>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Brand : </h3> 
+                                <p className='product-data'>gdsgg</p>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Categories : </h3> 
+                                <p className='product-data'>gdsgg</p>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Tags : </h3> 
+                                <p className='product-data'>gdsgg</p>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Product ID : </h3> 
+                                <p className='product-data'>gdsgg</p>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Color : </h3> 
+                            </div>
+                            <Color />
+                            <div className='d-flex gap-10 align-items-center my-2'>
+                                <h3 className='product-heading'>Quantity : </h3> 
+                                <div className=''>
+                                    <input type='number' className="form-control" name='' min={1} max={100} style={{width:"70px"}} id=''></input>
+                                </div>
+                                <Link className='button'>Add To Cart</Link>
+                            </div>
+                            <div className='d-flex gap-10 align-items-center gap-15'>
+                                <div>
+                                 <a href=''><img src='/images/wish.svg' alt='wishlist' className='fs-5 me-2' />&nbsp; Add to Wishlist</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
