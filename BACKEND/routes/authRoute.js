@@ -19,6 +19,9 @@ const {
     updateProductQuantityFromCart,
 } = require("../controller/UserController");
 
+const { paymentVerification } = require("../controller/paymentController");
+const { checkout } = require("../controller/paymentController");
+
 const { authMiddleware, isAdmin} = require("../middlewares/authMiddleware");
 const router= express.Router();
 
@@ -31,8 +34,8 @@ router.delete('/:id',deleteaUser);
 router.put('/:id',updateaUser);
 
 router.post("/cart", authMiddleware, userCart);
-//router.post("/order/checkout", authMiddleware, checkout);
-//router.post("/order/paymentVerification", authMiddleware, paymentVerification);
+router.post("/order/checkout", authMiddleware, checkout);
+router.post("/order/paymentVerification", authMiddleware, paymentVerification);
 router.post("/cart/create-order", authMiddleware, createOrder);
 router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
 router.get("/getaOrder/:id", authMiddleware, isAdmin, getSingleOrders);
