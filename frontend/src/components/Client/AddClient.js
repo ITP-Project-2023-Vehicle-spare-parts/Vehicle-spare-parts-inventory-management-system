@@ -8,8 +8,11 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import SupplierSideNavigation from "../SupplierSideNavigation";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function AddClient() {
+  
   const [ClientsfirstName, setFName] = useState("");
   const [ClientsLastName, setLName] = useState("");
   const [ClientsEmail, setEmail] = useState("");
@@ -21,10 +24,12 @@ export default function AddClient() {
   const [NoOfBranches, setBranch] = useState("");
   const [SystemEmail, setsysEmail] = useState("");
   const [SystemPassword, setsysPassword] = useState("");
+  const Navigate = useNavigate();
 
-  function sendData() {
-    console.log("hellow");
+const handleSubmit = async (e) => {
+   e.preventDefault();
 
+   try{
     const newClient = {
 
       ClientsfirstName,
@@ -40,17 +45,39 @@ export default function AddClient() {
       SystemPassword,
     };
 
+    await 
     axios
-      .post("http://localhost:8000/clients/addClients", newClient)
-      .then(() => {
-        alert("Client Added!");
-        console.log("added");
-      })
-      .catch((err) => {
+      .post("http://localhost:8000/clients/addClients", newClient);
+     console.log('hi')
+      setFName('');
+      setLName('');
+      setEmail('');
+      setPhone('');
+      setState('');
+      setCity('');
+      setPostalcode('');
+      setStatus('');
+      setBranch('');
+      setsysEmail('');
+      setsysPassword('');
+
+      toast.success("Successfully Registered!", {
+        duration: 3000, // 3 seconds
+        position: "top-right", // You can change the position if needed
+      });
+      Navigate("/Admin/client/All");
+
+  }catch (err)  {
         alert(err.message);
         console.log(err);
-      });
   }
+
+   };
+  
+
+    
+
+  
 
   return (
     <div id="AddClient">
@@ -64,7 +91,7 @@ export default function AddClient() {
             </h1>
           </div>
 
-          <Form onSubmit={sendData} className="container">
+          <Form onSubmit={handleSubmit} className="container">
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>First Name</Form.Label>
@@ -73,6 +100,7 @@ export default function AddClient() {
                   type="text"
                   placeholder="Enter First Name"
                   id="ClientsfirstName"
+                  value={ClientsfirstName}
                   onChange={(e) => {
                     setFName(e.target.value);
                   }}
@@ -86,6 +114,7 @@ export default function AddClient() {
                   type="text"
                   placeholder="Last Name"
                   id="ClientsLastName"
+                  value={ClientsLastName}
                   onChange={(e) => {
                     setLName(e.target.value);
                   }}
@@ -101,6 +130,7 @@ export default function AddClient() {
                   type="email"
                   placeholder="Enter Client Email"
                   id="ClientsEmail"
+                  value={ClientsEmail}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -113,6 +143,7 @@ export default function AddClient() {
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   type="number"
                   placeholder="Client Phone"
+                  value={ClientsPhone}
                   id="ClientsPhone"
                   onChange={(e) => {
                     setPhone(e.target.value);
@@ -130,6 +161,7 @@ export default function AddClient() {
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="ClientsCity"
+                  value={ClientsCity}
                   onChange={(e) => {
                     setCity(e.target.value);
                   }}
@@ -142,6 +174,7 @@ export default function AddClient() {
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   defaultValue="Galle"
                   id="ClientsState"
+                  value={ClientsState}
                   style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
                   onChange={(e) => {
                     setState(e.target.value);
@@ -158,6 +191,7 @@ export default function AddClient() {
                   type="number"
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="ClientsPostalCode"
+                  value={ClientsPostalCode}
                   onChange={(e) => {
                     setPostalcode(e.target.value);
                   }}
@@ -172,6 +206,7 @@ export default function AddClient() {
                 as="textarea"
                 rows={3}
                 id="ClientsStatus"
+                value={ClientsStatus}
                 onChange={(e) => {
                   setStatus(e.target.value);
                 }}
@@ -188,6 +223,7 @@ export default function AddClient() {
                 type="number"
                 className="form-control"
                 id="NoOfBranches"
+                value={NoOfBranches}
                 
                 
                 onChange={(e) => {
@@ -209,6 +245,7 @@ export default function AddClient() {
                   type="email"
                   placeholder="login Email"
                   id="SystemEmail"
+                  value={SystemEmail}
                   onChange={(e) => {
                     setsysEmail(e.target.value);
                   }}
@@ -223,6 +260,7 @@ export default function AddClient() {
                   type="password"
                   placeholder="Login Password"
                   id="SystemPassword"
+                  value={SystemPassword}
                   onChange={(e) => {
                     setsysPassword(e.target.value);
                     
