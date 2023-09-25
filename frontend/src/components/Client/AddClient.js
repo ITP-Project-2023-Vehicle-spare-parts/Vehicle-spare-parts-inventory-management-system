@@ -73,11 +73,6 @@ const handleSubmit = async (e) => {
   }
 
    };
-  
-
-    
-
-  
 
   return (
     <div id="AddClient">
@@ -103,7 +98,9 @@ const handleSubmit = async (e) => {
                   value={ClientsfirstName}
                   onChange={(e) => {
                     setFName(e.target.value);
+                    
                   }}
+                  required
                 />
               </Form.Group>
 
@@ -118,6 +115,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setLName(e.target.value);
                   }}
+                  required
                 />
               </Form.Group>
             </Row>
@@ -134,6 +132,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  required
                 />
               </Form.Group>
 
@@ -148,6 +147,8 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
+                  pattern="[0-9]{10}"
+                  required
                 />
               </Form.Group>
             </Row>
@@ -162,9 +163,11 @@ const handleSubmit = async (e) => {
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="ClientsCity"
                   value={ClientsCity}
+                  placeholder="City..."
                   onChange={(e) => {
                     setCity(e.target.value);
                   }}
+                  required
                 />
               </Form.Group>
 
@@ -179,6 +182,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setState(e.target.value);
                   }}
+                  required
                 >
                   <option>Galle</option>
                   <option>Ambalangoda</option>
@@ -195,6 +199,8 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setPostalcode(e.target.value);
                   }}
+                  placeholder="postalCode..."
+                  required
                 />
               </Form.Group>
             </Row>
@@ -206,10 +212,12 @@ const handleSubmit = async (e) => {
                 as="textarea"
                 rows={3}
                 id="ClientsStatus"
+                placeholder="status..."
                 value={ClientsStatus}
                 onChange={(e) => {
                   setStatus(e.target.value);
                 }}
+                required
               />
             </Form.Group>
 
@@ -224,11 +232,10 @@ const handleSubmit = async (e) => {
                 className="form-control"
                 id="NoOfBranches"
                 value={NoOfBranches}
-                
-                
                 onChange={(e) => {
                   setBranch(e.target.value);
                 }}
+                required
               />
             </div>
 
@@ -249,7 +256,7 @@ const handleSubmit = async (e) => {
                   onChange={(e) => {
                     setsysEmail(e.target.value);
                   }}
-                  required="true"
+                  required
                 />
               </Form.Group>
 
@@ -265,7 +272,7 @@ const handleSubmit = async (e) => {
                     setsysPassword(e.target.value);
                     
                   }}
-                  required="true"
+                  required
                 />
               </Form.Group>
             </Row>
