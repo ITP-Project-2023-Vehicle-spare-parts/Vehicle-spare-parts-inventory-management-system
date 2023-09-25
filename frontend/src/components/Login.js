@@ -26,7 +26,7 @@ export default function Login() {
       password,
     };
     axios
-      .post("http://localhost:8000/api/user/login", validate)
+      .post("http://localhost:8000/user/login", validate)
       .then((res) => {
         console.log(res.data.role);
 

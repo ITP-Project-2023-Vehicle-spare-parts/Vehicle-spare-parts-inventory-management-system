@@ -51,12 +51,25 @@ export default function AddSupplier() {
         ProvidedBrand,
       };
 
-      const response = await axios.post(
+      const Supplierresponse = await axios.post(
         "http://localhost:8000/supplier/addSupplier/",
         newSupplier
       );
-      console.log(response);
+      console.log(Supplierresponse.status);
 
+      if (Supplierresponse.status === 200) {
+        const newUser = {
+          email: SystemEmail,
+          password: SystemPassword,
+          role: "supplier",
+        };
+
+        const userResponse = await axios.post(
+          "http://localhost:8000/user/register/",
+          newUser
+        );
+        console.log(userResponse.status);
+      }
 
       setCName("");
       setCEmail("");
@@ -80,7 +93,6 @@ export default function AddSupplier() {
       });
       Navigate("/Admin/sup/All");
     } catch (err) {
-      
       toast.error("Failed To Register", {
         duration: 3000, // 3 seconds
         position: "top-right", // You can change the position if needed

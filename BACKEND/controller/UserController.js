@@ -54,15 +54,24 @@ const loginUserCtrl = asyncHandler(async (req,res) => {
 
 //get all users
 
-const getallUser = asyncHandler(async(req,res) =>{
-    try{
-        const getUsers= await User.find();
-        res.json(getUsers);
+const getallUser = asyncHandler(async (req, res) => {
+  try {
+    // Replace 'user' with the specific role you want to filter by
+    const role = 'user';
 
-    }catch(error){
-        throw new Error(error)
-    }
+    const getUsers = await User.find({ role }); // Fetch users with the specified role
+    res.json(getUsers);
+  } catch (error) {
+    throw new Error(error);
+  }
 });
+
+
+
+
+
+
+
 
 //get a single user
 

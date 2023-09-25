@@ -21,8 +21,7 @@ var userSchema = new mongoose.Schema(
     },
     nic:{
         type:String,
-        required:true,
-        unique:true,
+        
     },
     dob:{
         type:String,
@@ -34,8 +33,7 @@ var userSchema = new mongoose.Schema(
     },
     mobile:{
         type:String,
-        required:true,
-        unique:true,
+       
     },
     gender:{
         type:String,
