@@ -8,13 +8,19 @@ const {
     updateaUser,
     userCart,
     getUserCart,
-    emptyCart,
-    applyCoupon,
+    emptyCart,    
     createOrder,
-    getOrders,
-    updateOrderStatus,
     getAllOrders,
+    getSingleOrders,
+    updateOrder,
+    getMonthWiseOrderIncome,
+    getYearlyTotalOrders,
+    removeProductFromCart,
+    updateProductQuantityFromCart,
 } = require("../controller/UserController");
+
+const { paymentVerification } = require("../controller/paymentController");
+const { checkout } = require("../controller/paymentController");
 
 const { authMiddleware, isAdmin} = require("../middlewares/authMiddleware");
 const router= express.Router();
@@ -28,18 +34,17 @@ router.delete('/:id',deleteaUser);
 router.put('/:id',updateaUser);
 
 router.post("/cart", authMiddleware, userCart);
-router.post("/cart/applycoupon", authMiddleware, applyCoupon);
-router.post("/cart/cash-order", authMiddleware, createOrder);
-router.get("/get-orders", authMiddleware, getOrders);
-router.get("/getallorders", authMiddleware, getAllOrders);
-router.post("/getorderbyuser/:id", authMiddleware, isAdmin, getAllOrders);
+router.post("/order/checkout", authMiddleware, checkout);
+router.post("/order/paymentVerification", authMiddleware, paymentVerification);
+router.post("/cart/create-order", authMiddleware, createOrder);
+router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
+router.get("/getaOrder/:id", authMiddleware, isAdmin, getSingleOrders);
+router.put("/updateOrder/:id", authMiddleware, isAdmin, updateOrder);
 router.get("/cart", authMiddleware, getUserCart);
+router.get("/getMonthWiseOrderIncome", authMiddleware, getMonthWiseOrderIncome);
+router.get("/getyearlyorders", authMiddleware, getYearlyTotalOrders);
+router.delete("/delete-product-cart/:cartItemId", authMiddleware, removeProductFromCart);
+router.delete("/update-product-cart/:cartItemId/:newQuantity", authMiddleware, updateProductQuantityFromCart);
 router.delete("/empty-cart", authMiddleware, emptyCart);
-router.put(
-    "/order/update-order/:id",
-    authMiddleware,
-    isAdmin,
-    updateOrderStatus
-  );
 
 module.exports = router;
