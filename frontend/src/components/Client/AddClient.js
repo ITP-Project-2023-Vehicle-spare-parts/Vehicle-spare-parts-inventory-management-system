@@ -98,7 +98,7 @@ export default function AddClient() {
                 <Form.Label>Client Email</Form.Label>
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-white rounded"
-                  type="text"
+                  type="email"
                   placeholder="Enter Client Email"
                   id="ClientsEmail"
                   onChange={(e) => {
@@ -111,7 +111,7 @@ export default function AddClient() {
                 <Form.Label>Client Phone</Form.Label>
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-white rounded"
-                  type="text"
+                  type="number"
                   placeholder="Client Phone"
                   id="ClientsPhone"
                   onChange={(e) => {
@@ -142,6 +142,7 @@ export default function AddClient() {
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   defaultValue="Galle"
                   id="ClientsState"
+                  style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
                   onChange={(e) => {
                     setState(e.target.value);
                   }}
@@ -154,6 +155,7 @@ export default function AddClient() {
               <Form.Group as={Col}>
                 <Form.Label>PostalCode</Form.Label>
                 <Form.Control
+                  type="number"
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="ClientsPostalCode"
                   onChange={(e) => {
@@ -184,8 +186,10 @@ export default function AddClient() {
                 min="1"
                 max="100"
                 type="number"
-                className="form-control shadow-lg p-3 mb-5 bg-white rounded"
+                className="form-control"
                 id="NoOfBranches"
+                
+                
                 onChange={(e) => {
                   setBranch(e.target.value);
                 }}
@@ -208,6 +212,7 @@ export default function AddClient() {
                   onChange={(e) => {
                     setsysEmail(e.target.value);
                   }}
+                  required="true"
                 />
               </Form.Group>
 
@@ -220,7 +225,9 @@ export default function AddClient() {
                   id="SystemPassword"
                   onChange={(e) => {
                     setsysPassword(e.target.value);
+                    
                   }}
+                  required="true"
                 />
               </Form.Group>
             </Row>
