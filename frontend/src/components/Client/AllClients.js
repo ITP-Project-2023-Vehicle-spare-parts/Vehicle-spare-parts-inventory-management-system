@@ -82,6 +82,7 @@ export default function AllSupplier() {
     // Save the PDF with a specific name
     pdf.save('Supplier_Details_report.pdf');
   };
+  
   return (
     <div id="AllClient">
       <body className="AllClient">

@@ -44,8 +44,7 @@ function App() {
             <Route path="/Admin/stock" element={<FetchStock />} />
             <Route path="/Admin/client/add" element={<AddClient />} />
             <Route
-              path="/Admin/Supplier/Profile"
-              element={<SupplierProfile />}
+              path="/Admin/Supplier/Profile" element={<SupplierProfile />}
             />
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
