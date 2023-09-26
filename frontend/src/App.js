@@ -48,6 +48,8 @@ import AdminUpdateclaim from './components/AdminClaimComponent/AdminUpdateclaim'
 import ClientProfile from "./components/Client/ClientProfile";
 import ClientProfileUpdate from "./components/Client/ClientProfileUpdate";
 
+import Sidebar from "./components/Sidebar"
+
 function App() {
   return (
     <Provider store={store}>
@@ -113,6 +115,8 @@ function App() {
               <Route path = "my-orders" element = {<Order />}/>
               <Route path = "Checkout" element = {<Checkout />}/>
             </Route>
+
+            <Route path='/sidebar' element={<Sidebar />} />
 
           </Routes>
         </div>
