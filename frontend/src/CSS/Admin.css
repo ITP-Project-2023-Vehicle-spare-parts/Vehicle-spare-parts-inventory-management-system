@@ -1,0 +1,78 @@
+.root {
+    color: #212529;
+    color: #1890ff;
+    color: #478824;
+    color: #e52e2e;
+    color: #828599;
+    color: #3d464d;
+    color: #ced4da;
+}
+
+.green {
+    color: #478824;
+    font-size: 14px;
+    font-family: Roboto !important;
+
+}
+
+.red {
+    color: #e52e2e;
+    font-size: 14px;
+    font-family: Roboto !important;
+
+}
+
+.quill {
+    background-color: white;
+}
+
+.form-control {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.title {
+    font: 28px;
+    font-family: Roboto !important;
+    color: #212529;
+}
+
+.sub-title {
+    font: 24px;
+    font-family: Roboto !important;
+    color: #212529;
+}
+
+.desc {
+    font: 14px;
+    font-family: Roboto !important;
+    color: #828599;
+}
+
+/*inquiry*/
+
+/* ViewEnq.css */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-table th, .custom-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .custom-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .custom-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .custom-table tr:hover {
+    background-color: #e0e0e0;
+  }
+  
