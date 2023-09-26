@@ -67,7 +67,7 @@ export default function ClientProfile() {
                   <span style={{ color: "blue" }}>CM</span>spare
                 </span>
 
-                <Link to="/Admin/profile/update/id">
+                <Link to="/Admin/client/profile/update/:id">
                   <Button variant="primary" style={{ marginLeft: "775px" }} >
                     Update
                   </Button>

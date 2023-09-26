@@ -35,6 +35,7 @@ import CategoryBarGraph from "./components/stockComponents/barGraph";
 import LowStock from "./components/stockComponents/lowStock";
 import UpdateStock from "./components/stockComponents/updateStock";
 
+
 import AddClaim from './components/ClaimComponents/AddClaim';
 import FetchClaim from './components/ClaimComponents/FetchClaim';
 import UpdateClaim from './components/ClaimComponents/UpdateClaim';
@@ -42,7 +43,21 @@ import DeleteClaim from './components/ClaimComponents/DeleteClaim';
 import AllClaims from './components/AdminClaimComponent/AllClaims';
 import AdminUpdateclaim from './components/AdminClaimComponent/AdminUpdateclaim';
 
+
+
 import ClientProfile from "./components/Client/ClientProfile";
+import ClientProfileUpdate from "./components/Client/ClientProfileUpdate";
+
+import DeliveryForm from "./components/DeliveryPersons/DeliveryForm";
+import DeliveryTable from "./components/DeliveryPersons/DeliveryTable";
+import ProfileDetails from "./components/DeliveryPersons/ProfileDetails";
+import EditDeliveryPerson from "./components/DeliveryPersons/EditDeliveryPerson";
+import OrderList from "./components/OrderList";
+import AvailableDeliveryPersonList from "./components/AvailableDeliveryPersonList";
+
+
+
+import Sidebar from "./components/Sidebar"
 
 function App() {
   return (
@@ -68,6 +83,7 @@ function App() {
             <Route path="/Admin/profile/update/:id" element={<UpdateProfileAdmin />} />
             <Route path="/Admin/Sup/Profile/:id" element={<SupplierProfile />} />
             <Route path="/Admin/client/Profile/:id" element={<ClientProfile />} />
+            <Route path="/Admin/client/profile/update/:id" element={<ClientProfileUpdate />} />
 
             <Route path="/admin/piechart" element={<CategoryPieChart />} />
             <Route path="/admin/bargraph" element={< CategoryBarGraph/>} />
@@ -76,6 +92,16 @@ function App() {
 
             <Route path="/" element={<AllClaims />} />
             <Route path="admin/updates/:id/:billno" element={<AdminUpdateclaim/>} />
+
+          <Route path="/Admin/DeliveryPerson/add" element={<DeliveryForm />} />
+          <Route path="/Admin/DeliveryPerson/getAll" exact element={<DeliveryTable/>} />
+          <Route path="/Admin/profile/:deliveryPersonID" element={<ProfileDetails/>} />
+          <Route path="/Admin/dilivary/profiles/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/Admin/profile/update/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/admin/orders" exact element={<OrderList/>} />
+          <Route path="/order/:orderid/:userid" element={<AvailableDeliveryPersonList/>} />
+
+         
 
             {/* Claim Part */}
               <Route path="/addclaim" element={<AddClaim />} />
@@ -106,6 +132,8 @@ function App() {
               <Route path = "my-orders" element = {<Order />}/>
               <Route path = "Checkout" element = {<Checkout />}/>
             </Route>
+
+            <Route path='/sidebar' element={<Sidebar />} />
 
           </Routes>
         </div>
