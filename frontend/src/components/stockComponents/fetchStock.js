@@ -10,6 +10,7 @@ import { Button } from 'react-bootstrap';
 
 
 
+
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
   
@@ -38,68 +39,62 @@ function FetchStock() {
 
 
   return (
-    <form >
-    <div  id="FetchStock">
-   
-    <body className="FetchStock">
-     
-      <main clasS="table">
-      <section class="table__header">
-      <h1>All Stock</h1>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead>
-          <tr>
-            <th style={stocktableHeaderStyle}>Product Name</th>
-            <th style={stocktableHeaderStyle}>Supplier Name</th>
-            <th style={stocktableHeaderStyle}>Stock Amount</th>
-            <th style={stocktableHeaderStyle}>Stock Quantity</th>
-            <th style={stocktableHeaderStyle}>Re Order Level</th>
-            <th style={stocktableHeaderStyle}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stocks.map((stock) => (
-            <tr key={stock._id}>
-              <td style={stocktableCellStyle}>{stock.productName}</td>
-              <td style={stocktableCellStyle}>{stock.supplierName}</td>
-              <td style={stocktableCellStyle}>{stock.stockAmount}</td>
-              <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
-              <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
-              <td style={stocktableCellStyle}>
-                <Link to={`/update/${stock._id}`} >
-                <Button className="stockbtn-icon" style={{ 
-                  backgroundColor: '#FFB000',
-                  padding: '10px 20px', // Adjust the padding for size
-                  fontSize: '1.5rem',   // Adjust the font size for size
-                  
-                  }}  >
-      <BsPencil className="stockicon" />
-     
-    </Button>
-                </Link>
-                <Link to={`/delete/${stock._id}`} >
-                <Button className="stockbtn-icon" style={{ 
-                  
-                  backgroundColor: 'red' ,
-                  padding: '10px 20px', // Adjust the padding for size
-                  fontSize: '1.5rem',   // Adjust the font size for size
-                  
-                  }}>
-  <BsTrash className="stockicon" /> 
-</Button>
-                </Link>
-                
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
-      </main>
+    
+    
+    <div id="FetchStock">
+      <body className="FetchStock">
+        <main className="table">
+          <section className="table__header">
+            <h1>All Stock</h1>
+            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+              <thead>
+                <tr>
+                  <th style={stocktableHeaderStyle}>Product Name</th>
+                  <th style={stocktableHeaderStyle}>Supplier Name</th>
+                  <th style={stocktableHeaderStyle}>Stock Amount</th>
+                  <th style={stocktableHeaderStyle}>Stock Quantity</th>
+                  <th style={stocktableHeaderStyle}>Re Order Level</th>
+                  <th style={stocktableHeaderStyle}>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stocks.map((stock) => (
+                  <tr key={stock._id}>
+                    <td style={stocktableCellStyle}>{stock.productName}</td>
+                    <td style={stocktableCellStyle}>{stock.supplierName}</td>
+                    <td style={stocktableCellStyle}>{stock.stockAmount}</td>
+                    <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
+                    <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
+                    <td style={stocktableCellStyle}>
+                      <Link to={`/update/${stock._id}`}>
+                        <Button className="stockbtn-icon" style={{
+                          backgroundColor: '#FFB000',
+                          padding: '10px 20px',
+                          fontSize: '1.5rem',
+                        }}>
+                          <BsPencil className="stockicon" />
+                        </Button>
+                      </Link>
+                      <Link to={`/delete/${stock._id}`}>
+                        <Button className="stockbtn-icon" style={{
+                          backgroundColor: 'red',
+                          padding: '10px 20px',
+                          fontSize: '1.5rem',
+                        }}>
+                          <BsTrash className="stockicon" />
+                        </Button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </main>
       </body>
     </div>
-    </form>
-  );
+  
+);
 }
 
 const stocktableHeaderStyle = {

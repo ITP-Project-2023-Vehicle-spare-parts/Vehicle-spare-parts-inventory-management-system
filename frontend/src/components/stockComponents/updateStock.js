@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams,useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+
 function UpdateStock() {
   const { id } = useParams();
   const  navigate = useNavigate(); // Create a history object
@@ -61,6 +62,7 @@ function UpdateStock() {
 
   return (
     <div>
+     
       
       
       <h2>Edit Stock Details</h2>
