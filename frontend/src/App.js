@@ -96,7 +96,7 @@ function App() {
           <Route path="/Admin/DeliveryPerson/add" element={<DeliveryForm />} />
           <Route path="/Admin/DeliveryPerson/getAll" exact element={<DeliveryTable/>} />
           <Route path="/Admin/profile/:deliveryPersonID" element={<ProfileDetails/>} />
-          <Route path="/Admin/profiles/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/Admin/dilivary/profiles/:id" element={<EditDeliveryPerson/>} />
           <Route path="/Admin/profile/update/:id" element={<EditDeliveryPerson/>} />
           <Route path="/admin/orders" exact element={<OrderList/>} />
           <Route path="/order/:orderid/:userid" element={<AvailableDeliveryPersonList/>} />
