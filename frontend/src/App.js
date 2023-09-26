@@ -98,6 +98,8 @@ function App() {
               <Route path='order/:id' element={<ViewOrder />} />
             </Route>
 
+            
+
             <Route path = "/layout" element = {<Layout />}>
               <Route path = "contact" element = {<Contact />}/>
               <Route path = "cart" element = {<Cart />}/>
