@@ -11,7 +11,7 @@ body.AllClient {
     display:flex !important;
     justify-content: center;
     align-items: center;
-    background-color: #7ab2de9b;
+    background-color: #82bfee9b;
     
 }
 
@@ -106,7 +106,7 @@ body.AllClient {
 #AllClient td img {
     width: 36px;
     height: 36px;
-    margin-right: .5rem;
+    margin-right: 2rem;
     border-radius: 50%;
 
     vertical-align: middle;
@@ -116,7 +116,7 @@ body.AllClient {
     border-collapse: collapse;
     padding: 1rem;
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 #AllClient thead th {
@@ -173,7 +173,7 @@ body.AllClient {
 }
 
 #AllClient .status.delivered {
-    background-color: #86e49d;
+    background-color: #87cb98;
     color: #006b21;
 }
 

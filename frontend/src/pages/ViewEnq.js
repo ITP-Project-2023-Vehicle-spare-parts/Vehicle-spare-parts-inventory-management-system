@@ -5,6 +5,7 @@ import { getAEnquiry, resetState, updateAEnquiry } from '../features/enquiry/enq
 import { BiArrowBack } from "react-icons/bi";
 import { toast } from "react-toastify"; // Import the toast component
 import { Table } from "antd"; // Import the Ant Design Table component
+import "../CSS/Admin.css"
 
 const ViewEnq = () => {
   const location = useLocation();

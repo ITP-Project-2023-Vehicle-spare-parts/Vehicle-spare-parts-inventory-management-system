@@ -1,0 +1,175 @@
+.root {
+    color: #212529;
+    color: #1890ff;
+    color: #478824;
+    color: #e52e2e;
+    color: #828599;
+    color: #3d464d;
+    color: #ced4da;
+}
+
+.green {
+    color: #478824;
+    font-size: 14px;
+    font-family: Roboto !important;
+
+}
+
+.red {
+    color: #e52e2e;
+    font-size: 14px;
+    font-family: Roboto !important;
+
+}
+
+.quill {
+    background-color: white;
+}
+
+.form-control {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.title {
+    font: 28px;
+    font-family: Roboto !important;
+    color: #212529;
+}
+
+.sub-title {
+    font: 24px;
+    font-family: Roboto !important;
+    color: #212529;
+}
+
+.desc {
+    font: 14px;
+    font-family: Roboto !important;
+    color: #828599;
+}
+
+/*inquiry*/
+
+/* ViewEnq.css */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-table th, .custom-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .custom-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .custom-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .custom-table tr:hover {
+    background-color: #e0e0e0;
+  }
+
+
+  /*Main Layout*/
+
+  body{
+    font-family: Roboto, sans-serif;
+  }
+  
+  .trigger {
+    padding: 0 24pc;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .trigger :hover {
+    color : #1890ff;
+  }
+  
+  .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .ant-layout {
+    min-height: 100vh;
+  }
+  
+  .ant-layout-sider{
+    flex : 0 0 250px !important;
+    max-width: 250px !important;
+    min-width: 250px !important;
+    width: 250px !important;
+  }
+  
+  .ant-layout-sider-collapsed {
+    flex : 0 0 80px !important;
+    max-width: 80px !important;
+    min-width: 80px !important;
+    width: 80px !important;
+  }
+  
+  .sm-logo {
+    display: none;
+  }
+  
+  .ant-layout-sider-collapsed .sm-logo {
+    display: block;
+  }
+  
+  .ant-layout-sider-collapsed .lg-logo {
+    display: none;
+  }
+  
+  .logo {
+    background-color: #001529;
+    margin: 0;
+    height: 64px;
+  }
+  
+  main {
+    height: 80vh;
+    overflow-y: scroll;
+    background-color: transparent !important;
+  }
+  
+  main ::-webkit-scrollbar{
+    width: 0px;
+  }
+  
+  .ant-menu-title-content {
+    font-size: 16px;
+  }
+  
+  .ant-layout-header h5 {
+    line-height: 20px;
+    font-size: 14px;
+  }
+  
+  .ant-layout-header p {
+    line-height: 20px;
+    font-size: 13px;
+  }
+  
+  .ant-layout-header div .badge{
+    top: 16px;
+    right: -6px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  
+  

@@ -199,7 +199,7 @@ export default function UpdateProfileAdmin() {
                     </div>
                     <div class="row gutters">
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="mb-2 text-primary">Personal Details</h4>
+                        <h4 class="mb-2 text-primary">Supplier Details</h4>
                       </div>
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">

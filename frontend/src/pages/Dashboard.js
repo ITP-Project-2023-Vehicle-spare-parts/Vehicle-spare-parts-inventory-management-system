@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import "../CSS/Admin.css"
 import { Column } from '@ant-design/plots';
 //import {BsArrowDownRight, BsArrowUpLeft} from "react-icons/bs";
 import {Table} from "antd";
@@ -6,10 +7,6 @@ import { useDispatch, useSelector} from "react-redux";
 import { getMonthlyData, getYearlyData, getOrders } from '../features/auth/authSlice';
 
 const columns = [
-  {
-    title: 'OrderNo',
-    dataIndex: 'key',
-  },
   {
     title: 'Name',
     dataIndex: 'name',
