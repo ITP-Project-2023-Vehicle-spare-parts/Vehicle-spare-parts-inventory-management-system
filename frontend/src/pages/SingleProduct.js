@@ -14,6 +14,9 @@ const SingleProduct = () => {
     };
     
     const [orderedProduct, setoderedProduct] = useState(true);
+
+    console.log(orderedProduct)
+    console.log(setoderedProduct)
   
     return (
     <>
@@ -88,7 +91,7 @@ const SingleProduct = () => {
                             </div>
                             <div className='d-flex gap-10 align-items-center gap-15'>
                                 <div>
-                                 <a href=''><img src='/images/wish.svg' alt='wishlist' className='fs-5 me-2' />&nbsp; Add to Wishlist</a>
+                                 <a href='#!'><img src='/images/wish.svg' alt='wishlist' className='fs-5 me-2' />&nbsp; Add to Wishlist</a>
                                 </div>
                             </div>
                         </div>

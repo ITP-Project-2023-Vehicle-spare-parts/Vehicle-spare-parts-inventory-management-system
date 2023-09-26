@@ -55,7 +55,10 @@ import EditDeliveryPerson from "./components/DeliveryPersons/EditDeliveryPerson"
 import OrderList from "./components/OrderList";
 import AvailableDeliveryPersonList from "./components/AvailableDeliveryPersonList";
 
-
+import Home from "./pages/Home";
+import Store from "./pages/store";
+import Wishlist from "./pages/Wishlist";
+import SingleProduct from "./pages/SingleProduct";
 
 import Sidebar from "./components/Sidebar"
 
@@ -126,12 +129,16 @@ function App() {
 
             
 
-            <Route path = "/layout" element = {<Layout />}>
+            <Route path = "/home" element = {<Layout />}>
+              <Route index element={<Home />} />
               <Route path = "contact" element = {<Contact />}/>
               <Route path = "cart" element = {<Cart />}/>
               <Route path = "my-orders" element = {<Order />}/>
               <Route path = "Checkout" element = {<Checkout />}/>
-            </Route>
+              <Route path="/home/store" element={<Store />}/>
+              <Route path="store/product/:id" element={<SingleProduct />} />
+              <Route path="/home/wishlist" element={<Wishlist />} />
+ </Route>
 
             <Route path='/sidebar' element={<Sidebar />} />
 
