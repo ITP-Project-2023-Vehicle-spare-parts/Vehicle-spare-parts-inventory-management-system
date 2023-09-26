@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import jspdf-autotable
 
-export default function AllSupplier() {
+export default function AllClient() {
   const [clients, setClient] = useState([]);
   const [search, setSearch] = useState("");
   console.log(search);
@@ -53,7 +53,7 @@ export default function AllSupplier() {
 
   const generatePDF = () => {
     const pdf = new jsPDF();
-    pdf.text('Supplier Report-CMspare', 10, 10);
+    pdf.text('Client Report-CMspare', 10, 10);
    
 
     const logoURL = '/images/CMLogo.png'; // Replace with the actual path or URL
@@ -80,8 +80,18 @@ export default function AllSupplier() {
     });
   
     // Save the PDF with a specific name
-    pdf.save('Supplier_Details_report.pdf');
+    pdf.save('Client_Details_report.pdf');
   };
+
+  function ViewClient(id) {
+    console.log(id);
+    localStorage.setItem("userID", id);
+  }
+
+  function UpdateClient(id) {
+    console.log(id);
+    localStorage.setItem("userID", id);
+  }
   
   return (
     <div id="AllClient">
@@ -174,14 +184,17 @@ export default function AllSupplier() {
                             style={{ margin: "10px" }}
                             onClick={() => DeleteClient(dataobj._id)}
                           ></button>
-                          <button
+                          <Link to="/Admin/client/Profile/:id"><button
                             className="bx bx-info-circle bx-lg btn btn-outline-primary"
                             style={{ margin: "10px" }}
-                          ></button>
-                          <button
+                            onClick={() => ViewClient(dataobj._id)}
+                          ></button></Link>
+                          
+                          <Link to="/Admin/profile/update/id"> <button
                             className="bx bx-pencil bx-lg btn btn-outline-warning"
                             style={{ margin: "10px" }}
-                          ></button>
+                            onClick={() => UpdateClient(dataobj._id)}
+                          ></button></Link> 
                         </td>
                       </tr>
                     </tbody>
