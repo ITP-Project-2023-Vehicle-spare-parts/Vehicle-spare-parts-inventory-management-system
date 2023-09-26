@@ -35,6 +35,8 @@ import CategoryBarGraph from "./components/stockComponents/barGraph";
 import LowStock from "./components/stockComponents/lowStock";
 import UpdateStock from "./components/stockComponents/updateStock";
 
+import Sidebar from "./components/Sidebar"
+
 function App() {
   return (
     <Provider store={store}>
@@ -76,6 +78,8 @@ function App() {
               <Route path='order' element={<Orders />} />
               <Route path='order/:id' element={<ViewOrder />} />
             </Route>
+
+            <Route path='/sidebar' element={<Sidebar />} />
 
             <Route path = "/layout" element = {<Layout />}>
               <Route path = "contact" element = {<Contact />}/>
