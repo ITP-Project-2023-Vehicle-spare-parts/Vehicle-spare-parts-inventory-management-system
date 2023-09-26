@@ -78,6 +78,11 @@ const deliverypersonSchema = new Schema ({
         type :String ,
         
     },
+
+    personStatus : {
+        type : String,
+        default : "available"
+    }
 });
 
 
