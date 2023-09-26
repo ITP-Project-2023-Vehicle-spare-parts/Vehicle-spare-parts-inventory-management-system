@@ -40,6 +40,7 @@ function FetchStock() {
   return (
     <form >
     <div  id="FetchStock">
+   
     <body className="FetchStock">
      
       <main clasS="table">
