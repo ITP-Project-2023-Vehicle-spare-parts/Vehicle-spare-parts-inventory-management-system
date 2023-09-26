@@ -1,4 +1,5 @@
 const Supplier = require("../model/SupplierModel");
+const DeletedSupplier = require("../model/DeletedSupplierModel")
 // const slugify = require("slugify");
 
 const addSupplier = async (req, res) => {
@@ -126,13 +127,41 @@ const deleteSupplier = async (req, res) => {
   try {
     const supplierId = req.params.id;
 
+    // Find the supplier to be deleted
+    const supplierToDelete = await Supplier.findById(supplierId);
+
+    if (!supplierToDelete) {
+      return res.status(404).send({ status: "Supplier not found" });
+    }
+
+    // Create a new DeletedSupplier document and populate it with the supplier's data
+    const historySupplier = new DeletedSupplier({
+      SystemEmail: supplierToDelete.SystemEmail,
+      CompanyName: supplierToDelete.CompanyName,
+      CompanyEmail: supplierToDelete.CompanyEmail,
+      CompanyPhone: supplierToDelete.CompanyPhone,
+      CompanyAddress: supplierToDelete.CompanyAddress,
+      SupplierfirstName: supplierToDelete.SupplierfirstName,
+      SupplierLastName: supplierToDelete.SupplierLastName,
+      SupplierEmail: supplierToDelete.SupplierEmail,
+      SupplierPhone: supplierToDelete.SupplierPhone,
+      SupplierCity: supplierToDelete.SupplierCity,
+      SupplierState: supplierToDelete.SupplierState,
+      SupplierPostalCode: supplierToDelete.SupplierPostalCode,
+      SupplierAddress: supplierToDelete.SupplierAddress,
+      SystemPassword: supplierToDelete.SystemPassword,
+    });
+
+    // Save the deleted supplier data to the DeletedSupplier collection
+    await historySupplier.save();
+
+    // Delete the supplier from the Supplier collection
     await Supplier.findByIdAndDelete(supplierId);
+
     res.status(200).send({ status: "Supplier Deleted" });
   } catch (err) {
-    console.log(err);
-    res
-      .status(500)
-      .send({ status: "Error deleting supplier", error: err.message });
+    console.error(err);
+    res.status(500).send({ status: "Error deleting supplier", error: err.message });
   }
 };
 

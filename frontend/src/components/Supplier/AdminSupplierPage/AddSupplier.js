@@ -59,9 +59,13 @@ export default function AddSupplier() {
 
       if (Supplierresponse.status === 200) {
         const newUser = {
-          email: SystemEmail,
-          password: SystemPassword,
-          role: "supplier",
+          firstname:SupplierfirstName,
+          lastname:SupplierLastName,
+          email:SystemEmail,
+          password:SystemPassword,
+          nic:CompanyName,
+          mobile:SupplierPhone,
+          role:"supplier",
         };
 
         const userResponse = await axios.post(

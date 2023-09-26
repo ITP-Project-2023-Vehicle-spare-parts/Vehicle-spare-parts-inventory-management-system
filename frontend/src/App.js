@@ -35,6 +35,21 @@ import CategoryBarGraph from "./components/stockComponents/barGraph";
 import LowStock from "./components/stockComponents/lowStock";
 import UpdateStock from "./components/stockComponents/updateStock";
 
+
+import AddClaim from './components/ClaimComponents/AddClaim';
+import FetchClaim from './components/ClaimComponents/FetchClaim';
+import UpdateClaim from './components/ClaimComponents/UpdateClaim';
+import DeleteClaim from './components/ClaimComponents/DeleteClaim';
+import AllClaims from './components/AdminClaimComponent/AllClaims';
+import AdminUpdateclaim from './components/AdminClaimComponent/AdminUpdateclaim';
+
+
+
+import ClientProfile from "./components/Client/ClientProfile";
+import ClientProfileUpdate from "./components/Client/ClientProfileUpdate";
+
+import Sidebar from "./components/Sidebar"
+
 function App() {
   return (
     <Provider store={store}>
@@ -58,11 +73,26 @@ function App() {
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route path="/Admin/profile/update/:id" element={<UpdateProfileAdmin />} />
             <Route path="/Admin/Sup/Profile/:id" element={<SupplierProfile />} />
+            <Route path="/Admin/client/Profile/:id" element={<ClientProfile />} />
+            <Route path="/Admin/client/profile/update/:id" element={<ClientProfileUpdate />} />
 
             <Route path="/admin/piechart" element={<CategoryPieChart />} />
             <Route path="/admin/bargraph" element={< CategoryBarGraph/>} />
             <Route path="/admin/lowstock" element={< LowStock/>} />
             <Route path="/admin/updatestock" element={< UpdateStock/>} />
+
+            <Route path="/" element={<AllClaims />} />
+            <Route path="admin/updates/:id/:billno" element={<AdminUpdateclaim/>} />
+
+         
+
+            {/* Claim Part */}
+              <Route path="/addclaim" element={<AddClaim />} />
+              <Route path="/get/:billno" element={<FetchClaim/>}/>
+              <Route path="/update/:id/:billno" element={<UpdateClaim/>}/>
+              <Route path="/delete/:id/:billno" element={<DeleteClaim/>}/>
+
+
             
 
             {/* Supplier Routes */}
@@ -85,6 +115,8 @@ function App() {
               <Route path = "my-orders" element = {<Order />}/>
               <Route path = "Checkout" element = {<Checkout />}/>
             </Route>
+
+            <Route path='/sidebar' element={<Sidebar />} />
 
           </Routes>
         </div>
