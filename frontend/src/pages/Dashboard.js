@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import "../CSS/Admin.css"
 import { Column } from '@ant-design/plots';
 //import {BsArrowDownRight, BsArrowUpLeft} from "react-icons/bs";
 import {Table} from "antd";

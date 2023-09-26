@@ -1,78 +1,43 @@
-.root {
-    color: #212529;
-    color: #1890ff;
-    color: #478824;
-    color: #e52e2e;
-    color: #828599;
-    color: #3d464d;
-    color: #ced4da;
-}
-
-.green {
-    color: #478824;
-    font-size: 14px;
-    font-family: Roboto !important;
-
-}
-
-.red {
-    color: #e52e2e;
-    font-size: 14px;
-    font-family: Roboto !important;
-
-}
-
-.quill {
-    background-color: white;
-}
-
-.form-control {
-    box-shadow: none;
-    border-color: #ced4da;
-}
-
-.title {
-    font: 28px;
-    font-family: Roboto !important;
-    color: #212529;
-}
-
-.sub-title {
-    font: 24px;
-    font-family: Roboto !important;
-    color: #212529;
-}
-
-.desc {
-    font: 14px;
-    font-family: Roboto !important;
-    color: #828599;
-}
-
-/*inquiry*/
-
-/* ViewEnq.css */
-.custom-table {
-    width: 100%;
-    border-collapse: collapse;
+.App {
+    text-align: center;
   }
   
-  .custom-table th, .custom-table td {
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd;
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
   }
   
-  .custom-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
   
-  .custom-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
   
-  .custom-table tr:hover {
-    background-color: #e0e0e0;
+  .App-link {
+    color: #61dafb;
   }
   
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (min-width: 1025px) {
+    .h-custom-2 {
+      height: 100%;
+      }
+    }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal} from "antd";
+import "../CSS/Admin.css"
 
 const CustomModal = (props) => {
     const {open, hideModal, performAction, title} = props;

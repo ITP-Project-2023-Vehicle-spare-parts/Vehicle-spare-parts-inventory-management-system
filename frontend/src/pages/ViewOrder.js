@@ -5,6 +5,7 @@ import { getOrder } from '../features/auth/authSlice';
 //import { AiFillDelete } from "react-icons/ai";
 //import { BiEdit } from "react-icons/bi";
 import { /*Link,*/ useLocation } from "react-router-dom";
+import "../CSS/Admin.css"
 
 const columns = [
   {
