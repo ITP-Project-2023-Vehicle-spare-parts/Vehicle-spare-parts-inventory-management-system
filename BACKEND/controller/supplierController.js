@@ -55,7 +55,7 @@ const addSupplier = async (req, res) => {
     });
 
     await newSupplier.save();
-    res.json("Supplier Added");
+    res.json(newSupplier);
   } catch (err) {
     console.log(err);
     res

@@ -29,45 +29,80 @@ export default function AddSupplier() {
 
   const Navigate = useNavigate();
 
-  function sendData() {
-    const newSupplier = {
-      CompanyName,
-      CompanyEmail,
-      CompanyPhone,
-      CompanyAddress,
-      SupplierfirstName,
-      SupplierLastName,
-      SupplierEmail,
-      SupplierPhone,
-      SupplierStatus,
-      SystemEmail,
-      SystemPassword,
-      SupplierCity,
-      SupplierState,
-      SupplierPostalCode,
-      ProvidedBrand,
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    axios
-      .post("http://localhost:8000/supplier/addSupplier/", newSupplier)
-        .then((res) => {
-          console.log(res.data);
+    try {
+      const newSupplier = {
+        CompanyName,
+        CompanyEmail,
+        CompanyPhone,
+        CompanyAddress,
+        SupplierfirstName,
+        SupplierLastName,
+        SupplierEmail,
+        SupplierPhone,
+        SupplierStatus,
+        SystemEmail,
+        SystemPassword,
+        SupplierCity,
+        SupplierState,
+        SupplierPostalCode,
+        ProvidedBrand,
+      };
 
-          Navigate("/Admin/sup/All");
-          alert("success")
-          toast.success("Successfully Add Supplier!", {
-            duration: 3000, // 3 seconds
-            position: "top-center", // You can change the position if needed
-          });
-        })
-      .catch((err) => {
-        alert(err.message);
-        console.log(err);
+      const Supplierresponse = await axios.post(
+        "http://localhost:8000/supplier/addSupplier/",
+        newSupplier
+      );
+      console.log(Supplierresponse.status);
+
+      if (Supplierresponse.status === 200) {
+        const newUser = {
+          email: SystemEmail,
+          password: SystemPassword,
+          role: "supplier",
+        };
+
+        const userResponse = await axios.post(
+          "http://localhost:8000/user/register/",
+          newUser
+        );
+        console.log(userResponse.status);
+      }
+
+      setCName("");
+      setCEmail("");
+      setCPhone("");
+      setcAddress("");
+      setFName("");
+      setLName("");
+      setEmail("");
+      setPhone("");
+      setState("");
+      setCity("");
+      setPostalcode("");
+      setStatus("");
+      setBrand("");
+      setsysEmail("");
+      setsysPassword("");
+
+      toast.success("Successfully Registered!", {
+        duration: 3000, // 3 seconds
+        position: "top-right", // You can change the position if needed
       });
-  }
+      Navigate("/Admin/sup/All");
+    } catch (err) {
+      toast.error("Failed To Register", {
+        duration: 3000, // 3 seconds
+        position: "top-right", // You can change the position if needed
+      });
+      console.log(err.message.status);
+    }
+  };
 
   return (
-    <div id="AddSupplier" >
+    <div id="AddSupplier">
       <SupplierSideNavigation />
 
       <div className="home_content">
@@ -78,7 +113,7 @@ export default function AddSupplier() {
             </h1>
           </div>
 
-          <Form onSubmit={sendData} className="container">
+          <Form onSubmit={handleSubmit} className="container">
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Company Name</Form.Label>
@@ -87,9 +122,11 @@ export default function AddSupplier() {
                   type="text"
                   placeholder="Company Name"
                   id="CompanyName"
+                  value={CompanyName}
                   onChange={(e) => {
                     setCName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -100,9 +137,11 @@ export default function AddSupplier() {
                   type="text"
                   placeholder="Company Email"
                   id="CompanyEmail"
+                  value={CompanyEmail}
                   onChange={(e) => {
                     setCEmail(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -110,12 +149,15 @@ export default function AddSupplier() {
               <Form.Label>Company Phone</Form.Label>
               <Form.Control
                 className="shadow-lg p-3 mb-5 bg-white rounded"
-                type="CompanyPhone"
+                type="number"
                 placeholder="Enter Company Phone Number"
                 id="CompanyPhone"
+                value={CompanyPhone}
                 onChange={(e) => {
                   setCPhone(e.target.value);
                 }}
+                required // Field is required
+                pattern="[0-9]{10}"
               />
             </Form.Group>
 
@@ -125,9 +167,11 @@ export default function AddSupplier() {
                 className="shadow-lg p-3 mb-5 bg-white rounded"
                 placeholder="1234 Main St"
                 id="CompanyAddress"
+                value={CompanyAddress}
                 onChange={(e) => {
                   setcAddress(e.target.value);
                 }}
+                required // Field is required
               />
             </Form.Group>
 
@@ -139,9 +183,11 @@ export default function AddSupplier() {
                   type="text"
                   placeholder="Enter First Name"
                   id="SupplierfirstName"
+                  value={SupplierfirstName}
                   onChange={(e) => {
                     setFName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -152,9 +198,11 @@ export default function AddSupplier() {
                   type="text"
                   placeholder="Last Name"
                   id="SupplierLastName"
+                  value={SupplierLastName}
                   onChange={(e) => {
                     setLName(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -167,22 +215,27 @@ export default function AddSupplier() {
                   type="text"
                   placeholder="Enter Supplier Email"
                   id="SupplierEmail"
+                  value={SupplierEmail}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label>Supplier Phone</Form.Label>
                 <Form.Control
+                  pattern="[0-9]{10}"
                   className="shadow-lg p-3 mb-5 bg-white rounded"
-                  type="text"
+                  type="number"
                   placeholder="Supplier Phone"
                   id="SupplierPhone"
+                  value={SupplierPhone}
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -191,31 +244,40 @@ export default function AddSupplier() {
               <h2>
                 <b>Supplier Address</b>
               </h2>
-              <Form.Group as={Col}>
-                <Form.Label>City</Form.Label>
-                <Form.Control
-                  className="shadow-lg p-3 mb-5 bg-white rounded"
-                  id="SupplierState"
-                  onChange={(e) => {
-                    setCity(e.target.value);
-                  }}
-                />
-              </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>State</Form.Label>
+                <Form.Label>City</Form.Label>
                 <Form.Select
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   defaultValue="Galle"
                   id="SupplierCity"
-                  style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
-                  onChange={(e) => {
-                    setState(e.target.value);
+                  value={SupplierCity}
+                  style={{
+                    border: "3px solid #073dff",
+                    borderRadius: "2px",
+                    fontSize: "1.4rem",
                   }}
+                  onChange={(e) => {
+                    setCity(e.target.value);
+                  }}
+                  required // Field is required
                 >
                   <option>Galle</option>
                   <option>Amabalangoda</option>
                 </Form.Select>
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>State</Form.Label>
+                <Form.Control
+                  className="shadow-lg p-3 mb-5 bg-white rounded"
+                  id="SupplierState"
+                  placeholder="State.."
+                  value={SupplierState}
+                  onChange={(e) => {
+                    setState(e.target.value);
+                  }}
+                  required // Field is required
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
@@ -223,9 +285,13 @@ export default function AddSupplier() {
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-white rounded"
                   id="SupplierPostalCode"
+                  placeholder="postalcode..."
+                  value={SupplierPostalCode}
+                  type="number"
                   onChange={(e) => {
                     setPostalcode(e.target.value);
                   }}
+                  required // Field is required
                 />
               </Form.Group>
             </Row>
@@ -235,11 +301,14 @@ export default function AddSupplier() {
               <Form.Control
                 className="shadow-lg p-3 mb-5 bg-white rounded"
                 as="textarea"
+                placeholder="About Company & Brand..."
                 rows={3}
                 id="SupplierStatus"
+                value={SupplierStatus}
                 onChange={(e) => {
                   setStatus(e.target.value);
                 }}
+                required // Field is required
               />
             </Form.Group>
 
@@ -247,9 +316,14 @@ export default function AddSupplier() {
               <Form.Label>Provided Brand</Form.Label>
               <Form.Select
                 className="shadow-lg p-3 mb-5 bg-white rounded"
-                defaultValue=""
-                id=" ProvidedBrand"
-                style={{border:'3px solid #073dff' ,borderRadius:'2px',fontSize:'1.4rem'}}
+                defaultValue="Brand"
+                id="ProvidedBrand"
+                value={ProvidedBrand}
+                style={{
+                  border: "3px solid #073dff",
+                  borderRadius: "2px",
+                  fontSize: "1.4rem",
+                }}
                 onChange={(e) => {
                   setBrand(e.target.value);
                 }}
@@ -270,13 +344,14 @@ export default function AddSupplier() {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   className="shadow-lg p-3 mb-5 bg-lightrounded"
-                  type="text"
+                  type="email"
                   placeholder="login Email"
                   id="SystemEmail"
+                  value={SystemEmail}
                   onChange={(e) => {
                     setsysEmail(e.target.value);
                   }}
-                  required="true"
+                  required // Field is required
                 />
               </Form.Group>
 
@@ -287,11 +362,11 @@ export default function AddSupplier() {
                   type="password"
                   placeholder="Login Password"
                   id="SystemPassword"
+                  value={SystemPassword}
                   onChange={(e) => {
                     setsysPassword(e.target.value);
-                    
                   }}
-                  required="true"
+                  required // Field is required
                 />
               </Form.Group>
             </Row>

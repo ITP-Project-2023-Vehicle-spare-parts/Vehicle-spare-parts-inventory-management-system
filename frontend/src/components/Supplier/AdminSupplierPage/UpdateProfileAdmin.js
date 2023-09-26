@@ -68,9 +68,9 @@ export default function UpdateProfileAdmin() {
           icon: 'success',
           title: 'SuccessFully Updated!',
           showConfirmButton: false,
-          timer: 1500
+          timer: 150
         })
-        Navigate("/Admin/Sup/Profile/:id")
+        Navigate("/Admin/Supplier/Profile")
         // You can add additional logic here, such as redirecting to another page
       })
       .catch((err) => {
