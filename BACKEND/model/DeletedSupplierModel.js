@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const supplierSchema = new Schema(
+const deletedsupplierSchema = new Schema(
   {
     CompanyName: {
       type: String,
@@ -46,11 +46,8 @@ const supplierSchema = new Schema(
     SupplierStatus: {
       type: String,
     },
-    role: {
-      type: String,
-      default: "supplier",
-    },
-    dateAdded: {
+
+    dateDeleted: {
       type: Date,
       default: Date.now,
     },
@@ -64,7 +61,6 @@ const supplierSchema = new Schema(
       type: String,
       trim: true,
       unique: true,
-      required: true,
     },
 
     SystemPassword: {
@@ -75,6 +71,6 @@ const supplierSchema = new Schema(
   { timestamps: true }
 );
 
-const Supplier = mongoose.model("Supplier", supplierSchema);
+const DeletedSupplier = mongoose.model("DeletedSupplier", deletedsupplierSchema );
 
-module.exports = Supplier;
+module.exports = DeletedSupplier;

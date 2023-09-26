@@ -6,13 +6,9 @@ var userSchema = new mongoose.Schema(
   {
     firstname: {
       type: String,
-
-      
     },
     lastname: {
       type: String,
-
-      
     },
     email: {
       type: String,
@@ -25,15 +21,6 @@ var userSchema = new mongoose.Schema(
     address: {
       type: String,
     },
-    State: {
-      type: String,
-    },
-    City: {
-      type: String,
-    },
-    PostalCode: {
-        type: String,
-      },
     mobile: {
       type: String,
     },

@@ -5,47 +5,23 @@ const Schema =  mongoose.Schema;
 const deliveringOrderSchema = new Schema ({
 
     OrderID: {
-        type :String ,
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Order",
         
     },
-    DeliveryPersonID : {
-        type :String ,
+    deliveryPersonID : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "DeliveryPerson",
         
     },
-    orderDetails : {
-        type :String ,
-        
-        
+    userID : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
     },
-    customername : {
-        type :String,
-        
-    },
-    deliverypersonContactNumber : {
-        type :String ,
-        
-    },
-    branch : {
-        type :String ,
-        
-    },
-    CustomercontactNumber : {
-        type :String ,
-        
-    },
-    deliverypersonVehicleNumber : { 
-        type :String ,
-        
-    },
-    CustomerAddress : {
-        type :String ,
-        
-    },
-    deliverypersonUsername : {
-        type :String,
-    },
+
     orderStatus : {
         type : String,
+        default : "delivery person assign"
     }
 
 });

@@ -1,4 +1,4 @@
- *{
+*{
     margin: 0;
     padding: 0;
     
@@ -6,16 +6,16 @@
     font-family: sans-serif;
 }
 
-body.AllClient {
+body.AllDeliveryPerson {
     min-height: 100vh;
     display:flex !important;
     justify-content: center;
     align-items: center;
-    background-color: #82bfee9b;
+    background-color: #7ab2de9b;
     
 }
 
-#AllClient main.table {
+#AllDeliveryPerson main.table {
     width: 82vw;
     height: 90vh;
     background-color: #fff5;
@@ -27,7 +27,7 @@ body.AllClient {
     overflow: hidden;
 }
 
-#AllClient .table__header {
+#AllDeliveryPerson .table__header {
     width: 100%;
     height: 10%;
     background-color: #fff4;
@@ -38,7 +38,7 @@ body.AllClient {
     align-items: center;
 }
 
-#AllClient .table__header .input-group {
+#AllDeliveryPerson .table__header .input-group {
     width: 35%;
     height: 100%;
     background-color: #fff5;
@@ -52,19 +52,19 @@ body.AllClient {
     transition: .2s;
 }
 
-#AllClient .table__header .input-group:hover {
+#AllDeliveryPerson .table__header .input-group:hover {
     width: 45%;
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
 }
 
-#AllClient .table__header .input-group img {
+#AllDeliveryPerson .table__header .input-group img {
     width: 1.2rem;
     height: 1.2rem;
     display: none;
 }
 
-#AllClient .table__header .input-group input {
+#AllDeliveryPerson .table__header .input-group input {
     width: 100%;
     padding: 0 .5rem 0 .3rem;
     background-color: transparent;
@@ -72,7 +72,7 @@ body.AllClient {
     outline: none;
 }
 
-#AllClient .table__body{
+#AllDeliveryPerson .table__body{
    width: 95%;
     max-height: calc(89% - 1.6rem);
     background-color: #fffb;
@@ -84,42 +84,42 @@ body.AllClient {
     overflow: overlay;
 }
 
-#AllClient .table__body::-webkit-scrollbar{
+#AllDeliveryPerson .table__body::-webkit-scrollbar{
     width: 0.5rem;
     height: 0.5rem;
 }
 
-#AllClient .table__body::-webkit-scrollbar-thumb{
+#AllDeliveryPerson .table__body::-webkit-scrollbar-thumb{
     border-radius: .5rem;
     background-color: #0004;
     visibility: hidden;
 }
 
-#AllClient .table__body:hover::-webkit-scrollbar-thumb{ 
+#AllDeliveryPerson .table__body:hover::-webkit-scrollbar-thumb{ 
     visibility: visible;
 }
 
-#AllClient table {
+#AllDeliveryPerson table {
     width: 100%;
 }
 
-#AllClient td img {
+#AllDeliveryPerson td img {
     width: 36px;
     height: 36px;
-    margin-right: 2rem;
+    margin-right: .5rem;
     border-radius: 50%;
 
     vertical-align: middle;
 }
 
-#AllClient table, th, td {
+#AllDeliveryPerson table, th, td {
     border-collapse: collapse;
     padding: 1rem;
-    text-align: center;
-    font-size: 22px;
+    text-align: left;
+    font-size: 18px;
 }
 
-#AllClient thead th {
+#AllDeliveryPerson thead th {
     position: sticky;
     top: 0;
     left: 0;
@@ -129,64 +129,64 @@ body.AllClient {
     font-size: 20px;
 }
 
-#AllClient tbody tr:nth-child(even) {
+#AllDeliveryPerson tbody tr:nth-child(even) {
     background-color: #0000000b;
 }
 
-#AllClient tbody tr {
+#AllDeliveryPerson tbody tr {
     --delay: .1s;
     transition: .5s ease-in-out var(--delay), background-color 0s;
 }
 
-#AllClient tbody tr.hide {
+#AllDeliveryPerson tbody tr.hide {
     opacity: 0;
     transform: translateX(100%);
 }
 
-#AllClient tbody tr:hover {
+#AllDeliveryPerson tbody tr:hover {
     background-color: #fff6 !important;
 }
 
-#AllClient tbody tr td,
-#AllClient tbody tr td p,
-#AllClient tbody tr td img {
+#AllDeliveryPerson tbody tr td,
+#AllDeliveryPerson tbody tr td p,
+#AllDeliveryPerson tbody tr td img {
     transition: .2s ease-in-out;
 }
 
-#AllClient tbody tr.hide td,
-#AllClient tbody tr.hide td p {
+#AllDeliveryPerson tbody tr.hide td,
+#AllDeliveryPerson tbody tr.hide td p {
     padding: 0;
     font: 0 / 0 sans-serif;
     transition: .2s ease-in-out .5s;
 }
 
-#AllClient tbody tr.hide td img {
+#AllDeliveryPerson tbody tr.hide td img {
     width: 0;
     height: 0;
     transition: .2s ease-in-out .5s;
 }
 
-#AllClient .status {
+#AllDeliveryPerson .status {
     padding: .4rem 0;
     border-radius: 2rem;
     text-align: center;
 }
 
-#AllClient .status.delivered {
+#AllDeliveryPerson .status.delivered {
     background-color: #86e49d;
     color: #006b21;
 }
 
-#AllClient .status.cancelled {
+#AllDeliveryPerson .status.cancelled {
     background-color: #d893a3;
     color: #b30021;
 }
 
-#AllClient .status.pending {
+#AllDeliveryPerson .status.pending {
     background-color: #ebc474;
 }
 
-#AllClient .status.shipped {
+#AllDeliveryPerson .status.shipped {
     background-color: #6fcaea;
 }
 
@@ -197,7 +197,7 @@ body.AllClient {
     }
 }
 
-#AllClient thead th span.icon-arrow {
+#AllDeliveryPerson thead th span.icon-arrow {
     display: inline-block;
     width: 1.3rem;
     height: 1.3rem;
@@ -211,32 +211,32 @@ body.AllClient {
     transition: .2s ease-in-out;
 }
 
-#AllClient thead th:hover span.icon-arrow{
+#AllDeliveryPerson thead th:hover span.icon-arrow{
     border: 1.4px solid #6c00bd;
 }
 
-#AllClient thead th:hover {
+#AllDeliveryPerson thead th:hover {
     color: #6c00bd;
 }
 
-#AllClient thead th.active span.icon-arrow{
+#AllDeliveryPerson thead th.active span.icon-arrow{
     background-color: #6c00bd;
     color: #fff;
 }
 
-#AllClient thead th.asc span.icon-arrow{
+#AllDeliveryPerson thead th.asc span.icon-arrow{
     transform: rotate(180deg);
 }
 
-#AllClient thead th.active,tbody td.active {
+#AllDeliveryPerson thead th.active,tbody td.active {
     color: #6c00bd;
 }
 
-#AllClient .export__file {
+#AllDeliveryPerson .export__file {
     position: relative;
 }
 
-#AllClient .export__file .export__file-btn {
+#AllDeliveryPerson .export__file .export__file-btn {
     display: inline-block;
     width: 2rem;
     height: 2rem;
@@ -244,17 +244,17 @@ body.AllClient {
     transition: .2s ease-in-out;
 }
 
-#AllClient .export__file .export__file-btn:hover { 
+#AllDeliveryPerson .export__file .export__file-btn:hover { 
     background-color: #fff;
     transform: scale(1.15);
     cursor: pointer;
 }
 
-#AllClient .export__file input {
+#AllDeliveryPerson .export__file input {
     display: none;
 }
 
-#AllClient .export__file .export__file-options {
+#AllDeliveryPerson .export__file .export__file-options {
     position: absolute;
     right: 0;
     
@@ -272,13 +272,13 @@ body.AllClient {
     transition: .2s;
 }
 
-#AllClient .export__file input:checked + .export__file-options {
+#AllDeliveryPerson .export__file input:checked + .export__file-options {
     opacity: 1;
     transform: scale(1);
     z-index: 100;
 }
 
-#AllClient .export__file .export__file-options label{
+#AllDeliveryPerson .export__file .export__file-options label{
     display: block;
     width: 100%;
     padding: .6rem 0;
@@ -291,17 +291,17 @@ body.AllClient {
     transition: .2s ease-in-out;
 }
 
-#AllClient .export__file .export__file-options label:first-of-type{
+#AllDeliveryPerson .export__file .export__file-options label:first-of-type{
     padding: 1rem 0;
     background-color: #86e49d !important;
 }
 
-#AllClient .export__file .export__file-options label:hover{
+#AllDeliveryPerson .export__file .export__file-options label:hover{
     transform: scale(1.05);
     background-color: #fff;
     cursor: pointer;
 }
-#AllClient .export__file .export__file-options img{
+#AllDeliveryPerson .export__file .export__file-options img{
     width: 2rem;
     height: auto;
 }

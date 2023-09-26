@@ -8,10 +8,6 @@ import { getMonthlyData, getYearlyData, getOrders } from '../features/auth/authS
 
 const columns = [
   {
-    title: 'OrderNo',
-    dataIndex: 'key',
-  },
-  {
     title: 'Name',
     dataIndex: 'name',
   },

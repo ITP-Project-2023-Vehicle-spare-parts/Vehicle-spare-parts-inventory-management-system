@@ -1,66 +1,65 @@
 import React, { useEffect, useState } from "react";
-import "./UpdateProfileAdmin.css";
+import "./ClientProfileUpdate.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function UpdateProfileAdmin() {
+export default function ClientProfileUpdate() {
   const id = localStorage.getItem("userID");
   console.log(id);
   const Navigate = useNavigate();
 
-  const [supplier, setSupplier] = useState({
-    SupplierfirstName : "",
-    CompanyName: "",
-    CompanyEmail: "",
-    CompanyPhone: "",
-    CompanyAddress: "",
-    SupplierLastName: "",
-    SupplierEmail: "",
-    SupplierPhone: "",
-    SupplierStatus:"",
-    SystemEmail: "",
-    SystemPassword: "",
-    SupplierCity: "",
-    SupplierState: "",
-    SupplierPostalCode: "",
-    ProvidedBrand: "",
+  const [client, setClient] = useState({
+    ClientsfirstName:"",
+    ClientsLastName:"",
+    ClientsFullName:"",
+    ClientsEmail:"",
+    ClientsPhone:"",
+    ClientsState:"",
+    ClientsCity:"",
+    ClientsPostalCode:"",
+    ClientsStatus:"",
+    NoOfBranches:"",
+    role:"",
+    dateAdded:"",
+    SystemEmail:"",
+    SystemPassword:"",
 
   });
 
 
   useEffect(() => {
 
-    const fetchSupplier = () => {
+    const fetchclient = () => {
       axios
-        .get("http://localhost:8000/supplier/get/" + id)
+        .get("http://localhost:8000/clients/get/" + id)
         .then((res) => {
           toast.success("Data Fetched!", {
             duration: 3000, // 3 seconds
             position: "top-center", // You can change the position if needed
           });
-          console.log(res.data.supplier);
-          setSupplier(res.data.supplier);
+          console.log(res.data.clients);
+          setClient(res.data.clients);
         })
         .catch((err) => {
           alert(err.message);
         });
     }
-    fetchSupplier();
+    fetchclient();
   }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSupplier((prevSupplier) => ({
-      ...prevSupplier,
+    setClient((prevclient) => ({
+      ...prevclient,
       [name]: value,
     }));
   };
 
   const updateData = () => {
     axios
-      .put("http://localhost:8000/supplier/update/" + id, supplier)
+      .put("http://localhost:8000/clients/update/" + id, client)
       .then((res) => {
         console.log(res.data);
         Swal.fire({
@@ -70,7 +69,7 @@ export default function UpdateProfileAdmin() {
           showConfirmButton: false,
           timer: 150
         })
-        Navigate("/Admin/Supplier/Profile")
+        Navigate("/Admin/client/Profile/:id")
         // You can add additional logic here, such as redirecting to another page
       })
       .catch((err) => {
@@ -79,7 +78,7 @@ export default function UpdateProfileAdmin() {
   };
 
   return (
-    <div id="UpdateProfileAdmin">
+    <div id="ClientProfileUpdate">
       <body>
         
           <div class="container shadow p-2 ">
@@ -99,31 +98,26 @@ export default function UpdateProfileAdmin() {
                             />
                           </div>
                         </div>
-                        <h5 class="user-name">{supplier.SupplierfirstName} {supplier.SupplierLastName
+                        <h5 class="user-name">{client.ClientsfirstName} {client.ClientsLastName
 }</h5>
-                        <h6 class="user-email">{supplier.SupplierEmail}</h6>
+                        <h6 class="user-email">{client.ClientsEmail}</h6>
                       </div>
                       <div class="about">
                         <h5>About</h5>
                         <p>
-                          {supplier.SupplierStatus}
+                          {client.ClientsStatus} <br/>
+                          {client.role}
                         </p>
                       </div>
                       <div class="about">
-                        <h5>About</h5>
+                        <h5>About Our Shop</h5>
                         <p>
                           I'm Yuki. Full Stack Designer I enjoy creating
                           user-centric, delightful and human experiences.
                         </p>
                       </div>
 
-                      <div class="about">
-                        <h5>About</h5>
-                        <p>
-                          I'm Yuki. Full Stack Designer I enjoy creating
-                          user-centric, delightful and human experiences.
-                        </p>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -136,70 +130,10 @@ export default function UpdateProfileAdmin() {
                     </span>
                   </div>
                   <div class="card-body">
+  
                     <div class="row gutters">
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <b>
-                          <h4 class="mb-2 text-primary">Company Details</h4>
-                        </b>
-                      </div>
-
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">Company Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="CompanyName"
-                            name="CompanyName"
-                            value={supplier.CompanyName}
-                            onChange={handleChange}
-                            readOnly
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="eMail">Company Email</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="CompanyEmail"
-                            name="CompanyEmail"
-                            value={supplier.CompanyEmail}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="phone">Company Phone</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="CompanyPhone"
-                            name="CompanyPhone"
-                            value={supplier.CompanyPhone}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="website">Company Address</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="CompanyAddress"
-                            name="CompanyAddress"
-                            value={supplier.CompanyAddress}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="mb-2 text-primary">Supplier Details</h4>
+                        <h4 class="mb-2 text-primary">Client Details</h4>
                       </div>
                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
@@ -207,9 +141,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="text"
                             class="form-control"
-                            id="SupplierfirstName"
-                            name="SupplierfirstName"
-                            value={supplier.SupplierfirstName}
+                            id="ClientsfirstName"
+                            name="ClientsfirstName"
+                            value={client.ClientsfirstName}
                             onChange={handleChange}
                           />
                         </div>
@@ -220,9 +154,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="text"
                             class="form-control"
-                            id="SupplierLastName"
-                            name="SupplierLastName"
-                            value={supplier.SupplierLastName}
+                            id="ClientsLastName"
+                            name="ClientsLastName"
+                            value={client.ClientsLastName}
                             onChange={handleChange}
                           />
                         </div>
@@ -233,9 +167,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="email"
                             class="form-control"
-                            id="SupplierEmail"
-                            name="SupplierEmail"
-                            value={supplier.SupplierEmail}
+                            id="ClientsEmail"
+                            name="ClientsEmail"
+                            value={client.ClientsEmail}
                             onChange={handleChange}
                           />
                         </div>
@@ -246,9 +180,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="text"
                             class="form-control"
-                            id="SupplierPhone"
-                            name="SupplierPhone"
-                            value={supplier.SupplierPhone}
+                            id="ClientsPhone"
+                            name="ClientsPhone"
+                            value={client.ClientsPhone}
                             onChange={handleChange}
                           />
                         </div>
@@ -264,9 +198,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="name"
                             class="form-control"
-                            id="SupplierCity"
-                            name="SupplierCity"
-                            value={supplier.SupplierCity}
+                            id="ClientsCity"
+                            name="ClientsCity"
+                            value={client.ClientsCity}
                             onChange={handleChange}
                           />
                         </div>
@@ -277,9 +211,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="name"
                             class="form-control"
-                            id="SupplierState"
-                            name="SupplierState"
-                            value={supplier.SupplierState}
+                            id="ClientsState"
+                            name="ClientsState"
+                            value={client.ClientsState}
                             onChange={handleChange}
                           />
                         </div>
@@ -290,9 +224,9 @@ export default function UpdateProfileAdmin() {
                           <input
                             type="text"
                             class="form-control"
-                            id="SupplierPostalCode"
-                            name="SupplierPostalCode"
-                            value={supplier.SupplierPostalCode}
+                            id="ClientsPostalCode"
+                            name="ClientsPostalCode"
+                            value={client.ClientsPostalCode}
                             onChange={handleChange}
                           />
                         </div>
@@ -303,14 +237,14 @@ export default function UpdateProfileAdmin() {
                             for="exampleFormControlTextarea1"
                             class="form-label"
                           >
-                            Supplier Status
+                            client Status
                           </label>
                           <textarea
                             class="form-control"
-                            id="exampleFormControlTextarea1"
+                            id="ClientsStatus"
                             rows="3"
-                            name="SupplierStatus"
-                            value={supplier.SupplierStatus}
+                            name="ClientsStatus"
+                            value={client.ClientsStatus}
                             onChange={handleChange}
                             readOnly
                             style={{ backgroundColor: "#c5cde4" }}
@@ -330,7 +264,7 @@ export default function UpdateProfileAdmin() {
                             class="form-control"
                             id="SystemEmail"
                             name="SystemEmail"
-                            value={supplier.SystemEmail}
+                            value={client.SystemEmail}
                             onChange={handleChange}
                             readOnly
                           />
@@ -344,7 +278,7 @@ export default function UpdateProfileAdmin() {
                             class="form-control"
                             id="SystemPassword"
                             name="SystemPassword"
-                            value={supplier.SystemPassword}
+                            value={client.SystemPassword}
                             onChange={handleChange}
                             
                           />

@@ -127,7 +127,7 @@ export default function SupplierSideNavigation() {
                         <div className=""><span style={{color:"#7C7C7C"}}> YAMAHA Company</span></div>
                     </div>
                    </div>
-                   <i className="bx bx-log-out" id="log_out"></i>
+                  <Link to="/"> <i className="bx bx-log-out" id="log_out"></i></Link>
 
 
                 </div>

@@ -54,7 +54,7 @@ const updateDeliveryPerson = async (req, res) => {
         const DeliveryPersonId = req.params.id;
         console.log(req.body); // Correct variable name
 
-        const { deliverypersonname, deliverypersonContactNumber, deliverypersonEmail, deliverypersonAddress, deliverypersonDLexpire, deliverypersonVehicleType, deliverypersonVehicleNumber, deliverypersonBranch } = req.body;
+        const { deliverypersonname, deliverypersonContactNumber, deliverypersonEmail, deliverypersonAddress, deliverypersonDLexpire, deliverypersonVehicleType, deliverypersonVehicleNumber, deliverypersonBranch , personStatus} = req.body;
         console.log(req.params.id);
         const updateDeliveryPersons = {
             deliverypersonname,
@@ -64,7 +64,8 @@ const updateDeliveryPerson = async (req, res) => {
             deliverypersonDLexpire,
             deliverypersonVehicleType,
             deliverypersonVehicleNumber,
-            deliverypersonBranch
+            deliverypersonBranch,
+            personStatus
         };
 
         await DeliveryPerson.findByIdAndUpdate(req.params.id , updateDeliveryPersons); // Correct variable name
