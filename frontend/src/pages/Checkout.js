@@ -10,6 +10,8 @@ import "../CSS/user.css";
 import { config } from '../utils/axiosconfig';
 import { createAnOrder, deleteUserCart, getUserCart, resetState } from '../features/user/userSlice';
 
+console.log(getUserCart);
+
 const shippingSchema = yup.object({
   firstName: yup.string().required('First Name is required'),
   lastName: yup.string().required('Last Name is required'),

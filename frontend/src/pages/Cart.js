@@ -37,7 +37,7 @@ const Cart = () => {
         dispatch(getUserCart(config2));
       }, 200);
     }
-  }, [productUpdateDetail, dispatch]); 
+  }, ); 
 
   const deleteACartProduct = (id) => {
     dispatch(deleteCartProduct({id : id, config2 : config2}));

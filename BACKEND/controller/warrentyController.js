@@ -52,7 +52,7 @@ const updatewarrenty = async (req, res) => {
 
 
         const updatedWarrentyData = {
-            productname ,billno,purchasedate , claimdate, description, email, contactNo
+            productname ,billno,purchasedate , claimdate, description, email, contactNo,status
         };
 
         await Warrenty.findByIdAndUpdate(claimid, updatedWarrentyData);
