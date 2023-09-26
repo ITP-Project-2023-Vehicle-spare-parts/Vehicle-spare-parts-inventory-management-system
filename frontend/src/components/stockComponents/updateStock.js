@@ -62,6 +62,7 @@ function UpdateStock() {
 
   return (
     <div>
+      
       <h2>Edit Stock Details</h2>
       <form onSubmit={handleUpdate}>
         <div>
