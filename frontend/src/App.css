@@ -94,7 +94,7 @@ a{
 
 .scrollable-content {
   overflow-y: scroll;
-  max-height: 558px;
+  max-height: auto;
 }
 .bodyMain{
   height: 100%;
