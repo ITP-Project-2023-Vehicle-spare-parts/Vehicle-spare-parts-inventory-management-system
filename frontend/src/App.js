@@ -48,6 +48,15 @@ import AdminUpdateclaim from './components/AdminClaimComponent/AdminUpdateclaim'
 import ClientProfile from "./components/Client/ClientProfile";
 import ClientProfileUpdate from "./components/Client/ClientProfileUpdate";
 
+import DeliveryForm from "./components/DeliveryPersons/DeliveryForm";
+import DeliveryTable from "./components/DeliveryPersons/DeliveryTable";
+import ProfileDetails from "./components/DeliveryPersons/ProfileDetails";
+import EditDeliveryPerson from "./components/DeliveryPersons/EditDeliveryPerson";
+import OrderList from "./components/OrderList";
+import AvailableDeliveryPersonList from "./components/AvailableDeliveryPersonList";
+
+
+
 import Sidebar from "./components/Sidebar"
 
 function App() {
@@ -83,6 +92,14 @@ function App() {
 
             <Route path="/" element={<AllClaims />} />
             <Route path="admin/updates/:id/:billno" element={<AdminUpdateclaim/>} />
+
+          <Route path="/Admin/DeliveryPerson/add" element={<DeliveryForm />} />
+          <Route path="/Admin/DeliveryPerson/getAll" exact element={<DeliveryTable/>} />
+          <Route path="/Admin/profile/:deliveryPersonID" element={<ProfileDetails/>} />
+          <Route path="/Admin/profiles/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/Admin/profile/update/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/admin/orders" exact element={<OrderList/>} />
+          <Route path="/order/:orderid/:userid" element={<AvailableDeliveryPersonList/>} />
 
          
 

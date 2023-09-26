@@ -1,12 +1,16 @@
 // OrderDetails.js
 
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios';
 
 function OrderDetails({ navigateToDeliveryPersons }) {
   const [orderData, setOrderData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  console.log(loading)
+  
+
 
   useEffect(() => {
     // Fetch data from the API endpoint for orders
