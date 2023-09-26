@@ -42,7 +42,7 @@ function UpdateStock() {
       });
      
        // Navigate back to FetchStock component after successful update
-       navigate('/fetch-stock');
+       navigate('/Admin/stock');
     } catch (error) {
       console.error('Error updating stock details:', error);
     }
@@ -62,6 +62,9 @@ function UpdateStock() {
 
   return (
     <div>
+     
+      
+      
       <h2>Edit Stock Details</h2>
       <form onSubmit={handleUpdate}>
         <div>
