@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams,useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-
 function UpdateStock() {
   const { id } = useParams();
   const  navigate = useNavigate(); // Create a history object
@@ -42,7 +41,7 @@ function UpdateStock() {
       });
      
        // Navigate back to FetchStock component after successful update
-       navigate('/fetch-stock');
+       navigate('/Admin/stock');
     } catch (error) {
       console.error('Error updating stock details:', error);
     }
