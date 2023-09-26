@@ -4,14 +4,14 @@ import {
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
-import {Link} from "react-router-dom";
+
 
 import {AiOutlineDashboard, AiOutlineStock, AiOutlineShoppingCart, AiOutlineBranches, AiOutlineLogout} from "react-icons/ai";
 import {BiUserCircle, BiSolidBox, BiSolidUserDetail, BiSolidOffer} from "react-icons/bi";
 import {TbTruckDelivery} from "react-icons/tb";
 import {BsCardChecklist} from "react-icons/bs";
 import {MdOutlineHomeRepairService} from "react-icons/md";
-import {IoIosNotifications} from "react-icons/io";
+
 
 import {useNavigate} from "react-router-dom";
 
@@ -166,52 +166,6 @@ const MainLayout = () => {
               height: 64,
             }}
           />
-          <div className='d-flex gap-4 align-items-center'>
-            <div className='position-relative'>
-              <IoIosNotifications className='fs-4'/>
-              <span className='badge bg-warning rounded-circle p-1 position-absolute'>3</span>
-            </div>
-            <div 
-              className='d-flex gap-3 align-items-center dropdown'>
-            <div>
-              <img 
-                width={40}
-                height={40}
-                src='https://cdn.pixabay.com/photo/2014/03/25/16/24/female-296990_640.png'
-                alt=''               
-              />
-                </div>
-                <div
-                  role="button" 
-                  id='dropdownMenuLink' 
-                  data-bs-toggle='dropdown' 
-                  aria-expanded="false">
-                <h5 className='mb-0'>Sandithya</h5>
-                    <p className='mb-0'>sandithyas@gmail.com</p>             
-              </div>
-              <div
-                className='dropdown-menu'
-                aria-labelledby='dropdownMenuLink'>
-                  <li>
-                    <Link 
-                      className="dropdown-item py- mb-1" 
-                      style={{"height" : "auto", "lineHeight" : "20px"}} 
-                      to="/">
-                        View Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link 
-                      className="dropdown-item py- mb-1" 
-                      style={{"height" : "auto", "lineHeight" : "20px"}} 
-                      to="/">
-                        SingOut
-                    </Link>
-                  </li>
-                  
-              </div>
-            </div>
-          </div>
         </Header>
         <Content
           style={{

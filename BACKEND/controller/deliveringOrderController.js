@@ -3,24 +3,18 @@ const DeliveringOrder = require('../model/deliveringOrderModel');
 
 const addDeliveryOrder = async (req, res) => {
     try {
-        const existingDeliveryOrder = await DeliveringOrder.findOne({ OrderID: req.body.OrderID });
+        //const existingDeliveryOrder = await DeliveringOrder.findOne({ OrderID: req.body.orderid });
 
-        if (existingDeliveryOrder) {
-            return res.status(400).json({ status: "Error", error: "Havent order with this order ID" });
-        }
+        // if (existingDeliveryOrder) {
+        //     return res.status(400).json({ status: "Error", error: "Havent order with this order ID" });
+        // }
 
         // Use a different variable name (e.g., newDeliveryOrder) for the instance
         const newDeliveryOrder = new DeliveringOrder({
-            OrderID: req.body.OrderID,
-            DeliveryPersonID: req.body.DeliveryPersonID,
-            orderDetails: req.body.orderDetails,
-            customername: req.body.customername,
-            deliverypersonContactNumber: req.body.deliverypersonContactNumber,
-            branch: req.body.branch,
-            CustomercontactNumber: req.body.CustomercontactNumber,
-            deliverypersonVehicleNumber: req.body.deliverypersonVehicleNumber,
-            CustomerAddress: req.body.CustomerAddress,
-            deliverypersonUsername: req.body.deliverypersonUsername,
+            OrderID: req.body.orderid,
+            deliveryPersonID: req.body.deliveryPersonID,
+            userID: req.body.userid,
+
             orderStatus: req.body.orderStatus
             // ... other properties ...
         });

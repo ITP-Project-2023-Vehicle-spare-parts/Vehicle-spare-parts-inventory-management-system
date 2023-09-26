@@ -13,5 +13,4 @@ router.route("/update/:id").put(supplierController.updateSupplier);
 router.route("/delete/:id").delete(supplierController.deleteSupplier);
 router.route("/get/:id").get(supplierController.getSupplierById);
 
-
 module.exports = router;
