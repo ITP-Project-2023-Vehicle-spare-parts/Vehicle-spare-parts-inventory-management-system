@@ -9,9 +9,13 @@ import { ToastContainer} from 'react-toastify';
 const Layout = () => {
   return (
     <>
-        <Header/>
-        <Outlet/>
-        <Footer/>
+        <div className="bodyMain">
+          <Header />
+        <div className="scrollable-content">
+          <Outlet />
+          <Footer />
+        </div>
+        </div>
         <ToastContainer
           position="top-right"
           autoClose={5000}
