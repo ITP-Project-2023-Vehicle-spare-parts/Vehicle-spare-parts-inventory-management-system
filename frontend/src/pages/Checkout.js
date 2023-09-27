@@ -272,11 +272,11 @@ const Checkout = () => {
                 </div>
                 <div className='w-100'>
                   <div className='d-flex justify-content-between align-items-center'>
-                    <Link to='/layout/cart' className='text-dark'>
+                    <Link to='/home/cart' className='text-dark'>
                       <AiOutlineArrowLeft className='me-2' />
                       Return to Cart
                     </Link>
-                    <Link to='/product' className='button'>
+                    <Link to='/home/store' className='button'>
                       Continue to Shipping
                     </Link>
                     <button className='button' type='submit'>

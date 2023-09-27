@@ -4,6 +4,7 @@ import "../CSS/user.css";
 import BreadCrumb from '../components/BreadCrumb'
 import {useDispatch, useSelector} from 'react-redux'
 import { getOrders } from '../features/user/userSlice'
+import Meta from "../components/Meta";
 
 const Orders = () => {
 
@@ -17,6 +18,7 @@ const Orders = () => {
 
   return (
     <>
+      <Meta title = {"My Orders"}/>
       <BreadCrumb title = "My Orders"/>
       <Container class1 = 'cart-wrapper home-wrapper-2 py-5'>
         <div className='row'>

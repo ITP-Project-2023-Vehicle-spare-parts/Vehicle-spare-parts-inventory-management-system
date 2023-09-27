@@ -1,16 +1,12 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+import BreadCrumb from "../components/BreadCrumb";
+import Meta from "../components/Meta";
 
 const Wishlist = () => {
   return (
     <>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>Wishlist</title>
-    </Helmet>
-    <div className='home-wrapper-2'>
-      <center><h4><br/>.....Wishlist.....<br/><br/></h4></center>
-    </div>
+    <Meta title = {"Our Store"}/>
+    <BreadCrumb title = "Our Store"/>
     <div className='wishlist-wrapper home-wrapper-2 py-5'>
         <div className='container-xxl'>
             <div className='row'>
