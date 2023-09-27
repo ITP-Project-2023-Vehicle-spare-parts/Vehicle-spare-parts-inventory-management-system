@@ -10,6 +10,7 @@ import {
   Legend,
 } from "recharts";
 
+
 const CategoryBarGraph = () => {
   const [categoryData, setCategoryData] = useState([]);
 
@@ -71,6 +72,7 @@ const CategoryBarGraph = () => {
         {/* Use the fill prop to set the bar colors */}
         <Bar dataKey="quantity" barSize={60}/>
       </BarChart>
+     
     </div>
   );
 };
