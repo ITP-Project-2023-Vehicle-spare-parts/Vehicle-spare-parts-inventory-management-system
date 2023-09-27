@@ -5,10 +5,10 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const morgan = require("morgan");
-const { errorHandler, notFound} = require("./middlewares/errorHandler");
+const { errorHandler, notFound } = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 8000;
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -16,15 +16,14 @@ const URL = process.env.MONGODB_URL;
 
 //test
 mongoose.connect(URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-    console.log("MongoDB Connection Success!");
+  console.log("MongoDB Connection Success!");
 });
-
 
 const BranchRouter = require("./routes/BranchRoutes.js");
 app.use("/Branch", BranchRouter);
@@ -33,19 +32,19 @@ const ProductRoutes = require("./routes/productRoutes.js");
 app.use("/product", ProductRoutes);
 
 const SupplierRouter = require("./routes/SupplierRoutes");
-app.use("/supplier" , SupplierRouter );
+app.use("/supplier", SupplierRouter);
 
 const ClientsRouter = require("./routes/WholeClientsRoutes");
-app.use("/clients" , ClientsRouter );
+app.use("/clients", ClientsRouter);
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const user = require("./routes/authRoute");
-app.use("/user" , user);
+app.use("/user", user);
 
 const deliveryPersonRouter = require("./routes/deliverypersonRoutes");
-app.use("/deliveryPerson", deliveryPersonRouter)
+app.use("/deliveryPerson", deliveryPersonRouter);
 
 const deliveryOrderRoutes = require("./routes/deliveringOrderRoute");
 app.use("/deliveryOrder", deliveryOrderRoutes);
@@ -68,11 +67,12 @@ app.use("/color", colorRoutes);
 const enqRouter = require("./routes/enqRoute");
 app.use("/enquiry", enqRouter);
 
+const allOrder = require("./routes/OrderlistRoutes");
+app.use("/allOrder", allOrder);
 
 app.use(notFound);
 app.use(errorHandler);
 
-
 app.listen(PORT, () => {
-    console.log(`Server is up and running on port number: ${PORT}`);
+  console.log(`Server is up and running on port number: ${PORT}`);
 });

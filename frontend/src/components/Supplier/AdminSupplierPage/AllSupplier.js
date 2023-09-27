@@ -92,7 +92,7 @@ export default function AllSupplier() {
                 class="export__file-btn"
                 title="Export File"
               >
-                <i className="bx bx-menu bx-sm"></i>
+                <i className="bx bx-menu " ></i>
               </label>
               <input type="checkbox" id="export-file" />
               <div class="export__file-options">

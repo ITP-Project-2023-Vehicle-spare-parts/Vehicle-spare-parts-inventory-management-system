@@ -48,6 +48,18 @@ import AdminUpdateclaim from './components/AdminClaimComponent/AdminUpdateclaim'
 import ClientProfile from "./components/Client/ClientProfile";
 import ClientProfileUpdate from "./components/Client/ClientProfileUpdate";
 
+import DeliveryForm from "./components/DeliveryPersons/DeliveryForm";
+import DeliveryTable from "./components/DeliveryPersons/DeliveryTable";
+import ProfileDetails from "./components/DeliveryPersons/ProfileDetails";
+import EditDeliveryPerson from "./components/DeliveryPersons/EditDeliveryPerson";
+import OrderList from "./components/OrderList";
+import AvailableDeliveryPersonList from "./components/AvailableDeliveryPersonList";
+
+import Home from "./pages/Home";
+import Store from "./pages/store";
+import Wishlist from "./pages/Wishlist";
+import SingleProduct from "./pages/SingleProduct";
+
 import Sidebar from "./components/Sidebar"
 
 function App() {
@@ -84,6 +96,14 @@ function App() {
             <Route path="/" element={<AllClaims />} />
             <Route path="admin/updates/:id/:billno" element={<AdminUpdateclaim/>} />
 
+          <Route path="/Admin/DeliveryPerson/add" element={<DeliveryForm />} />
+          <Route path="/Admin/DeliveryPerson/getAll" exact element={<DeliveryTable/>} />
+          <Route path="/Admin/profile/:deliveryPersonID" element={<ProfileDetails/>} />
+          <Route path="/Admin/dilivary/profiles/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/Admin/profile/update/:id" element={<EditDeliveryPerson/>} />
+          <Route path="/admin/orders" exact element={<OrderList/>} />
+          <Route path="/order/:orderid/:userid" element={<AvailableDeliveryPersonList/>} />
+
          
 
             {/* Claim Part */}
@@ -109,12 +129,16 @@ function App() {
 
             
 
-            <Route path = "/layout" element = {<Layout />}>
+            <Route path = "/home" element = {<Layout />}>
+              <Route index element={<Home />} />
               <Route path = "contact" element = {<Contact />}/>
               <Route path = "cart" element = {<Cart />}/>
               <Route path = "my-orders" element = {<Order />}/>
               <Route path = "Checkout" element = {<Checkout />}/>
-            </Route>
+              <Route path="/home/store" element={<Store />}/>
+              <Route path="store/product/:id" element={<SingleProduct />} />
+              <Route path="/home/wishlist" element={<Wishlist />} />
+ </Route>
 
             <Route path='/sidebar' element={<Sidebar />} />
 
