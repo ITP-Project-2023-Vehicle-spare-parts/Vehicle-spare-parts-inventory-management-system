@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   MDBContainer,
@@ -34,12 +34,11 @@ export default function Login() {
           console.log(res.data.role);
           Navigate("/Admin/client/add");
         } else if (res.data.role === "supplier") {
-          console.log(res.data);
+          console.log(res.data.role);
           Navigate("/supplier/home");
-          
-           localStorage.setItem("userEmail", email)
         } else {
-          console.log();
+          console.log(res.data.role);
+          
         }
 
         // alert("Successfully Login!");
@@ -53,8 +52,6 @@ export default function Login() {
         toast.error("Login Credential Invalid!!!!");
       });
   }
-
-  
 
   return (
     <div>
@@ -139,9 +136,9 @@ export default function Login() {
                       style={{ color: "#393f81" }}
                     >
                       Don't have an account?{" "}
-                      <a href="#!" style={{ color: "#393f81" }}>
+                     <Link to="/register"> <a href="#!" style={{ color: "#393f81" }}>
                         Register here
-                      </a>
+                      </a> </Link>
                     </p>
 
                     <div className="">

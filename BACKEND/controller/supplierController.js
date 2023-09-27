@@ -1,5 +1,5 @@
 const Supplier = require("../model/SupplierModel");
-const DeletedSupplier = require("../model/DeletedSupplierModel")
+const DeletedSupplier = require("../model/DeletedSupplierModel");
 // const slugify = require("slugify");
 
 const addSupplier = async (req, res) => {
@@ -161,7 +161,9 @@ const deleteSupplier = async (req, res) => {
     res.status(200).send({ status: "Supplier Deleted" });
   } catch (err) {
     console.error(err);
-    res.status(500).send({ status: "Error deleting supplier", error: err.message });
+    res
+      .status(500)
+      .send({ status: "Error deleting supplier", error: err.message });
   }
 };
 
@@ -169,10 +171,32 @@ const getSupplierById = async (req, res) => {
   try {
     const supplierId = req.params.id;
 
+    console.log(supplierId);
+
     const supplier = await Supplier.findById(supplierId);
     res.status(200).send({ status: "Supplier fetched", supplier });
   } catch (err) {
     console.log(err);
+    res
+      .status(500)
+      .send({ status: "Error fetching supplier", error: err.message });
+  }
+};
+
+const getUserSupplierByEmail = async (req, res) => {
+  try {
+    const supplierEmail = req.params.id;
+
+    // Assuming Supplier is your Mongoose model
+    const supplier = await Supplier.findOne({ SystemEmail: supplierEmail });
+
+    if (!supplier) {
+      return res.status(404).send({ status: "Supplier not found" });
+    }
+
+    res.status(200).send({ status: "Supplier fetched", supplier });
+  } catch (err) {
+    console.error(err);
     res
       .status(500)
       .send({ status: "Error fetching supplier", error: err.message });
@@ -185,4 +209,5 @@ module.exports = {
   updateSupplier,
   deleteSupplier,
   getSupplierById,
+  getUserSupplierByEmail,
 };
