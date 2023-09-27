@@ -10,7 +10,6 @@ import { Button } from 'react-bootstrap';
 
 
 
-
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
   
@@ -40,8 +39,9 @@ function FetchStock() {
 
   return (
     
-    
+   
     <div id="FetchStock">
+      
       <body className="FetchStock">
         <main className="table">
           <section className="table__header">
