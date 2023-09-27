@@ -1,64 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import "./DeliveryTable.css";
 import "boxicons/css/boxicons.min.css";
 import Swal from "sweetalert2";
 
 function DeliveryTable() {
-    const [deliveryPersons, setDeliveryPersons] = useState([]);
-    const { id } = useParams();
-    const [search, setSearch] = useState("");
+  const [deliveryPersons, setDeliveryPersons] = useState([]);
+  const { id } = useParams();
+  const [search, setSearch] = useState("");
   console.log(search);
 
-    useEffect(() => {
-        // Fetch the list of delivery persons from your API
-        axios.get('http://localhost:8000/deliveryPerson/')
-          .then((response) => {
-            setDeliveryPersons(response.data);
-          })
-          .catch((error) => {
-            console.error('Error fetching data:', error);
-          });
-      }, [id]);
+  useEffect(() => {
+    // Fetch the list of delivery persons from your API
+    axios
+      .get("http://localhost:8000/deliveryPerson/")
+      .then((response) => {
+        setDeliveryPersons(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [id]);
 
-// const handleDelete = (id) => {
-//     // Display a confirmation dialog
-//     const isConfirmed = window.confirm('Are you sure you want to delete this delivery person?');
+  // const handleDelete = (id) => {
+  //     // Display a confirmation dialog
+  //     const isConfirmed = window.confirm('Are you sure you want to delete this delivery person?');
 
-//     if (isConfirmed) {
-//       // Send a DELETE request to your API endpoint
-//       axios
-//         .delete(`http://localhost:8000/deliveryPerson/delete/${id}`)
-//         .then((response) => {
-//           // Update the state to remove the deleted delivery person
-//           setDeliveryPersons(deliveryPersons.filter((person) => person._id !== id));
-//           alert('Delivery Person deleted successfully!');
-//         })
-//         .catch((error) => {
-//           console.error('Error deleting delivery person:', error);
-//         });
-//     }
-//   };
-function DeleteDeliveryPerson(id) {
-  console.log(id);
+  //     if (isConfirmed) {
+  //       // Send a DELETE request to your API endpoint
+  //       axios
+  //         .delete(`http://localhost:8000/deliveryPerson/delete/${id}`)
+  //         .then((response) => {
+  //           // Update the state to remove the deleted delivery person
+  //           setDeliveryPersons(deliveryPersons.filter((person) => person._id !== id));
+  //           alert('Delivery Person deleted successfully!');
+  //         })
+  //         .catch((error) => {
+  //           console.error('Error deleting delivery person:', error);
+  //         });
+  //     }
+  //   };
+  function DeleteDeliveryPerson(id) {
+    console.log(id);
 
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      axios.delete(`http://localhost:8000/deliveryPerson/delete/${id}`);
-      window.location.reload();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:8000/deliveryPerson/delete/${id}`);
+        window.location.reload();
 
-      Swal.fire("Deleted!", "Your file has been deleted.", "success");
-    }
-  });}
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  }
 
   return (
     <div id="AllDeliveryPerson">
@@ -117,9 +119,11 @@ function DeleteDeliveryPerson(id) {
                     dataobj.deliverypersonBranch.toLowerCase();
                   const lowerCasedeliverypersonEmail =
                     dataobj.deliverypersonEmail.toLowerCase();
-                  const deliverypersonVehicleNumber = dataobj.deliverypersonVehicleNumber;
+                  const deliverypersonVehicleNumber =
+                    dataobj.deliverypersonVehicleNumber;
                   const DeliveryPersonID = dataobj.DeliveryPersonID;
-                  const deliverypersonContactNumber = dataobj.deliverypersonContactNumber;
+                  const deliverypersonContactNumber =
+                    dataobj.deliverypersonContactNumber;
 
                   return (
                     lowerCaseSearch === "" ||
@@ -135,11 +139,8 @@ function DeleteDeliveryPerson(id) {
                   return (
                     <tbody>
                       <tr key={dataobj._id}>
-                        
-                          
-                          
                         <td>{dataobj.DeliveryPersonID}</td>
-                        <td>{dataobj.deliverypersonUsername}</td>         
+                        <td>{dataobj.deliverypersonUsername}</td>
                         <td> {dataobj.deliverypersonContactNumber} </td>
                         <td>{dataobj.deliverypersonEmail}</td>
                         <td>{dataobj.deliverypersonVehicleNumber}</td>
@@ -155,18 +156,25 @@ function DeleteDeliveryPerson(id) {
                             style={{ margin: "10px" }}>
                             <Link to={"/profile/"+dataobj.DeliveryPersonID}></Link>
                           </button> */}
-                          <Link to={"/Admin/profile/" + dataobj.DeliveryPersonID}>
-                               <button className="bx bx-info-circle bx-lg btn btn-outline-primary" style={{ margin: "10px" }}>
-                                   {/* Content of your button */}
-                               </button>
-                           </Link>
+                          <Link
+                            to={"/Admin/profile/" + dataobj.DeliveryPersonID}
+                          >
+                            <button
+                              className="bx bx-info-circle bx-lg btn btn-outline-primary"
+                              style={{ margin: "10px" }}
+                            >
+                              {/* Content of your button */}
+                            </button>
+                          </Link>
 
-                           <Link to={`/Admin/profile/update/${dataobj._id}`}>
-                                 <button className="bx bx-pencil bx-lg btn btn-outline-warning" style={{ margin: "10px" }}>
-                                 {/* Content of your button */}
-                                 </button>
-                            </Link>
-
+                          <Link to={`/Admin/dilivary/profiles/${dataobj._id}`}>
+                            <button
+                              className="bx bx-pencil bx-lg btn btn-outline-warning"
+                              style={{ margin: "10px" }}
+                            >
+                              {/* Content of your button */}
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     </tbody>
@@ -179,11 +187,5 @@ function DeleteDeliveryPerson(id) {
     </div>
   );
 }
-
-
-
-
-
-
 
 export default DeliveryTable;
