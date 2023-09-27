@@ -1,4 +1,7 @@
-
+.errors {
+  color: red !important;
+  font-size: 12px !important;
+}
 
 /* Contact Us*/
 
