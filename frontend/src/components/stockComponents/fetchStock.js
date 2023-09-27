@@ -10,7 +10,6 @@ import { Button } from 'react-bootstrap';
 
 
 
-
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
   
@@ -40,8 +39,9 @@ function FetchStock() {
 
   return (
     
-    
+   
     <div id="FetchStock">
+      
       <body className="FetchStock">
         <main className="table">
           <section className="table__header">
@@ -66,7 +66,7 @@ function FetchStock() {
                     <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
                     <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
                     <td style={stocktableCellStyle}>
-                      <Link to={`/update/${stock._id}`}>
+                      <Link to={`/admin/updatestock/${stock._id}`}>
                         <Button className="stockbtn-icon" style={{
                           backgroundColor: '#FFB000',
                           padding: '10px 20px',
