@@ -52,15 +52,24 @@ const CategoryBarGraph = () => {
 
   return (
     <div>
-      <h2>Stock Levels</h2>
-      <BarChart width={600} height={400} data={categoryData}>
+      <h2>All Stocks</h2>
+      <BarChart width={600} height={400} data={categoryData}
+      
+      margin={{
+        top: 20,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+      
+      >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
         {/* Use the fill prop to set the bar colors */}
-        <Bar dataKey="quantity" />
+        <Bar dataKey="quantity" barSize={60}/>
       </BarChart>
     </div>
   );

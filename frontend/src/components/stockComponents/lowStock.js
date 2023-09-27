@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import InteractiveChartsPage from '../stockComponents/interactiveChart';
+import './stockCss.css'; // Create a CSS file for styling
 
-
-import "./stockCss.css";
 
 function LowStock() {
   const [stocks, setStocks] = useState([]);
@@ -48,8 +48,9 @@ useEffect(() => {
 
 
   return (
-    <div className="container">
-      <h1>Low products In Stock</h1>
+    <div className="fetch-stock-container">
+      <h1 className="fetch-stock-title">All  Low Stock</h1>
+      <InteractiveChartsPage></InteractiveChartsPage>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
@@ -58,6 +59,7 @@ useEffect(() => {
             <th style={stocktableHeaderStyle}>Stock Amount</th>
             <th style={stocktableHeaderStyle}>Stock Quantity</th>
             <th style={stocktableHeaderStyle}>Re Order Level</th>
+            <th style={stocktableHeaderStyle}>Order Status</th>
           </tr>
         </thead>
         <tbody>
@@ -69,6 +71,9 @@ useEffect(() => {
               <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
               <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
               <td style={stocktableCellStyle}></td>
+              <td style={stocktableCellStyle}>
+                <button className="order-status-button">{stock.orderStatus}</button>
+              </td>
             </tr>
           ))}
         </tbody>

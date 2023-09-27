@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 import { BsPencil, BsTrash } from 'react-icons/bs';
-
-
-import "boxicons/css/boxicons.min.css";
 import { Button } from 'react-bootstrap';
 
+import './stockCss.css'; // Create a CSS file for styling
 
 
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
-  
 
   useEffect(() => {
-    fetchStocks(); // Fetch stock data when the component mounts
+    fetchStocks();
   }, []);
 
   const fetchStocks = async () => {
     try {
-      // Make a GET request to fetch stock data from the server
       const response = await axios.get('http://localhost:8000/stock/get');
 
       if (!response.data || !response.data.stocks) {
@@ -28,85 +23,55 @@ function FetchStock() {
         return;
       }
 
-      // Update the stocks state with the fetched data
       setStocks(response.data.stocks);
     } catch (error) {
       console.error('Error fetching stocks:', error);
     }
   };
 
-
-
   return (
+    <div className="fetch-stock-container">
+      <h1 className="fetch-stock-title">All Stock</h1>
     
-   
-    <div id="FetchStock">
-      
-      <body className="FetchStock">
-        <main className="table">
-          <section className="table__header">
-            <h1>All Stock</h1>
-            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-              <thead>
-                <tr>
-                  <th style={stocktableHeaderStyle}>Product Name</th>
-                  <th style={stocktableHeaderStyle}>Supplier Name</th>
-                  <th style={stocktableHeaderStyle}>Stock Amount</th>
-                  <th style={stocktableHeaderStyle}>Stock Quantity</th>
-                  <th style={stocktableHeaderStyle}>Re Order Level</th>
-                  <th style={stocktableHeaderStyle}>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {stocks.map((stock) => (
-                  <tr key={stock._id}>
-                    <td style={stocktableCellStyle}>{stock.productName}</td>
-                    <td style={stocktableCellStyle}>{stock.supplierName}</td>
-                    <td style={stocktableCellStyle}>{stock.stockAmount}</td>
-                    <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
-                    <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
-                    <td style={stocktableCellStyle}>
-                      <Link to={`/admin/updatestock/${stock._id}`}>
-                        <Button className="stockbtn-icon" style={{
-                          backgroundColor: '#FFB000',
-                          padding: '10px 20px',
-                          fontSize: '1.5rem',
-                        }}>
-                          <BsPencil className="stockicon" />
-                        </Button>
-                      </Link>
-                      <Link to={`/delete/${stock._id}`}>
-                        <Button className="stockbtn-icon" style={{
-                          backgroundColor: 'red',
-                          padding: '10px 20px',
-                          fontSize: '1.5rem',
-                        }}>
-                          <BsTrash className="stockicon" />
-                        </Button>
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        </main>
-      </body>
+      <table className="stock-table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Supplier Name</th>
+            <th>Stock Amount</th>
+            <th>Stock Quantity</th>
+            <th>Re Order Level</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {stocks.map((stock) => (
+            <tr key={stock._id}>
+              <td>{stock.productName}</td>
+              <td>{stock.supplierName}</td>
+              <td>{stock.stockAmount}</td>
+              <td>{stock.stockQuantity}</td>
+              <td>{stock.reorderpoint}</td>
+              <td>
+                <Link to={`/admin/updatestock/${stock._id}`}>
+                  <Button className="stock-action-button edit-button">
+                    <BsPencil className="stock-action-icon" />
+                    Edit
+                  </Button>
+                </Link>
+                <Link to={`/delete/${stock._id}`}>
+                  <Button className="stock-action-button delete-button">
+                    <BsTrash className="stock-action-icon" />
+                    Delete
+                  </Button>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
-  
-);
+  );
 }
-
-const stocktableHeaderStyle = {
-  border: '1px solid #ddd',
-  padding: '8px',
-  background: '#5CD2E6',
-  textAlign: 'left',
-};
-
-const stocktableCellStyle = {
-  border: '1px solid #ddd',
-  padding: '8px',
-};
 
 export default FetchStock;
