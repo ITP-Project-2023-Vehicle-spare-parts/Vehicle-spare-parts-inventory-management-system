@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   MDBContainer,
@@ -38,6 +38,7 @@ export default function Login() {
           Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
+          
         }
 
         // alert("Successfully Login!");
@@ -135,9 +136,9 @@ export default function Login() {
                       style={{ color: "#393f81" }}
                     >
                       Don't have an account?{" "}
-                      <a href="#!" style={{ color: "#393f81" }}>
+                     <Link to="/register"> <a href="#!" style={{ color: "#393f81" }}>
                         Register here
-                      </a>
+                      </a> </Link>
                     </p>
 
                     <div className="">

@@ -1,33 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import InteractiveChartsPage from '../stockComponents/interactiveChart';
+import './stockCss.css'; // Create a CSS file for styling
+
 
 function LowStock() {
-    const [stocks, setStocks] = useState([]);
+  const [stocks, setStocks] = useState([]);
 
+useEffect(() => {
+    const fetchLowStockAndShowNotification = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/stock/low-stock');
 
-  useEffect(() => {
-    fetchLowStockProducts();
+        if (response.data && response.data.lowStockProducts && response.data.lowStockProducts.length > 0) {
+          setStocks(response.data.lowStockProducts); // Update the state with fetched data
+          
+          // Create a toast notification
+          toast.info(
+            <>
+              <p>The following products are running low on stock:</p>
+              <ul>
+                {response.data.lowStockProducts.map(stock => (
+                  <li key={stock._id}>
+                    <strong>{stock.productName}</strong>: 
+                    <span className="red-font">Quantity: {stock.stockQuantity}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="action-message">Please take action to replenish the stock.</p>
+            </>,
+            {
+              className: 'custom-toast',
+              closeButton: true,
+              autoClose: 10000, // Auto close the notification after 10 seconds
+            }
+          );
+        }
+      } catch (error) {
+        console.error('Error fetching low stock products:', error);
+      }
+    };
+
+    fetchLowStockAndShowNotification();
   }, []);
 
-  const fetchLowStockProducts = async () => {
-    try {
-      // Make a GET request to your server's /stock/low-stock-alert endpoint
-      const response = await axios.get('http://localhost:8000/stock/low-stock');
 
-      if (!response.data || !response.data.lowStockProducts) {
-        console.error('No low stock products found');
-        return;
-      }
-
-      // Update the state with low stock products
-      setStocks(response.data.lowStockProducts);
-    } catch (error) {
-      console.error('Error fetching low stock products:', error);
-    }
-  };
   return (
-    <div className="container">
-      <h1>Low products In Stock</h1>
+    <div className="fetch-stock-container">
+      <h1 className="fetch-stock-title">All  Low Stock</h1>
+      <InteractiveChartsPage></InteractiveChartsPage>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
@@ -36,7 +59,7 @@ function LowStock() {
             <th style={stocktableHeaderStyle}>Stock Amount</th>
             <th style={stocktableHeaderStyle}>Stock Quantity</th>
             <th style={stocktableHeaderStyle}>Re Order Level</th>
-           
+            <th style={stocktableHeaderStyle}>Order Status</th>
           </tr>
         </thead>
         <tbody>
@@ -47,8 +70,9 @@ function LowStock() {
               <td style={stocktableCellStyle}>{stock.stockAmount}</td>
               <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
               <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
+              <td style={stocktableCellStyle}></td>
               <td style={stocktableCellStyle}>
-                
+                <button className="order-status-button">{stock.orderStatus}</button>
               </td>
             </tr>
           ))}
@@ -70,5 +94,6 @@ const stocktableCellStyle = {
   padding: '8px',
 };
 
- 
+
+
 export default LowStock;
