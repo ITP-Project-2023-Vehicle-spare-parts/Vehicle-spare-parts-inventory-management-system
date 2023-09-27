@@ -31,6 +31,22 @@ function UpdateStock() {
 
   const handleUpdate = async () => {
     try {
+
+      if (
+   
+        stock.stockAmount.trim() === '' ||
+        stock.stockQuantity.trim() === '' ||
+        stock.reorderpoint.trim() === ''
+      ) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Invalid Values',
+          text: 'Please enter valid numeric values for Stock Amount, Stock Quantity, and Reorder Level.',
+        });
+        return;
+      }
+      
+      
       await axios.put(`http://localhost:8000/stock/update/${id}`, stock);
       console.log('Stock details updated');
       Swal.fire({
@@ -50,14 +66,16 @@ function UpdateStock() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+  
+    // Use parseInt only if the value is not an empty string
+    const parsedValue = value !== '' ? parseInt(value, 0) : '';
+  
     setStock({
       ...stock,
-      [name]: name === "stockQuantity" || name === "stockAmount" ? parseInt(value, 10) : value,
+      [name]: name === 'stockQuantity' || name === 'stockAmount' ? parsedValue : value,
     });
-
-
-
   };
+  
   
 
   return (

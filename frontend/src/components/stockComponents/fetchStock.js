@@ -66,7 +66,7 @@ function FetchStock() {
                     <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
                     <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
                     <td style={stocktableCellStyle}>
-                      <Link to={`/update/${stock._id}`}>
+                      <Link to={`/admin/updatestock/${stock._id}`}>
                         <Button className="stockbtn-icon" style={{
                           backgroundColor: '#FFB000',
                           padding: '10px 20px',
