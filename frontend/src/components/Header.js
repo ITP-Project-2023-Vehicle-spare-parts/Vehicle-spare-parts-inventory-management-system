@@ -91,8 +91,8 @@ const Header = () => {
                   <NavLink to="/home/store" className="text-white">Store</NavLink>
                   <NavLink to="/home/my-orders" className='text-white'>My Orders</NavLink>
                   <NavLink to="/home/contact" className="text-white">Contact</NavLink>
-                  <NavLink to="/about" className="text-white">About</NavLink>
-                  <NavLink to="/about" className="text-white">News</NavLink>
+                  <NavLink to="/home/about" className="text-white">About</NavLink>
+                  <NavLink to="/home/about" className="text-white">News</NavLink>
                 </div>
               </div>
             </div>
