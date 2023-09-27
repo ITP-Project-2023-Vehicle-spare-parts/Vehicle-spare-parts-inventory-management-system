@@ -65,7 +65,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="/supplier/profile">
                 <i class='bx bx-user' ></i>
                     <span className="link-name">User</span>
                     </Link>

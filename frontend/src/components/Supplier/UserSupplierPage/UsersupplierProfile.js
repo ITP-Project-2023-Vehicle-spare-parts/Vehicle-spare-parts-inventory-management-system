@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./SupplierProfile.css";
+import "./UserSupplierProfile.css";
 import "boxicons/css/boxicons.min.css";
 import SupplierSideNavigation from "../../SupplierSideNavigation";
 import Button from "react-bootstrap/Button";
@@ -7,19 +7,21 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function SupplierProfile() {
-  console.log(localStorage.getItem("userID"));
+export default function UserSupplierProfile() {
 
-  const id = localStorage.getItem("userID");
+    
+  console.log(localStorage.getItem("userEmail"));
+
+  const email= localStorage.getItem("userEmail");
   const [supplier, setSupplier] = useState("");
 
-  console.log(id);
+  console.log(email);
   console.log(supplier);
 
   useEffect(() => {
     function fetchSupplier() {
       axios
-        .get("http://localhost:8000/supplier/get/" + id)
+        .get("http://localhost:8000/supplier/get/sup/" +email)
         .then((res) => {
           console.log(res.data.supplier);
           setSupplier(res.data.supplier);
@@ -33,12 +35,12 @@ export default function SupplierProfile() {
         });
     }
     fetchSupplier();
-  }, [id]);
+  }, [email]);
 
- 
+
 
   return (
-    <div id="SupplierProfile">
+    <div id="UserSupplierProfile">
       <SupplierSideNavigation />
       <body>
         <span className="main_bg"></span>
@@ -59,14 +61,14 @@ export default function SupplierProfile() {
                   <span style={{ color: "blue" }}>CM</span>spare
                 </span>
 
-                <Link to="/Admin/profile/update/id">
-                  <Button variant="primary" style={{ marginLeft: "775px" }} >
+                <Link to="/">
+                  <Button variant="primary" style={{ marginLeft: "775px" }}>
                     Update
                   </Button>
                 </Link>
-                <Link to="/Admin/sup/All">
+                <Link to="/">
                   <Button variant="success" style={{ marginLeft: "10px" }}>
-                    Suppliers
+                    Invoice.
                   </Button>
                 </Link>
               </div>
@@ -97,8 +99,10 @@ export default function SupplierProfile() {
                 <div className="secondary">
                   <h1>Others</h1>
                   <span>Secondary</span>
-                  <p>{supplier.CompanyName}.<br/> {supplier.CompanyEmail}.<br/>{supplier.CompanyAddress}</p>
-                  
+                  <p>
+                    {supplier.CompanyName}.<br /> {supplier.CompanyEmail}.<br />
+                    {supplier.CompanyAddress}
+                  </p>
                 </div>
               </div>
 
@@ -120,7 +124,7 @@ export default function SupplierProfile() {
                   <i className="bx bx-location-plus bx-md"></i>
                   <span>{supplier.SupplierCity}</span>
                 </div>
-                <p>Bajaj Ref</p>
+                <p>{supplier.role} profile</p>
               </div>
 
               <div className="rank">

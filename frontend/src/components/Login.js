@@ -34,10 +34,12 @@ export default function Login() {
           console.log(res.data.role);
           Navigate("/Admin/client/add");
         } else if (res.data.role === "supplier") {
-          console.log(res.data.role);
+          console.log(res.data);
           Navigate("/supplier/home");
+          
+           localStorage.setItem("userEmail", email)
         } else {
-          console.log(res.data.role);
+          console.log();
         }
 
         // alert("Successfully Login!");
@@ -51,6 +53,8 @@ export default function Login() {
         toast.error("Login Credential Invalid!!!!");
       });
   }
+
+  
 
   return (
     <div>

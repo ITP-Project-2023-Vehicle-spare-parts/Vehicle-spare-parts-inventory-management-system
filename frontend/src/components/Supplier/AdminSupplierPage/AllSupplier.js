@@ -45,9 +45,10 @@ export default function AllSupplier() {
     }).then((result) => {
       if (result.isConfirmed) {
         axios.delete("http://localhost:8000/supplier/delete/" + id);
-        window.location.reload();
 
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
+
+        window.location.reload();
       }
     });
   }
@@ -92,7 +93,7 @@ export default function AllSupplier() {
                 class="export__file-btn"
                 title="Export File"
               >
-                <i className="bx bx-menu " ></i>
+                <i className="bx bx-menu "></i>
               </label>
               <input type="checkbox" id="export-file" />
               <div class="export__file-options">
@@ -141,12 +142,17 @@ export default function AllSupplier() {
                   return (
                     <tbody>
                       <tr key={dataobj._id}>
-                        <td> {" "}
-                          <img src="/images/me.jpg" alt="" style={{margin:'10px'}}/> {''} {''}
-                          {dataobj.SupplierfirstName} {dataobj.SupplierLastName}</td>
                         <td>
-                         {dataobj.CompanyName}
+                          {" "}
+                          <img
+                            src="/images/me.jpg"
+                            alt=""
+                            style={{ margin: "10px" }}
+                          />{" "}
+                          {""} {""}
+                          {dataobj.SupplierfirstName} {dataobj.SupplierLastName}
                         </td>
+                        <td>{dataobj.CompanyName}</td>
                         <td>{dataobj.SupplierCity} </td>
                         <td>{dataobj.SystemEmail} </td>
                         <td>{dataobj.ProvidedBrand}</td>
