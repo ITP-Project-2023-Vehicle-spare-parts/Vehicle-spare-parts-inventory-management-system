@@ -102,9 +102,15 @@ function App() {
             />
 
             <Route path="/admin/piechart" element={<CategoryPieChart />} />
+
             <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
             <Route path="/admin/lowstock" element={<LowStock />} />
             <Route path="/admin/updatestock" element={<UpdateStock />} />
+
+            <Route path="/admin/bargraph" element={< CategoryBarGraph/>} />
+            <Route path="/admin/lowstock" element={< LowStock/>} />
+            <Route path="/admin/updatestock/:id" element={< UpdateStock/>} />
+
 
             <Route path="/" element={<AllClaims />} />
             <Route
