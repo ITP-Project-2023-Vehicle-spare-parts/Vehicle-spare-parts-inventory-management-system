@@ -1,0 +1,12 @@
+/* Define a custom style for the toast container */
+.custom-toast-container {
+    background-color: blue; /* Set the background color to blue */
+  }
+  
+  /* Define a custom style for the toast notification itself */
+  .custom-toast {
+    background-color: #79c2d0; /* Set the background color of the toast to white */
+    color: black; /* Set the text color to black */
+    /* Add any other custom styles you need */
+  }
+  
