@@ -69,7 +69,9 @@ function AddStock() {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="productName">Product Name</label>
-            <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)} required >
+
+            <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)} requiredclassName="form-control" >
+
   <option value="Bajaj CT100 osadGuard" >Bajaj CT100 osadGuard</option>
   <option value="Bajaj CT100 Guard">Bajaj CT100 Guard</option>
   <option value="Bajaj CT100 OkgsOudGuard">Bajaj CT100 OkgsOudGuard</option>

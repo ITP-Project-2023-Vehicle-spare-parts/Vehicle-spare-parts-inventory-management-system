@@ -57,14 +57,18 @@ function FetchStock() {
                 <Link to={`/admin/updatestock/${stock._id}`}>
                   <Button className="stock-action-button edit-button">
                     <BsPencil className="stock-action-icon" />
-                    Edit
+                    
                   </Button>
                 </Link>
+                <span style={{ margin: '0 10px' }}></span>
+
+
                 <Link to={`/delete/${stock._id}`}>
+
                   <Button className="stock-action-button delete-button">
                     <BsTrash className="stock-action-icon" />
-                    Delete
-                  </Button>
+                 </Button>
+
                 </Link>
               </td>
             </tr>
