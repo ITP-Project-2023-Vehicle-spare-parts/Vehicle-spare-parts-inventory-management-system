@@ -5,13 +5,9 @@ import { getOrder } from '../features/auth/authSlice';
 //import { AiFillDelete } from "react-icons/ai";
 //import { BiEdit } from "react-icons/bi";
 import { /*Link,*/ useLocation } from "react-router-dom";
-import "../CSS/Admin.css"
 
 const columns = [
-  {
-    title: 'OrderNo',
-    dataIndex: 'key',
-  },
+  
   {
     title: 'Product Name',
     dataIndex: 'name',
@@ -50,8 +46,8 @@ const ViewOrder = () => {
   
     for (let i = 0; i < orderState?.orderItems?.length; i++) {
       data1.push({
-        key : i+1,
-        name : orderState?.orderItems[i]?.product.title,
+        
+        name : orderState?.orderItems[i]?.product.Title,
         brand : orderState?.orderItems[i]?.product.brand,
         count : orderState?.orderItems[i]?.quantity,
         amount : orderState?.orderItems[i]?.price, 

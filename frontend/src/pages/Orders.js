@@ -8,6 +8,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import OrderReport from '../pages/OrderReport';
+import "../CSS/Admin.css"
 
 const { Search } = Input;
 
@@ -39,10 +40,13 @@ const Orders = () => {
   const [searchText, setSearchText] = useState('');
   const [filteredOrders, setFilteredOrders] = useState([]);
   //const [reportUrl, setReportUrl] = useState(null);
+  
 
   useEffect(() => {
     dispatch(getOrders());
   }, [dispatch]);
+
+  
 
   const orderState = useSelector((state) => state.auth.orders.orders);
 
