@@ -10,7 +10,7 @@ import { store } from "./app/store";
 import AddSupplier from "./components/Supplier/AdminSupplierPage/AddSupplier";
 import AddClient from "./components/Client/AddClient";
 import SupplierProfile from "./components/Supplier/AdminSupplierPage/SupplierProfile";
-import Login from "./components/Login";
+import Login from "./components/Customers/Login";
 import AllSupplier from "./components/Supplier/AdminSupplierPage/AllSupplier";
 import AllClient from "./components/Client/AllClients";
 import FetchStock from "./components/stockComponents/fetchStock";
@@ -60,6 +60,25 @@ import SingleProduct from "./pages/SingleProduct";
 
 import Sidebar from "./components/Sidebar";
 
+import UserRegistration from "./components/Customers/UserRegistration";
+import Forgotpassword from "./components/Customers/Forgotpassword";
+import Resetpassword from "./components/Customers/Resetpassword";
+
+import InteractiveChartsPage from "./components/stockComponents/interactiveChart";
+import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
+import AddStock from "./components/stockComponents/addStock";
+
+import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
+
+import Colorlist from "./pages/Colorlist";
+import Categorylist from "./pages/Categorylist";
+import Brandlist from "./pages/Brandlist";
+import Productlist from "./pages/Productlist";
+import Addcolor from "./pages/Addcolor";
+import Addcategory from "./pages/Addcategory";
+import Addbrand from "./pages/Addbrand";
+import Addproduct from "./pages/Addproduct";
+
 function App() {
   return (
     <Provider store={store}>
@@ -73,6 +92,9 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/register" element={<UserRegistration />} />
+            <Route path="/forgot-password" element={<Forgotpassword />} />
+            <Route path="/reset-password" element={<Resetpassword />} />
 
             {/* Admin Routes */}
             <Route path="/Admin/sup/add" element={<AddSupplier />} />
@@ -107,10 +129,9 @@ function App() {
             <Route path="/admin/lowstock" element={<LowStock />} />
             <Route path="/admin/updatestock" element={<UpdateStock />} />
 
-            <Route path="/admin/bargraph" element={< CategoryBarGraph/>} />
-            <Route path="/admin/lowstock" element={< LowStock/>} />
-            <Route path="/admin/updatestock/:id" element={< UpdateStock/>} />
-
+            <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
+            <Route path="/admin/lowstock" element={<LowStock />} />
+            <Route path="/admin/updatestock/:id" element={<UpdateStock />} />
 
             <Route path="/" element={<AllClaims />} />
             <Route
@@ -145,6 +166,13 @@ function App() {
               element={<AvailableDeliveryPersonList />}
             />
 
+            <Route
+              path="/admin/interactivechart"
+              element={<InteractiveChartsPage />}
+            />
+            <Route path="/admin/lowstockGraph" element={<LowStockBarGraph/>}/>
+            <Route path="/admin/addstock" element={<AddStock/>}/>
+
             {/* Claim Part */}
             <Route path="/addclaim" element={<AddClaim />} />
             <Route path="/get/:billno" element={<FetchClaim />} />
@@ -155,13 +183,22 @@ function App() {
             <Route path="/supplier/home" element={<SupplierHome />} />
             <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
             <Route path="/supplier/profile" element={<UserSupplierProfile />} />
+            <Route path="/supplier/profile/update" element={<UserSupplierUpdateProfile />} />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
-              <Route path="inquiry" element={<Enquiries />} />
-              <Route path="enquiries/:id" element={<ViewEnq />} />
-              <Route path="order" element={<Orders />} />
-              <Route path="order/:id" element={<ViewOrder />} />
+              <Route path='inquiry' element={<Enquiries />} />
+              <Route path='enquiries/:id' element={<ViewEnq />} />
+              <Route path='order' element={<Orders />} />
+              <Route path='order/:id' element={<ViewOrder />} />
+              <Route path='color-list' element={<Colorlist />} />
+              <Route path="category-list" element={<Categorylist />} />
+              <Route path="brand-list" element={<Brandlist />} />
+              <Route path="product-list" element={<Productlist />} />
+              <Route path="Add-color" element={<Addcolor />} />
+              <Route path="Add-category" element={<Addcategory /> }/>
+              <Route path="Add-brand" element={<Addbrand />} />
+              <Route path="Add-product" element={<Addproduct />} />
             </Route>
 
             <Route path="/home" element={<Layout />}>

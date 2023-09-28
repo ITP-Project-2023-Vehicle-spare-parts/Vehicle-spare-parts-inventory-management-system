@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
-import Helmet from 'react-helmet';
 import ProductCard from '../components/ProductCard';
 import Color from '../components/Color';
+import BreadCrumb from "../components/BreadCrumb";
+import Meta from "../components/Meta";
 
 const Store = () => {
   const [grid, setGrid] = useState(4);
 
   return (
     <>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>Store</title>
-    </Helmet>
-    <div className='home-wrapper-2'>
-      <center><h4><br/>.....STORE.....<br/><br/></h4></center>
-    </div>
+    <Meta title = {"Our Store"}/>
+    <BreadCrumb title = "Our Store"/>
 
     <div className='store-wrapper home-wrapper-2 py-5'>
       <div className='container-xxl'>

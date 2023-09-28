@@ -14,10 +14,6 @@ import { toast } from "react-toastify"; // Import the toast library
 
 const columns = [
   {
-    title: 'SNo',
-    dataIndex: 'key',
-  },
-  {
     title: 'Name',
     dataIndex: 'name',
   },
