@@ -76,11 +76,25 @@ const MainLayout = () => {
                   icon: <BiSolidUserDetail className='fs-4'/>,
                   label: 'View Suppliers',
                 },
+               
+              ]
+            },
+            {
+              key: 'client',
+              icon: <BiSolidUserDetail className='fs-4'/>,
+              label: 'Client',
+              children : [
                 {
-                  key: 'supplier',
+                  key: 'client',
                   icon: <BiSolidUserDetail className='fs-4'/>,
-                  label: 'Supplier Dashboard',
-                }
+                  label: 'Add Client',
+                },
+                {
+                  key: 'client',
+                  icon: <BiSolidUserDetail className='fs-4'/>,
+                  label: 'View Client',
+                },
+               
               ]
             },
             {
