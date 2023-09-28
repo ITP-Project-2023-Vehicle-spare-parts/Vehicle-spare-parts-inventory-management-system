@@ -109,13 +109,13 @@ const Cart = () => {
             })}
             <div className='col-12 py-2 mt-4'>
               <div className='d-flex justify-content-between align-items-baseline'>
-                <Link to='/product' className="button">Continue to shopping</Link>
+                <Link to='/home/store' className="button">Continue to shopping</Link>
                 {
                   (totalAmount !== null || totalAmount !== 0) &&
                   <div className='d-flex flex-column align-items-end'>
                   <h4>SubTotal : Rs.{totalAmount}</h4>
                   <p>Discount and shipping calculated at checkout</p>
-                  <Link to='/layout/checkout' className='button'>Checkout</Link>
+                  <Link to='/home/checkout' className='button'>Checkout</Link>
                 </div>
                 }
               </div>
