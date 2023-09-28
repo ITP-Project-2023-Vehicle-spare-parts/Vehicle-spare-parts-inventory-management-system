@@ -522,3 +522,19 @@ footer .input-group-text{
   font-size: 14px;
   color: #777777;
 }
+
+
+/* ^^^Singleproduct^^^ */
+
+
+
+/*Admin side*/
+.title{
+  font: 28px;
+  font-family: Roboto !important;
+}
+
+.error{
+  color: red;
+  font-size: 12px;
+}

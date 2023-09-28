@@ -9,4 +9,94 @@
     color: black; /* Set the text color to black */
     /* Add any other custom styles you need */
   }
+
+  .fetch-stock-container {
+    padding: 20px;
+  }
   
+  .fetch-stock-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stock-table th,
+  .stock-table td {
+    padding: 12px 16px;
+    text-align: left;
+  }
+  
+  .stock-table th {
+    background-color: #28c7fa;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .stock-table tbody tr:nth-child(even) {
+    background-color: white;
+  }
+  .stock-table tbody tr:nth-child(odd) {
+    background-color: white;
+  }
+  
+  
+  .stock-action-button {
+    
+    font-size: 14px;
+   
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .stock-action-icon {
+    margin-right: 5px;
+    font-size: 16px;
+    vertical-align: text-bottom;
+  }
+  
+  .edit-button {
+    background-color: #feaa2b;
+    color: #fff;
+  }
+  
+  .edit-button:hover {
+    background-color: #feaa2b;
+  }
+  
+  .delete-button {
+    background-color: #ff0000;
+    color: #fff;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff0000;
+  }
+
+  /* Add a hover effect to table rows */
+.stock-table tbody tr:hover {
+  background-color: lightgray; /* Change the background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Add a border-bottom to table rows for separation */
+.stock-table tbody tr {
+  border-bottom: 1px solid black; /* Add a black border below each row */
+}
+  
+  
+body.Allstock {
+  min-height: 100vh;
+  display:flex !important;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  
+}

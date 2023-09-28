@@ -57,9 +57,51 @@ const MainLayout = () => {
               label: 'User',
             },
             {
-              key: 'product',
+              key: 'Catalog',
               icon: <BiSolidBox className='fs-4'/>,
-              label: 'Product',
+              label: 'Catalog',
+              children : [
+                {
+                  key: 'Add-product',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Add Product',
+                },
+                {
+                  key: 'product-list',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Product List',
+                },
+                {
+                  key: 'Add-brand',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Add Brand',
+                },
+                {
+                  key: 'brand-list',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Brand List',
+                },
+                {
+                  key: 'Add-category',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Category',
+                },
+                {
+                  key: 'category-list',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Category List',
+                },
+                {
+                  key: 'Add-color',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Color',
+                },
+                {
+                  key: 'color-list',
+                  icon: <BiSolidBox className='fs-4'/>,
+                  label: 'Color List',
+                },
+              ]
             },
             {
               key: 'supplier',

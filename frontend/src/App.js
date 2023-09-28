@@ -10,7 +10,7 @@ import { store } from "./app/store";
 import AddSupplier from "./components/Supplier/AdminSupplierPage/AddSupplier";
 import AddClient from "./components/Client/AddClient";
 import SupplierProfile from "./components/Supplier/AdminSupplierPage/SupplierProfile";
-import Login from "./components/Login";
+import Login from "./components/Customers/Login";
 import AllSupplier from "./components/Supplier/AdminSupplierPage/AllSupplier";
 import AllClient from "./components/Client/AllClients";
 import FetchStock from "./components/stockComponents/fetchStock";
@@ -60,6 +60,14 @@ import SingleProduct from "./pages/SingleProduct";
 
 import Sidebar from "./components/Sidebar";
 
+import UserRegistration from "./components/Customers/UserRegistration";
+import Forgotpassword from "./components/Customers/Forgotpassword";
+import Resetpassword from "./components/Customers/Resetpassword";
+
+import InteractiveChartsPage from "./components/stockComponents/interactiveChart";
+import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
+import AddStock from "./components/stockComponents/addStock";
+
 function App() {
   return (
     <Provider store={store}>
@@ -73,6 +81,9 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/register" element={<UserRegistration />} />
+            <Route path="/forgot-password" element={<Forgotpassword />} />
+            <Route path="/reset-password" element={<Resetpassword />} />
 
             {/* Admin Routes */}
             <Route path="/Admin/sup/add" element={<AddSupplier />} />
@@ -107,10 +118,9 @@ function App() {
             <Route path="/admin/lowstock" element={<LowStock />} />
             <Route path="/admin/updatestock" element={<UpdateStock />} />
 
-            <Route path="/admin/bargraph" element={< CategoryBarGraph/>} />
-            <Route path="/admin/lowstock" element={< LowStock/>} />
-            <Route path="/admin/updatestock/:id" element={< UpdateStock/>} />
-
+            <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
+            <Route path="/admin/lowstock" element={<LowStock />} />
+            <Route path="/admin/updatestock/:id" element={<UpdateStock />} />
 
             <Route path="/" element={<AllClaims />} />
             <Route
@@ -144,6 +154,13 @@ function App() {
               path="/order/:orderid/:userid"
               element={<AvailableDeliveryPersonList />}
             />
+
+            <Route
+              path="/admin/interactivechart"
+              element={<InteractiveChartsPage />}
+            />
+            <Route path="/admin/lowstockGraph" element={<LowStockBarGraph/>}/>
+            <Route path="/admin/addstock" element={<AddStock/>}/>
 
             {/* Claim Part */}
             <Route path="/addclaim" element={<AddClaim />} />
