@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 function AddStock() {
   const [productName, setProductName] = useState('');
   const [supplierName, setSupplierName] = useState('');
@@ -64,6 +65,7 @@ function AddStock() {
 
   return (
     <div>
+   
       <h2>Add New Stock</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
