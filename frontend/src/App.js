@@ -93,6 +93,8 @@ import EditCoupon from "./components/Coupon/EditCoupon";
 import EditOffer from "./components/Offers/EditOffer";
 import AssignBranch from "./components/AssignBranch";
 
+import ComparisionBarGraph from "./components/stockComponents/comparisiongraph";
+
 function App() {
   return (
     <Provider store={store}>
@@ -186,6 +188,8 @@ function App() {
             />
             <Route path="/admin/lowstockGraph" element={<LowStockBarGraph/>}/>
             <Route path="/admin/addstock" element={<AddStock/>}/>
+
+            <Route path="/admin/comparisiongraph" element={< ComparisionBarGraph/>} />
 
             {/* Claim Part */}
             <Route path="/addclaim" element={<AddClaim />} />
