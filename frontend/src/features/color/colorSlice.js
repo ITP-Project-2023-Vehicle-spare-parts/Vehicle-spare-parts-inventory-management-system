@@ -36,7 +36,7 @@ export const colorSlice = createSlice ({
             state.isSuccess = true;
             state.colors = action.payload;
             if (state.isSuccess === true) {
-                toast.success("Brands Loaded Successfully");
+                toast.success("Colors Loaded Successfully");
             }
         })
         .addCase(getColors.rejected, (state, action) => {
