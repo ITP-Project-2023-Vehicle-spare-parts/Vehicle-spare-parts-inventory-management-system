@@ -32,6 +32,7 @@ const OrderReport = ({ orders, status, totalIncome, totalProducts }) => {
     // Save the PDF with a specific filename
     doc.save('order_report.pdf');
   };
+  console.log(generatePDF)
 
   return (
     <div>
