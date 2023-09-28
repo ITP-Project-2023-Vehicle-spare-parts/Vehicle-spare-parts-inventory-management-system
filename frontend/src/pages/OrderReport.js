@@ -5,6 +5,8 @@ const OrderReport = ({ orders, status, totalIncome, totalProducts }) => {
   const generatePDF = () => {
     const doc = new jsPDF();
 
+   
+
     // Define the columns for the PDF
     const columns = ['Name', 'Amount', 'Date', 'Status'];
 

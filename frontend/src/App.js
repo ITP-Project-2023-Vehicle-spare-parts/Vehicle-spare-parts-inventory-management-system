@@ -68,6 +68,17 @@ import InteractiveChartsPage from "./components/stockComponents/interactiveChart
 import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
 import AddStock from "./components/stockComponents/addStock";
 
+import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
+
+import Colorlist from "./pages/Colorlist";
+import Categorylist from "./pages/Categorylist";
+import Brandlist from "./pages/Brandlist";
+import Productlist from "./pages/Productlist";
+import Addcolor from "./pages/Addcolor";
+import Addcategory from "./pages/Addcategory";
+import Addbrand from "./pages/Addbrand";
+import Addproduct from "./pages/Addproduct";
+
 function App() {
   return (
     <Provider store={store}>
@@ -172,13 +183,22 @@ function App() {
             <Route path="/supplier/home" element={<SupplierHome />} />
             <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
             <Route path="/supplier/profile" element={<UserSupplierProfile />} />
+            <Route path="/supplier/profile/update" element={<UserSupplierUpdateProfile />} />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
-              <Route path="inquiry" element={<Enquiries />} />
-              <Route path="enquiries/:id" element={<ViewEnq />} />
-              <Route path="order" element={<Orders />} />
-              <Route path="order/:id" element={<ViewOrder />} />
+              <Route path='inquiry' element={<Enquiries />} />
+              <Route path='enquiries/:id' element={<ViewEnq />} />
+              <Route path='order' element={<Orders />} />
+              <Route path='order/:id' element={<ViewOrder />} />
+              <Route path='color-list' element={<Colorlist />} />
+              <Route path="category-list" element={<Categorylist />} />
+              <Route path="brand-list" element={<Brandlist />} />
+              <Route path="product-list" element={<Productlist />} />
+              <Route path="Add-color" element={<Addcolor />} />
+              <Route path="Add-category" element={<Addcategory /> }/>
+              <Route path="Add-brand" element={<Addbrand />} />
+              <Route path="Add-product" element={<Addproduct />} />
             </Route>
 
             <Route path="/home" element={<Layout />}>
