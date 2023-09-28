@@ -64,6 +64,9 @@ app.use("/brand", brandRoutes);
 const colorRoutes = require("./routes/colorRoute");
 app.use("/color", colorRoutes);
 
+const uploadRoutes = require("./routes/uploadRoute");
+app.use("/upload", uploadRoutes);
+
 const enqRouter = require("./routes/enqRoute");
 app.use("/enquiry", enqRouter);
 
