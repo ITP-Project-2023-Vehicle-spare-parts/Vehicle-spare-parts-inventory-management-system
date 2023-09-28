@@ -7,11 +7,7 @@ export default function chart() {
         <div>
             
 
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
+         
            
             
             <center>
