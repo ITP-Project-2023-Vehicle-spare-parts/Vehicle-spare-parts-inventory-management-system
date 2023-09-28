@@ -13,12 +13,22 @@ import { createAnOrder, deleteUserCart, getUserCart, resetState } from '../featu
 console.log(getUserCart);
 
 const shippingSchema = yup.object({
-  firstName: yup.string().required('First Name is required'),
-  lastName: yup.string().required('Last Name is required'),
+  firstName: yup
+    .string()
+    .matches(/^[A-Za-z]+$/, 'First Name should contain only letters')
+    .required('First Name is required'),
+  lastName: yup
+    .string()
+    .matches(/^[A-Za-z]+$/, 'Last Name should contain only letters')
+    .required('Last Name is required'),
   address: yup.string().required('Address is required'),
-  street: yup.string().required('Street is required'),
+  street: yup
+    .string()
+    .matches(/^[A-Za-z]+$/, 'Street should contain only letters')
+    .required('Street is required'),
   city: yup.string().required('City is required'),
 });
+
 
 const Checkout = () => {
   const dispatch = useDispatch()
@@ -264,6 +274,11 @@ const Checkout = () => {
                     Select city
                   </option>
                   <option value='Colombo'>Colombo</option>
+                  <option value='Colombo'>Kurunegala</option>
+                  <option value='Colombo'>Ratnapura</option>
+                  <option value='Colombo'>Galle</option>
+                  <option value='Colombo'>Anuradhapura</option>
+                  <option value='Colombo'>Jaffna</option>
                 </select>
 
                   <div className={`error ms-2 my-1 ${formik.touched.city && formik.errors.city ? 'errors' : ''}`}>
