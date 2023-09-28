@@ -11,7 +11,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getUserCart());
-  }, [dispatch]);
+  },[dispatch]);
 
   useEffect(() => {
     let sum = 0;
