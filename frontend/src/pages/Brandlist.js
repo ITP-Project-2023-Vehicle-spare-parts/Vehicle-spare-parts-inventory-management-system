@@ -10,7 +10,6 @@ const columns = [
     {
       title: 'No',
       dataIndex: 'key',
-      sorter: (a,b) => a.title.length - b.title.length,
       align: 'left'
     },
     {
