@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function UpdateProfileAdmin() {
-  const email = localStorage.getItem("userEmail");
-  console.log(email);
+  const id = localStorage.getItem("userID");
+  console.log(id);
   const Navigate = useNavigate();
 
   const [supplier, setSupplier] = useState({
-    SupplierfirstName : "",
+    SupplierfirstName: "",
     CompanyName: "",
     CompanyEmail: "",
     CompanyPhone: "",
@@ -34,7 +34,7 @@ export default function UpdateProfileAdmin() {
 
     const fetchSupplier = () => {
       axios
-        .get("http://localhost:8000/supplier/get/" + email)
+        .get("http://localhost:8000/supplier/get/" +id)
         .then((res) => {
           toast.success("Data Fetched!", {
             duration: 3000, // 3 seconds
@@ -48,7 +48,7 @@ export default function UpdateProfileAdmin() {
         });
     }
     fetchSupplier();
-  }, [email]);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +60,7 @@ export default function UpdateProfileAdmin() {
 
   const updateData = () => {
     axios
-      .put("http://localhost:8000/supplier/update/" + email, supplier)
+      .put("http://localhost:8000/supplier/update/" + id, supplier)
       .then((res) => {
         console.log(res.data);
         Swal.fire({
@@ -70,7 +70,7 @@ export default function UpdateProfileAdmin() {
           showConfirmButton: false,
           timer: 150
         })
-        Navigate("/Admin/Supplier/Profile")
+        Navigate("/Supplier/Profile")
         // You can add additional logic here, such as redirecting to another page
       })
       .catch((err) => {
@@ -104,26 +104,22 @@ export default function UpdateProfileAdmin() {
                         <h6 class="user-email">{supplier.SupplierEmail}</h6>
                       </div>
                       <div class="about">
-                        <h5>About</h5>
+                        <h5>About My Status</h5>
                         <p>
                           {supplier.SupplierStatus}
                         </p>
                       </div>
                       <div class="about">
-                        <h5>About</h5>
+                        <h5>From CMSpare</h5>
                         <p>
-                          I'm Yuki. Full Stack Designer I enjoy creating
-                          user-centric, delightful and human experiences.
+                        Many online retailers and e-commerce platforms offer a wide range of vehicle spare parts. You can search for the specific part you need and check its availability on these platforms.
+                        </p>
+                        <p>
+                        Some suppliers are considered strategic partners because they provide critical components or services that are vital to a company's operations
                         </p>
                       </div>
 
-                      <div class="about">
-                        <h5>About</h5>
-                        <p>
-                          I'm Yuki. Full Stack Designer I enjoy creating
-                          user-centric, delightful and human experiences.
-                        </p>
-                      </div>
+                    
                     </div>
                   </div>
                 </div>
@@ -154,6 +150,7 @@ export default function UpdateProfileAdmin() {
                             value={supplier.CompanyName}
                             onChange={handleChange}
                             readOnly
+                            style={{ backgroundColor: "#c5cde4" }}
                           />
                         </div>
                       </div>
@@ -211,6 +208,8 @@ export default function UpdateProfileAdmin() {
                             name="SupplierfirstName"
                             value={supplier.SupplierfirstName}
                             onChange={handleChange}
+                            style={{ backgroundColor: "#c5cde4" }}
+                            readOnly
                           />
                         </div>
                       </div>
@@ -224,6 +223,8 @@ export default function UpdateProfileAdmin() {
                             name="SupplierLastName"
                             value={supplier.SupplierLastName}
                             onChange={handleChange}
+                            readOnly
+                            style={{ backgroundColor: "#c5cde4" }}
                           />
                         </div>
                       </div>
@@ -312,8 +313,8 @@ export default function UpdateProfileAdmin() {
                             name="SupplierStatus"
                             value={supplier.SupplierStatus}
                             onChange={handleChange}
-                            readOnly
-                            style={{ backgroundColor: "#c5cde4" }}
+                            
+                            
                           ></textarea>
                         </div>
                       </div>
@@ -333,6 +334,7 @@ export default function UpdateProfileAdmin() {
                             value={supplier.SystemEmail}
                             onChange={handleChange}
                             readOnly
+                            style={{ backgroundColor: "#c5cde4" }}
                           />
                         </div>
                       </div>
