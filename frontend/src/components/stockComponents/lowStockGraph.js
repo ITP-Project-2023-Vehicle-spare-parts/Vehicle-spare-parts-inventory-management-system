@@ -37,12 +37,12 @@ const LowStockBarGraph = () => {
   return (
     <div>
       <h2>Low Stocks</h2>
-      <BarChart width={600} height={400} data={lowStockData}
+      <BarChart width={1000} height={600} data={lowStockData}
       margin={{
-        top: 20,
-        right: 30,
-        left: 20,
-        bottom: 5,
+        top: 40,
+        right: 60,
+        left:200,
+        bottom: 6,
       }}
       
       
@@ -52,7 +52,7 @@ const LowStockBarGraph = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="quantity" fill="#FF5733"  barSize={60} />
+        <Bar dataKey="quantity" fill="#17a2b8"  barSize={60} />
       </BarChart>
     </div>
   );

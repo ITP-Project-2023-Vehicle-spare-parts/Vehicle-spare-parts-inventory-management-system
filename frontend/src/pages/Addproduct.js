@@ -97,10 +97,12 @@ const Addproduct = () => {
     },
   });
 
-   // const [desc, setDesc] = useState();
-   // const handleDesc = (e) =>{
-   //     setDesc(e);
-   // };
+    const [desc, setDesc] = useState();
+    const handleDesc = (e) =>{
+        setDesc(e);
+    };
+    console.log(handleDesc)
+    console.log(desc)
   return (
     <div>
         <h3 className='mb-4 title text text-center'> Add Product...</h3>

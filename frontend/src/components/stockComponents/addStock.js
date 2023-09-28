@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 function AddStock() {
   const [productName, setProductName] = useState('');
   const [supplierName, setSupplierName] = useState('');
@@ -64,12 +65,15 @@ function AddStock() {
 
   return (
     <div>
+   
       <h2>Add New Stock</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="productName">Product Name</label>
-            <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)} required >
+
+            <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)} requiredclassName="form-control" >
+
   <option value="Bajaj CT100 osadGuard" >Bajaj CT100 osadGuard</option>
   <option value="Bajaj CT100 Guard">Bajaj CT100 Guard</option>
   <option value="Bajaj CT100 OkgsOudGuard">Bajaj CT100 OkgsOudGuard</option>
