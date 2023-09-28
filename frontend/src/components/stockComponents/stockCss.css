@@ -5,7 +5,7 @@
   
   /* Define a custom style for the toast notification itself */
   .custom-toast {
-    background-color: #79c2d0; /* Set the background color of the toast to white */
+    background-color: #6f42c1; /* Set the background color of the toast to white */
     color: black; /* Set the text color to black */
     /* Add any other custom styles you need */
   }
@@ -28,12 +28,14 @@
   
   .stock-table th,
   .stock-table td {
-    padding: 12px 16px;
+    padding: 14px 18px;
     text-align: left;
+  
+    font-size: 18px;
   }
   
   .stock-table th {
-    background-color: #28c7fa;
+    background-color: #002651;
     color: #fff;
     font-weight: bold;
   }
@@ -63,12 +65,12 @@
   }
   
   .edit-button {
-    background-color: #feaa2b;
+    background-color: #ffcc00;
     color: #fff;
   }
   
   .edit-button:hover {
-    background-color: #feaa2b;
+    background-color: #ffcc00;
   }
   
   .delete-button {
@@ -100,3 +102,14 @@ body.Allstock {
   background-color: white;
   
 }
+
+.lowstocktable{
+
+
+  margin-top: 1000px;
+  margin-right: 100px;
+  margin-left: 80px;
+  margin-bottom: 6px;
+}
+
+
