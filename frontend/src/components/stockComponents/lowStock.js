@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import InteractiveChartsPage from '../stockComponents/interactiveChart';
+import './stockCss.css'; // Create a CSS file for styling
 
-
-import "./stockCss.css";
 
 function LowStock() {
   const [stocks, setStocks] = useState([]);
@@ -48,16 +48,22 @@ useEffect(() => {
 
 
   return (
-    <div className="container">
-      <h1>Low products In Stock</h1>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+    <div id='Allstock'>
+    <div className="fetch-stock-container">
+      <h1 className="fetch-stock-title">All  Low Stock</h1>
+      <div className="bar-chart-container">
+      <InteractiveChartsPage></InteractiveChartsPage>
+      </div>
+      <div>
+      <table className="stock-table" id='lowstocktable'>
         <thead>
           <tr>
             <th style={stocktableHeaderStyle}>Product Name</th>
             <th style={stocktableHeaderStyle}>Supplier Name</th>
-            <th style={stocktableHeaderStyle}>Stock Amount</th>
             <th style={stocktableHeaderStyle}>Stock Quantity</th>
             <th style={stocktableHeaderStyle}>Re Order Level</th>
+            <th style={stocktableHeaderStyle}>Needed Stock Quantity</th>
+            <th style={stocktableHeaderStyle}>Order status</th>
           </tr>
         </thead>
         <tbody>
@@ -65,28 +71,32 @@ useEffect(() => {
             <tr key={stock._id}>
               <td style={stocktableCellStyle}>{stock.productName}</td>
               <td style={stocktableCellStyle}>{stock.supplierName}</td>
-              <td style={stocktableCellStyle}>{stock.stockAmount}</td>
               <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
               <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
-              <td style={stocktableCellStyle}></td>
+              <td style={stocktableCellStyle}>{stock.reorderpoint - stock.stockQuantity}</td>
+              <td style={stocktableCellStyle}>
+                <button className="order-status-button">{stock.orderStatus}</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
+    </div>
     </div>
   );
 }
 
 const stocktableHeaderStyle = {
   border: '6px solid #ddd',
-  padding: '8px',
-  background: '#f2f2f2',
+ 
+  
   textAlign: 'left',
 };
 
 const stocktableCellStyle = {
   border: '6px solid #ddd',
-  padding: '8px',
+ 
 };
 
 

@@ -1,5 +1,3 @@
-// authSlice.js
-//import { generatePDFReport } from '../features/auth/authSlice';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { authService } from "./authService";
 
@@ -85,27 +83,27 @@ export const searchOrders = (searchText) => (dispatch, getState) => {
     const orderState = getState().auth.orders.orders;
   
     if (orderState) {
-      const filtered = orderState.filter((order) =>
-        order.user.firstname.toLowerCase().includes(searchText.toLowerCase()) ||
-        order.user.lastname.toLowerCase().includes(searchText.toLowerCase())
-      );
+      const filtered = orderState.filter((order) => {
+        const lowerSearchText = searchText.toLowerCase();
+        const nameMatch =
+          order.user.firstname.toLowerCase().includes(lowerSearchText) ||
+          order.user.lastname.toLowerCase().includes(lowerSearchText);
+        const amountMatch = order.totalPrice.toString().includes(lowerSearchText);
+        const dateMatch = new Date(order.createdAt).toLocaleString().includes(lowerSearchText);
+        const actionMatch = order.orderStatus.toLowerCase().includes(lowerSearchText);
+  
+        return nameMatch || amountMatch || dateMatch || actionMatch;
+      });
   
       dispatch(setFilteredOrders(filtered));
     }
-};
+  };
+  
+  
+  
+  
 
-export const generatePDFReport = createAsyncThunk(
-  'auth/generate-pdf-report',
-  async (_, thunkAPI) => {
-    try {
-      // Call the backend API to generate the PDF report
-      await authService.generatePDFReport();
-      return 'PDF report generated successfully';
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
+
 
 
 export const authSlice = createSlice({

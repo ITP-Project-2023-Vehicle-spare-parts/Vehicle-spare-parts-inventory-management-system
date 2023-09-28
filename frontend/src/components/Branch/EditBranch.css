@@ -1,0 +1,83 @@
+/* EditBranch.css */
+
+#EditBranch .edit-branch-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #5349d9;
+}
+
+#EditBranch .h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#EditBranch .form {
+  display: flex;
+  flex-direction: column;
+}
+
+#EditBranch .label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #0b0909; /* Label text color */
+}
+
+#EditBranch .input[type="text"],
+#EditBranch .input[type="number"],
+select {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#EditBranch .error {
+  color: red;
+  margin-top: 5px;
+  text-align: center;
+}
+
+#EditBranch .button[type="submit"] {
+  background-color: #f50909;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+#EditBranch .button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Center the form within the container */
+#EditBranch .container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style the form fields as a grid */
+#EditBranch .container form > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Adjust label alignment for better aesthetics */
+#EditBranch .container form label {
+  text-align: left;
+  line-height: 32px;
+}
+
+/* Style error messages */
+#EditBranch .error {
+  grid-column: span 2;
+}

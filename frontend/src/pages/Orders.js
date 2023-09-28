@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Input, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders, updateAOrder, searchOrders, generatePDFReport } from '../features/auth/authSlice';
+import { getOrders, updateAOrder, searchOrders } from '../features/auth/authSlice';
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AiOutlineEye } from "react-icons/ai";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import OrderReport from '../pages/OrderReport';
 
 const { Search } = Input;
 
@@ -35,7 +38,7 @@ const Orders = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState('');
   const [filteredOrders, setFilteredOrders] = useState([]);
-  const [reportUrl, setReportUrl] = useState(null);
+  //const [reportUrl, setReportUrl] = useState(null);
 
   useEffect(() => {
     dispatch(getOrders());
@@ -46,10 +49,18 @@ const Orders = () => {
   useEffect(() => {
     if (orderState) {
       // Filter orders based on search text
-      const filtered = orderState.filter(order =>
-        order.user.firstname.toLowerCase().includes(searchText.toLowerCase()) ||
-        order.user.lastname.toLowerCase().includes(searchText.toLowerCase())
-      );
+      const filtered = orderState.filter(order => {
+        const lowerSearchText = searchText.toLowerCase();
+        const nameMatch =
+          order.user.firstname.toLowerCase().includes(lowerSearchText) ||
+          order.user.lastname.toLowerCase().includes(lowerSearchText);
+        const amountMatch = order.totalPrice.toString().includes(lowerSearchText);
+        const dateMatch = new Date(order.createdAt).toLocaleString().includes(lowerSearchText);
+        const actionMatch = order.orderStatus.toLowerCase().includes(lowerSearchText);
+
+        return nameMatch || amountMatch || dateMatch || actionMatch;
+      });
+
       setFilteredOrders(filtered);
     }
   }, [searchText, orderState]);
@@ -92,22 +103,40 @@ const Orders = () => {
       });
   }
 
+  // Calculate status, total income, and total product count
+  const status = filteredOrders.map(order => order.orderStatus);
+  const totalIncome = filteredOrders.reduce((total, order) => total + order.totalPrice, 0);
+  const totalProducts = filteredOrders.length;
+
+  // Define the handleGenerateReport function
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
+
+    const pdfColumns = ['Name', 'Amount', 'Date', 'Status'];
+
+    const pdfData = filteredOrders.map((order, index) => [
+      `${order.user.firstname} ${order.user.lastname}`,
+      order.totalPrice,
+      new Date(order.createdAt).toLocaleString(),
+      status[index],
+    ]);
+
+    doc.autoTable({
+      head: [pdfColumns],
+      body: pdfData,
+    });
+
+    doc.setFontSize(12);
+    doc.text(`Order Report`, 80, 10); // Add the heading
+    doc.text(`Total Income: Rs.${totalIncome.toFixed(2)}`, 14, doc.autoTable.previous.finalY + 10);
+    doc.text(`Product Count: ${totalProducts}`, 14, doc.autoTable.previous.finalY + 20);
+
+    doc.save('order_report.pdf');
+  };
+
   const handleSearch = () => {
     dispatch(searchOrders(searchText));
   };
-
-  const handleGenerateReport = () => {
-    dispatch(generatePDFReport())
-      .then((response) => {
-        // If the report is generated successfully, set the URL to download it
-        setReportUrl(response.payload);
-      })
-      .catch((error) => {
-        toast.error('PDF generation failed');
-        console.error(error);
-      });
-  }
-  
 
   return (
     <div>
@@ -115,7 +144,7 @@ const Orders = () => {
       <div className="d-flex justify-content-between mb-4">
         <Search
           style={{ width: 300 }}
-          placeholder="Search by name"
+          placeholder="Search"
           allowClear
           enterButton="Search"
           value={searchText}
@@ -129,11 +158,7 @@ const Orders = () => {
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
-      {reportUrl && (
-        <a href={reportUrl} download="all_orders.pdf">
-          Download PDF Report
-        </a>
-      )}
+      <OrderReport orders={filteredOrders} status={status} totalIncome={totalIncome} totalProducts={totalProducts} />
     </div>
   );
 };

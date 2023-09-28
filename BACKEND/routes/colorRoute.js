@@ -6,7 +6,7 @@ const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
 router.post("/addColor/",authMiddleware,isAdmin,createColor);
 router.put("/updateColor/:id",authMiddleware,isAdmin,updateColor);
 router.delete("/deletColor/:id",authMiddleware,isAdmin, deleteColor);
-router.get("/getaColor/:id",authMiddleware,isAdmin, getAColor);
-router.get("/getAllColor",authMiddleware,isAdmin, getAllColor);
+router.get("/getaColor/:id", getAColor);
+router.get("/getAllColor", getAllColor);
 
 module.exports = router;

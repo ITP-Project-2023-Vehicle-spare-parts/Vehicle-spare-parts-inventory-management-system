@@ -14,11 +14,11 @@ const CategoryBarGraph = () => {
   const [categoryData, setCategoryData] = useState([]);
 
   // Define an array of colors
-  const barColors = ["#005792"];
+  const barColors = ["#6f42c1"];
 
   useEffect(() => {
     fetchCategoryData();
-  });
+  },);
 
   const fetchCategoryData = async () => {
     try {
@@ -44,25 +44,43 @@ const CategoryBarGraph = () => {
         })
       );
 
+      // Sort categoryArray by quantity in descending order
+      categoryArray.sort((a, b) => b.quantity - a.quantity);
+
       setCategoryData(categoryArray);
     } catch (error) {
       console.error("Error fetching category data:", error);
     }
   };
 
+ 
+
   return (
     <div>
-      <h2>Stock Levels</h2>
-      <BarChart width={600} height={400} data={categoryData}>
+      <h2>All Stocks</h2>
+     
+      <BarChart
+        width={400}
+        height={150}
+        data={categoryData}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+       
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
         {/* Use the fill prop to set the bar colors */}
-        <Bar dataKey="quantity" />
+        <Bar dataKey="quantity" barSize={60} barCategoryGap="90%" barGap="90%" />
       </BarChart>
-    </div>
+      </div>
+    
   );
 };
 

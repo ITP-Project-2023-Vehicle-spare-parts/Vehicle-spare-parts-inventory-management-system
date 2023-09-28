@@ -8,11 +8,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function UserSupplierProfile() {
-
-    
   console.log(localStorage.getItem("userEmail"));
 
-  const email= localStorage.getItem("userEmail");
+  const email = localStorage.getItem("userEmail");
   const [supplier, setSupplier] = useState("");
 
   console.log(email);
@@ -21,7 +19,7 @@ export default function UserSupplierProfile() {
   useEffect(() => {
     function fetchSupplier() {
       axios
-        .get("http://localhost:8000/supplier/get/sup/" +email)
+        .get("http://localhost:8000/supplier/get/sup/" + email)
         .then((res) => {
           console.log(res.data.supplier);
           setSupplier(res.data.supplier);
@@ -37,7 +35,11 @@ export default function UserSupplierProfile() {
     fetchSupplier();
   }, [email]);
 
+  function UpdateSupplier(id) {
+    console.log(id);
 
+    localStorage.setItem("userId ", id);
+  }
 
   return (
     <div id="UserSupplierProfile">
@@ -61,8 +63,12 @@ export default function UserSupplierProfile() {
                   <span style={{ color: "blue" }}>CM</span>spare
                 </span>
 
-                <Link to="/">
-                  <Button variant="primary" style={{ marginLeft: "775px" }}>
+                <Link to="/supplier/profile/update">
+                  <Button
+                    variant="primary"
+                    onClick={() => UpdateSupplier(supplier._id)}
+                    style={{ marginLeft: "775px" }}
+                  >
                     Update
                   </Button>
                 </Link>
