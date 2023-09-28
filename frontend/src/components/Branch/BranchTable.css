@@ -1,0 +1,47 @@
+/* BranchTable.css */
+
+#BranchTable .branch-table-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  #BranchTable .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #BranchTable .table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #BranchTable .table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  #BranchTable .table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  #BranchTable .table tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  #BranchTable .button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  #BranchTable .button:hover {
+    background-color: #c82333;
+  }
+  

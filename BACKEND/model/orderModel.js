@@ -82,6 +82,10 @@ var orderSchema = new mongoose.Schema(
     orderStatus : {
       type : String,
       default : "Ordered"
+    },
+    branch : {
+      type : String,
+      default : "Not Assign"
     }
   },
   {
