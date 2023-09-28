@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import pcategoryService from "./pcategoryService";
+import colorService from './colorService';
 import { toast } from "react-toastify";
 
-export const getCategories = createAsyncThunk(
-    "productCategory/get-categories",
+export const getColors = createAsyncThunk(
+    "color/get-colors",
     async(thunkAPI) => {
         try{
-            return await pcategoryService.getProductCategories();
+            return await colorService.getColors();
         }catch(error){
             return thunkAPI.rejectWithValue(error);
         }
@@ -14,32 +14,32 @@ export const getCategories = createAsyncThunk(
 );
 
 const initialState ={
-    pCategories: [],
+    colors: [],
     isError : false,
     isSuccess : false,
     isLoading : false,
     message : "",
 };
 
-export const pCategorySlice = createSlice ({
-    name: "pCategories",
+export const colorSlice = createSlice ({
+    name: "colors",
     initialState,
     reducers : {},
 
     extraReducers : (builder) => {
-        builder.addCase(getCategories.pending, (state) => {
+        builder.addCase(getColors.pending, (state) => {
             state.isLoading = true;
         })
-        .addCase(getCategories.fulfilled, (state, action) => {
+        .addCase(getColors.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = false;
             state.isSuccess = true;
-            state.pCategories = action.payload;
+            state.colors = action.payload;
             if (state.isSuccess === true) {
-                toast.success("Categories Loaded Successfully");
+                toast.success("Brands Loaded Successfully");
             }
         })
-        .addCase(getCategories.rejected, (state, action) => {
+        .addCase(getColors.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.isSuccess = false;
@@ -51,4 +51,4 @@ export const pCategorySlice = createSlice ({
     },
 });
 
-export default pCategorySlice.reducer;
+export default colorSlice.reducer;

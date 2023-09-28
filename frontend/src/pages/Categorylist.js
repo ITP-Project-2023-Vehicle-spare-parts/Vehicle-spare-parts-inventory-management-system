@@ -16,6 +16,7 @@ const columns = [
       title: 'Category type',
       dataIndex: 'title',
       align: 'left',
+      sorter: (a,b) => a.Title.length - b.Title.length,
     },
     {
       title: 'Action',
