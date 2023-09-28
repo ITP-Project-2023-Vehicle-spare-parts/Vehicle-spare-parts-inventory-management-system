@@ -46,9 +46,8 @@ const Orders = () => {
     dispatch(getOrders());
   }, [dispatch]);
 
-  
-
   const orderState = useSelector((state) => state.auth.orders.orders);
+  
 
   useEffect(() => {
     if (orderState) {
@@ -69,7 +68,8 @@ const Orders = () => {
     }
   }, [searchText, orderState]);
 
-  const data1 = filteredOrders.map(order => ({
+  const data1 = filteredOrders.map((order, i) => ({
+    key: i + 1,
     name: order.user.firstname + " " + order.user.lastname,
     product: (
       <Link className="ms-3 fs-3 text-danger" to={`/admin/order/${order._id}`}>
@@ -82,7 +82,7 @@ const Orders = () => {
       <>
         <select
           name=""
-          value={order.orderStatus}
+          defaultValue={order.orderStatus}
           onChange={(e) => updateOrderStatus(order._id, e.target.value)}
           className='form-control form-select'
         >
@@ -95,17 +95,18 @@ const Orders = () => {
       </>
     ),
   }));
-
-  const updateOrderStatus = (orderId, status) => {
-    dispatch(updateAOrder({ id: orderId, status }))
-      .then(() => {
-        toast.success('Status updated successfully');
-      })
-      .catch((error) => {
-        toast.error('Status update failed');
-        console.error(error);
-      });
+  
+  const updateOrderStatus = (a, b) => {
+    dispatch(updateAOrder({id:a, status:b}))
+    .then(() => {
+      toast.success('Status updated successfully');
+    })
+    .catch((error) => {
+      toast.error('Status update failed');
+      console.error(error);
+    });
   }
+  
 
   // Calculate status, total income, and total product count
   const status = filteredOrders.map(order => order.orderStatus);
