@@ -4,6 +4,7 @@ import enquiryReducer from "../features/enquiry/enquirySlice";
 import contactReducer from "../features/contact/contactSlice";
 import productReducer from "../features/product/productSlice";
 import brandSliceReducer from "../features/brand/brandSlice";
+import pCategorySliceReducer from "../features/pcategory/pcategorySlice";
 
 export const store = configureStore ({
     reducer:{
@@ -12,5 +13,6 @@ export const store = configureStore ({
         contact : contactReducer,
         product : productReducer,
         brand: brandSliceReducer,
+        pcategory: pCategorySliceReducer,
     },
 });

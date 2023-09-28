@@ -1,36 +1,52 @@
-import React from 'react'
+import { React, useEffect } from 'react';
 import {Table} from "antd";
+import {BiEdit} from 'react-icons/bi';
+import {RiDeleteBin5Fill} from 'react-icons/ri';
+import {getCategories} from '../features/pcategory/pcategorySlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 const columns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
+      title: 'No',
+      dataIndex: 'key',
+      align: 'left',
     },
     {
-      title: 'Date',
-      dataIndex: 'date',
+      title: 'Category type',
+      dataIndex: 'title',
+      align: 'left',
     },
     {
       title: 'Action',
       dataIndex: 'action',
-    },
-    {
-      title: 'Product Details',
-      dataIndex: 'product',
+      align: 'left',
     },
   ];
 
+const Categorylist = () => {
+  const dispatch = useDispatch();
+  useEffect(() =>{
+    dispatch(getCategories());
+  }, [dispatch]);
+  const pCategoryState = useSelector((state) => state.pcategory.pCategories);
   const data1 =[];
-  for(let i = 0; i<46; i++){
+  for(let i = 0; i< pCategoryState.length ; i++){
     data1.push({
-        key: i,
-        name: `Edward King ${i}`,
-        product: 32,
-        status: `London, Park Lane no, ${i}`,
+        key: i + 1,
+        title: pCategoryState[i].title,
+        action: (
+          <span>
+            <Link className="fs-3 text-warning" to='/'>
+              <BiEdit />
+            </Link>
+            <Link className="ms-3 fs-3 text-danger" to='/'>
+              <RiDeleteBin5Fill />
+            </Link>
+          </span>
+        ),
     })
   }
-
-const Categorylist = () => {
   return (
     <div>
         <h3 className='mb-4 title'>Product Categories...</h3>
