@@ -29,6 +29,8 @@ export default function UserSupplierProfile() {
             duration: 3000, // 3 seconds
             position: "top-center", // You can change the position if needed
           });
+
+       
         })
         .catch((err) => {
           alert(err.message);
