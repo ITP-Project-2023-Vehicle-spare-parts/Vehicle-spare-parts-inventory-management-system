@@ -69,7 +69,6 @@ const getAllSuppliers = async (req, res) => {
   try {
     const suppliers = await Supplier.find();
     res.json(suppliers);
-    console.log(count);
   } catch (err) {
     console.log(err);
     res
@@ -204,14 +203,14 @@ const getUserSupplierByEmail = async (req, res) => {
   }
 };
 
-const countSuppliers = async(req,res) => {
+const countSuppliers = async (req, res) => {
   try {
     const SupplierCount = await Supplier.countDocuments({});
     console.log(`Total Shipment: ${SupplierCount}`);
   } catch (error) {
     console.error("Error counting orders:", error);
   }
-}
+};
 
 module.exports = {
   addSupplier,

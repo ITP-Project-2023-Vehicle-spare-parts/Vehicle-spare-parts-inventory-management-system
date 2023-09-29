@@ -14,7 +14,12 @@
 
 }
 
-
+#AddSupplier .error-message {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 0px; /* Add margin to separate from input fields */
+  }
 
 #AddSupplier .home_content {
     position: absolute;  
@@ -48,6 +53,7 @@
     background: #ffffff;
     color: #2e323c;
     box-shadow:#007ae1;
+    margin: o;
     
 }
 
