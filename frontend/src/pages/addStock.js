@@ -67,7 +67,7 @@ function AddStock() {
     <div className="stockcontainer">
    
    <div className="flex-grow-1 p-4">
-      <h2>Add Initial Stock</h2>
+      <h2 style={{ fontSize: '24px' }} >Add Initial Stock</h2>
       <form onSubmit={handleSubmit}>
 
         <div className="form-row">

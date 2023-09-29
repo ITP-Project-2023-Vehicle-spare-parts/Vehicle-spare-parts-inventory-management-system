@@ -87,50 +87,67 @@ function UpdateStock() {
   };
 
   return (
-    <div>
+    <div className="stockcontainer">
+       <div className="flex-grow-1 p-4">
       <h2>Edit Stock Details</h2>
       <form onSubmit={handleUpdate}>
-        <div>
-          <label>Product Name:</label>
+
+      <div className="form-group col-md-6">
+      <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Product Name:</label>
           <input
             type="text"
             name="productName"
             readOnly
             value={stock.productName}
+            style={{ fontSize: '18px' }} 
           />
-          <label>Supplier Name:</label>
+          </div>
+          
+          <div className="form-group col-md-6">
+          <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Supplier Name:</label>
           <input
             type="text"
             name="supplierName"
             readOnly
             value={stock.supplierName}
           />
-          <label>Stock Amount:</label>
+          </div>
+
+          <div className="form-group col-md-6">
+          <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Amount:</label>
           <input
             type="text"
             name="stockAmount"
             value={stock.stockAmount}
             onChange={handleChange}
           />
-          <label>Stock Quantity:</label>
+          </div>
+          <div className="form-group col-md-6">
+          <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Quantity:</label>
           <input
             type="text"
             name="stockQuantity"
             value={stock.stockQuantity}
             onChange={handleChange}
           />
-          <label>Stock Re Order Level:</label>
+          </div>
+
+          <div className="form-group col-md-6">
+          <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Re Order Level:</label>
           <input
             type="text"
             name="reorderpoint"
             value={stock.reorderpoint}
             onChange={handleChange}
           />
-        </div>
-        <button type="button" className="btn btn-primary" onClick={handleUpdate}>
+          </div>
+        
+        
+        <button type="button" className="btn btn-primary" onClick={handleUpdate}style={{ fontSize: '18px' }}>
           Update
         </button>
       </form>
+    </div>
     </div>
   );
 }

@@ -149,7 +149,13 @@ const MainLayout = () => {
                   key: 'Stock-Low',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Low Stock',
-                }
+                },
+                {
+                  key: 'Stock-Report',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Stock Report',
+                },
+                
               ]
             },
             {

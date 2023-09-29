@@ -132,3 +132,25 @@ body.Allstock {
   width: 600px; /* Adjust the width as needed */
 }
 
+.generate-pdf-button {
+  background-color: #710f3f; /* Blue color for the button */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add some border radius for a rounded look */
+  cursor: pointer; /* Change cursor on hover */
+  margin-top: 40px;
+  margin-left: 1460px;
+  margin-bottom: 40px;
+}
+
+.generate-pdf-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+
+
+
+
+
