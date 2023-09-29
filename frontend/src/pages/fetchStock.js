@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import { Link } from 'react-router-dom';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { Button } from 'react-bootstrap';
-
 import './stockCss.css'; // Create a CSS file for styling
 
 
@@ -36,7 +36,7 @@ function FetchStock() {
   return (
     <div id='Allstock'>
     <div className="fetch-stock-container">
-      <h1 className="fetch-stock-title">All Stock</h1>
+      <h1 className="fetch-stock-title">All Stock...</h1>
       <table className="stock-table">
         <thead>
           <tr>
