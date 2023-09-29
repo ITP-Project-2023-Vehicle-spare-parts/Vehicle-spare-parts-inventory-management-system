@@ -76,7 +76,7 @@ const Productlist = () => {
         color: productState[i].color,
         description: productState[i].description,
         action: (
-          <span>
+          <span className='d-flex'>
             <Link className="fs-3 text-warning" to='/'>
               <BiEdit />
             </Link>
@@ -90,7 +90,7 @@ const Productlist = () => {
   return (
     <div>
         <h3 className='mb-4 title'>Products...</h3>
-        <div>
+        <div className='bg-white'>
             <Table columns={columns} dataSource={data1} />
         </div>
     </div>

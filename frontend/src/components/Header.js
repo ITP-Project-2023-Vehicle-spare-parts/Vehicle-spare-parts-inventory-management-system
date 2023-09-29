@@ -20,7 +20,7 @@ const Header = () => {
         Number(cartState[index].quantity) * Number(cartState[index].price);
       setTotal(sum);
     }
-  }, [cartState, dispatch]);
+  }, [cartState]);
 
   return (
     <>

@@ -5,9 +5,10 @@ import "./SupplierHome.css";
 import "boxicons/css/boxicons.min.css";
 
 export default function SupplierHome() {
-  const email = localStorage.getItem("userEmail");
 
-  console.log(email);
+
+
+  
 
   return (
     <div id="SupplierHome">

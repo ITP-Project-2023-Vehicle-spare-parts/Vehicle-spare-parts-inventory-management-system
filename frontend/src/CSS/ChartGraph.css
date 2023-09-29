@@ -1,0 +1,36 @@
+/* ChartGraph.css */
+
+ .chart-container {
+    width: 100%;
+    width: auto;
+    height: 750px;
+    margin: 0 auto;
+    box-shadow: 0 .4rem .8rem #ffffff;
+    padding: 0px;
+    background-color: #f7f7f7; /* Background color for the container */
+  }
+  
+ 
+  
+  #ChartGraph  .chart-toggle-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Background color for the button */
+    color: #fff; /* Text color for the button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    content: left;
+  }
+  
+  #ChartGraph  .chart-toggle-button:hover {
+    background-color: #010101; /* Hover color for the button */
+  }
+  
+  #ChartGraph .chart {
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Background color for the chart area */
+  }
+  
