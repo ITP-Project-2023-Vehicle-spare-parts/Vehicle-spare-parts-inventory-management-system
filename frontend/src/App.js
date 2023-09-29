@@ -79,6 +79,22 @@ import Addcategory from "./pages/Addcategory";
 import Addbrand from "./pages/Addbrand";
 import Addproduct from "./pages/Addproduct";
 
+import AddBranch from "./components/Branch/AddBranch";
+import AddOffer from "./components/Offers/AddOffer";
+import AddCoupon from "./components/Coupon/AddCoupon";
+import BranchTable from "./components/Branch/BranchTable";
+import BranchDetails from "./components/Branch/BranchDetails";
+import OfferTable from "./components/Offers/OfferTable";
+import OfferDetails from "./components/Offers/OfferDetails";
+import CouponTable from "./components/Coupon/CouponTable";
+import CouponDetails from "./components/Coupon/CouponDetails";
+import EditBranch from "./components/Branch/EditBranch";
+import EditCoupon from "./components/Coupon/EditCoupon";
+import EditOffer from "./components/Offers/EditOffer";
+import AssignBranch from "./components/AssignBranch";
+
+import ComparisionBarGraph from "./components/stockComponents/comparisiongraph";
+
 function App() {
   return (
     <Provider store={store}>
@@ -173,6 +189,8 @@ function App() {
             <Route path="/admin/lowstockGraph" element={<LowStockBarGraph/>}/>
             <Route path="/admin/addstock" element={<AddStock/>}/>
 
+            <Route path="/admin/comparisiongraph" element={< ComparisionBarGraph/>} />
+
             {/* Claim Part */}
             <Route path="/addclaim" element={<AddClaim />} />
             <Route path="/get/:billno" element={<FetchClaim />} />
@@ -213,6 +231,20 @@ function App() {
             </Route>
 
             <Route path="/sidebar" element={<Sidebar />} />
+
+          <Route path='/admin/branch/add' element={<AddBranch />} />
+          <Route path='/admin/offer/add' element={<AddOffer />} />
+          <Route path="/admin/coupon/add" element={<AddCoupon />} />
+          <Route path="/admin/branch/read" exact element={<BranchTable />} />
+          <Route path="/branch/profile/:id" element={<BranchDetails />} />
+          <Route path="/admin/offer/read" element={<OfferTable />} />
+          <Route path="/offer/profile/:offerID" element={<OfferDetails />} />
+          <Route path="/admin/coupon/read" exact element={<CouponTable />} />
+          <Route path="admin/coupon/profiles/:id" element={<CouponDetails />} />
+          <Route path='/profile/update/:id' element={<EditBranch />} />
+          <Route path='/admin/coupon/profile/update/:id' element={<EditCoupon />} />
+          <Route path='/offer/profile/update/:id' element={<EditOffer />} />
+          <Route path='/admin/assignBranch' element={<AssignBranch />} />
           </Routes>
         </div>
       </Router>

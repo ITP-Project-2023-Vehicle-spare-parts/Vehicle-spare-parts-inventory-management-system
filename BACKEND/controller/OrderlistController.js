@@ -31,7 +31,30 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+const updateBranchLocation = async (req, res) => {
+    try {
+        const OrderID = req.params.id;
+        // Inside your route handler
+        console.log("Received PUT request with data:", req.body);
+
+
+        const { branch } = req.body;
+        const updateBranchLocations = {
+            
+            branch
+        };
+
+        await Order.findByIdAndUpdate(req.params.orderid , updateBranchLocations ); // Correct variable name
+        res.status(200).send({ status: "Branch Location Updated" });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error updating branch location", error: err.message });
+    }
+};
+  
+
 module.exports = {
     getAllOrders,
-    updateOrderStatus
+    updateOrderStatus,
+    updateBranchLocation
  };

@@ -64,11 +64,20 @@ app.use("/brand", brandRoutes);
 const colorRoutes = require("./routes/colorRoute");
 app.use("/color", colorRoutes);
 
+const uploadRoutes = require("./routes/uploadRoute");
+app.use("/upload", uploadRoutes);
+
 const enqRouter = require("./routes/enqRoute");
 app.use("/enquiry", enqRouter);
 
 const allOrder = require("./routes/OrderlistRoutes");
 app.use("/allOrder", allOrder);
+
+const couponRoute = require("./routes/couponRoute.js");
+app.use("/coupon", couponRoute);
+
+const OffersRoute = require("./routes/OffersRoute.js");
+app.use("/Offers", OffersRoute);
 
 app.use(notFound);
 app.use(errorHandler);

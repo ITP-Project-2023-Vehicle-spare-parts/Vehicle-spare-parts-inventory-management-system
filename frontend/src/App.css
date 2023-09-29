@@ -538,3 +538,12 @@ footer .input-group-text{
   color: red;
   font-size: 12px;
 }
+
+.imageUploadProduct{
+  background-color:  #ADD8E6;
+}
+
+.productSubmitbtn{
+  width: 100% !important; 
+  height: 50px !important;
+}
