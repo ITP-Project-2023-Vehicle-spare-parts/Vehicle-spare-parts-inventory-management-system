@@ -3,6 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+//import StockSideBar from '../components/stockComponents/stockSideBar';
 
 
 
@@ -64,8 +65,9 @@ function AddStock() {
   };
 
   return (
-    <div>
+    <div className="d-flex">
    
+   <div className="flex-grow-1 p-4">
       <h2>Add New Stock</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
@@ -145,6 +147,7 @@ function AddStock() {
         </div>
         <button type="submit" className="btn btn-primary">Add Stock</button>
       </form>
+      </div>
     </div>
   );
 }

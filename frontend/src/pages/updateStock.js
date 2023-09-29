@@ -68,7 +68,7 @@ function UpdateStock() {
       });
 
       // Navigate back to FetchStock component after successful update
-      navigate('/Admin/stock');
+      navigate('/Admin/Fetch-stock');
     } catch (error) {
       console.error('Error updating stock details:', error);
     }

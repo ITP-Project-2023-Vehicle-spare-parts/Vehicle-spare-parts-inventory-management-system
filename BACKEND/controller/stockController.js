@@ -178,6 +178,23 @@ const getLowStockProducts = async (req, res) => {
 };
 
 
+// Add a new route to search for stocks
+const searchStock = async (req, res) => {
+  try {
+    const { query } = req.query; // Get the search query from the URL query parameters
+
+    // Perform a case-insensitive search for stocks whose productName matches the provided query
+    const searchResults = await Stock.find({ productName: { $regex: query, $options: 'i' } });
+
+    res.status(200).json({ results: searchResults });
+  } catch (error) {
+    console.error('Error searching stocks:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 
  
 
@@ -198,4 +215,5 @@ const getLowStockProducts = async (req, res) => {
         getStockByID,
         deleteStock,
         getLowStockProducts,
+        searchStock,
     };
