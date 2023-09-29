@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { base_url } from "../../utils/base_url";
+//import {config} from "../../utils/axiosconfig";
 
 const getProducts = async () =>{
     const response = await axios.get(`${base_url}product/`);
@@ -11,9 +12,15 @@ const createProduct = async (product) =>{
     return response.data;
 }
 
+const addToWishlist = async (ProductID) =>{
+    const response = await axios.put("http://localhost:8000/product/wishlist", {ProductID});
+    return response.data;
+}
+
 const productService = {
     getProducts,
-    createProduct
+    createProduct,
+    addToWishlist,
 }
 
 export default productService;

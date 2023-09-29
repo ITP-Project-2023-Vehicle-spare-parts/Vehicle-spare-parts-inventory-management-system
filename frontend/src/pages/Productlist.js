@@ -47,7 +47,8 @@ const columns = [
     {
       title: 'Description',
       dataIndex: 'description',
-      align: 'left'
+      align: 'left',
+      render: (text) => <div dangerouslySetInnerHTML={{ __html: text }} />,
     }, 
     {
       title: 'Action',
