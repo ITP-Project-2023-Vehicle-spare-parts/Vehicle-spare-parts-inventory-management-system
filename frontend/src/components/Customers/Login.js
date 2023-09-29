@@ -28,7 +28,9 @@ export default function Login() {
     axios
       .post("http://localhost:8000/user/login", validate)
       .then((res) => {
-        
+        console.log(res.data)
+        const ID = res.data;
+        localStorage.setItem("userID",ID)
 
         if (res.data.role === "admin") {
           console.log(res.data.role);
@@ -36,6 +38,8 @@ export default function Login() {
         } else if (res.data.role === "supplier") {
           console.log(res.data.email);
           const email = res.data.email;
+        
+
           sessionStorage.setItem("userEmail", email);
 
           Navigate("/supplier/home");

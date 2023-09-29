@@ -43,7 +43,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     );
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 72 * 60 * 60 * 1000,
+      maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({
       _id: findUser?._id,
@@ -135,22 +135,27 @@ const logout = asyncHandler(async (req, res) => {
 
 // Update a user
 
+//update user
+
 const updatedUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  validateMongoDbId(_id);
+  validateMongoDbId(_id); 
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
       _id,
       {
-        firstname: req?.body?.firstname,
-        lastname: req?.body?.lastname,
-        email: req?.body?.email,
-        mobile: req?.body?.mobile,
-      },
+          firstname: req?.body?.firstname,
+          lastname: req?.body?.lastname,
+          mobile: req?.body?.mobile,
+          gender: req?.body?.gender,
+          address: req?.body?.address,
+          nic: req?.body?.nic,
+          dob: req?.body?.dob,
+      },  
       {
-        new: true,
-      }
+      new: true,
+    }
     );
     res.json(updatedUser);
   } catch (error) {
@@ -158,11 +163,16 @@ const updatedUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Get all users
+
+
+//get all users
 
 const getallUser = asyncHandler(async (req, res) => {
   try {
-    const getUsers = await User.find().populate("wishlist");
+    // Replace 'user' with the specific role you want to filter by
+    const role = "user";
+
+    const getUsers = await User.find({ role }); // Fetch users with the specified role
     res.json(getUsers);
   } catch (error) {
     throw new Error(error);
