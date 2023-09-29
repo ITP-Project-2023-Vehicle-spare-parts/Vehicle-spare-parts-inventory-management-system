@@ -3,10 +3,12 @@ import ReactStars from 'react-rating-stars-component';
 import {Link, useLocation} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import { addToWishlist } from '../features/product/productSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = (props) => {
     const {grid, data} = props;
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     console.log(data)
     let location = useLocation();
 
@@ -41,9 +43,11 @@ const ProductCard = (props) => {
             </div>
             <div className='action-bar position-absolute'>
                 <div className='d-flex flex-column gap-15'>
-                    <Link to="product/:id">
+                <button className='border-0 bg-transparent' onClick={()=>{
+                        navigate("product/"+item?._id)
+                    }}>
                         <img src='/images/view.svg' alt='view' />
-                    </Link>
+                    </button>
                     <Link>
                         <img src='/images/add-cart.svg' alt='addcart' />
                     </Link>

@@ -7,6 +7,11 @@ const getProducts = async () =>{
     return response.data;
 }
 
+const getSingleProduct = async (id) =>{
+    const response = await axios.get(`${base_url}product/${id}`);
+    return response.data;
+}
+
 const createProduct = async (product) =>{
     const response = await axios.post("http://localhost:8000/product/", product);
     return response.data;
@@ -21,6 +26,7 @@ const productService = {
     getProducts,
     createProduct,
     addToWishlist,
+    getSingleProduct,
 }
 
 export default productService;
