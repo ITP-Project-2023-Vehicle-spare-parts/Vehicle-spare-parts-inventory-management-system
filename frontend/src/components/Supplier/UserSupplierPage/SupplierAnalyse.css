@@ -1,0 +1,31 @@
+/* SupplierAnalyse.css */
+ .supplier-analyse-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+  
+  #SupplierAnalyse .content {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #SupplierAnalyse .page-title {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+    font-weight: 2000;
+  }
+  
+  #SupplierAnalyse .chart-container {
+    margin: 20px auto;
+  }
+  
+  #SupplierAnalyse .low-stock-table-container {
+    margin: 20px auto;
+  }
+  

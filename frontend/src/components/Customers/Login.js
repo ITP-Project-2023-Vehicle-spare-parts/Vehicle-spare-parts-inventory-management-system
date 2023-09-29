@@ -35,9 +35,10 @@ export default function Login() {
           Navigate("/Admin/client/add");
         } else if (res.data.role === "supplier") {
           console.log(res.data.email);
-          Navigate("/supplier/home");
           const email = res.data.email;
-          localStorage.getItem("userEmail", email);
+          sessionStorage.setItem("userEmail", email);
+
+          Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
         }
