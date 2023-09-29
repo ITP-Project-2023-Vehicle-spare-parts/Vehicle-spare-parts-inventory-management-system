@@ -10,7 +10,7 @@ import {getCategories} from '../features/pcategory/pcategorySlice';
 import {getColors} from '../features/color/colorSlice';
 import Dropzone from 'react-dropzone';
 import { delImg, uploadImg } from '../features/upload/uploadSlice';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createProducts, resetState } from "../features/product/productSlice";
 
@@ -28,7 +28,7 @@ let schema = yup.object().shape({
 
 const Addproduct = () => {
   const dispatch = useDispatch();
- // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [images, setImages] = useState([]);
   console.log(images,setImages)
   useEffect(()=>{
@@ -92,6 +92,7 @@ const Addproduct = () => {
       dispatch(createProducts(values));
       formik.resetForm();
       setTimeout(() => {
+        navigate("/admin/product-list");
         dispatch(resetState());
       }, 3000);
     },

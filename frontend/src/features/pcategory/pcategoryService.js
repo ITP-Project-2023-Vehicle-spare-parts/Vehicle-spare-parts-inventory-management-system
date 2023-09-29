@@ -6,8 +6,14 @@ const getProductCategories = async () =>{
     return response.data;
 }
 
+const createCategory = async (Category) =>{
+    const response = await axios.post("http://localhost:8000/category/addCategory/", Category);
+    return response.data;
+}
+
 const pcategoryService = {
-    getProductCategories
+    getProductCategories,
+    createCategory,
 }
 
 export default pcategoryService;

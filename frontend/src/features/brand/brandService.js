@@ -6,8 +6,14 @@ const getBrands = async () =>{
     return response.data;
 }
 
+const createBrand = async (Brand) =>{
+    const response = await axios.post("http://localhost:8000/brand/addBrand/", Brand);
+    return response.data;
+}
+
 const brandService = {
     getBrands,
+    createBrand,
 }
 
 export default brandService;

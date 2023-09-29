@@ -55,7 +55,7 @@ export const productSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
         if (state.isError === true) {
-          toast.success("Products Loaded Unsuccessfully");
+          toast.error("Products Loaded Unsuccessfully");
       }
       })
       .addCase(createProducts.pending, (state) => {
@@ -66,18 +66,12 @@ export const productSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.createdProduct = action.payload;
-        if (state.isSuccess === true) {
-          toast.success("Products Added Successfully");
-      }
       })
       .addCase(createProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if (state.isError === true) {
-          toast.success("Products Adding Unsuccessfully");
-      }
       })
       .addCase(resetState, () => initialState);
   },
