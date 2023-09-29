@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const stockController = require('../controller/stockController.js');
 const Stock = require('../model/stockModel'); // Import the Stock model
+const DeletedStock =require('../model/deletedStockModel'); // Import
 
 
 // Create a new stock
