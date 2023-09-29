@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+// import { Link } from 'react-router-dom';
+import axios from "axios";
 
 function AssignBranch() {
   const [orderData, setOrderData] = useState([]);
-  const [selectedBranch, setSelectedBranch] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [selectedBranch, setSelectedBranch] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(true); // Define setLoading
 
   useEffect(() => {
     // Fetch data from the API endpoint for orders
-    axios.get('http://localhost:8000/allOrder/allOrders')
+    axios
+      .get("http://localhost:8000/allOrder/allOrders")
       .then((response) => {
         setOrderData(response.data);
         setLoading(false); // Set loading to false after the request is complete
       })
       .catch((error) => {
-        console.error('Error fetching order data:', error);
+        console.error("Error fetching order data:", error);
         setLoading(false); // Set loading to false if the request fails
       });
   }, []);
+  console.log(loading);
 
   // Function to handle changes in branch location
   const handleBranchLocationChange = (event, id) => {
@@ -30,23 +32,28 @@ function AssignBranch() {
   // Function to display success message
   const displaySuccessMessage = () => {
     if (selectedBranch) {
-      setSuccessMessage(`Branch location "${selectedBranch}" selected successfully.`);
+      setSuccessMessage(
+        `Branch location "${selectedBranch}" selected successfully.`
+      );
     } else {
-      setSuccessMessage('');
+      setSuccessMessage("");
     }
   };
+  console.log(displaySuccessMessage);
 
   const updateClusterDatabase = (id) => {
     console.log("Updating order with ID:", id);
     console.log("Selected branch:", selectedBranch);
     axios
-      .put(`http://localhost:8000/allOrder/updateLocations/${id}`, { branch: selectedBranch })
+      .put(`http://localhost:8000/allOrder/updateLocations/${id}`, {
+        branch: selectedBranch,
+      })
       .then((response) => {
-        alert('Branch location updated successfully!');
+        alert("Branch location updated successfully!");
       })
       .catch((error) => {
-        console.error('Error updating branch location:', error);
-        alert('Error updating branch location. Please try again later.');
+        console.error("Error updating branch location:", error);
+        alert("Error updating branch location. Please try again later.");
       });
   };
 
@@ -73,7 +80,9 @@ function AssignBranch() {
               <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
               <td>{order.orderStatus}</td>
               <td>
-                <select onChange={(e) => handleBranchLocationChange(e, order._id)}>
+                <select
+                  onChange={(e) => handleBranchLocationChange(e, order._id)}
+                >
                   <option value="jaffna">Jaffna</option>
                   <option value="ibbagamuwa_main">Ibbagamuwa Main</option>
                   <option value="galle">Galle</option>
@@ -84,7 +93,9 @@ function AssignBranch() {
                 </select>
               </td>
               <td>
-                <button onClick={() => updateClusterDatabase(order._id)}>Update</button>
+                <button onClick={() => updateClusterDatabase(order._id)}>
+                  Update
+                </button>
               </td>
             </tr>
           ))}
