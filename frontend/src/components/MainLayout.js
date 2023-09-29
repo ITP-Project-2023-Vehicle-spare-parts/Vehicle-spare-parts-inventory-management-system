@@ -84,7 +84,7 @@ const MainLayout = () => {
                 {
                   key: 'Add-category',
                   icon: <BiSolidBox className='fs-4'/>,
-                  label: 'Category',
+                  label: 'Add Category',
                 },
                 {
                   key: 'category-list',
@@ -94,7 +94,7 @@ const MainLayout = () => {
                 {
                   key: 'Add-color',
                   icon: <BiSolidBox className='fs-4'/>,
-                  label: 'Color',
+                  label: 'Add Color',
                 },
                 {
                   key: 'color-list',
