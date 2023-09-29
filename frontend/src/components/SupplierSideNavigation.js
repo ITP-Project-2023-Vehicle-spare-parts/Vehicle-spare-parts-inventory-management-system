@@ -1,11 +1,11 @@
 // import React , {useState ,useEffect} from "react";
 // import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import 'boxicons/css/boxicons.min.css';
 import '../CSS/SupplierSideNavigation.css';
-import axios from "axios";
-import toast from "react-hot-toast";
+// import axios from "axios";
+// import toast from "react-hot-toast";
 
 
 
@@ -109,7 +109,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="">
                 <i className='bx bxs-package' ></i>
                     <span className="link-name">Prodects</span>
                     </Link>
@@ -117,7 +117,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="">
                 <i class='bx bx-money' ></i>
                     <span className="link-name">Payment</span>
                     </Link>
@@ -125,7 +125,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="/supplier/order">
                 <i class='bx bx-cart-alt'></i>
                     <span className="link-name">Orders</span>
                     </Link>
@@ -133,7 +133,7 @@ export default function SupplierSideNavigation() {
 
                 </li>
                 <li>
-                <Link to="/">
+                <Link to="">
                 <i class='bx bxs-bell' ></i>
                     <span className="link-name">Notification</span>
                     </Link>
