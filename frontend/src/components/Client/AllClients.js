@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import jspdf-autotable
+import toast from "react-hot-toast";
 
 export default function AllClient() {
   const [clients, setClient] = useState([]);
@@ -20,6 +21,11 @@ export default function AllClient() {
         .then((res) => {
           console.log(res.data);
           setClient(res.data);
+          toast.success("Data Fetched Successfully!", {
+            duration: 3000, // 3 seconds
+            position: "top-center", // You can change the position if needed
+          });
+          
         })
         .catch((err) => {
           alert(err.message);

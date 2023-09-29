@@ -11,6 +11,8 @@ router.route('/get').get(stockController.getStock);
 router.route('/get/:id').get(stockController.getStockByID);
 router.route('/delete/:id').delete(stockController.deleteStock);
 router.route('/low-stock').get(stockController.getLowStockProducts);
+router.route('/search/:search').get(stockController.searchStock);
+router.route('/report').get(stockController.getStock);
 
 
 

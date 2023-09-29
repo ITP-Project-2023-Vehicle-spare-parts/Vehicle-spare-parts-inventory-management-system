@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 //import CategoryBarGraph from './barGraph'; // Assuming you have this component
-import LowStockBarGraph from './lowStockGraph';
+import LowStockBarGraph from '../components/stockComponents/lowStockGraph';
 
 
 

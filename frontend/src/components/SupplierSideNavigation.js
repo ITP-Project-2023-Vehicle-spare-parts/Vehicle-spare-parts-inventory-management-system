@@ -1,13 +1,40 @@
 // import React , {useState ,useEffect} from "react";
 // import axios from "axios";
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import 'boxicons/css/boxicons.min.css';
 import '../CSS/SupplierSideNavigation.css';
+import axios from "axios";
+import toast from "react-hot-toast";
 
 
 
 export default function SupplierSideNavigation() {
+
+    const id = localStorage.getItem("userID");
+    console.log(id);
+
+    // const [User, setUser] = useState("");
+
+    // useEffect(() => {
+    //     function fetchSupplier() {
+    //       axios
+    //         .get("http://localhost:8000/supplier/get/" + id)
+    //         .then((res) => {
+    //           console.log(res.data.supplier);
+    //           setUser(res.data.supplier);
+    //           toast.success("Data Fetched!", {
+    //             duration: 3000, // 3 seconds
+    //             position: "top-center", // You can change the position if needed
+    //           });
+    //         })
+    //         .catch((err) => {
+    //           alert(err.message);
+    //         });
+    //     }
+    //     fetchSupplier();
+    //   }, [id]);
+    
 
     // let btn = document.querySelector("#btn");
     // let sidebar = document.querySelector(".sidebar");

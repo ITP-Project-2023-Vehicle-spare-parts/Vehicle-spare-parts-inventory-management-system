@@ -4,10 +4,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 export default function UpdateProfileAdmin() {
-  const id = localStorage.getItem("userID");
-  console.log(id);
+ 
   const Navigate = useNavigate();
 
   const [supplier, setSupplier] = useState({
@@ -29,16 +29,18 @@ export default function UpdateProfileAdmin() {
 
   });
 
-
+  const userId = localStorage.getItem("userId");
   useEffect(() => {
+    
 
     const fetchSupplier = () => {
+     
       axios
-        .get("http://localhost:8000/supplier/get/" +id)
+        .get("http://localhost:8000/supplier/get/" +userId)
         .then((res) => {
           toast.success("Data Fetched!", {
-            duration: 3000, // 3 seconds
-            position: "top-center", // You can change the position if needed
+            duration: 5000, // 3 seconds
+            position: "top-right", // You can change the position if needed
           });
           console.log(res.data.supplier);
           setSupplier(res.data.supplier);
@@ -48,7 +50,7 @@ export default function UpdateProfileAdmin() {
         });
     }
     fetchSupplier();
-  }, [id]);
+  }, [userId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +62,7 @@ export default function UpdateProfileAdmin() {
 
   const updateData = () => {
     axios
-      .put("http://localhost:8000/supplier/update/" + id, supplier)
+      .put("http://localhost:8000/supplier/update/" + userId, supplier)
       .then((res) => {
         console.log(res.data);
         Swal.fire({
@@ -359,7 +361,7 @@ export default function UpdateProfileAdmin() {
                     <div class="row gutters">
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                          <button
+                         <Link to="/supplier/profile"> <button
                             type="button"
                             id="submit"
                             name="submit"
@@ -367,7 +369,7 @@ export default function UpdateProfileAdmin() {
                             style={{ margin: "10px" }}
                           >
                             Cancel
-                          </button>
+                          </button> </Link>
                           <button
                             type="button"
                             id="submit"
