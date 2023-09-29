@@ -79,6 +79,9 @@ app.use("/coupon", couponRoute);
 const OffersRoute = require("./routes/OffersRoute.js");
 app.use("/Offers", OffersRoute);
 
+const SupplierRequestRoutes = require("./routes/SupplierRequestRoutes");
+app.use("/supplierReq", SupplierRequestRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 

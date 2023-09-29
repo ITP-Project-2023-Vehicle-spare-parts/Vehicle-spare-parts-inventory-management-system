@@ -13,6 +13,13 @@
 
 }
 
+#AddClient .error-message {
+    color: red;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 0px; /* Add margin to separate from input fields */
+  }
+
 
 
 #AddClient .home_content {

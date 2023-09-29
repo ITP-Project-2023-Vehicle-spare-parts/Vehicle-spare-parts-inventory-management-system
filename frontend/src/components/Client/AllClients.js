@@ -59,34 +59,51 @@ export default function AllClient() {
 
   const generatePDF = () => {
     const pdf = new jsPDF();
-    pdf.text('Client Report-CMspare', 10, 10);
-   
+    
+    // Add the logo
+    const logoURL = '/images/CMLogo.png';
+    pdf.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
+    
+    // Set font styles
+    pdf.setFont('helvetica');
+    pdf.setFontSize(16);
+  
+    // Add a title
+    pdf.text('Client Report - CMspare', 70, 20);
+  
+    // Create a table for client data
+    const tableData = clients.map((dataobj, index) => {
+      return [
+        `${dataobj.ClientsfirstName} ${dataobj.ClientsLastName}`,
+        dataobj.ClientsCity,
+        dataobj.ClientsStatus,
+        dataobj.SystemEmail,
+        dataobj.NoOfBranches,
+      ];
+    });
+  
+    const tableHeaders = ['Client Name', 'Address', 'Status', 'System Email', 'No Of Branches'];
+  
+    // Set the table style
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0); // Text color (black)
+    
+    // Define the column widths and row heights
 
-    const logoURL = '/images/CMLogo.png'; // Replace with the actual path or URL
-    pdf.addImage(logoURL,'PNG', 0.1, 0.1, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight()); // Adjust the coordinates and dimensions as needed
   
-    // Create a new table for PDF generation without the "Option" column
-    const tableData = clients.map((dataobj) => {
-      return {
-        'Client Name': `${dataobj.ClientsfirstName} ${dataobj.ClientsLastName}`,
-        'Address': dataobj.ClientsCity,
-        'Status': dataobj.ClientsStatus,
-        'System Email': dataobj.SystemEmail,
-        'No Of Branches': dataobj.NoOfBranches,
-      };
-    });
-  
-    // Define columns for the PDF table
-    const columns = Object.keys(tableData[0]);
-  
-    // Generate the PDF table
+    // Add the table
     pdf.autoTable({
-      head: [columns],
-      body: tableData.map((data) => Object.values(data)),
+      head: [tableHeaders],
+      body: tableData,
+      startY: 40, // Adjust the vertical position
+      margin: { horizontal: 10 },
+      columnStyles: { 0: { cellWidth: 50 } }, // Adjust the column width
+      bodyStyles: { valign: 'middle' }, // Vertical alignment for cell content
+      columnWidth: 'wrap',
     });
   
-    // Save the PDF with a specific name
-    pdf.save('Client_Details_report.pdf');
+    // Save or display the PDF
+    pdf.save('client_report.pdf'); // Save the PDF with a filename
   };
 
   function ViewClient(id) {

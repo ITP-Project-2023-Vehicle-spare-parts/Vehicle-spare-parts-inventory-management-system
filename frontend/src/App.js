@@ -69,6 +69,7 @@ import Forgotpassword from "./components/Customers/Forgotpassword";
 import Resetpassword from "./components/Customers/Resetpassword";
 
 import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
+import ShipmentReport from "./components/Supplier/UserSupplierPage/ShipmentReport";
 
 import Colorlist from "./pages/Colorlist";
 import Categorylist from "./pages/Categorylist";
@@ -200,6 +201,7 @@ function App() {
             <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
             <Route path="/supplier/profile" element={<UserSupplierProfile />} />
             <Route path="/supplier/profile/update" element={<UserSupplierUpdateProfile />} />
+            <Route path="/supplier/order" element={<ShipmentReport />} />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
