@@ -131,22 +131,22 @@ const MainLayout = () => {
               label: 'Stock',
               children : [
                 {
-                  key: 'supplier',
+                  key: 'Add-stock',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'Add Stock',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Fetch-stock',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Stock',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Stock-interactivechart',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'Stock Level',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Stock-Low',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Low Stock',
                 }

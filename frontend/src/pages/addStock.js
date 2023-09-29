@@ -3,8 +3,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+//import StockSideBar from '../components/stockComponents/stockSideBar';
+import './stockCss.css'; // Create a CSS file for styling
 
 function AddStock() {
   const [productName, setProductName] = useState('');
@@ -64,88 +64,106 @@ function AddStock() {
   };
 
   return (
-    <div>
+    <div className="stockcontainer">
    
-      <h2>Add New Stock</h2>
+   <div className="flex-grow-1 p-4">
+      <h2>Add Initial Stock</h2>
       <form onSubmit={handleSubmit}>
+
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="productName">Product Name</label>
+          <label htmlFor="productName" style={{ fontSize: '18px' }}>Product Name</label>
 
-            <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)} requiredclassName="form-control" >
+    <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)}
+     requiredclassName="form-control"
+     className="form-control custom-select"
+     style={{ fontSize: '18px' }}
+    
+    >
 
-  <option value="Bajaj CT100 osadGuard" >Bajaj CT100 osadGuard</option>
-  <option value="Bajaj CT100 Guard">Bajaj CT100 Guard</option>
-  <option value="Bajaj CT100 OkgsOudGuard">Bajaj CT100 OkgsOudGuard</option>
-  <option value="Bajaj CT100 OigOudGuard">Bajaj CT100 OigOudGuar</option>
-</select>
+    <option value="Bajaj CT100 osadGuard" >Bajaj CT100 osadGuard</option>
+    <option value="Bajaj CT100 Guard">Bajaj CT100 Guard</option>
+    <option value="Bajaj CT100 OkgsOudGuard">Bajaj CT100 OkgsOudGuard</option>
+    <option value="Bajaj CT100 OigOudGuard">Bajaj CT100 OigOudGuar</option>
+
+    </select>
 
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="supplierName">Supplier Name</label>
+            <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Supplier Name</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control custom-input"
               id="supplierName"
               placeholder="e.g., ABC Electronics"
               value={supplierName}
               onChange={(e) => setSupplierName(e.target.value)}
               required
+              style={{ fontSize: '18px' }} 
             />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="stockAmount">Stock Amount</label>
+            <label htmlFor="stockAmount" style={{ fontSize: '18px' }}>Stock Amount</label>
             <input
               type="number"
-              className="form-control"
+              className="form-control custom-input"
               id="stockAmount"
               placeholder="e.g., 1000"
               value={stockAmount}
               onChange={(e) => setStockAmount(e.target.value)}
               required
+              style={{ fontSize: '18px' }}
             />
           </div>
-          <div className="form-group col-md-6">
-            <label htmlFor="additionalDetails">Additional Details (optional)</label>
+          
+           <div className="form-group col-md-6">
+            <label htmlFor="additionalDetails" style={{ fontSize: '18px' }}>Additional Details (optional)</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control custom-input"
               id="additionalDetails"
               placeholder="Additional details"
               value={additionalDetails}
               onChange={(e) => setAdditionalDetails(e.target.value)}
+              style={{ fontSize: '18px' }}
             />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="reorderpoint">Reorder Point</label>
+            <label htmlFor="reorderpoint" style={{ fontSize: '18px' }}>Reorder Point</label>
             <input
               type="number"
-              className="form-control"
+              className="form-control custom-input"
               id="reorderpoint"
               placeholder="e.g., 10"
               value={reorderpoint}
               onChange={(e) => setReorderpoint(e.target.value)}
+              required
+              style={{ fontSize: '18px' }}
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="stockQuantity">Stock Quantity</label>
+            <label htmlFor="stockQuantity" style={{ fontSize: '18px' }}>Stock Quantity</label>
             <input
               type="number"
-              className="form-control"
+              className="form-control custom-input"
               id="stockQuantity"
               placeholder="e.g., 50"
               value={stockQuantity}
+              required
               onChange={(e) => setStockQuantity(e.target.value)}
+              style={{ fontSize: '18px' }}
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">Add Stock</button>
+        <button type="submit" className="btn btn-primary"   style={{ fontSize: '18px' }} >Add Stock</button>
       </form>
+      </div>
     </div>
+    
   );
 }
 

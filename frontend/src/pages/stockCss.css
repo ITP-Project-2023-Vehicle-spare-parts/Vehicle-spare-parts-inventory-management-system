@@ -113,3 +113,22 @@ body.Allstock {
 }
 
 
+.stockcontainer {
+  max-width: 700px;
+ 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.custom-input {
+  width: 600px; /* Adjust the width as needed */
+}
+
