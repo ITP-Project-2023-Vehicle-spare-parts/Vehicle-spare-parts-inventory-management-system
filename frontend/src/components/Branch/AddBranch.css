@@ -1,76 +1,88 @@
-#AddBranch.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #f7f3f3;
-    border-radius: 5px;
-    background-color: #5349d9;
-  }
-  
-  #AddBranch .h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  #AddBranch .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #AddBranch .label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #0b0909; /* Label text color */
-  }
-  
-  #AddBranch .input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  #AddBranch.error {
-    color: red;
-    margin-top: 5px;
-  }
-  
-  #AddBranch .button[type="submit"] {
-    background-color: #ff1100;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #AddBranch .button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  #AddBranch .container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Style the form fields as a grid */
-  #AddBranch .container form > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-  
-  /* Adjust label alignment for better aesthetics */
-  #AddBranch .container form label {
-    text-align: left;
-    line-height: 32px;
-  }
-  
-  /* Style error messages */
-  #AddBranch .error {
-    grid-column: span 2;
-    text-align: center;
-  }
+#AddBranch body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f5f5f5; /* Light Grey Background */
+  font-family: 'Arial', sans-serif;
+}
+
+#AddBranch {
+  width: 700px; /* Increased Width */
+  padding: 9px; /* Adjusted Padding */
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #735bcd, #4f46cb); /* Gradient Background */
+  text-align: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#AddBranch:hover {
+  transform: scale(1.05);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+}
+
+#AddBranch form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#AddBranch div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Adjusted Margin */
+}
+
+#AddBranch label {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #050404; /* Vibrant Yellow */
+  font-size: 20px; /* Increased Font Size */
+}
+
+#AddBranch input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 18px; /* Adjusted Padding */
+  margin-bottom: 30px; /* Adjusted Margin */
+  border: 2px solid #ffcc29; /* Vibrant Yellow Border */
+  border-radius: 10px;
+  font-size: 20px;
+  color: #333333;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#AddBranch input[type="text"]:focus {
+  border-color: #ff3333; /* Vibrant Red on Focus */
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+}
+
+#AddBranch .error {
+  color: #ff3333; /* Vibrant Red Error Messages */
+  font-size: 18px; /* Adjusted Font Size */
+  margin-top: 20px; /* Adjusted Margin */
+}
+
+#AddBranch button[type="submit"] {
+  background: #e63a3a; /* Vibrant Green Button */
+  color: rgb(6, 5, 5);
+  border: none;
+  padding: 22px 50px; /* Adjusted Padding */
+  margin-top: 40px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 24px; /* Increased Font Size */
+  transition: background 0.3s, transform 0.2s;
+}
+
+#AddBranch button[type="submit"]:hover {
+  background: #51ace5; /* Lighter Green on Hover */
+  transform: scale(1.1);
+}

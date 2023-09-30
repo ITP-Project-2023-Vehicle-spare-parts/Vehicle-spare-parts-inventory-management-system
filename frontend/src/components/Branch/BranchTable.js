@@ -39,6 +39,11 @@ function BranchTable() {
     return (
         <div className="branch-table-container" id='BranchTable'>
             <h2>Branch List</h2>
+            <Link to="/admin/branch/add">
+              <button className="btn btn-primary" style={{ marginBottom: '10px' }}>
+               Add Offer
+              </button>
+             </Link>
             <table>
                 <thead>
                     <tr>
@@ -53,23 +58,30 @@ function BranchTable() {
                         <tr key={branch.BranchID}>
                             <td>{branch.BranchID}</td>
                             <td>{branch.BranchAddress}</td>
+                            <td>
                             {/* Add table cells for other attributes */}
-                            <td>
-                                <Link to={`/branch/profile/${branch._id}`}>
-                                    View Branch
-                                </Link>
-                            </td>
-                            <td>
-                                <Link to={`/profile/update/${branch._id}`}>
-                                    Edit Profile
-                                </Link>
-                            </td>
-                            <td>
-                                {/* Use onClick to trigger the delete action */}
-                                <button onClick={() => handleDelete(branch._id)}>
-                                    Delete Branch
-                                </button>
-                            </td>
+                            <button
+                              className="bx bx-trash btn btn-outline-danger icon-lg"
+                              style={{ margin: "1px" }}
+                              onClick={() => handleDelete(branch._id)}
+                        ></button>
+                        <Link to={`/branch/profile/${branch._id}`}>
+                          <button
+                            className="bx bx-info-circle btn btn-outline-primary icon-lg"
+                            style={{ margin: "5px" }}
+                          ></button>
+                        </Link>
+                        <Link to={`/profile/update/${branch._id}`}>
+                          <button
+                            className="btn btn-outline-warning"
+                            style={{ margin: "2px" }}>
+                            <i
+                            className="bx bx-pencil"
+                            style={{ fontSize: "1rem" }}
+                            ></i>
+                          </button>
+                            </Link>
+                        </td>
                         </tr>
                     ))}
                 </tbody>

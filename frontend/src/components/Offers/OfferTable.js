@@ -41,6 +41,11 @@ function OfferTable() {
   return (
     <div className="coupon-table-container" id='OfferTable'>
       <h2>Offer List</h2>
+      <Link to="/admin/offer/add">
+        <button className="btn btn-primary" style={{ marginBottom: '10px' }}>
+          Add Offer
+        </button>
+      </Link>
       <table>
         <thead>
           <tr>
@@ -55,27 +60,35 @@ function OfferTable() {
             <tr key={offer._id}>
               <td>{offer._id}</td>
               <td>{offer.offerID}</td>
+              <td>
               {/* Add table cells for other attributes */}
-              <td>
-                <Link to={"/offer/profile/" + offer.offerID}>
-                  View Offer
-                </Link>
-              </td>
-              <td>
-                <Link to={"/offer/profile/update/" + offer._id}>
-                  Edit Profile
-                </Link>
-              </td>
-              <td>
-                {/* Use onClick to trigger the delete action */}
-                <button onClick={() => handleDelete(offer.offerID)}>
-                  Delete Offer
-                </button>
-              </td>
+              <button
+                              className="bx bx-trash btn btn-outline-danger icon-lg"
+                              style={{ margin: "1px" }}
+                              onClick={() => handleDelete(offer.offerID)}
+                        ></button>
+                        <Link to={"/offer/profile/" + offer.offerID}>
+                          <button
+                            className="bx bx-info-circle btn btn-outline-primary icon-lg"
+                            style={{ margin: "5px" }}
+                          ></button>
+                        </Link>
+                        <Link to={"/offer/profile/update/" + offer._id}>
+                          <button
+                            className="btn btn-outline-warning"
+                            style={{ margin: "2px" }}>
+                            <i
+                            className="bx bx-pencil"
+                            style={{ fontSize: "1rem" }}
+                            ></i>
+                          </button>
+                            </Link>
+                        </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <button className="add-offers-button">Add Offers</button>
     </div>
   );
 }

@@ -1,43 +1,90 @@
-#OfferDetails .offer-details-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #f5f5f5;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    max-width: 400px; 
-    align-self: center;
-  }
+#OfferDetails.offer-details-container {
+  width: 40%;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 10px;
+  background: linear-gradient(to bottom, #b8afda, #4135e7); /* Gradient Background */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  height: 80vh;
+  animation: fadeIn 1s ease-in-out;
   
-  #OfferDetails .branch-details-container h2 {
-    color: #007bff;
-    font-size: 24px;
-    margin-bottom: 20px;
+}
+
+#OfferDetails.offer-details-container h2 {
+  margin-bottom: 20px;
+  color: #01080c;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+#OfferDetails.offer-details-container p {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #0c0101;
+  animation: fadeIn 1s ease-in-out;
+  text-align: right;
+}
+
+#OfferDetails.offer-details-container p:last-child {
+  margin-bottom: 0;
+}
+
+#OfferDetails.loading,
+#OfferDetails.error-message {
+  font-size: 24px;
+  margin-top: 20px;
+  color: #e74c3c;
+  animation: fadeInOut 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  
-  #OfferDetails .branch-details-container p {
-    margin: 10px 0;
-    font-size: 16px;
-    text-align: center;
+  100% {
+    opacity: 1;
   }
-  
-  #OfferDetails .branch-details-container p:nth-child(even) {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
   }
-  
-  #OfferDetails .branch-details-container p:first-child {
-    font-weight: bold;
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
-  
-  #OfferDetails .error-message {
-    color: red;
-    font-weight: bold;
-    margin-top: 20px;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
   }
-  
+  50% {
+    opacity: 1;
+  }
+}
+
+#OfferDetails button {
+  background: #e63a3a; /* Vibrant Green Button */
+  color: rgb(6, 5, 5);
+  border: none;
+  padding: 22px 50px; /* Adjusted Padding */
+  margin-top: 40px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 24px; /* Increased Font Size */
+  transition: background 0.3s, transform 0.2s;
+}
