@@ -4,11 +4,13 @@ import {BiEdit} from 'react-icons/bi';
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import { deleteProduct, getProducts } from '../features/product/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import CustomModal from '../components/CustomModal';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import {AiOutlineFilePdf} from 'react-icons/ai';
+
+
 
 const columns = [
     {
@@ -68,8 +70,15 @@ const columns = [
 
 
 const Productlist = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [productId, setproductId] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   const showModal = (e) => {
     setOpen(true);
     setproductId(e)
@@ -86,8 +95,10 @@ const Productlist = () => {
   useEffect(() =>{
     dispatch(getProducts());
   }, [dispatch]);
+
   const productState = useSelector((state) => state.product.products);
   const data1 =[];
+
   for(let i = 0; i< productState.length ; i++){
     data1.push({
         key: i + 1,
@@ -102,9 +113,9 @@ const Productlist = () => {
         description: productState[i].description,
         action: (
           <span className='d-flex'>
-            <Link className="fs-3 text-warning" to='/'>
-              <BiEdit />
-            </Link>
+            <button className="fs-3 text-warning bg-transparent border-0" onClick={() => navigate(`/admin/UpdateProduct/${productState[i]._id}`)} >
+            <BiEdit />
+            </button>
             <button className="ms-3 fs-3 text-danger bg-transparent border-0" onClick={()=>showModal(productState[i]._id)}>
               <RiDeleteBin5Fill />
             </button>
@@ -151,22 +162,39 @@ const Productlist = () => {
     doc.save('product_report.pdf');
   };
   
+  const filteredData = data1.filter(
+    (product) =>
+      product.productID.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.Title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      stripHtmlTags(product.description).toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
+      <h3 className="title">Products...</h3>
       <div className='d-flex row'>
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h3 className="title">Products...</h3>
-        <button className="bg-transparent border-0" onClick={generatePDF}>
-          <h6>Generate Report:</h6> <AiOutlineFilePdf style={{ height: '25px', width: '25px' }}/>
-        </button>
-      </div>
-      
-      </div>
-        
-        <div className='bg-white'>
-            <Table columns={columns} dataSource={data1} />
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <input
+              type='text'
+              placeholder='Search by ProductID or Title'
+              value={searchTerm}
+              onChange={handleSearch}
+              className='form-control'
+              style={{ width: '600px', margin: '10px 10px' }}
+            />
+          <button className="bg-transparent border-0" onClick={generatePDF}>
+          <h6 style={{ color: 'blue', margin: '0' }}>Generate Report:</h6> 
+              <AiOutlineFilePdf style={{ height: '25px', width: '25px', color: 'blue' }}/> 
+            
+          </button>
         </div>
-        <CustomModal hideModal={handleCancel} open={open} performAction={()=>{handleOk(productId)}} title="Are you sure you want to delete this product.?" />
+      </div>
+
+      <div className='bg-white'>
+        {/* Use filteredData instead of data1 here */}
+        <Table columns={columns} dataSource={filteredData} />
+      </div>
+      <CustomModal hideModal={handleCancel} open={open} performAction={() => handleOk(productId)} title='Are you sure you want to delete this product.?' />
     </div>
   )
 }

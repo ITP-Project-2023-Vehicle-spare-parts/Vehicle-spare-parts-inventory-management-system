@@ -99,7 +99,8 @@ import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
 import OrderDetails from "./components/OrderHistory";
 
-import StockReport from "./pages/stockReport"
+import StockReport from "./pages/stockReport";
+import Updatepduct from "./pages/Updateproduct";
 
 function App() {
   return (
@@ -226,8 +227,8 @@ function App() {
               <Route path="Add-color" element={<Addcolor />} />
               <Route path="Add-category" element={<Addcategory />} />
               <Route path="Add-brand" element={<Addbrand />} />
-              <Route path="Add-brand/:id" element={<Addbrand />} />
               <Route path="Add-product" element={<Addproduct />} />
+              <Route path="UpdateProduct/:id" element={<Updatepduct />} />
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport/>}/>
