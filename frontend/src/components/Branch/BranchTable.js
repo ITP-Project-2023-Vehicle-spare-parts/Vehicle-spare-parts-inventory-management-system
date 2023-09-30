@@ -44,6 +44,11 @@ function BranchTable() {
                Add Offer
               </button>
              </Link>
+             <Link to="/admin/assignBranch">
+              <button className="btn btn-primary" style={{ marginBottom: '10px' }}>
+               Assign Branch
+              </button>
+             </Link>
             <table>
                 <thead>
                     <tr>
