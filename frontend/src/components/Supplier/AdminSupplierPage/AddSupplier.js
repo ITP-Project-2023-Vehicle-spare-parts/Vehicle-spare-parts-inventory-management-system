@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import toast from "react-hot-toast";
-import SupplierSideNavigation from "../../SupplierSideNavigation";
 import { useNavigate } from "react-router-dom";
 
 export default function AddSupplier() {
@@ -43,9 +42,7 @@ if (!CompanyName.trim()) {
 // Validate Company Email
 if (!CompanyEmail.trim()) {
   errors.CompanyEmail = "Company Email is required";
-} else if (!/^\S+@\S+\.\S+$/.test(CompanyEmail)) {
-  errors.CompanyEmail = "Company Email is invalid";
-}
+} 
 
 // Validate Company Phone
 if (!CompanyPhone.trim()) {
@@ -210,8 +207,8 @@ if (!SystemPassword.trim()) {
 
   return (
     <div id="AddSupplier">
-      <SupplierSideNavigation />
-
+      
+<div className="flex-grow-1 p-4">
       <div className="home_content">
         <div className="text">
           <div className="text1">
@@ -545,7 +542,7 @@ if (!SystemPassword.trim()) {
         </div>
       </div>
     </div>
-    //   </div>
+     </div>
     // </div>
   );
 }
