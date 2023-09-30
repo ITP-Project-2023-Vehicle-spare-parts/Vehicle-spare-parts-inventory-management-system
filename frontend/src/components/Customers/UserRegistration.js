@@ -9,9 +9,9 @@ export default function UserRegistration() {
   const [lastname, setLName] = useState("");
   const [mobile, setmobile] = useState("");
   const [gender, setgender] = useState("");
-  const [address, setaddress] = useState("");
-  const [State, setState] = useState("");
+  const [street, setstreet] = useState("");
   const [City, setCity] = useState("");
+  const [State, setState] = useState("");
   const [PostalCode, setPostalCode] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -22,6 +22,31 @@ export default function UserRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+      // Mobile number format validation (10 digits)
+      if (mobile.length !== 10 || !/^\d+$/.test(mobile)) {
+        toast.error("Mobile number should be 10 digits");
+        return;
+      }
+  
+      // Password format validation (minimum 8 characters)
+      if (password.length < 8) {
+        toast.error("Password should be at least 8 characters");
+        return;
+      }
+  
+      // NIC value validation (between 10 to 12 numbers)
+      if (!/^\d{10,12}$/.test(nic)) {
+        toast.error("NIC should be between 10 to 12 numbers");
+        return;
+      }
+
+    // Email format validation using regex
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid email format");
+      return;
+    }
+
     try {
       const newUser = {
         firstname,
@@ -29,7 +54,7 @@ export default function UserRegistration() {
         mobile,
         nic,
         gender,
-        address,
+        street,
         State,
         City,
         PostalCode,
@@ -51,7 +76,7 @@ export default function UserRegistration() {
       setnic("");
       setmobile("");
       setgender("");
-      setaddress("");
+      setstreet("");
       setState("");
       setCity("");
       setPostalCode("");
@@ -110,7 +135,6 @@ export default function UserRegistration() {
                             <input
                               type="text"
                               name="firstname"
-                              placeholder="Enter First Name"
                               id="firstname"
                               value={firstname}
                               onChange={(e) => {
@@ -126,7 +150,7 @@ export default function UserRegistration() {
                               Last name
                             </label>
                             <input
-                             placeholder="Enter Last Name"
+                             
                              name="lastname"
                               type="text"
                               id="lastname"
@@ -235,14 +259,14 @@ export default function UserRegistration() {
 
                       <div className="form-outline mb-4">
                         <label className="form-label" for="form3Example8">
-                          address
+                          street
                         </label>
                         <input
                           type="text"
-                          id="address"
-                          value={address}
+                          id="street"
+                          value={street}
                           onChange={(e) => {
-                            setaddress(e.target.value);
+                            setstreet(e.target.value);
                           }}
                           className="form-control form-control-lg"
                         />
@@ -259,9 +283,9 @@ export default function UserRegistration() {
                             }}
                           >
                             <option value="1">State</option>
-                            <option value="2">Pitigala</option>
-                            <option value="3">thavalama</option>
-                            <option value="4">Gambola</option>
+                            <option value="2">southern</option>
+                            <option value="3">western</option>
+                            <option value="4">eastern</option>
                           </select>
                         </div>
                         <div className="col-md-6 mb-4">

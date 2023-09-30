@@ -1,0 +1,67 @@
+/* EditDeliveryPersonProfile.css */
+#EditDeliveryPerson .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+ #EditDeliveryPerson .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f5f5f5; /* Light gray background */
+  }
+  
+#EditDeliveryPerson  .card-header {
+    background-color: #007bff; /* Blue header */
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    padding: 20px 0;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+#EditDeliveryPerson  .form-group {
+    margin-bottom: 30px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333; /* Dark text for labels */
+    font-size: 18px;
+  }
+  
+#EditDeliveryPerson  .btn-primary {
+    background-color: #007bff; /* Blue button */
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+#EditDeliveryPerson  .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Custom color for form elements */
+ #EditDeliveryPerson .input-blue {
+    border: 2px solid #007bff; /* Blue border for inputs */
+    color: #333; /* Dark text color for inputs */
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+#EditDeliveryPerson  .select-blue {
+    border: 2px solid #007bff; /* Blue border for selects */
+    color: #333; /* Dark text color for selects */
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  /* Add custom styles for other form elements as needed */
+  

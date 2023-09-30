@@ -1,0 +1,82 @@
+/* OrderList.css */
+
+#OrderList {
+    margin-top: 20px;
+  }
+  
+  #OrderList .table-container {
+    overflow-x: auto;
+  }
+  
+  #OrderList table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #OrderList th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  #OrderList th {
+    background-color: #007bff;
+    color: #fff;
+    vertical-align: middle;
+  }
+  
+  #OrderList tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  #OrderList .action-btn {
+    padding: 8px 15px;
+    margin: 5px;
+    border: 1px solid #28a745;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #28a745;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  #OrderList .action-btn:hover {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  #OrderList .status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  #OrderList .success-status {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  #OrderList .pending-status {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  #OrderList .failed-status {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  #OrderList .delivered-status {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  #OrderList .cancelled-status {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  

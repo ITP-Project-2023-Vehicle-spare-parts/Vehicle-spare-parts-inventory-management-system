@@ -1,0 +1,43 @@
+/* TrackOrder.css */
+body {
+    margin: 0;
+  }
+  
+  #Track-Order .center-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  #Track-Order .search-container {
+    height: 50vh;
+    text-align: center;
+    margin: 100px, 100px;
+  }
+  
+  #Track-Order input {
+    padding: 10px; /* Adjust the padding to control the height */
+    font-size: 16px; /* Adjust the font size to control the text size */
+    width: 400px; /* Adjust the width to control the overall size */
+    border: 2px solid #5bc8f3;
+    border-radius: 4px;
+    margin-right: 8px;
+    margin-top: 200px;
+  }
+  
+  #Track-Order button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #Track-Order button:hover {
+    background-color: #0056b3;
+  }
+  

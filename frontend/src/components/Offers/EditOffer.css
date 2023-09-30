@@ -1,82 +1,75 @@
-#EditOffer .edit-offer-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #5349d9;
-  }
-  
-  #EditOffer h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  #EditOffer form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #EditOffer label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #0b0909; /* Label text color */
-  }
-  
-  #EditOffer input[type="text"],
-  #EditOffer input[type="number"],
-  select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  #EditOffer .error {
-    color: red;
-    margin-top: 5px;
-    text-align: center;
-  }
-  
-  #EditOffer button[type="submit"] {
-    background-color: #f50909;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    margin-top: 15px;
-  }
-  
-  #EditOffer button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Center the form within the container */
-  #EditOffer .container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Style the form fields as a grid */
-  #EditOffer .container form > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-  
-  /* Adjust label alignment for better aesthetics */
-  #EditOffer .container form label {
-    text-align: left;
-    line-height: 32px;
-  }
-  
-  /* Style error messages */
-  #EditOffer .error {
-    grid-column: span 2;
-  }
-  
+#EditOffer.edit-offer-container {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 10px;
+  background: linear-gradient(to bottom, #6b68c9, #0c0759); /* Gradient Background */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+#EditOffer.edit-offer-container h2 {
+  margin-bottom: 20px;
+  color: #01080c;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInUp 1s ease-in-out;;
+}
+
+#EditOffer.edit-offer-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#EditOffer.edit-offer-container div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#EditOffer.edit-offer-container label {
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #050404; /* Vibrant Yellow */
+  font-size: 18px; /* Increased Font Size */
+}
+
+#EditOffer.edit-offer-container input[type="text"],
+.edit-offer-container input[type="number"],
+.edit-offer-container input[type="date"] {
+  width: calc(70% - 10px);
+  padding: 18px; /* Adjusted Padding */
+  margin-bottom: 30px; /* Adjusted Margin */
+  border: 2px solid #ffcc29; /* Vibrant Yellow Border */
+  border-radius: 10px;
+  font-size: 16px;
+  color: #333333;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#EditOffer.edit-offer-container input[type="text"]:focus {
+  border-color: #ff3333; /* Vibrant Red on Focus */
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+}
+
+#EditOffer.edit-offer-container button[type="submit"] {
+  background: #cf0404;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#EditOffer.edit-offer-container button[type="submit"]:hover {
+  background: #348f9b;
+  transform: scale(1.05);
+}
