@@ -99,6 +99,8 @@ import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
 import OrderDetails from "./components/OrderHistory";
 
+import StockReport from "./pages/stockReport"
+
 function App() {
   return (
     <Provider store={store}>
@@ -227,6 +229,7 @@ function App() {
               <Route path="Add-product" element={<Addproduct />} />
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
+              <Route path="Stock-Report" element={<StockReport/>}/>
               <Route
                 path="Stock-interactivechart"
                 element={<InteractiveChartsPage />}

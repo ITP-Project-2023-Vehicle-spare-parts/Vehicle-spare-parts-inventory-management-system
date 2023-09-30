@@ -45,6 +45,7 @@ export default function Login() {
           Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
+          Navigate("/home");
         }
         console.log(email);
 
