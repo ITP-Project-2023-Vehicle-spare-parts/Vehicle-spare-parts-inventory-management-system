@@ -1,8 +1,10 @@
 // OrderDetails.js
 
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+//import { Link} from 'react-router-dom';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './OrderList.css'
 
 function OrderDetails({ navigateToDeliveryPersons }) {
   const [orderData, setOrderData] = useState([]);
@@ -29,35 +31,46 @@ function OrderDetails({ navigateToDeliveryPersons }) {
 
 
   return (
-    <div>
+<div id='OrderList'>
       <h2>Order Details</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer Name</th>
-            <th>Shipping Address</th>
-            <th>Order Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orderData.map((order) => (
-    
-            <tr key={order._id}>
-              
-              <td>{order._id}</td>
-              <td>{`${order.shippingInfo.firstName} ${order.shippingInfo.lastName}`}</td>
-              <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
-              <td>{order.orderStatus}</td>
-              
-              <Link to={"/order/"+order._id+  "/" +order.user}>
-                      View Details
-                    </Link>
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th className="text-center">Order ID</th>
+              <th>Customer Name</th>
+              <th>Shipping Address</th>
+              <th>Order Status</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {orderData.map((order) => (
+              <tr key={order._id}>
+                <td className="text-center">{order._id}</td>
+                <td>{`${order.shippingInfo.firstName} ${order.shippingInfo.lastName}`}</td>
+                <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
+                <td>
+  {order.isActive && (
+    <span className="success-badge" title="Active Process"></span>
+  )}
+  <span className={`status-badge ${order.orderStatus.toLowerCase()}-status`}>
+    {order.orderStatus}
+  </span>
+</td>
+<td>
+  <a
+    href={`/Admin/order/${order._id}/${order.user}`}
+    className="action-btn"
+  >
+    View Details
+  </a>
+</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
