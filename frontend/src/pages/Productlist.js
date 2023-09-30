@@ -6,6 +6,9 @@ import { deleteProduct, getProducts } from '../features/product/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import CustomModal from '../components/CustomModal';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import {AiOutlineFilePdf} from 'react-icons/ai';
 
 const columns = [
     {
@@ -66,7 +69,7 @@ const columns = [
 
 const Productlist = () => {
   const [open, setOpen] = useState(false);
-  const [productId, setproductId] = useState("")
+  const [productId, setproductId] = useState("");
   const showModal = (e) => {
     setOpen(true);
     setproductId(e)
@@ -109,9 +112,57 @@ const Productlist = () => {
         ),
     })
   }
+  const stripHtmlTags = (htmlString) => {
+    const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+    return doc.body.textContent || "";
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    const logoURL = '/images/CMLogo.png';
+    doc.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
+    
+    doc.setFont('helvetica');
+    doc.setFontSize(16);
+
+    doc.text('...Products Report...', 70, 20);
+  
+    const tableData = productState.map((product, index) => [
+      product.productID,
+      product.Title,
+      product.price,
+      product.discount,
+      product.category,
+      product.brand,
+      product.color,
+      stripHtmlTags(product.description),
+      product.tags,
+    ]);
+  
+    doc.autoTable({
+      head: [
+        ['ProductID', 'Title', 'Price in Rs.', 'Discount in %', 'Category', 'Brand', 'Color', 'Description', 'Tags'],
+      ],
+      body: tableData,
+      startY: 40,
+    });
+    
+    doc.save('product_report.pdf');
+  };
+  
   return (
     <div>
-        <h3 className='mb-4 title'>Products...</h3>
+      <div className='d-flex row'>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h3 className="title">Products...</h3>
+        <button className="bg-transparent border-0" onClick={generatePDF}>
+          <h6>Generate Report:</h6> <AiOutlineFilePdf style={{ height: '25px', width: '25px' }}/>
+        </button>
+      </div>
+      
+      </div>
+        
         <div className='bg-white'>
             <Table columns={columns} dataSource={data1} />
         </div>
