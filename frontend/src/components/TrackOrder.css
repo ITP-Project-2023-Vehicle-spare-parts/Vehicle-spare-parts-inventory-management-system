@@ -7,11 +7,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    
   }
   
   #Track-Order .search-container {
+    height: 50vh;
     text-align: center;
+    margin: 100px, 100px;
   }
   
   #Track-Order input {
@@ -21,6 +23,7 @@ body {
     border: 2px solid #5bc8f3;
     border-radius: 4px;
     margin-right: 8px;
+    margin-top: 200px;
   }
   
   #Track-Order button {
