@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import SupplierSideNavigation from "../SupplierSideNavigation";
+
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -151,7 +151,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div id="AddClient">
-      <SupplierSideNavigation />
+     
 
       <div className="home_content">
         <div className="text">

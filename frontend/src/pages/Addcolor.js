@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import { toast } from "react-toastify";
-import { createColor } from '../features/color/colorSlice';
+import { createColor, resetState } from '../features/color/colorSlice';
 
 let schema = yup.object().shape({
   title: yup.string().required("Color is required"),
@@ -22,7 +22,7 @@ const Addcolor = () => {
       toast.success("Color Added Successfullly!");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Color you entered already there..");
     }
   }, [isSuccess, isError, isLoading, createdColor]);
 
@@ -37,6 +37,7 @@ const Addcolor = () => {
       formik.resetForm();
       setTimeout(() => {
         navigate("/admin/color-list");
+        dispatch(resetState());
       }, 3000);
     },
   });
@@ -45,7 +46,7 @@ const Addcolor = () => {
         <h3 className='mb-4 title text-center'> Add Color</h3>
         <div>
             <form action='' onSubmit={formik.handleSubmit}>
-                <CustomInput type='color' id="color" label="Enter color" name="title" onCh={formik.handleChange("title")} onBl={formik.handleBlur("title")} val={formik.values.title}/>
+                <CustomInput type='text' id="color" label="Enter color" name="title" onCh={formik.handleChange("title")} onBl={formik.handleBlur("title")} val={formik.values.title}/>
                 <div className='error'>
                     {formik.touched.title && formik.errors.title}
                   </div>
