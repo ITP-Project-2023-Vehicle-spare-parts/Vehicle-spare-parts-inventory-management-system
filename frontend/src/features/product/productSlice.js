@@ -12,6 +12,29 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+
+export const getSingleProducts = createAsyncThunk(
+  "product/getAProduct",
+  async (id, thunkAPI) => {
+    try {
+      return await productService.getSingleProduct(id);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const addToWishlist = createAsyncThunk(
+  "product/wishlist",
+  async (ProductID, thunkAPI) => {
+    try {
+      return await productService.addToWishlist(ProductID);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const createProducts = createAsyncThunk(
   "product/create-products",
   async (productData, thunkAPI) => {
@@ -55,7 +78,7 @@ export const productSlice = createSlice({
         state.isSuccess = false;
         state.message = action.error;
         if (state.isError === true) {
-          toast.success("Products Loaded Unsuccessfully");
+          toast.error("Products Loaded Unsuccessfully");
       }
       })
       .addCase(createProducts.pending, (state) => {
@@ -66,18 +89,44 @@ export const productSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.createdProduct = action.payload;
-        if (state.isSuccess === true) {
-          toast.success("Products Added Successfully");
-      }
       })
       .addCase(createProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;
         state.message = action.error;
-        if (state.isError === true) {
-          toast.success("Products Adding Unsuccessfully");
-      }
+      })
+      .addCase(addToWishlist.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addToWishlist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.addToWishlist = action.payload;
+        state.message = "Product added to wishlist..!";
+      })
+      .addCase(addToWishlist.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
+      })
+      .addCase(getSingleProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getSingleProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.isSuccess = true;
+        state.Singledproduct = action.payload;
+        state.message = "Product fetched succefully...";
+      })
+      .addCase(getSingleProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+        state.message = action.error;
       })
       .addCase(resetState, () => initialState);
   },

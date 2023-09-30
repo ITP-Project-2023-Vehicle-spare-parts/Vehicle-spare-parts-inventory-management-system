@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useReactToPrint } from "react-to-print";
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import toast from "react-hot-toast";
 
 // import toast from "react-hot-toast";
 
@@ -23,6 +25,10 @@ export default function AllSupplier() {
         .then((res) => {
           console.log(res.data);
           setSupplier(res.data);
+          toast.success("Data Fetched Successfully!", {
+            duration: 3000, // 3 seconds
+            position: "top-center", // You can change the position if needed
+          });
         })
         .catch((err) => {
           alert(err.message);
@@ -63,11 +69,56 @@ export default function AllSupplier() {
     localStorage.setItem("userID", id);
   }
 
-  const genaratePDF = useReactToPrint({
-    content: () => conponentPDF.current,
-    documentTitle: "Supplier List",
-    onafterprint: () => alert("Data Saved In PDF"),
-  });
+  const generatePDF = () => {
+    const pdf = new jsPDF();
+    
+    // Add the logo
+    const logoURL = '/images/CMLogo.png';
+    pdf.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
+    
+    // Set font styles
+    pdf.setFont('helvetica');
+    pdf.setFontSize(16);
+  
+    // Add a title
+    pdf.text('Client Report - CMspare', 70, 20);
+  
+    // Create a table for client data
+    const tableData = Suppliers.map((dataobj, index) => {
+      return [
+        `${dataobj.SupplierfirstName} ${dataobj.SupplierLastName}`,
+        dataobj.SupplierCity,
+        dataobj.CompanyName,
+        dataobj.SupplierCity,
+        dataobj.SystemEmail,
+        dataobj.ProvidedBrand,
+      ];
+    });
+  
+    const tableHeaders = ['Supplier Name', 'Company Name', 'Address', 'System Email', 'Main Brand'];
+  
+    // Set the table style
+    pdf.setFontSize(12);
+    pdf.setTextColor(0, 0, 0); // Text color (black)
+    
+    // Define the column widths and row heights
+
+  
+    // Add the table
+    pdf.autoTable({
+      head: [tableHeaders],
+      body: tableData,
+      startY: 40, // Adjust the vertical position
+      margin: { horizontal: 10 },
+      columnStyles: { 0: { cellWidth: 50 } }, // Adjust the column width
+      bodyStyles: { valign: 'middle' }, // Vertical alignment for cell content
+      columnWidth: 'wrap',
+    });
+  
+    // Save or display the PDF
+    pdf.save('supplier_report.pdf'); // Save the PDF with a filename
+  };
+
 
   return (
     <div id="AllSupplier">
@@ -98,7 +149,7 @@ export default function AllSupplier() {
               <input type="checkbox" id="export-file" />
               <div class="export__file-options">
                 <label>Export As &nbsp; &#10140;</label>
-                <label for="export-file" id="toPDF" onClick={genaratePDF}>
+                <label for="export-file" id="toPDF" onClick={generatePDF}>
                   PDF <img src="/images/pdf.png" alt="" />
                 </label>
               </div>

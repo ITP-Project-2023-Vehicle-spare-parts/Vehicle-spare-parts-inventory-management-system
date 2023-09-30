@@ -51,6 +51,8 @@
   .stock-action-button {
     
     font-size: 14px;
+    margin-top: 20px;;
+    margin-top: 20px;;
    
     cursor: pointer;
     border: none;
@@ -111,5 +113,89 @@ body.Allstock {
   margin-left: 80px;
   margin-bottom: 6px;
 }
+
+
+.stockcontainer {
+  max-width: 700px;
+ 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.custom-input {
+  width: 600px; /* Adjust the width as needed */
+}
+
+.generate-pdf-button {
+  background-color: #710f3f; /* Blue color for the button */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add some border radius for a rounded look */
+  cursor: pointer; /* Change cursor on hover */
+  margin-top: 40px;
+  margin-left: 1460px;
+  margin-bottom: 40px;
+}
+
+.generate-pdf-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+.stock-search-bar{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+ 
+}
+
+.stock-search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 6px;
+  font-size: 16px;
+  
+}
+
+.stock-search-bar input::placeholder {
+  color: #999;
+}
+
+.stock-search-bar button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.stock-search-bar button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
 
 

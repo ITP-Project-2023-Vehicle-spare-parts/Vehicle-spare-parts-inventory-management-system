@@ -1,5 +1,7 @@
 const Stock = require('../model/stockModel');
 const Product = require('../model/productModel');
+const DeletedStock =require('../model/deletedStockModel');
+
 
  const addStock = async (req, res) => {
     try{
@@ -117,20 +119,22 @@ const getStockByID= (async (req, res) => {
   }
 });
 
-// Delete a stock record and move it to DeletedStock
+//delete functionality
+
+
 const deleteStock = async (req, res) => {
   const { id } = req.params;
-  
- 
+  console.log(id);
 
   try {
     const stock = await Stock.findById(id);
     if (!stock) {
       return res.status(404).json({ error: 'Stock not found' });
+      console.log("not found");
     }
 
-     // Get the product ID from the stock instance
-     const productId = stock.product;
+    // Get the product ID from the stock instance
+    const productId = stock.product;
 
     // Create a new DeletedStock record
     const deletedStock = new DeletedStock({
@@ -145,14 +149,17 @@ const deleteStock = async (req, res) => {
 
     // Save the deleted stock record
     await deletedStock.save();
-// Delete the original stock record
-await Stock.deleteOne({ _id: id }); // This line deletes the stock record
+
+    // Delete the original stock record
+    await Stock.deleteOne({ _id: id });
 
     res.status(200).json({ status: 'Stock deleted and moved to DeletedStock' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 // New function to get low stock products
 const getLowStockProducts = async (req, res) => {
@@ -178,6 +185,23 @@ const getLowStockProducts = async (req, res) => {
 };
 
 
+// Add a new route to search for stocks
+const searchStock = async (req, res) => {
+  try {
+    const { query } = req.query; // Get the search query from the URL query parameters
+
+    // Perform a case-insensitive search for stocks whose productName matches the provided query
+    const searchResults = await Stock.find({ productName: { $regex: query, $options: 'i' } });
+
+    res.status(200).json({ results: searchResults });
+  } catch (error) {
+    console.error('Error searching stocks:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 
  
 
@@ -198,4 +222,5 @@ const getLowStockProducts = async (req, res) => {
         getStockByID,
         deleteStock,
         getLowStockProducts,
+        searchStock,
     };

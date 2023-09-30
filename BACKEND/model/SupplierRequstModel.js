@@ -4,19 +4,30 @@ const Schema =  mongoose.Schema;
 
 const supplierReqSchema = new Schema({
 
-    SupplierName : {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Supplier",   
+    supplierId : {
+        type:String,
+          
     },
-    SupplierEmail : {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Supplier", 
+    suppliername:String,
+    
+    stockQuantity: Number,
+    reorderpoint: Number,
+    productname :String,
+    neededStockQuantity : { 
+        type:Number,
     },
-    dateAdded: {
-        type: Date,
-       default:Date.now,
-      },
-
+    yearAdded: {
+        type: Number,
+        default: new Date().getFullYear(),
+    },
+    monthAdded: {
+        type: Number,
+        default: new Date().getMonth() + 1, // Adding 1 because months are zero-indexed
+    },
+    dayAdded: {
+        type: Number,
+        default: new Date().getDate(),
+    },
 
 
 

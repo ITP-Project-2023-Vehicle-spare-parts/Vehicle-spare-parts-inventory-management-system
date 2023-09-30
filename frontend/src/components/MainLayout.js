@@ -84,7 +84,7 @@ const MainLayout = () => {
                 {
                   key: 'Add-category',
                   icon: <BiSolidBox className='fs-4'/>,
-                  label: 'Category',
+                  label: 'Add Category',
                 },
                 {
                   key: 'category-list',
@@ -94,7 +94,7 @@ const MainLayout = () => {
                 {
                   key: 'Add-color',
                   icon: <BiSolidBox className='fs-4'/>,
-                  label: 'Color',
+                  label: 'Add Color',
                 },
                 {
                   key: 'color-list',
@@ -131,25 +131,31 @@ const MainLayout = () => {
               label: 'Stock',
               children : [
                 {
-                  key: 'supplier',
+                  key: 'Add-stock',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'Add Stock',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Fetch-stock',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Stock',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Stock-interactivechart',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'Stock Level',
                 },
                 {
-                  key: 'supplier',
+                  key: 'Stock-Low',
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Low Stock',
-                }
+                },
+                {
+                  key: 'Stock-Report',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Stock Report',
+                },
+                
               ]
             },
             {

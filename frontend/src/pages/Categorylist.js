@@ -1,6 +1,5 @@
 import { React, useEffect } from 'react';
 import {Table} from "antd";
-import {BiEdit} from 'react-icons/bi';
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import {getCategories} from '../features/pcategory/pcategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,9 +37,6 @@ const Categorylist = () => {
         title: pCategoryState[i].title,
         action: (
           <span>
-            <Link className="fs-3 text-warning" to='/'>
-              <BiEdit />
-            </Link>
             <Link className="ms-3 fs-3 text-danger" to='/'>
               <RiDeleteBin5Fill />
             </Link>

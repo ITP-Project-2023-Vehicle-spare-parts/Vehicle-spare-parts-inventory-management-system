@@ -8,12 +8,12 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function UserSupplierProfile() {
-  console.log(localStorage.getItem("userEmail"));
 
-  const email = localStorage.getItem("userEmail");
+  const email = sessionStorage.getItem("userEmail");
+  
   const [supplier, setSupplier] = useState("");
 
-  console.log(email);
+  
   console.log(supplier);
 
   useEffect(() => {
@@ -24,8 +24,8 @@ export default function UserSupplierProfile() {
           console.log(res.data.supplier);
           setSupplier(res.data.supplier);
           toast.success("Data Fetched!", {
-            duration: 3000, // 3 seconds
-            position: "top-center", // You can change the position if needed
+            duration: 5000, // 3 seconds
+            position: "top-right", // You can change the position if needed
           });
         })
         .catch((err) => {
@@ -35,10 +35,10 @@ export default function UserSupplierProfile() {
     fetchSupplier();
   }, [email]);
 
-  function UpdateSupplier(id) {
-    console.log(id);
+  function UpdateSupplier(userId) {
+    console.log(userId);
 
-    localStorage.setItem("userId ", id);
+    localStorage.setItem("userId", userId);
   }
 
   return (

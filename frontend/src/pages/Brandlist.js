@@ -1,6 +1,5 @@
 import { React, useEffect } from 'react';
 import {Table} from "antd";
-import {BiEdit} from 'react-icons/bi';
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import { getBrands } from '../features/brand/brandSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,9 +38,6 @@ const Brandlist = () => {
         title: brandState[i].title,
         action: (
           <span>
-            <Link className="fs-3 text-warning" to='/'>
-              <BiEdit />
-            </Link>
             <Link className="ms-3 fs-3 text-danger" to='/'>
               <RiDeleteBin5Fill />
             </Link>

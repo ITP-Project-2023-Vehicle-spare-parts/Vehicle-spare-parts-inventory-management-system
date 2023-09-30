@@ -13,7 +13,6 @@ import SupplierProfile from "./components/Supplier/AdminSupplierPage/SupplierPro
 import Login from "./components/Customers/Login";
 import AllSupplier from "./components/Supplier/AdminSupplierPage/AllSupplier";
 import AllClient from "./components/Client/AllClients";
-import FetchStock from "./components/stockComponents/fetchStock";
 import UpdateProfileAdmin from "./components/Supplier/AdminSupplierPage/UpdateProfileAdmin";
 import SupplierHome from "./components/Supplier/UserSupplierPage/SupplierHome";
 import SupplierAnalyse from "./components/Supplier/UserSupplierPage/SupplierAnalyse";
@@ -33,8 +32,13 @@ import Order from "./pages/Order";
 
 import CategoryPieChart from "./components/stockComponents/pieChart";
 import CategoryBarGraph from "./components/stockComponents/barGraph";
-import LowStock from "./components/stockComponents/lowStock";
-import UpdateStock from "./components/stockComponents/updateStock";
+import UpdateStock from "./pages/updateStock";
+import InteractiveChartsPage from "./pages/interactiveChart";
+import AddStock from "./pages/addStock";
+import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
+import LowStock from "./pages/lowStock";
+import FetchStock from "./pages/fetchStock";
+
 
 import AddClaim from "./components/ClaimComponents/AddClaim";
 import FetchClaim from "./components/ClaimComponents/FetchClaim";
@@ -64,11 +68,8 @@ import UserRegistration from "./components/Customers/UserRegistration";
 import Forgotpassword from "./components/Customers/Forgotpassword";
 import Resetpassword from "./components/Customers/Resetpassword";
 
-import InteractiveChartsPage from "./components/stockComponents/interactiveChart";
-import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
-import AddStock from "./components/stockComponents/addStock";
-
 import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
+import ShipmentReport from "./components/Supplier/UserSupplierPage/ShipmentReport";
 
 import Colorlist from "./pages/Colorlist";
 import Categorylist from "./pages/Categorylist";
@@ -115,7 +116,6 @@ function App() {
             {/* Admin Routes */}
             <Route path="/Admin/sup/add" element={<AddSupplier />} />
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
-            <Route path="/Admin/stock" element={<FetchStock />} />
             <Route path="/Admin/client/add" element={<AddClient />} />
             <Route
               path="/Admin/Supplier/Profile"
@@ -146,7 +146,6 @@ function App() {
             <Route path="/admin/updatestock" element={<UpdateStock />} />
 
             <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
-            <Route path="/admin/lowstock" element={<LowStock />} />
             <Route path="/admin/updatestock/:id" element={<UpdateStock />} />
 
             <Route path="/" element={<AllClaims />} />
@@ -187,7 +186,7 @@ function App() {
               element={<InteractiveChartsPage />}
             />
             <Route path="/admin/lowstockGraph" element={<LowStockBarGraph/>}/>
-            <Route path="/admin/addstock" element={<AddStock/>}/>
+           
 
             <Route path="/admin/comparisiongraph" element={< ComparisionBarGraph/>} />
 
@@ -202,6 +201,7 @@ function App() {
             <Route path="/supplier/analyse" element={<SupplierAnalyse />} />
             <Route path="/supplier/profile" element={<UserSupplierProfile />} />
             <Route path="/supplier/profile/update" element={<UserSupplierUpdateProfile />} />
+            <Route path="/supplier/order" element={<ShipmentReport />} />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
@@ -217,6 +217,13 @@ function App() {
               <Route path="Add-category" element={<Addcategory /> }/>
               <Route path="Add-brand" element={<Addbrand />} />
               <Route path="Add-product" element={<Addproduct />} />
+              <Route path="Add-stock" element={<AddStock/>}/>
+              <Route path="Fetch-stock" element={<FetchStock />} />
+              <Route path="Stock-interactivechart" element={<InteractiveChartsPage />} />
+              <Route path="Stock-Low" element={<LowStock />} />
+
+
+
             </Route>
 
             <Route path="/home" element={<Layout />}>

@@ -1,0 +1,8 @@
+#Allstock .custom-toast-container {
+    background-color: #ff000078; /* Change this to your desired background color */
+    color: white; /* Text color */
+    border: 2px solid #ff0000; /* Border color */
+    border-radius: 8px; /* Border radius */
+    padding: 16px; /* Padding */
+    box-shadow: 0 0.5rem 4px rgba(200, 55, 55, 0.2); /* Optional box shadow */
+  }
