@@ -1,10 +1,11 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import {Table} from "antd";
 import {BiEdit} from 'react-icons/bi';
 import {RiDeleteBin5Fill} from 'react-icons/ri';
-import { getProducts } from '../features/product/productSlice';
+import { deleteProduct, getProducts } from '../features/product/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
+import CustomModal from '../components/CustomModal';
 
 const columns = [
     {
@@ -51,6 +52,11 @@ const columns = [
       render: (text) => <div dangerouslySetInnerHTML={{ __html: text }} />,
     }, 
     {
+      title: 'Tags',
+      dataIndex: 'tags',
+      align: 'left',
+    }, 
+    {
       title: 'Action',
       dataIndex: 'action',
       align: 'left'
@@ -59,6 +65,20 @@ const columns = [
 
 
 const Productlist = () => {
+  const [open, setOpen] = useState(false);
+  const [productId, setproductId] = useState("")
+  const showModal = (e) => {
+    setOpen(true);
+    setproductId(e)
+  };
+  const handleOk = (e) => {
+    dispatch(deleteProduct(e));
+    setOpen(false);
+    setTimeout(()=>{ dispatch(getProducts()) }, 100)
+  };
+  const handleCancel = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() =>{
     dispatch(getProducts());
@@ -75,15 +95,16 @@ const Productlist = () => {
         category: productState[i].category,
         brand: productState[i].brand,
         color: productState[i].color,
+        tags: productState[i].tags,
         description: productState[i].description,
         action: (
           <span className='d-flex'>
             <Link className="fs-3 text-warning" to='/'>
               <BiEdit />
             </Link>
-            <Link className="ms-3 fs-3 text-danger" to='/'>
+            <button className="ms-3 fs-3 text-danger bg-transparent border-0" onClick={()=>showModal(productState[i]._id)}>
               <RiDeleteBin5Fill />
-            </Link>
+            </button>
           </span>
         ),
     })
@@ -94,6 +115,7 @@ const Productlist = () => {
         <div className='bg-white'>
             <Table columns={columns} dataSource={data1} />
         </div>
+        <CustomModal hideModal={handleCancel} open={open} performAction={()=>{handleOk(productId)}} title="Are you sure you want to delete this product.?" />
     </div>
   )
 }

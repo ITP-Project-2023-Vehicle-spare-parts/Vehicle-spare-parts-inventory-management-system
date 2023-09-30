@@ -226,6 +226,7 @@ function App() {
               <Route path="Add-color" element={<Addcolor />} />
               <Route path="Add-category" element={<Addcategory />} />
               <Route path="Add-brand" element={<Addbrand />} />
+              <Route path="Add-brand/:id" element={<Addbrand />} />
               <Route path="Add-product" element={<Addproduct />} />
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
