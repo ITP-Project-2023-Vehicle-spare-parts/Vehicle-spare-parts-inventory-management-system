@@ -40,6 +40,11 @@ function CouponTable() {
   return (
     <div className="coupon-table-container" id='CouponTable'>
       <h2>Coupon List</h2>
+      <Link to="/admin/coupon/add">
+        <button className="btn btn-primary" style={{ marginBottom: '10px' }}>
+          Add Coupon
+        </button>
+      </Link>
       <table>
         <thead>
           <tr>
@@ -53,17 +58,28 @@ function CouponTable() {
             <tr key={coupon._id}>
               <td>{coupon.code}</td>
               <td>{coupon.description}</td>
-              <td className="actions">
-                <Link to={`/admin/coupon/profiles/${coupon._id}`}>
-                  View Coupon
-                </Link>
-                <Link to={`/admin/coupon/profile/update/${coupon._id}`}>
-                  Edit Coupon
-                </Link>
-                {/* Use onClick to trigger the delete action */}
-                <button onClick={() => handleDelete(coupon._id)}>
-                  Delete Coupon
-                </button>
+              <td>
+              <button
+                              className="bx bx-trash btn btn-outline-danger icon-lg"
+                              style={{ margin: "5px" }}
+                              onClick={() => handleDelete(coupon._id)}
+                        ></button>
+                        <Link to={`/admin/coupon/profiles/${coupon._id}`}>
+                          <button
+                            className="bx bx-info-circle btn btn-outline-primary icon-lg"
+                            style={{ margin: "5px" }}
+                          ></button>
+                        </Link>
+                        <Link to={`/admin/coupon/profile/update/${coupon._id}`}>
+                          <button
+                            className="btn btn-outline-warning"
+                            style={{ margin: "5px" }}>
+                            <i
+                            className="bx bx-pencil"
+                            style={{ fontSize: "1rem" }}
+                            ></i>
+                          </button>
+                            </Link>
               </td>
             </tr>
           ))}

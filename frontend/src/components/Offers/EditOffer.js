@@ -11,16 +11,9 @@ function EditOffer() {
     offerID: '',
     rate: '',
     description: '',
-    startDate: {
-      year: '',
-      month: '',
-      day: '',
-    },
-    endDate: {
-      year: '',
-      month: '',
-      day: '',
-    },
+    startDate: '',
+    endDate: '',
+    
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -56,16 +49,6 @@ function EditOffer() {
     }));
   };
 
-  const handleDateChange = (dateType, e) => {
-    const { name, value } = e.target;
-    setOffer({
-      ...offer,
-      [dateType]: {
-        ...offer[dateType],
-        [name]: value,
-      },
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,86 +109,26 @@ function EditOffer() {
           />
         </div>
         <div>
-          <label>Start Date:</label>
-          <div>
-            <select
-              name="year"
-              value={offer.startDate.year}
-              onChange={(e) => handleDateChange('startDate', e)}
-            >
-              <option value="">Year</option>
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i} value={new Date().getFullYear() - i}>
-                  {new Date().getFullYear() - i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={offer.startDate.month}
-              onChange={(e) => handleDateChange('startDate', e)}
-            >
-              <option value="">Month</option>
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={offer.startDate.day}
-              onChange={(e) => handleDateChange('startDate', e)}
-            >
-              <option value="">Day</option>
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </div>
+        <label htmlFor="startDate">Start Date:</label>
+          <input
+            type="date"
+            id="startDate"
+            name="startDate"
+            value={offer.startDate}
+            onChange={handleInputChange}
+            required
+            />
         </div>
         <div>
-          <label>End Date:</label>
-          <div>
-            <select
-              name="year"
-              value={offer.endDate.year}
-              onChange={(e) => handleDateChange('endDate', e)}
-            >
-              <option value="">Year</option>
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i} value={new Date().getFullYear() - i}>
-                  {new Date().getFullYear() - i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={offer.endDate.month}
-              onChange={(e) => handleDateChange('endDate', e)}
-            >
-              <option value="">Month</option>
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={offer.endDate.day}
-              onChange={(e) => handleDateChange('endDate', e)}
-            >
-              <option value="">Day</option>
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </div>
+        <label htmlFor="endDate">End Date:</label>
+          <input
+            type="date"
+            id="endDate"
+            name="endDate"
+            value={offer.endDate}
+            onChange={handleInputChange}
+            required
+            />
         </div>
         <button type="submit">Update</button>
       </form>
