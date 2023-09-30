@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import {useFormik} from "formik";
 import { toast } from "react-toastify";
-import {createCategory} from '../features/pcategory/pcategorySlice';
+import {createCategory, resetState} from '../features/pcategory/pcategorySlice';
 
 let schema = yup.object().shape({
   title: yup.string().required("Category name is required"),
@@ -22,7 +22,7 @@ const Addcategory = () => {
       toast.success("Category Added Successfullly!");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Category is already there..");
     }
   }, [isSuccess, isError, isLoading, createdCategory]);
 
@@ -37,7 +37,7 @@ const Addcategory = () => {
       formik.resetForm();
       setTimeout(() => {
         navigate("/admin/category-list");
-        //dispatch(resetState());
+        dispatch(resetState());
       }, 3000);
     },
   });

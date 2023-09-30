@@ -49,7 +49,7 @@ const Addproduct = () => {
       toast.success("Product Added Successfullly!");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Product you entered already there.");
     }
   }, [isSuccess, isError, isLoading, createdProduct]);
 
