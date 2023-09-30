@@ -3,9 +3,9 @@ const { createColor, updateColor, deleteColor, getAColor, getAllColor } = requir
 const router = express.Router();
 const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
 
-router.post("/addColor/",authMiddleware,isAdmin,createColor);
-router.put("/updateColor/:id",authMiddleware,isAdmin,updateColor);
-router.delete("/deletColor/:id",authMiddleware,isAdmin, deleteColor);
+router.post("/addColor/",createColor);
+router.put("/updateColor/:id",updateColor);
+router.delete("/deletColor/:id", deleteColor);
 router.get("/getaColor/:id", getAColor);
 router.get("/getAllColor", getAllColor);
 

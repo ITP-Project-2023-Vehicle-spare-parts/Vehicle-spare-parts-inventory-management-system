@@ -28,18 +28,25 @@ export default function Login() {
     axios
       .post("http://localhost:8000/user/login", validate)
       .then((res) => {
-        console.log(res.data.role);
+        console.log(res.data)
+        const ID = res.data;
+        localStorage.setItem("userID",ID)
 
         if (res.data.role === "admin") {
           console.log(res.data.role);
           Navigate("/Admin/client/add");
         } else if (res.data.role === "supplier") {
-          console.log(res.data.role);
+          console.log(res.data.email);
+          const email = res.data.email;
+        
+
+          sessionStorage.setItem("userEmail", email);
+
           Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
-          
         }
+        console.log(email);
 
         // alert("Successfully Login!");
 
@@ -55,9 +62,13 @@ export default function Login() {
 
   return (
     <div>
-      <body id="login"
-        style={{display:"flex",height:" 100vh",
-          background: "linear-gradient(180deg, #4D6DE3 0%, #C7EEFF 95.83%)"}}
+      <body
+        id="login"
+        style={{
+          display: "flex",
+          height: " 100vh",
+          background: "linear-gradient(180deg, #4D6DE3 0%, #C7EEFF 95.83%)",
+        }}
       >
         <MDBContainer className="my-5">
           <MDBCard>
@@ -136,9 +147,12 @@ export default function Login() {
                       style={{ color: "#393f81" }}
                     >
                       Don't have an account?{" "}
-                     <Link to="/register"> <a href="#!" style={{ color: "#393f81" }}>
-                        Register here
-                      </a> </Link>
+                      <Link to="/register">
+                        {" "}
+                        <a href="#!" style={{ color: "#393f81" }}>
+                          Register here
+                        </a>{" "}
+                      </Link>
                     </p>
 
                     <div className="">

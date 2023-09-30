@@ -36,7 +36,7 @@ const OrderReport = ({ orders, status, totalIncome, totalProducts }) => {
 
   return (
     <div>
-      
+      <button onClick={generatePDF}></button>
     </div>
   );
 };
