@@ -1,5 +1,16 @@
 const Warrenty = require("../model/warrentyModel");
 
+const getExistingBillNos = async (req, res) => {
+    try {
+        // Fetch all unique bill numbers from the database
+        const uniqueBillNos = await Warrenty.distinct("billno");
+
+        res.status(200).json(uniqueBillNos);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ status: "Error fetching existing bill numbers", error: err.message });
+    }
+};
 
 
 const addclaim = async (req, res) => {
@@ -100,4 +111,5 @@ module.exports = {
     updatewarrenty,
     deleteClaim,
     getClaimById,
+    getExistingBillNos,
 };
