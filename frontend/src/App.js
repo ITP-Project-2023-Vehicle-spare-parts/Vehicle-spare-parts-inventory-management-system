@@ -103,6 +103,7 @@ import OrderHistoryTable from "./components/OrderHistryTable";
 
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
+import AdminCustomerList from "./components/Customers/AdminCustomerList";
 
 
 
@@ -233,6 +234,8 @@ function App() {
               <Route path="offer/profile/update/:id" element={<EditOffer />} />
               <Route path="assignBranch" element={<AssignBranch />} />
               <Route path="allclaim" element={<AllClaims />} />
+              <Route path="user/customerlist" element={<AdminCustomerList />} /> 
+
               <Route
                 path="Stock-interactivechart"
                 element={<InteractiveChartsPage />}
@@ -267,6 +270,14 @@ function App() {
 
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/order-details/:orderId" element={<TrackOrderDetails />}/>
+
+            
+            
+            <Route path="user/profile" element={<Layout />}>
+             <Route index element={<UserProfile />} />
+             <Route path="update" element={<CustomerProfileUpdate />} />
+    </Route>
+            
 
           </Routes>
         </div>
