@@ -71,12 +71,12 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to="/"
+                    to="/user/profile"
                     className="d-flex align-items-center gap-10 text-white"
                   >
                     <img src="/images/user.svg" alt="user" />
                     <p className="mb-0">
-                      Log in <br /> My Account
+                      My Account
                     </p>
                   </Link>
                 </div>

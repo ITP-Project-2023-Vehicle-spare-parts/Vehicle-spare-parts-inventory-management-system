@@ -6,8 +6,8 @@ import {
 import { Layout, Menu, Button, theme } from 'antd';
 
 
-import {AiOutlineDashboard, AiOutlineStock, AiOutlineShoppingCart, AiOutlineBranches, AiOutlineLogout} from "react-icons/ai";
-import {BiUserCircle, BiSolidBox, BiSolidUserDetail, BiSolidOffer} from "react-icons/bi";
+import { AiOutlineShoppingCart, AiOutlineLogout} from "react-icons/ai";
+import {BiUserCircle, BiSolidOffer} from "react-icons/bi";
 import {TbTruckDelivery} from "react-icons/tb";
 import {BsCardChecklist} from "react-icons/bs";
 import {MdOutlineHomeRepairService} from "react-icons/md";

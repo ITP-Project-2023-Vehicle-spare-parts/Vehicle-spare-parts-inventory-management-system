@@ -26,6 +26,9 @@ const {
   updatePassword,
   getMyOrders,
   addToUserCart,
+
+  getUserProfile,
+
 } = require("../controller/UserController");
 
 
@@ -54,12 +57,13 @@ router.get("/logout", logout);
 router.get("/cart", authMiddleware, getUserCart);
 router.get("/getMonthWiseOrderIncome", getMonthWiseOrderIncome);
 router.get("/getyearlyorders", getYearlyTotalOrders);
-router.get("/:id", authMiddleware, isAdmin, getaUser);
+router.get("/:id", getaUser);
+router.put("/profile",authMiddleware, getUserProfile);
 router.delete("/delete-product-cart/:cartItemId", authMiddleware, removeProductFromCart);
 router.put("/update-product-cart/:cartItemId/:newQuantity", authMiddleware, updateProductQuantityInCart);
 router.delete("/empty-cart", authMiddleware, emptyCart);
 router.delete("/:id", deleteaUser);
-router.put("/edit-user", authMiddleware, updatedUser);
+router.put("/edit-user/:id", updatedUser);
 router.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
 router.post("/cart", authMiddleware, addToUserCart);
