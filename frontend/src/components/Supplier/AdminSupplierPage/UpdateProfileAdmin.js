@@ -70,7 +70,7 @@ export default function UpdateProfileAdmin() {
           showConfirmButton: false,
           timer: 150
         })
-        Navigate("/Admin/Supplier/Profile")
+        Navigate("/Admin/Sup/Profile/:id")
         // You can add additional logic here, such as redirecting to another page
       })
       .catch((err) => {
