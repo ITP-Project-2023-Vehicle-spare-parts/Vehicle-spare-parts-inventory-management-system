@@ -121,7 +121,7 @@ export default function AllClient() {
       <body className="AllClient">
         <main class="table">
           <section class="table__header">
-            <h1>Client's Details</h1>
+          <Link to="/admin" style={{textDecoration:"none" ,backgroundColor:"transparent !important" }}><h1 style={{backgroundColor:"transparent !important"}}>Client's Details...</h1> </Link> 
             <div class="input-group">
               <input
                 type="search"

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+
 function UpdateClaim() {
     const { billno, id } = useParams(); // Use billno for fetching details and id for updating
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ function UpdateClaim() {
                 timer: 1500
               })
               
-            navigate('/'); // Navigate back to the list of all claims or any desired page
+            navigate('/home/get/:billno'); // Navigate back to the list of all claims or any desired page
         } catch (error) {
             console.error('Error updating claim details:', error);
         }
@@ -96,7 +97,7 @@ function UpdateClaim() {
                         id="billno"
                         name="billno"
                         value={claimDetails.billno}
-                        onChange={handleChange}
+                        disabled
                     />
                 </div>
 
@@ -171,7 +172,7 @@ function UpdateClaim() {
 
 
 
-
+                
 
                 {/* Add similar input fields for other claim details */}
                 <button type="button" className="btn btn-primary" onClick={handleUpdate}>

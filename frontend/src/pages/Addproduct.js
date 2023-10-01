@@ -10,9 +10,9 @@ import {getCategories} from '../features/pcategory/pcategorySlice';
 import {getColors} from '../features/color/colorSlice';
 import Dropzone from 'react-dropzone';
 import { delImg, uploadImg } from '../features/upload/uploadSlice';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createProducts, getSingleProducts, resetState } from "../features/product/productSlice";
+import { createProducts, resetState } from "../features/product/productSlice";
 
 let schema = yup.object().shape({
   productID: yup.string().required("productID is required"),
@@ -29,8 +29,6 @@ let schema = yup.object().shape({
 const Addproduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const getProductID = location.pathname.split("/")[3];
   const [images, setImages] = useState([]);
   console.log(images,setImages)
   useEffect(()=>{
@@ -44,14 +42,6 @@ const Addproduct = () => {
   const imgState = useSelector((state) => state.upload.images);
   const newProduct = useSelector((state) => state.product);
   const { isSuccess, isError, isLoading, createdProduct } = newProduct;
-  
-  useEffect(()=>{
-    if(getProductID !== undefined){
-      dispatch(getSingleProducts(getProductID))
-    }else{
-      dispatch(resetState());
-    }
-  },[dispatch, getProductID]);
 
   useEffect(() => {
     if (isSuccess && createdProduct) {
@@ -116,7 +106,7 @@ const Addproduct = () => {
     console.log(desc)
   return (
     <div>
-        <h3 className='mb-4 title text text-center'> {getProductID !== undefined?"Edit " : "Add "} Product...</h3>
+        <h3 className='mb-4 title text text-center'> Add Product...</h3>
         <div>
             <form onSubmit={formik.handleSubmit}>
                 <CustomInput type="text" label="Enter Product ID " name="productID" onCh={formik.handleChange("productID")} onBl={formik.handleBlur("productID")} val={formik.values.productID} />
@@ -199,7 +189,7 @@ const Addproduct = () => {
                   })};
                   
                 </div>
-            <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit">{getProductID !== undefined?"Edit" : "Add"} -Product</button>
+            <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Add-Product</button>
             </form>
         </div>
     </div>

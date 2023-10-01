@@ -31,7 +31,7 @@ const FetchClaim = () => {
     const handleUpdateClick = () => {
         if (claimDetails) {
             if (claimDetails.status === 'Under Review' || !claimDetails.status) {
-                navigate(`/update/${claimDetails._id}/${billno}`);
+                navigate(`/home/update/${claimDetails._id}/${billno}`);
             } else {
                 Swal.fire({
                     position: 'top-center',
@@ -49,7 +49,7 @@ const FetchClaim = () => {
     const handleDeleteClick = () => {
         if (claimDetails) {
             if (claimDetails.status === 'Under Review' || !claimDetails.status) {
-                navigate(`/delete/${claimDetails._id}/${billno}`);
+                navigate(`/home/delete/${claimDetails._id}/${billno}`);
             } else {
                 Swal.fire({
                     position: 'top-center',
@@ -79,7 +79,7 @@ const FetchClaim = () => {
               <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Your claim details </h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB",paddingBottom:"20px"}}>
+      <div className="container shadow-lg p-5 mb-5  rounded" style={{background:"#87CEEB"}}>
 
         
             <input
@@ -94,7 +94,7 @@ const FetchClaim = () => {
             {error && <p>Error: {error}</p>}
 
             {claimDetails && (
-                <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#87CEEB"}}>
+                <div className="container shadow-lg p-5 mb-5  rounded" style={{ background: "#87CEEB"}}>
                     <div>
                         <h3>Warranty Claim Details</h3>
 

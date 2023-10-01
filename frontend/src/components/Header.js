@@ -134,6 +134,9 @@ const Header = () => {
                       <NavLink to="/track-order" className="text-white">
                         Track Order
                       </NavLink>
+                      <NavLink to="/home/addclaim" className="text-white">
+                        Service
+                      </NavLink>
                     </div>
                   </div>
                 </div>

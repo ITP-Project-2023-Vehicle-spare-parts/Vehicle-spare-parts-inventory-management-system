@@ -39,22 +39,22 @@
   }
   
   #AssignBranch th, td {
-    padding: 16px;
+    padding: 0px;
     text-align: center;
-    border: 1px solid #ddd;
+    border: 0px solid #ffffff;
   }
   
   #AssignBranch th {
     background-color: #3f22e5;
     font-weight: bold;
     text-transform: uppercase;
-    color: #333333;
+    color: #ffffff;
   }
   
   #AssignBranch select {
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid #3498db;
+    border: 0px solid #3498db;
     background-color: #acb2f4;
     color: #ec3131;
     transition: border-color 0.3s, box-shadow 0.3s;

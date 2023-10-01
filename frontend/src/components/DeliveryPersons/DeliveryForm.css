@@ -87,4 +87,35 @@
   /* Style for input fields with errors */
   #DeliveryForm .has-error {
     border: 2px solid red !important;
+    border-color: #dc3545
   }
+
+  .password-conditions {
+    background: linear-gradient(to right, #86d6db, #7bd9fe); /* Gradient background */
+    color: #fff; /* White text color */
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    font-size: 16px;
+  }
+  
+  .password-condition {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .condition-icon {
+    margin-right: 10px;
+  }
+  
+  .condition-text {
+    flex-grow: 1;
+  }
+  
+  .condition-icon, .condition-text {
+    font-size: 14px;
+  }
+  
+  
