@@ -26,12 +26,17 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .stock-table th,
+  .stock-table th{
+    padding: 14px 18px;
+    text-align: left;
+  
+    font-size: 24px;
+  }
   .stock-table td {
     padding: 14px 18px;
     text-align: left;
   
-    font-size: 18px;
+    font-size: 20px;
   }
   
   .stock-table th {
@@ -39,7 +44,8 @@
     color: #fff;
     font-weight: bold;
   }
-  
+
+ 
   .stock-table tbody tr:nth-child(even) {
     background-color: white;
   }
@@ -64,14 +70,15 @@
     margin-right: 5px;
     font-size: 16px;
     vertical-align: text-bottom;
+  
   }
   
-  .edit-button {
+  .stock-action-button-edit-button  {
     background-color: #ffcc00;
     color: #fff;
   }
   
-  .edit-button:hover {
+  .stock-action-button-edit-button:hover {
     background-color: #ffcc00;
   }
   
@@ -126,12 +133,13 @@ body.Allstock {
 }
 
 .form-group {
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  
 }
 
 .custom-input {
-  width: 600px; /* Adjust the width as needed */
+  width: 1000px; /* Adjust the width as needed */
 }
 
 .generate-pdf-button {
@@ -175,7 +183,7 @@ body.Allstock {
 }
 
 .stock-search-bar input::placeholder {
-  color: #999;
+  color: black;
 }
 
 .stock-search-bar button {

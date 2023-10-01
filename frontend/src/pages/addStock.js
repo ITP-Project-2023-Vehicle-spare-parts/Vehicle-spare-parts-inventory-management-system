@@ -67,17 +67,17 @@ function AddStock() {
     <div className="stockcontainer">
    
    <div className="flex-grow-1 p-4">
-      <h2 style={{ fontSize: '24px' }} >Add Initial Stock</h2>
+      <h1>Add Initial Stock...</h1><br></br>
       <form onSubmit={handleSubmit}>
 
         <div className="form-row">
           <div className="form-group col-md-6">
-          <label htmlFor="productName" style={{ fontSize: '18px' }}>Product Name</label>
+          <label htmlFor="productName" style={{ fontSize: '20px' }}>Product Name</label>
 
     <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)}
      requiredclassName="form-control"
      className="form-control custom-select"
-     style={{ fontSize: '18px' }}
+     style={{ fontSize: '20px' }}
     
     >
 
@@ -91,7 +91,7 @@ function AddStock() {
 
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Supplier Name</label>
+            <label htmlFor="supplierName"  style={{ fontSize: '20px' }} >Supplier Name</label>
             <input
               type="text"
               className="form-control custom-input"
@@ -100,13 +100,13 @@ function AddStock() {
               value={supplierName}
               onChange={(e) => setSupplierName(e.target.value)}
               required
-              style={{ fontSize: '18px' }} 
+              style={{ fontSize: '20px' }} 
             />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="stockAmount" style={{ fontSize: '18px' }}>Stock Amount</label>
+            <label htmlFor="stockAmount" style={{ fontSize: '20px' }}>Stock Amount</label>
             <input
               type="number"
               className="form-control custom-input"
@@ -115,12 +115,12 @@ function AddStock() {
               value={stockAmount}
               onChange={(e) => setStockAmount(e.target.value)}
               required
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '20px' }}
             />
           </div>
           
            <div className="form-group col-md-6">
-            <label htmlFor="additionalDetails" style={{ fontSize: '18px' }}>Additional Details (optional)</label>
+            <label htmlFor="additionalDetails" style={{ fontSize: '20px' }}>Additional Details (optional)</label>
             <input
               type="text"
               className="form-control custom-input"
@@ -128,13 +128,13 @@ function AddStock() {
               placeholder="Additional details"
               value={additionalDetails}
               onChange={(e) => setAdditionalDetails(e.target.value)}
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '20px' }}
             />
           </div>
         </div>
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="reorderpoint" style={{ fontSize: '18px' }}>Reorder Point</label>
+            <label htmlFor="reorderpoint" style={{ fontSize: '20px' }}>Reorder Point</label>
             <input
               type="number"
               className="form-control custom-input"
@@ -143,11 +143,11 @@ function AddStock() {
               value={reorderpoint}
               onChange={(e) => setReorderpoint(e.target.value)}
               required
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '20px' }}
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="stockQuantity" style={{ fontSize: '18px' }}>Stock Quantity</label>
+            <label htmlFor="stockQuantity" style={{ fontSize: '20px' }}>Stock Quantity</label>
             <input
               type="number"
               className="form-control custom-input"
@@ -156,11 +156,11 @@ function AddStock() {
               value={stockQuantity}
               required
               onChange={(e) => setStockQuantity(e.target.value)}
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '20px' }}
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary"   style={{ fontSize: '18px' }} >Add Stock</button>
+        <button type="submit" className="btn btn-primary"   style={{ fontSize: '20px' }} >Add Stock</button>
       </form>
       </div>
     </div>
