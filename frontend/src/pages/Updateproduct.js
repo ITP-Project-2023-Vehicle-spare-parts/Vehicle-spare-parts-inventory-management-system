@@ -11,7 +11,7 @@ import {getColors} from '../features/color/colorSlice';
 import Dropzone from 'react-dropzone';
 import { uploadImg } from '../features/upload/uploadSlice';
 import { useLocation, useNavigate } from "react-router-dom";
-//import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getSingleProducts, resetState } from "../features/product/productSlice";
 import { base_url } from "../../src/utils/base_url";
 import Swal from "sweetalert2";
@@ -107,6 +107,7 @@ const Addproduct = () => {
             showConfirmButton: false,
             timer: 15
           })
+          toast.success("Product updated Successfullly!");
           navigate("/Admin/product-list");
           // You can add additional logic here, such as redirecting to another page
         })
