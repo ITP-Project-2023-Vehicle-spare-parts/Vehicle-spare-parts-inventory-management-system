@@ -112,6 +112,16 @@ function DeliveryForm() {
         delete errors.deliverypersonDLN;
       }
     }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
 
     setFormErrors(errors);
     setFormData({ ...formData, [name]: value });
@@ -158,6 +168,16 @@ function DeliveryForm() {
         errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
       } else {
         delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
       }
     }
 
@@ -476,11 +496,11 @@ function DeliveryForm() {
                 <Form.Label>Driving License Number</Form.Label>
                 <Form.Control
                   className={formErrors.deliverypersonDLN ? 'has-error' : ''}
-                  type="text"
-      id="deliverypersonDLN"
-      name="deliverypersonDLN"
-      value={formData.deliverypersonDLN}
-      onChange={handleChange}
+                    type="text"
+                   id="deliverypersonDLN"
+                   name="deliverypersonDLN"
+                   value={formData.deliverypersonDLN}
+                   onChange={handleChange}
                 />
                 {formErrors.deliverypersonDLN && (
                   <div className="error-message">{formErrors.deliverypersonDLN}</div>
@@ -492,10 +512,10 @@ function DeliveryForm() {
                 <Form.Control
                   className={formErrors.deliverypersonDLexpire ? 'has-error' : ''}
                   type="date"
-     id="deliverypersonDLexpire"
-     name="deliverypersonDLexpire"
-     value={formData.deliverypersonDLexpire}
-     onChange={handleChange}
+                  id="deliverypersonDLexpire"
+                  name="deliverypersonDLexpire"
+                  value={formData.deliverypersonDLexpire}
+                  onChange={handleChange}
                 />
                 {formErrors.deliverypersonDLexpire && (
                   <div className="error-message">{formErrors.deliverypersonDLexpire}</div>
@@ -555,9 +575,9 @@ function DeliveryForm() {
             onChange={handleChange}
             >
             <option value="">Select Branch</option>
-            <option value="Jafna">Jafna</option>
+            <option value="Jaffna">Jaffna</option>
             <option value="Ibbagamuwa main">Ibbagamuwa_main</option>
-            <option value="Colombo">colombo</option>
+            <option value="Colombo">Colombo</option>
             <option value="Galle">Galle</option>
             <option value="Nuwara Eliya">Nuwara Eliya</option>
             <option value="Batticaloa">Batticaloa</option>
