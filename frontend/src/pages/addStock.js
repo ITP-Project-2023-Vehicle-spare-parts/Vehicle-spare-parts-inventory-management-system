@@ -81,10 +81,11 @@ function AddStock() {
     
     >
 
-    <option value="Bajaj CT100 osadGuard" >Bajaj CT100 osadGuard</option>
-    <option value="Bajaj CT100 Guard">Bajaj CT100 Guard</option>
-    <option value="Bajaj CT100 OkgsOudGuard">Bajaj CT100 OkgsOudGuard</option>
-    <option value="Bajaj CT100 OigOudGuard">Bajaj CT100 OigOudGuar</option>
+    <option value="Rim" >Rim</option>
+    <option value="Spokes">Spokes</option>
+    <option value="Hub">Hub</option>
+    <option value="Cylencers CT100">Cylencers CT100</option>
+    <option value="Horn">Horn</option>
 
     </select>
 
