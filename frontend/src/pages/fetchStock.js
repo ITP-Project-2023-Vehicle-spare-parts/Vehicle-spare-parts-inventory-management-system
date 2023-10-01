@@ -48,7 +48,7 @@ function FetchStock() {
   return (
     <div id="Allstock">
       <div className="fetch-stock-container">
-        <h1 className="fetch-stock-title">All Stock...</h1>
+        <h1 className="fetch-stock-title" >All Stock...</h1>
 
         <div className=" stock-search-bar" >
           <input
