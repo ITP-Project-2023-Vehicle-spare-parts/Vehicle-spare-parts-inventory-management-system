@@ -99,7 +99,7 @@ import ComparisionBarGraph from "./components/stockComponents/comparisiongraph";
 
 import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
-
+import OrderHistoryTable from "./components/OrderHistryTable";
 
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
@@ -218,6 +218,7 @@ function App() {
               <Route path="delivery/profiles/:id" element={<EditDeliveryPerson />} />
               <Route path="orders" exact element={<OrderList />} />
               <Route path="order/:orderid/:userid" element={<AvailableDeliveryPersonList />} />
+              <Route path="orderHistory" element={<OrderHistoryTable />} />
               <Route path="branch/add" element={<AddBranch />} />
               <Route path="offer/add" element={<AddOffer />} />
               <Route path="coupon/add" element={<AddCoupon />} />
