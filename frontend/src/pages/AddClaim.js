@@ -219,7 +219,7 @@ const handleSubmit = async (e) => {
 
             <div className="col-4">
               
-              <Link to={`/get/:billno`} className="btn btn-warning">View claim</Link>
+              <Link to={`/home/get/:billno`} className="btn btn-warning">View claim</Link>
               
               
             </div>

@@ -31,7 +31,7 @@ const FetchClaim = () => {
     const handleUpdateClick = () => {
         if (claimDetails) {
             if (claimDetails.status === 'Under Review' || !claimDetails.status) {
-                navigate(`/update/${claimDetails._id}/${billno}`);
+                navigate(`/home/update/${claimDetails._id}/${billno}`);
             } else {
                 Swal.fire({
                     position: 'top-center',
@@ -49,7 +49,7 @@ const FetchClaim = () => {
     const handleDeleteClick = () => {
         if (claimDetails) {
             if (claimDetails.status === 'Under Review' || !claimDetails.status) {
-                navigate(`/delete/${claimDetails._id}/${billno}`);
+                navigate(`/home/delete/${claimDetails._id}/${billno}`);
             } else {
                 Swal.fire({
                     position: 'top-center',

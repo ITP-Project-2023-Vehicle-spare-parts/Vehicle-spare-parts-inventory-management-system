@@ -1,5 +1,5 @@
 /* Center the table vertically and horizontally */
-.coupon-table-container {
+#CouponTable .coupon-table-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
