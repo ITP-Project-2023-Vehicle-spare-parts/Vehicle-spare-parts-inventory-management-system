@@ -306,255 +306,289 @@ const resetPassword = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
-const userCart = asyncHandler(async (req, res) => {
-  const { productId, color, quantity, price } = req.body;
-  const { _id } = req.user;
+const addToUserCart = asyncHandler(async (req, res) => {
+  const {productId, color, quantity, price} = req.body;
+  const {_id} = req.user;
   validateMongoDbId(_id);
+
+  console.log(req);
+  console.log(productId, color, quantity, price);
   try {
-    let newCart = await new Cart({
-      userId: _id,
-      productId,
-      color,
-      price,
-      quantity,
-    }).save();
-    res.json(newCart);
+    let existingCart = await Cart.findOne({user: _id});
+
+    // Cart already exists for the user
+    if (existingCart) {
+      const existingProductIndex = existingCart.products.findIndex((product) => product.product.toString() === productId && product.color === color);
+
+      // Product already exists in the cart, update the quantity
+      if (existingProductIndex !== -1) {
+        existingCart.products[existingProductIndex].count += quantity;
+
+      } else {
+        // Product doesn't exist in the cart, add it
+        existingCart.products.push({
+          product: productId, count: quantity, color, price,
+        });
+      }
+
+      existingCart.cartTotal += quantity * price;
+      existingCart.totalAfterDiscount += quantity * price;
+
+      // Save the updated cart
+      existingCart = await existingCart.save();
+      res.json(existingCart);
+
+    } else {
+      // If no cart exists, create a new one
+      const newCart = await new Cart({
+        user: _id, products: [{
+          product: productId, count: quantity, color, price,
+        },], cartTotal: quantity * price, totalAfterDiscount: quantity * price,
+      }).save();
+
+      res.json(newCart);
+    }
   } catch (error) {
     throw new Error(error);
   }
 });
 
 const getUserCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
+  const {_id} = req.user;
   validateMongoDbId(_id);
+
   try {
-    const cart = await Cart.find({ userId: _id })
-      .populate("productId")
-      .populate("color");
+    const cart = await Cart.findOne({user: _id}).populate("products.product");
     res.json(cart);
   } catch (error) {
     throw new Error(error);
   }
 });
 
-const removeProductFromCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const { cartItemId } = req.params;
+const updateProductQuantityInCart = asyncHandler(async (req, res) => {
+  const {_id} = req.user;
+  const {cartItemId, newQuantity} = req.params;
+
   validateMongoDbId(_id);
   try {
-    const deleteProductFromCart = await Cart.deleteOne({
-      userId: _id,
-      cartItemId,
-    });
-    res.json(deleteProductFromCart);
+    let existingCart = await Cart.findOne({user: _id});
+
+    // Cart exists for user, check for product
+    if (existingCart) {
+      const existingProductIndex = existingCart.products.findIndex((product) => product._id.toString() === cartItemId);
+
+      // Product exists in the cart, update the quantity
+      if (existingProductIndex !== -1) {
+        const newQuantityInt = parseInt(newQuantity);
+        const productPrice = existingCart.products[existingProductIndex].price;
+        const oldQuantity = existingCart.products[existingProductIndex].count;
+
+        existingCart.products[existingProductIndex].count = newQuantityInt;
+
+        existingCart.cartTotal += (newQuantityInt - oldQuantity) * productPrice;
+        existingCart.totalAfterDiscount += (newQuantityInt - oldQuantity) * productPrice;
+
+        existingCart = await existingCart.save();
+        res.json(existingCart);
+      } else {
+        // Handle the case where the cart item with the specified ID was not found
+        res.status(404).json({message: 'Cart item not found'});
+      }
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const removeProductFromCart = asyncHandler(async (req, res) => {
+  const {_id} = req.user;
+  const {cartItemId} = req.params;
+  validateMongoDbId(_id);
+
+  try {
+    let existingCart = await Cart.findOne({user: _id});
+
+    // Cart exists for user, check for product and remove it
+    if (existingCart) {
+      const existingProductIndex = existingCart.products.findIndex((product) => product._id.toString() === cartItemId);
+
+      // Product exists in the cart, remove it
+      if (existingProductIndex !== -1) {
+        const productPrice = existingCart.products[existingProductIndex].price;
+        const productQuantity = existingCart.products[existingProductIndex].count;
+        existingCart.products.splice(existingProductIndex, 1);
+
+        existingCart.cartTotal -= productPrice * productQuantity;
+        existingCart.totalAfterDiscount -= productPrice * productQuantity;
+
+        existingCart = await existingCart.save();
+
+        res.json(existingCart);
+      } else {
+        // Handle the case where the cart item with the specified ID was not found
+        res.status(404).json({message: 'Cart item not found'});
+      }
+    }
   } catch (error) {
     throw new Error(error);
   }
 });
 
 const emptyCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  console.log(_id);
+  const {_id} = req.user;
   validateMongoDbId(_id);
+
   try {
-    const deleteCart = await Cart.deleteMany({ userId: _id });
+    const deleteCart = await Cart.deleteOne({user: _id})
+    console.log(deleteCart);
     res.json(deleteCart);
   } catch (error) {
     throw new Error(error);
   }
 });
 
-const updateProductQuantityFromCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const { cartItemId, newQuantity } = req.params;
-  validateMongoDbId(_id);
-  try {
-    const cartItem = await Cart.findOne({ userId: _id, _id: cartItemId });
-    cartItem.quantity = newQuantity;
-    cartItem.save();
-    res.json(cartItem);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
-
 const createOrder = asyncHandler(async (req, res) => {
-  const {
-    shippingInfo,
-    orderItems,
-    totalPrice,
-    totalPriceAfterDiscount,
-    PaymentInfo,
-  } = req.body;
-  const { _id } = req.user;
+  const {shippingInfo, paymentInfo} = req.body;
+  const {_id} = req.user;
 
   try {
     // Get the current month name
-    const currentMonthName = new Date().toLocaleString("default", {
-      month: "long",
-    });
+    const existingCart = await Cart.findOne({user: _id});
 
-    const order = await Order.create({
-      shippingInfo,
-      orderItems,
-      totalPrice,
-      totalPriceAfterDiscount,
-      PaymentInfo,
-      user: _id,
-      month: currentMonthName, // Set the month name
-    });
 
-    res.json({
-      order,
-      success: true,
-    });
+    if (existingCart) {
+      const products = existingCart.products;
+      const subTotal = existingCart.cartTotal;
+      const totalAfterDiscount = existingCart.totalAfterDiscount + 350;
+
+      const newOrder = await new Order({
+        user: _id,
+        shippingInfo: shippingInfo,
+        orderItems: products,
+        totalPrice: subTotal,
+        totalPriceAfterDiscount: totalAfterDiscount,
+      }).save();
+
+      if (newOrder) {
+        // Delete the cart as the order is successfully created
+        const deleteCart = await Cart.deleteOne({user: _id})
+
+        res.json({
+          newOrder, success: true,
+        });
+      } else {
+        res.status(500).json({message: 'Order not created'});
+      }
+    } else {
+      res.status(404).json({message: 'Cart not found for user'});
+    }
+
   } catch (error) {
     throw new Error(error);
   }
 });
+
 
 const getMyOrders = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
+  const {_id} = req.user;
   try {
-    const orders = await Order.find({
-      user: _id,
-    }); /*.populate("user").populate("orderItems.product").populate("orderItems.color")*/
+    const orders = await Order.find({user: _id}).populate("orderItems.product")
     res.json({
-      orders,
-    });
+      orders
+    })
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   }
-});
+})
 
 const getAllOrders = asyncHandler(async (req, res) => {
   try {
-    const orders = await Order.find().populate(
-      "user"
-    ); /*.populate("orderItems.product").populate("orderItems.color")*/
+    const orders = await Order.find().populate("user")/*.populate("orderItems.product").populate("orderItems.color")*/
     res.json({
-      orders,
-    });
+      orders
+    })
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   }
-});
+})
 
 const getSingleOrders = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params
   console.log(id);
   try {
-    const orders = await Order.findOne({ _id: id }).populate(
-      "orderItems.product"
-    ); /*.populate("orderItems.color")*/
+    const orders = await Order.findOne({_id: id}).populate("orderItems.product")/*.populate("orderItems.color")*/
     res.json({
-      orders,
-    });
+      orders
+    })
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   }
-});
+})
 
 const updateOrder = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const {id} = req.params
   console.log(id);
   try {
-    const orders = await Order.findById(id);
+    const orders = await Order.findById(id)
     orders.orderStatus = req.body.status;
-    await orders.save();
+    await orders.save()
     res.json({
-      orders,
-    });
+      orders
+    })
   } catch (error) {
-    throw new Error(error);
+    throw new Error(error)
   }
-});
+})
+
 
 const getMonthWiseOrderIncome = asyncHandler(async (req, res) => {
-  let monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let d = new Date();
   let endDate = "";
-  d.setDate(1);
+  d.setDate(1)
   for (let index = 0; index < 11; index++) {
-    d.setMonth(d.getMonth() - 1);
-    endDate = monthNames[d.getMonth()] + " " + d.getFullYear();
+    d.setMonth(d.getMonth() - 1)
+    endDate = monthNames[d.getMonth()] + " " + d.getFullYear()
   }
-  const data = await Order.aggregate([
-    {
-      $match: {
-        createdAt: {
-          $lte: new Date(),
-          $gte: new Date(endDate),
-        },
-      },
-    },
-    {
-      $group: {
-        _id: {
-          month: "$month",
-        },
-        amount: { $sum: "$totalPriceAfterDiscount" },
-        count: { $sum: 1 },
-      },
-    },
-  ]);
-  res.json(data);
-});
+  const data = await Order.aggregate([{
+    $match: {
+      createdAt: {
+        $lte: new Date(), $gte: new Date(endDate)
+      }
+    }
+  }, {
+    $group: {
+      _id: {
+        month: "$month"
+      }, amount: {$sum: "$totalPriceAfterDiscount"}, count: {$sum: 1}
+    }
+  }])
+  res.json(data)
+})
+
 
 const getYearlyTotalOrders = asyncHandler(async (req, res) => {
-  let monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let d = new Date();
   let endDate = "";
-  d.setDate(1);
+  d.setDate(1)
   for (let index = 0; index < 11; index++) {
-    d.setMonth(d.getMonth() - 1);
-    endDate = monthNames[d.getMonth()] + " " + d.getFullYear();
+    d.setMonth(d.getMonth() - 1)
+    endDate = monthNames[d.getMonth()] + " " + d.getFullYear()
   }
-  const data = await Order.aggregate([
-    {
-      $match: {
-        createdAt: {
-          $lte: new Date(),
-          $gte: new Date(endDate),
-        },
-      },
-    },
-    {
-      $group: {
-        _id: null,
-        count: { $sum: 1 },
-        amount: { $sum: "$totalPriceAfterDiscount" },
-      },
-    },
-  ]);
-  res.json(data);
-});
+  const data = await Order.aggregate([{
+    $match: {
+      createdAt: {
+        $lte: new Date(), $gte: new Date(endDate)
+      }
+    }
+  }, {
+    $group: {
+      _id: null, count: {$sum: 1}, amount: {$sum: "$totalPriceAfterDiscount"}
+    }
+  }])
+  res.json(data)
+})
 
 module.exports = {
   createUser,
@@ -563,11 +597,11 @@ module.exports = {
   getaUser,
   deleteaUser,
   updatedUser,
-  userCart,
+  addToUserCart,
   getUserCart,
   removeProductFromCart,
   emptyCart,
-  updateProductQuantityFromCart,
+  updateProductQuantityInCart,
   createOrder,
   getMyOrders,
   getAllOrders,

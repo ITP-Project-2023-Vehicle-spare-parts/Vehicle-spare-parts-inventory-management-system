@@ -1,43 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Helmet from 'react-helmet';
 import ReactImageZoom from 'react-image-zoom';
 import ReactStars from 'react-rating-stars-component';
-//import Color from '../components/Color'
-import { Link, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleProducts } from '../features/product/productSlice';
+import Color from '../components/Color'
+import {useLocation} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {getSingleProducts} from '../features/product/productSlice';
+import {toast} from "react-toastify";
+import {addProToCart} from '../features/user/userSlice';
 
 const SingleProduct = () => {
-    const location = useLocation();
-    const getProductID = location.pathname.split("/")[4];
-    const dispatch = useDispatch();
-    const productState = useSelector((state) => state.product.Singledproduct);
-    useEffect(()=>{
-        dispatch(getSingleProducts(getProductID));
-    })
-        const props = {
-        width: 400, 
-        height: 250, 
-        zoomWidth: 500, 
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s",
-    };
-    
-    const [orderedProduct, setoderedProduct] = useState(true);
+  const [quantity, setQuantity] = useState(1)
+  const location = useLocation();
+  const getProductID = location.pathname.split("/")[4];
+  const dispatch = useDispatch();
+  const productState = useSelector((state) => state.product.Singledproduct);
+  const color = productState?.color;
+  useEffect(() => {
+    dispatch(getSingleProducts(getProductID));
+  }, [getProductID, dispatch])
 
-    console.log(orderedProduct)
-    console.log(setoderedProduct)
-  
-    return (
+  const uploadCart = () => {
+    if (color === null) {
+      toast.error("Please choose color")
+      return false
+    } else {
+      const cartData = {
+        getProductID: productState?._id,
+        quantity: quantity,
+        price: productState?.price,
+        color: color,
+      };
+
+      const jsonData = JSON.stringify(cartData);
+      console.log(jsonData);
+      console.log(productState?._id);
+      dispatch(addProToCart(cartData));
+    }
+  }
+
+  const props = {
+    width: 400,
+    height: 250,
+    zoomWidth: 500,
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s",
+  };
+
+  const [orderedProduct, setoderedProduct] = useState(true);
+
+  console.log(orderedProduct)
+  console.log(setoderedProduct)
+
+  return (
     <>
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>Product Info</title>
-    </Helmet>
-    <div className='home-wrapper-2'>
-      <center><h4><br/>.....Details.....<br/><br/></h4></center>
-    </div>
+      <Helmet>
+        <meta charSet="utf-8"/>
+        <title>Product Info</title>
+      </Helmet>
+      <div className='home-wrapper-2'>
+        <center><h4><br/>.....Details.....<br/><br/></h4></center>
+      </div>
 
-    <div className='main-product-wrapper py-5 home-wrapper-2'>
+      <div className='main-product-wrapper py-5 home-wrapper-2'>
         <div className='container-xxl'>
             <div className='row'>
                 <div className='col-6'>
@@ -48,7 +72,7 @@ const SingleProduct = () => {
                 <div className='col-6'>
                     <div className='main-product-details'>
                         <div className='border-bottom'>
-                            <h3 style={{ color: 'blue' }}>
+                            <h3>
                                 {productState?.Title}
                             </h3>
                         </div>
@@ -73,7 +97,7 @@ const SingleProduct = () => {
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Brand : </h3> 
-                                <p className='product-data' style={{ color: 'red' }}>{productState?.brand}</p>
+                                <p className='product-data'>{productState?.brand}</p>
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Categories : </h3> 
@@ -109,7 +133,7 @@ const SingleProduct = () => {
                 </div>
             </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };
