@@ -556,8 +556,8 @@ function DeliveryForm() {
             >
             <option value="">Select Branch</option>
             <option value="Jafna">Jafna</option>
-            <option value="Ibbagamuwa main">Ibbagamuwa main</option>
-            <option value="Colombo">Colombo</option>
+            <option value="Ibbagamuwa main">Ibbagamuwa_main</option>
+            <option value="Colombo">colombo</option>
             <option value="Galle">Galle</option>
             <option value="Nuwara Eliya">Nuwara Eliya</option>
             <option value="Batticaloa">Batticaloa</option>
