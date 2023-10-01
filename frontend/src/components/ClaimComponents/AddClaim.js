@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -13,6 +13,20 @@ export default function AddClaim() {
   const [description, setdescription] = useState("");
   const [email, setemail] = useState("");
   const [contactNo, setcontactno] = useState("");
+  const [existingBillNos, setExistingBillNos] = useState([]);
+  // Maintain a list of unique billno values
+  
+  useEffect(() => {
+    // Fetch existing bill numbers from your API or wherever you store them
+    // For now, let's assume you have an API endpoint to fetch the existing bill numbers
+    axios.get("http://localhost:8000/warrenty/existingBillNos")
+      .then((response) => {
+        setExistingBillNos(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching existing bill numbers:", error);
+      });
+  }, []);
 
   function getCurrentDate() {
     const today = new Date();
@@ -32,6 +46,10 @@ export default function AddClaim() {
   const validatePhoneNumber = (phone) => {
     const phoneRegex = /^\d{10}$/; // Assumes a 10-digit phone number
     return phoneRegex.test(phone);
+  };
+
+  const isDuplicateBillno = (billnoToCheck) => {
+    return existingBillNos.includes(billnoToCheck);
   };
   
   
@@ -53,6 +71,10 @@ const handleSubmit = async (e) => {
   // Validate contact number
   if (!validatePhoneNumber(contactNo)) {
     alert("Invalid contact number");
+    return;
+  }
+  if (isDuplicateBillno(billno)) {
+    alert("Duplicate billno. Please enter a unique billno.");
     return;
   }
 
@@ -78,6 +100,8 @@ const handleSubmit = async (e) => {
     
     
     
+     // Add the new billno to the list of existingBillNos
+     setExistingBillNos([...existingBillNos, billno]);
 
     setproductname('');
     setbillno('');

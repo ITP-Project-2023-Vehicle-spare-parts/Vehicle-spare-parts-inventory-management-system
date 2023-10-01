@@ -201,6 +201,13 @@ const MainLayout = () => {
               key: 'service',
               icon: <MdOutlineHomeRepairService className='fs-4'/>,
               label: 'Service',
+              children : [
+                {
+                  key: 'allclaim',
+                  icon: <BiSolidUserDetail className='fs-4'/>,
+                  label: 'All Claims',
+                },
+              ]
             },
             {
               key: 'signout',
