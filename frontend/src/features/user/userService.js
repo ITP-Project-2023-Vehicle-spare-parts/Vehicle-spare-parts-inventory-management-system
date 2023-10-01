@@ -2,14 +2,14 @@ import axios from "axios";
 import {base_url} from "../../utils/axiosconfig";
 
 
-const getTokenFromLocalStorage = localStorage.getItem("customer")
-  ? JSON.parse(localStorage.getItem("customer"))
-  : null;
+const getTokenFromLocalStorage = localStorage.getItem("userToken")
+  //? JSON.parse(localStorage.getItem("userToken"))
+  //: null;
 
 export const config = {
   headers: {
     Authorization: `Bearer ${
-      getTokenFromLocalStorage !== null ? getTokenFromLocalStorage.token : ""
+      getTokenFromLocalStorage !== null ? getTokenFromLocalStorage : ""
     }`,
     Accept: "application/json",
     ContentType: "application/json",
@@ -36,6 +36,8 @@ const login = async (userData) => {
 
 const addToCart = async (cartData) => {
   const response = await axios.post(`${base_url}user/cart`, cartData, config);
+  console.log(cartData)
+  console.log(response)
   if (response.data) {
     return response.data;
   }

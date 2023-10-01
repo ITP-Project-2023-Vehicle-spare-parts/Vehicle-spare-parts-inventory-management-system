@@ -334,6 +334,7 @@ const resetPassword = asyncHandler(async (req, res) => {
 });
 
 const addToUserCart = asyncHandler(async (req, res) => {
+  console.log(req.body)
   const {productId, color, quantity, price} = req.body;
   const {_id} = req.user;
   validateMongoDbId(_id);

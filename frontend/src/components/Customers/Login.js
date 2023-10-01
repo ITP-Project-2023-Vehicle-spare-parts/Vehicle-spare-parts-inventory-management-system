@@ -32,7 +32,7 @@ export default function Login() {
         console.log(res.data._id);
 
         const id = res.data._id;
-        
+        localStorage.setItem("userToken", res.data.token);
 
         if (res.data.role === "admin") {
           console.log(res.data.role);
@@ -47,6 +47,7 @@ export default function Login() {
           Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
+
           sessionStorage.setItem("userID", id);
           Navigate("/home");
 
