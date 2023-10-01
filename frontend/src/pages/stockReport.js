@@ -3,7 +3,6 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable'; // Import jspdf-autotable
 import axios from 'axios';
 import './stockCss.css'; // Create a CSS file for styling
-import * as XLSX from 'xlsx';
 
 
 
@@ -43,47 +42,12 @@ function StockReport() {
     pdf.save('stock_report.pdf');
   };
 
-  const generateExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(stocks);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Stock Report');
-    XLSX.writeFile(workbook, 'stock_report.xlsx');
-  };
-
-  const handleGenerateClick = (format) => {
-    if (format === 'pdf') {
-      generatePDF();
-    } else if (format === 'xlsx') {
-      generateExcel('xlsx');
-    }
-   
-  };
-
-
-
-
-
   return (
     <div id='Allstock'>
     <div className="fetch-stock-container">
       <h2>Stock Report...</h2>
-
       
-     
-      <div className="dropdown">
-        
-          <div className="dropdown-content">
-          
-            <button onClick={() => handleGenerateClick('pdf')}className='generate-pdf-button'>PDF</button>
-            <button onClick={() => handleGenerateClick('xlsx')} className='generate-pdf-button'>Excel (XLSX)</button>
-            {/* Add more format options here */}
-          </div>
-         
-        </div>
-       
-       
-      
-     
+      <button onClick={generatePDF} className='generate-pdf-button'>Generate PDF</button>
       <table id="stock-table" className="stock-table">
         <thead>
           <tr>

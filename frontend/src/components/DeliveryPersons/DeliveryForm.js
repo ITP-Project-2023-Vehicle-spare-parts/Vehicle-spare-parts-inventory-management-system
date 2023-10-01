@@ -555,9 +555,12 @@ function DeliveryForm() {
             onChange={handleChange}
             >
             <option value="">Select Branch</option>
-            <option value="Branch A">Branch A</option>
-            <option value="Branch B">Branch B</option>
-            <option value="Branch C">Branch C</option>
+            <option value="Branch A">Jafna</option>
+            <option value="Branch B">Ibbagamuwa main</option>
+            <option value="Branch C">Colombo</option>
+            <option value="Branch C">Galle</option>
+            <option value="Branch C">Nuwara Eliya</option>
+            <option value="Branch C">Batticaloa</option>
                 </Form.Select>
                 {formErrors.deliverypersonBranch && (
                   <div className="error-message">{formErrors.deliverypersonBranch}</div>
