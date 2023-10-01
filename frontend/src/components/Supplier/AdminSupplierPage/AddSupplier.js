@@ -1,17 +1,14 @@
-import axios from "axios";
 import React, { useState } from "react";
-import "boxicons/css/boxicons.min.css";
-import "./AddSupplier.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import "./AddSupplier.css";
 
 export default function AddSupplier() {
-  const [formErrors, setFormErrors] = useState({});
-
   const [CompanyName, setCName] = useState("");
   const [CompanyEmail, setCEmail] = useState("");
   const [CompanyPhone, setCPhone] = useState("");
@@ -28,6 +25,7 @@ export default function AddSupplier() {
   const [SystemEmail, setsysEmail] = useState("");
   const [SystemPassword, setsysPassword] = useState("");
 
+  const [formErrors, setFormErrors] = useState({});
   const Navigate = useNavigate();
 
   const validateForm = () => {
@@ -47,10 +45,10 @@ export default function AddSupplier() {
     if (!CompanyPhone.trim()) {
       errors.CompanyPhone = "Company Phone is required";
     } else if (!/^\d{10}$/.test(CompanyPhone)) {
-      errors.CompanyPhone = "Company Phone must be numeric";
-      toast.error("Phone Number Need 10 Digit Number", {
-        duration: 3000, // 3 seconds
-        position: "top-right", // You can change the position if needed
+      errors.CompanyPhone = "Company Phone must be a 10-digit number";
+      toast.error("Phone Number Needs to be a 10-digit number", {
+        duration: 3000,
+        position: "top-right",
       });
     }
 
@@ -116,19 +114,22 @@ export default function AddSupplier() {
     // Validate System Password
     if (!SystemPassword.trim()) {
       errors.SystemPassword = "System Password is required";
-      toast.error("Password Must should be 6 digits");
+      toast.error("Password Must be at least 6 characters long", {
+        duration: 3000,
+        position: "top-right",
+      });
     }
-
-    // ... Add more validation rules for other fields ...
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
 
     if (isValid) {
+     
       try {
         const newSupplier = {
           CompanyName,
@@ -147,12 +148,11 @@ export default function AddSupplier() {
           SupplierPostalCode,
           ProvidedBrand,
         };
-console.log(CompanyName);
+
         const Supplierresponse = await axios.post(
           "http://localhost:8000/supplier/addSupplier",
           newSupplier
         );
-        console.log(Supplierresponse.status);
 
         if (Supplierresponse.status === 200) {
           const newUser = {
@@ -169,36 +169,48 @@ console.log(CompanyName);
             "http://localhost:8000/user/register/",
             newUser
           );
-          console.log(userResponse.status);
+
+          if (userResponse.status === 200) {
+            setCName("");
+            setCEmail("");
+            setCPhone("");
+            setcAddress("");
+            setFName("");
+            setLName("");
+            setEmail("");
+            setPhone("");
+            setState("");
+            setCity("");
+            setPostalcode("");
+            setStatus("");
+            setBrand("");
+            setsysEmail("");
+            setsysPassword("");
+
+            toast.success("Successfully Registered!", {
+              duration: 3000,
+              position: "top-right",
+            });
+
+            Navigate("/Admin/sup/All");
+          } else {
+            toast.error("Failed To Register User", {
+              duration: 3000,
+              position: "top-right",
+            });
+          }
+        } else {
+          toast.error("Failed To Register Supplier", {
+            duration: 3000,
+            position: "top-right",
+          });
         }
-
-        setCName("");
-        setCEmail("");
-        setCPhone("");
-        setcAddress("");
-        setFName("");
-        setLName("");
-        setEmail("");
-        setPhone("");
-        setState("");
-        setCity("");
-        setPostalcode("");
-        setStatus("");
-        setBrand("");
-        setsysEmail("");
-        setsysPassword("");
-
-        toast.success("Successfully Registered!", {
-          duration: 3000, // 3 seconds
-          position: "top-right", // You can change the position if needed
-        });
-        Navigate("/Admin/sup/All");
       } catch (err) {
-        toast.error("Failed To Register", {
-          duration: 3000, // 3 seconds
-          position: "top-right", // You can change the position if needed
+        toast.error("An error occurred while registering.", {
+          duration: 3000,
+          position: "top-right",
         });
-        console.log(err.message.status);
+        console.error(err);
       }
     }
   };
@@ -214,7 +226,7 @@ console.log(CompanyName);
                 <h1>Add Suppliers...</h1>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Company Name</Form.Label>
+                    <Form.Label>Company Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -233,7 +245,7 @@ console.log(CompanyName);
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Company Email</Form.Label>
+                    <Form.Label>Company Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -252,7 +264,7 @@ console.log(CompanyName);
                   </Form.Group>
                 </Row>
                 <Form.Group as={Col}>
-                  <Form.Label>Company Phone</Form.Label>
+                  <Form.Label>Company Phone<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="number"
@@ -271,7 +283,7 @@ console.log(CompanyName);
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Company Address</Form.Label>
+                  <Form.Label>Company Address<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     placeholder="1234 Main St"
@@ -290,7 +302,7 @@ console.log(CompanyName);
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>First Name</Form.Label>
+                    <Form.Label>First Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -309,7 +321,7 @@ console.log(CompanyName);
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Last Name</Form.Label>
+                    <Form.Label>Last Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -330,7 +342,7 @@ console.log(CompanyName);
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Supplier Email</Form.Label>
+                    <Form.Label>Supplier Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -349,7 +361,7 @@ console.log(CompanyName);
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Supplier Phone</Form.Label>
+                    <Form.Label>Supplier Phone<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       pattern="[0-9]{10}"
                       className="shadow-lg p-3 mb-2 bg-white rounded"
@@ -371,11 +383,11 @@ console.log(CompanyName);
 
                 <Row className="mb-3">
                   <h2>
-                    <b>Supplier Address</b>
+                    <b>Supplier Address<span className="text-danger" style={{fontSize:"25px"}}>*</span></b>
                   </h2>
 
                   <Form.Group as={Col}>
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>City<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Select
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       defaultValue="Galle"
@@ -397,6 +409,8 @@ console.log(CompanyName);
                       )}
                       <option>Galle</option>
                       <option>Amabalangoda</option>
+                      <option>Gampaha</option>
+                      <option>Kurunegala</option>
                     </Form.Select>
                   </Form.Group>
                   <Form.Group as={Col}>
@@ -418,7 +432,7 @@ console.log(CompanyName);
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>PostalCode</Form.Label>
+                    <Form.Label>PostalCode<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       id="SupplierPostalCode"
@@ -438,7 +452,7 @@ console.log(CompanyName);
                 </Row>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Company Status</Form.Label>
+                  <Form.Label>Company Status<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     as="textarea"
@@ -458,7 +472,7 @@ console.log(CompanyName);
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Provided Brand</Form.Label>
+                  <Form.Label>Provided Brand<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                   <Form.Select
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     defaultValue="Brand"
@@ -491,7 +505,7 @@ console.log(CompanyName);
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Email</Form.Label>
+                    <Form.Label>Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-lightrounded"
                       type="email"
@@ -510,7 +524,7 @@ console.log(CompanyName);
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Password<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-lightrounded"
                       type="password"

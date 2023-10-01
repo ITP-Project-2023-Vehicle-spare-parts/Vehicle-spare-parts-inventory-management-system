@@ -193,7 +193,7 @@ export default function AllClient() {
                           <img src="/images/me.jpg" alt="" />
                           {dataobj.ClientsfirstName} {dataobj.ClientsLastName}
                         </td>
-                        <td>{dataobj.ClientsCity}</td>
+                        <td>{dataobj.ClientsState}</td>
 
                         <td> {dataobj.ClientsStatus} </td>
 
