@@ -3,11 +3,12 @@ import Helmet from 'react-helmet';
 import ReactImageZoom from 'react-image-zoom';
 import ReactStars from 'react-rating-stars-component';
 import Color from '../components/Color'
-import {useLocation} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {getSingleProducts} from '../features/product/productSlice';
 import {toast} from "react-toastify";
 import {addProToCart} from '../features/user/userSlice';
+
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1)
@@ -72,7 +73,7 @@ const SingleProduct = () => {
                 <div className='col-6'>
                     <div className='main-product-details'>
                         <div className='border-bottom'>
-                            <h3>
+                            <h3 style={{ color: 'blue' }}>
                                 {productState?.Title}
                             </h3>
                         </div>
@@ -97,7 +98,7 @@ const SingleProduct = () => {
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Brand : </h3> 
-                                <p className='product-data'>{productState?.brand}</p>
+                                <p className='product-data' style={{ color: 'red' }}>{productState?.brand}</p>
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Categories : </h3> 
