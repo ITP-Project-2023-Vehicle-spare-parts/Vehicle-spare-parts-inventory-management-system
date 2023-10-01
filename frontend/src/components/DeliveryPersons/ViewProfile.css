@@ -1,0 +1,76 @@
+/* UserProfile.css */
+
+/* Style the container */
+#profile-details .container {
+    padding-top: 1000px;
+    padding-bottom: 100px;
+  }
+  
+  /* Style the profile container */
+#profile-details  .profile-container {
+    background-color: #87ebfd;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px rgba(1, 8, 14, 0.1);
+    padding: 30px;
+  }
+  
+  /* Style the profile heading */
+ #profile-details .profile-heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: #184cdbf1;
+    margin-bottom: 20px;
+  }
+  #profile-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    height: 90vh; /* Adjust this to match your container height */
+  }
+  
+  /* Style the form elements */
+#profile-details .form-group {
+    margin-bottom: 30px;
+  }
+  
+  /* Style the labels */
+  label {
+    font-weight: bold;
+    color: #dd1010;
+  }
+  
+  /* Style the input fields */
+#profile-details  .form-control {
+    border: 3px solid #2c7b8f;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  /* Style the input fields as read-only */
+#profile-details  .form-control[readonly] {
+    background-color: #ffffff;
+    cursor: not-allowed;
+  }
+
+  /* UserProfile.css */
+
+.generate-pdf-btn {
+  background-color: #007bff; /* Blue color for the button */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-pdf-btn:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Add other styles as needed for the user profile container */
+
+  

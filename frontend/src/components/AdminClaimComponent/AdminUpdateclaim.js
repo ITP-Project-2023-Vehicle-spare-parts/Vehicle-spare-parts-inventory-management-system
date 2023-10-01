@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function AdminUpdateclaim() {
   const { id,billno} = useParams(); // Get the claim ID from the URL
@@ -13,7 +14,7 @@ function AdminUpdateclaim() {
     // Fetch claim details by ID
     const fetchClaimDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8030/warrenty/get/${billno}`);
+        const response = await axios.get(`http://localhost:8000/warrenty/get/${billno}`);
         setClaimDetails(response.data.warrenty);
       } catch (error) {
         console.error('Error fetching claim details:', error);
@@ -26,9 +27,16 @@ function AdminUpdateclaim() {
   const handleStatusChange = async () => {
     try {
       // Send a PUT request to update the claim status
-      await axios.put(`http://localhost:8030/warrenty/update/${id}`, { status: newStatus });
+      await axios.put(`http://localhost:8000/warrenty/update/${id}`, { status: newStatus });
       console.log('Claim status updated');
-      alert('Claim status updated');
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'update Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
     } catch (error) {
       console.error('Error updating claim status:', error);
     }

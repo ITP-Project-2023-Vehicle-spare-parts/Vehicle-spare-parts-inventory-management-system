@@ -116,7 +116,7 @@ body.ShipmentReport {
     border-collapse: collapse;
     padding: 1rem;
     text-align:center !important;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 #ShipmentReport thead th {

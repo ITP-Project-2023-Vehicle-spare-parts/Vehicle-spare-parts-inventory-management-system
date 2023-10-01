@@ -1,47 +1,119 @@
 /* BranchTable.css */
 
-#BranchTable .branch-table-container {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+/* Center the table vertically and horizontally */
+.branch-table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+#BranchTable h2 {
+  margin-bottom: 20px;
+  color: #01080c;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+
+#BranchTable table {
+  width: 50%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #e3e2f1;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 0.5s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  #BranchTable .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #BranchTable .table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  #BranchTable .table th {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  #BranchTable .table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  #BranchTable .table tr:hover {
-    background-color: #e0e0e0;
-  }
-  
-  #BranchTable .button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  #BranchTable .button:hover {
-    background-color: #c82333;
-  }
-  
+}
+
+#BranchTable th, td {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  text-align: center;
+  font-size: 23px;
+}
+
+#BranchTable th {
+  background-color: #5444e4;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+#BranchTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#BranchTable tr:hover {
+  background-color: #f5f5f5;
+  transition: background-color 0.3s;
+}
+
+#BranchTable a {
+  color: #3498db;
+  text-decoration: none;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+#BranchTable a:hover {
+  color: #2980b9;
+}
+
+#BranchTable button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#BranchTable button:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Optional: Add a subtle hover effect for table rows */
+#BranchTable tr:hover {
+  transform: scale(1.01);
+  transition: transform 0.2s;
+}
+
+/* Style for the "Add Coupon" button */
+#BranchTable .btn-primary {
+  background: linear-gradient(to bottom, #735bcd, #4f46cb);
+  color: white; /* White text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 18px; /* Font size */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and transform */
+}
+
+/* Hover effect for the "Add Coupon" button */
+#BranchTable .btn-primary:hover {
+  background-color: #5c29e8; /* Darker green color on hover */
+  transform: scale(1.05); /* Slightly increase the size on hover */
+}

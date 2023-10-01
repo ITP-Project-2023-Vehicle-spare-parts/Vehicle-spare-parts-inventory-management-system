@@ -26,10 +26,18 @@ const crypto = require('crypto');
             unique:true,
         },
       
-        address:{
-            type:String,
-            
+        street:{
+            type: String,
         },
+        city:{
+            type: String,
+        } ,
+        state:{
+            type: String,
+        },
+        postalcode:{
+            type: String,
+        }, 
         mobile:{
             type:String,
             required:true,

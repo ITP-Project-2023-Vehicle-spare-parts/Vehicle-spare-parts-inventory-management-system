@@ -8,16 +8,9 @@ const AddOffer = () => {
     offerID: "",
     rate: "",
     description: "",
-    startDate: {
-      year: "",
-      month: "",
-      day: "",
-    },
-    endDate: {
-      year: "",
-      month: "",
-      day: "",
-    },
+    startDate:  "",
+    endDate: "",
+    
   });
 
   const [showSuccessAlert, setShowSuccessAlert] = useState(false); // State to control the success alert
@@ -28,16 +21,6 @@ const AddOffer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleDateChange = (dateType, e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [dateType]: {
-        ...formData[dateType],
-        [name]: value,
-      },
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,24 +29,8 @@ const AddOffer = () => {
     setIsSubmitting(true);
 
     try {
-      // Convert formData to the format you need for the API request
-      const formattedData = {
-        ...formData,
-        startDate: new Date(
-          formData.startDate.year,
-          formData.startDate.month - 1, // Month is 0-indexed
-          formData.startDate.day
-        ),
-        endDate: new Date(
-          formData.endDate.year,
-          formData.endDate.month - 1,
-          formData.endDate.day
-        ),
-      };
-
       const response = await axios.post(
         "http://localhost:8000/Offers/addOffer",
-        formattedData
       );
 
       if (response.status === 200) {
@@ -136,108 +103,32 @@ const AddOffer = () => {
           />
         </div>
         <div>
-          <label>Start Date:</label>
-          <div>
-            <select
-              name="year"
-              value={formData.startDate.year}
-              onChange={(e) => handleDateChange("startDate", e)}
-              required
-            >
-              <option value="">Year</option>
-              {/* Add options for years */}
-              {/* Example: Generate options for the last 10 years */}
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i} value={new Date().getFullYear() - i}>
-                  {new Date().getFullYear() - i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={formData.startDate.month}
-              onChange={(e) => handleDateChange("startDate", e)}
-              required
-            >
-              <option value="">Month</option>
-              {/* Add options for months */}
-              {/* Example: Generate options for months 1-12 */}
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={formData.startDate.day}
-              onChange={(e) => handleDateChange("startDate", e)}
-              required
-            >
-              <option value="">Day</option>
-              {/* Add options for days */}
-              {/* Example: Generate options for days 1-31 */}
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
+          <label htmlFor="startDate">Start Date:</label>
+          <input
+            type="date"
+            id="startDate"
+            name="startDate"
+            value={formData.startDate}
+            onChange={handleChange}
+            required
+          />
           </div>
-        </div>
+          <div>
+          <label htmlFor="endDate">End Date:</label>
+          <input
+            type="date"
+            id="endDate"
+            name="endDate"
+            value={formData.endDate}
+            onChange={handleChange}
+            required
+          />
+          </div>
         <div>
-          <label>End Date:</label>
-          <div>
-            <select
-              name="year"
-              value={formData.endDate.year}
-              onChange={(e) => handleDateChange("endDate", e)}
-              required
-            >
-              <option value="">Year</option>
-              {/* Add options for years */}
-              {/* Example: Generate options for the last 10 years */}
-              {Array.from({ length: 10 }, (_, i) => (
-                <option key={i} value={new Date().getFullYear() - i}>
-                  {new Date().getFullYear() - i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={formData.endDate.month}
-              onChange={(e) => handleDateChange("endDate", e)}
-              required
-            >
-              <option value="">Month</option>
-              {/* Add options for months */}
-              {/* Example: Generate options for months 1-12 */}
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={formData.endDate.day}
-              onChange={(e) => handleDateChange("endDate", e)}
-              required
-            >
-              <option value="">Day</option>
-              {/* Add options for days */}
-              {/* Example: Generate options for days 1-31 */}
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Submitting..." : "Add Offer"}
         </button>
+        </div>
       </form>
     </div>
   );

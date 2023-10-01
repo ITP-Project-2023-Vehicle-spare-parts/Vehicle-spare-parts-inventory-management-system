@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -65,9 +66,16 @@ const handleSubmit = async (e) => {
       email,
       contactNo
     };
-    const response = await axios.post("http://localhost:8030/warrenty/addclaim", newWarrenty);
+    const response = await axios.post("http://localhost:8000/warrenty/addclaim", newWarrenty);
     console.log('warrenty added successfully:', response.data);
-    alert("warrenty added");
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: 'Add Successful',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    
     
     
 
@@ -98,7 +106,7 @@ const handleSubmit = async (e) => {
               <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Add New Warranty</h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#4083be"}}>
+      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB"}}>
 
 
    

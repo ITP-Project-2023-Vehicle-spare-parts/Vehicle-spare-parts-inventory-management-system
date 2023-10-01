@@ -13,7 +13,7 @@ const addDeliveryOrder = async (req, res) => {
         const newDeliveryOrder = new DeliveringOrder({
             OrderID: req.body.orderid,
             deliveryPersonID: req.body.deliveryPersonID,
-            userID: req.body.userid,
+            userID: req.body.userID,
 
             orderStatus: req.body.orderStatus
             // ... other properties ...

@@ -31,6 +31,7 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+
 const updateBranchLocation = async (req, res) => {
     try {
         const OrderID = req.params.id;
@@ -51,10 +52,33 @@ const updateBranchLocation = async (req, res) => {
         res.status(500).send({ status: "Error updating branch location", error: err.message });
     }
 };
+
+const getOrderById = async (req, res) => {
+    try {
+      const DeliveringID = req.params.id;
+      console.log(req.params.id);
+  
+      const DeliveryOrders = await Order.findById(req.params.id);
+  
+      if (!DeliveryOrders) {
+        return res.status(404).send({ status: "Order not found" });
+      }
+  
+      console.log(DeliveryOrders);
+      res.status(200).send({ status: "Order fetched", DeliveryOrders });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ status: "Error fetching order", error: err.message });
+    }
+  };
+  
+
   
 
 module.exports = {
     getAllOrders,
     updateOrderStatus,
-    updateBranchLocation
+    updateBranchLocation,
+    getOrderById
+
  };

@@ -1,0 +1,38 @@
+/* Center the table and button */
+#Available-delivery .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Style the table */
+  #Available-delivery .table {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #Available-delivery .table thead th {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  #Available-delivery .table tbody td {
+    vertical-align: middle;
+  }
+  
+  /* Style the "Assign" button */
+  #Available-delivery  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  #Available-delivery .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  } 
+  

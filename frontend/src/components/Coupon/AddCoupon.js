@@ -7,11 +7,8 @@ function AddCoupon() {
     code: "",
     discount: "",
     description: "",
-    expirationDate: {
-      year: "",
-      month: "",
-      day: "",
-    },
+    expirationDate: "",
+    
   });
 
   const [errors, setErrors] = useState({});
@@ -19,17 +16,6 @@ function AddCoupon() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  const handleDateChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      expirationDate: {
-        ...formData.expirationDate,
-        [name]: value,
-      },
-    });
   };
 
   const validateForm = () => {
@@ -77,11 +63,8 @@ function AddCoupon() {
             code: "",
             discount: "",
             description: "",
-            expirationDate: {
-              year: "",
-              month: "",
-              day: "",
-            },
+            expirationDate: "",
+            
           });
           alert("Coupon Created successfully!");
         }
@@ -137,57 +120,14 @@ function AddCoupon() {
           />
         </div>
         <div>
-          <label>Expiration Date:</label>
-          <div>
-            <select
-              name="year"
-              value={formData.expirationDate.year}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Year</option>
-              {/* Generate options for years */}
-              {/* Example: Generate options for the next 10 years */}
-              {Array.from({ length: 10 }, (_, i) => (
-                <option
-                  key={i}
-                  value={new Date().getFullYear() + i}
-                >
-                  {new Date().getFullYear() + i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={formData.expirationDate.month}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Month</option>
-              {/* Generate options for months */}
-              {/* Example: Generate options for months 1-12 */}
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={formData.expirationDate.day}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Day</option>
-              {/* Generate options for days */}
-              {/* Example: Generate options for days 1-31 */}
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </div>
+          <label htmlFor="expirationDate">Expiration Date:</label>
+          <input
+            type="date"
+            id="expirationDate"
+            name="expirationDate"
+            value={formData.expirationDate}
+            onChange={handleChange}
+          />
         </div>
         <div>
           <button type="submit">Create Coupon</button>
