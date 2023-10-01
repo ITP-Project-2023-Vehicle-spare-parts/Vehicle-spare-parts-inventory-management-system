@@ -29,8 +29,10 @@ export default function Login() {
       .post("http://localhost:8000/user/login", validate)
       .then((res) => {
         console.log(res.data)
-        const ID = res.data;
-        localStorage.setItem("userID",ID)
+        console.log(res.data._id);
+
+        const id = res.data._id;
+        
 
         if (res.data.role === "admin") {
           console.log(res.data.role);
@@ -45,7 +47,9 @@ export default function Login() {
           Navigate("/supplier/home");
         } else {
           console.log(res.data.role);
+          sessionStorage.setItem("userID", id);
           Navigate("/home");
+
         }
         console.log(email);
 
