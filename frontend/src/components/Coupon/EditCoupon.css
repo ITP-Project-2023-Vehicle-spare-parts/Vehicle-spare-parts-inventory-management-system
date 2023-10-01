@@ -42,8 +42,8 @@
 }
 
 #EditCoupon.edit-coupon-container input[type="text"],
-.edit-coupon-container input[type="number"],
-.edit-coupon-container input[type="date"] {
+#EditCoupon .edit-coupon-container input[type="number"],
+#EditCoupon .edit-coupon-container input[type="date"] {
   width: calc(70% - 10px);
   padding: 18px; /* Adjusted Padding */
   margin-bottom: 30px; /* Adjusted Margin */

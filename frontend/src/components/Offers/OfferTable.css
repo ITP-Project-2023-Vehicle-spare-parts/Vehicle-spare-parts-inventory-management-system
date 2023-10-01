@@ -1,4 +1,4 @@
-.offer-table-container {
+#OfferTable .offer-table-container {
   display: flex;
   margin: auto;
   margin-top: 20px;

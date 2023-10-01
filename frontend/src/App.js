@@ -215,6 +215,19 @@ function App() {
               <Route path="delivery/profiles/:id" element={<EditDeliveryPerson />} />
               <Route path="orders" exact element={<OrderList />} />
               <Route path="order/:orderid/:userid" element={<AvailableDeliveryPersonList />} />
+              <Route path="branch/add" element={<AddBranch />} />
+              <Route path="offer/add" element={<AddOffer />} />
+              <Route path="coupon/add" element={<AddCoupon />} />
+              <Route path="branch/read" exact element={<BranchTable />} />
+              <Route path="branch/profile/:id" element={<BranchDetails />} />
+              <Route path="offer/read" element={<OfferTable />} />
+              <Route path="offer/profile/:offerID" element={<OfferDetails />} />
+              <Route path="coupon/read" exact element={<CouponTable />} />
+              <Route path="coupon/profile" element={<CouponDetails />}/>
+              <Route path="profile/update/:id" element={<EditBranch />} />
+              <Route path="coupon/profile/update/:id" element={<EditCoupon />}/>
+              <Route path="offer/profile/update/:id" element={<EditOffer />} />
+              <Route path="assignBranch" element={<AssignBranch />} />
               <Route path="allclaim" element={<AllClaims />} />
               <Route
                 path="Stock-interactivechart"
@@ -244,25 +257,7 @@ function App() {
 
             <Route path="/sidebar" element={<Sidebar />} />
 
-            <Route path="/admin/branch/add" element={<AddBranch />} />
-            <Route path="/admin/offer/add" element={<AddOffer />} />
-            <Route path="/admin/coupon/add" element={<AddCoupon />} />
-            <Route path="/admin/branch/read" exact element={<BranchTable />} />
-            <Route path="/branch/profile/:id" element={<BranchDetails />} />
-            <Route path="/admin/offer/read" element={<OfferTable />} />
-            <Route path="/offer/profile/:offerID" element={<OfferDetails />} />
-            <Route path="/admin/coupon/read" exact element={<CouponTable />} />
-            <Route
-              path="admin/coupon/profiles/:id"
-              element={<CouponDetails />}
-            />
-            <Route path="/profile/update/:id" element={<EditBranch />} />
-            <Route
-              path="/admin/coupon/profile/update/:id"
-              element={<EditCoupon />}
-            />
-            <Route path="/offer/profile/update/:id" element={<EditOffer />} />
-            <Route path="/admin/assignBranch" element={<AssignBranch />} />
+
 
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/order-details/:orderId" element={<TrackOrderDetails />}/>

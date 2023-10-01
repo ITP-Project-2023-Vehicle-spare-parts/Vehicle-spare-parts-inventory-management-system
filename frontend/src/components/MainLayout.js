@@ -186,11 +186,29 @@ const MainLayout = () => {
               key: 'rebate',
               icon: <BiSolidOffer className='fs-4'/>,
               label: 'Rebate',
+              children : [
+                {
+                  key: 'offer/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Offers',
+                },
+                {
+                  key: 'coupon/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Coupons',
+                },
+              ]
             },
             {
               key: 'branch',
               icon: <AiOutlineBranches className='fs-4'/>,
               label: 'Branch',
+              children : [
+                {
+                  key: 'branch/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Branch',
+                },]
             },
             {
               key: 'delivery',
