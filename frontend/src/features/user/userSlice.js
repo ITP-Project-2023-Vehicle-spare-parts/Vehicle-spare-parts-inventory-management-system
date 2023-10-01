@@ -12,6 +12,18 @@ export const registerUser = createAsyncThunk("auth/register", async (userData, t
     }
 });
 
+export const getCustomers = createAsyncThunk(
+    "auth/get-customers",
+    async (thunkAPI) => {
+      try {
+        return await authService.getCustomers();
+      } catch (error) {
+        return thunkAPI.rejectWithValue(error);
+      }
+    }
+  );
+  
+
 export const loginUser = createAsyncThunk("auth/login", async (userData, thunkAPI) => {
     try {
         return await authService.login(userData);
@@ -277,6 +289,21 @@ export const authSlice = createSlice({
                 state.deletedCart = action.payload;
             })
             .addCase(deleteUserCart.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.isSuccess = false;
+                state.message = action.error;
+            })
+            .addCase(getCustomers.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getCustomers.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isError = false;
+                state.isSuccess = true;
+                state.getCustomers = action.payload;
+            })
+            .addCase(getCustomers.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.isSuccess = false;

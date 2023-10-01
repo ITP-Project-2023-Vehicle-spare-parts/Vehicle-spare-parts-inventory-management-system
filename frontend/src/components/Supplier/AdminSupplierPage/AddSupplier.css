@@ -11,7 +11,7 @@
     box-sizing: border-box;
     font-family: "Popins" ,sans-serif;
     
-
+    
 }
 
 #AddSupplier .error-message {
@@ -23,8 +23,7 @@
 
 #AddSupplier .home_content {
     position: absolute;  
-    left: 100px;
-    transition: all 0.5s ease;
+    left: center;
     width: max-content;
 }
 
@@ -32,14 +31,13 @@
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
-    margin-left: 0px;
     width: max-content;
 }
 #AddSupplier .home_content .text1{
     font-size: 25px;
     font-weight: 500;
     color:#1d1b31 ;
-    margin-left: 810px;
+    margin-left: 570px;
     width: max-content;
     
     
@@ -53,9 +51,16 @@
     background: #ffffff;
     color: #2e323c;
     box-shadow:#007ae1;
-    margin: o;
+    margin: 10px;
+    margin-bottom: 10px;
     
 }
+
+#AddSupplier .form-scroll-container {
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    max-height: 80vh; /* Set a maximum height for the scrollable container */
+    padding-right: 20px; /* Add some right padding to prevent content from being obscured by scrollbar */
+  }
 
 
 
@@ -64,15 +69,16 @@
 
 
 #AddSupplier .container {
-    margin-left: 300px;
-    overflow: auto;
-    overflow-y: auto;
+    margin-left: 155px;
     backdrop-filter: blur(7px);
-    box-shadow: 0 .4rem .8rem rgba(36, 29, 29, 0.858);
+    box-shadow: 0 .4rem .8rem rgba(147, 142, 142, 0.353);
     border-color: #b3a8a8db;
     background-color: #ffffff82;
     border-radius: 15px;
     padding: 30px;
+    max-width:max-content;
+    
+    
     
    
 }

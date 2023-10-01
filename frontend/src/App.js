@@ -102,6 +102,11 @@ import OrderDetails from "./components/OrderHistory";
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
 
+import AdminCustomerList from "./pages/AdminCustomerList";
+import AdminCustomerUpdate from "./pages/AdminCustomerUpdate";
+
+
+
 function App() {
   return (
     <Provider store={store}>
@@ -120,9 +125,9 @@ function App() {
             <Route path="/reset-password" element={<Resetpassword />} />
 
             {/* Admin Routes */}
-            <Route path="/Admin/sup/add" element={<AddSupplier />} />
+            
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
-            <Route path="/Admin/client/add" element={<AddClient />} />
+           
             <Route
               path="/Admin/Supplier/Profile"
               element={<SupplierProfile />}
@@ -237,6 +242,10 @@ function App() {
                 element={<InteractiveChartsPage />}
               />
               <Route path="Stock-Low" element={<LowStock />} />
+              <Route path="customer-list" element={<AdminCustomerList />} />
+              <Route path="sup/add" element={<AddSupplier />} />
+              <Route path="client/add" element={<AddClient />} />
+              <Route path="customer-admin-update" element={<AdminCustomerUpdate />} />
             </Route>
 
             <Route path="/home" element={<Layout />}>

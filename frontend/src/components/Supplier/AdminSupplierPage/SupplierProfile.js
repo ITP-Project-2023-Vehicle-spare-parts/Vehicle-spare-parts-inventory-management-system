@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SupplierProfile.css";
 import "boxicons/css/boxicons.min.css";
-import SupplierSideNavigation from "../../SupplierSideNavigation";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -39,7 +38,7 @@ export default function SupplierProfile() {
 
   return (
     <div id="SupplierProfile">
-      <SupplierSideNavigation />
+     
       <body>
         <span className="main_bg"></span>
 
