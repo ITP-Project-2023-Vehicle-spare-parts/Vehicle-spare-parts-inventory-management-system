@@ -6,7 +6,10 @@ import './AvailableDeliveryPersonList.css'
 function AvailableDeliveryPersonList({ navigateToOrderList }) {
   const [deliveryPersons, setDeliveryPersons] = useState([]);
   const [selectedDeliveryPerson, setSelectedDeliveryPerson] = useState(null);
+  const [searchBranch, setSearchBranch] = useState('');
   const { orderid, userid } = useParams();
+
+  
 
   useEffect(() => {
     // Fetch the list of delivery persons from your API
@@ -38,6 +41,9 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
     } else {
       console.error('ID is undefined, cannot update status.');
     }
+    // const filteredDeliveryPersons = deliveryPersons.filter(person =>
+    //   person.deliverypersonBranch.toLowerCase().includes(searchBranch.toLowerCase())
+    // );
 
     //console.log('ID:', id);
 
@@ -65,11 +71,24 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
       console.error('Error updating :', error);
     });
   };
+  const filteredDeliveryPersons = deliveryPersons.filter(person =>
+    person.deliverypersonBranch.toLowerCase().includes(searchBranch.toLowerCase())
+  );
 
   return (
     
     <div id='Available-delivery' className="container mt-4">
     <h2>Delivery Persons List</h2>
+    <div className="mb-3">
+        <label htmlFor="searchBranch" className="form-label">Search by Branch:</label>
+        <input
+          type="text"
+          id="searchBranch"
+          className="form-control"
+          value={searchBranch}
+          onChange={(e) => setSearchBranch(e.target.value)}
+        />
+      </div>
     <table className="table table-bordered table-striped">
       <thead>
         <tr>
@@ -84,7 +103,7 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
         </tr>
       </thead>
       <tbody>
-        {deliveryPersons.map((deliveryPerson) => (
+        {filteredDeliveryPersons.map((deliveryPerson) => (
           <tr key={deliveryPerson._id}>
             <td>{deliveryPerson._id}</td>
             <td>{deliveryPerson.DeliveryPersonID}</td>

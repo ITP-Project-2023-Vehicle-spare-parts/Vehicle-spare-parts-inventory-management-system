@@ -1,6 +1,5 @@
-// import React , {useState ,useEffect} from "react";
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
 import "boxicons/css/boxicons.min.css";
 import "./AddClient.css";
 import Button from "react-bootstrap/Button";
@@ -30,61 +29,68 @@ export default function AddClient() {
   const validateForm = () => {
     const errors = {};
 
-    // Validate Company Name
     if (!ClientsfirstName.trim()) {
-      errors.ClientsfirstName = "Clientsfirst Name is Requierd";
+      errors.ClientsfirstName = "First Name is required";
     }
 
-    // Validate Company Email
     if (!ClientsLastName.trim()) {
-      errors.ClientsLastName = "Clients LastName is Requierd";
+      errors.ClientsLastName = "Last Name is required";
     }
 
-    // Validate Company Phone
-    if (!ClientsPhone.trim()) {
-      errors.ClientsPhone = "Clients Phone is Requierd";
-    }
-
-    // Validate Company Address
     if (!ClientsEmail.trim()) {
-      errors.ClientsEmail = "Clients Email is Requierd";
+      errors.ClientsEmail = "Email is required";
+    } else if (!isValidEmail(ClientsEmail)) {
+      errors.ClientsEmail = "Invalid Email format";
     }
 
-    // Validate Supplier First Name
+    if (!ClientsPhone.trim()) {
+      errors.ClientsPhone = "Phone Number is required";
+    } else if (!isValidPhone(ClientsPhone)) {
+      errors.ClientsPhone = "Invalid Phone Number format";
+    }
+
     if (!ClientsState.trim()) {
-      errors.ClientsState = "Clients State Name is Requierd";
+      errors.ClientsState = "State is required";
     }
 
-    // Validate Client City
     if (!ClientsCity.trim()) {
-      errors.ClientsCity = "Clients City is Requierd";
+      errors.ClientsCity = "City is required";
     }
 
-    // Validate Supplier Email
     if (!ClientsPostalCode.trim()) {
-      errors.ClientsPostalCode = "ClientsPostalCode is Requierd";
+      errors.ClientsPostalCode = "Postal Code is required";
     }
 
     if (!ClientsStatus.trim()) {
-      errors.ClientsStatus = "Clients Status is Requierd";
+      errors.ClientsStatus = "Client Status is required";
     }
 
-    // Validate Supplier State
     if (!NoOfBranches.trim()) {
-      errors.NoOfBranches = "No Of Branches is Requierd";
-    }
-    // Validate System Email
-    if (!SystemEmail.trim()) {
-      errors.SystemEmail = "System Email is Requierd";
+      errors.NoOfBranches = "Number Of Branches is required";
     }
 
-    // Validate System Password
+    if (!SystemEmail.trim()) {
+      errors.SystemEmail = "System Email is required";
+    }
+
     if (!SystemPassword.trim()) {
-      errors.SystemPassword = "System Password is Requierd";
+      errors.SystemPassword = "System Password is required";
+    } else if (SystemPassword.length < 6) {
+      errors.SystemPassword = "Password should be at least 6 characters long";
     }
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
+  };
+
+  const isValidEmail = (email) => {
+    // Add your email validation logic here
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const isValidPhone = (phone) => {
+    // Add your phone number validation logic here
+    return /^\d{10}$/.test(phone);
   };
 
   const handleSubmit = async (e) => {
@@ -93,6 +99,7 @@ export default function AddClient() {
 
     if (isValid) {
       try {
+        // Your axios POST request here
         const newClient = {
           ClientsfirstName,
           ClientsLastName,
@@ -107,9 +114,14 @@ export default function AddClient() {
           SystemPassword,
         };
 
-        const userResponse = await axios.post("http://localhost:8000/clients/addClients", newClient);
+        const userResponse = await axios.post(
+          "http://localhost:8000/clients/addClients",
+          newClient
+        );
 
         console.log(userResponse);
+
+        // Reset form fields and show success toast
         setFName("");
         setLName("");
         setEmail("");
@@ -123,17 +135,18 @@ export default function AddClient() {
         setsysPassword("");
 
         toast.success("Successfully Registered!", {
-          duration: 3000, // 3 seconds
-          position: "top-right", // You can change the position if needed
+          duration: 3000,
+          position: "top-right",
         });
-        Navigate("/Admin/client/All");
 
+        // Redirect to the desired page
+        Navigate("/Admin/client/All");
       } catch (err) {
         toast.error("Failed To Register", {
-          duration: 3000, // 3 seconds
-          position: "top-right", // You can change the position if needed
+          duration: 3000,
+          position: "top-right",
         });
-        console.log(err);
+        console.error(err);
       }
     }
   };
@@ -149,7 +162,12 @@ export default function AddClient() {
               <h1>Add Clients...</h1>
               <Row className="mb-3">
                 <Form.Group as={Col}>
-                  <Form.Label>First Name</Form.Label>
+                  <Form.Label>
+                    First Name
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="text"
@@ -168,7 +186,12 @@ export default function AddClient() {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Last Name</Form.Label>
+                  <Form.Label>
+                    Last Name
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="text"
@@ -189,7 +212,12 @@ export default function AddClient() {
 
               <Row className="mb-3">
                 <Form.Group as={Col}>
-                  <Form.Label>Client Email</Form.Label>
+                  <Form.Label>
+                    Client Email
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="email"
@@ -208,7 +236,12 @@ export default function AddClient() {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Client Phone</Form.Label>
+                  <Form.Label>
+                    Client Phone
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="number"
@@ -229,10 +262,20 @@ export default function AddClient() {
 
               <Row className="mb-5">
                 <h2>
-                  <b>Client Address</b>
+                  <b>
+                    Client Address
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </b>
                 </h2>
                 <Form.Group as={Col}>
-                  <Form.Label>City</Form.Label>
+                  <Form.Label>
+                    City
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     id="ClientsCity"
@@ -250,7 +293,12 @@ export default function AddClient() {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>State</Form.Label>
+                  <Form.Label>
+                    State
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Select
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     defaultValue="Galle"
@@ -272,11 +320,18 @@ export default function AddClient() {
                     )}
                     <option>Galle</option>
                     <option>Ambalangoda</option>
+                    <option>Gampaha</option>
+                    <option>Kurunegala</option>
                   </Form.Select>
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>PostalCode</Form.Label>
+                  <Form.Label>
+                    PostalCode
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     type="number"
                     className="shadow-lg p-3 mb-2 bg-white rounded"
@@ -295,19 +350,32 @@ export default function AddClient() {
                 </Form.Group>
               </Row>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Client Status</Form.Label>
-                <Form.Control
+              <Form.Group className="mb-4">
+                <Form.Label>
+                  Client Status
+                  <span className="text-danger" style={{ fontSize: "25px" }}>
+                    *
+                  </span>
+                </Form.Label>
+                <Form.Select
                   className="shadow-lg p-3 mb-2 bg-white rounded"
-                  as="textarea"
-                  rows={3}
                   id="ClientsStatus"
-                  placeholder="status..."
                   value={ClientsStatus}
                   onChange={(e) => {
                     setStatus(e.target.value);
                   }}
-                />
+                  style={{
+                    border: "3px solid #073dff",
+                    borderRadius: "2px",
+                    fontSize: "1.4rem",
+                  }}
+                >
+                  <option value="">Select Status</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="other">Other</option>
+                </Form.Select>
                 {formErrors.ClientsStatus && (
                   <div className="error-message">
                     {formErrors.ClientsStatus}
@@ -318,6 +386,9 @@ export default function AddClient() {
               <div className="form-outline">
                 <label className="form-label" for="typeNumber">
                   Number Of Branches
+                  <span className="text-danger" style={{ fontSize: "25px" }}>
+                    *
+                  </span>
                 </label>
                 <input
                   min="1"
@@ -342,7 +413,12 @@ export default function AddClient() {
 
               <Row className="mb-3">
                 <Form.Group as={Col}>
-                  <Form.Label>Email</Form.Label>
+                  <Form.Label>
+                    Email
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-lightrounded"
                     type="email"
@@ -361,7 +437,12 @@ export default function AddClient() {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Password</Form.Label>
+                  <Form.Label>
+                    Password
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-lightrounded"
                     type="password"
