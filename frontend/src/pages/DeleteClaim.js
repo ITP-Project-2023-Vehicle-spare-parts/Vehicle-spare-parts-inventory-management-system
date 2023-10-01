@@ -42,7 +42,7 @@ function DeleteClaim() {
                 timer: 1500
               })
               
-            navigate('/'); // Navigate back to the list of all claims or any desired page
+            navigate('/home'); // Navigate back to the list of all claims or any desired page
         } catch (error) {
             console.error('Error deleting claim:', error);
         }
