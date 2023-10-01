@@ -79,7 +79,7 @@ const FetchClaim = () => {
               <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Your claim details </h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB",paddingBottom:"20px"}}>
+      <div className="container shadow-lg p-5 mb-5  rounded" style={{background:"#87CEEB"}}>
 
         
             <input
@@ -94,7 +94,7 @@ const FetchClaim = () => {
             {error && <p>Error: {error}</p>}
 
             {claimDetails && (
-                <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#87CEEB"}}>
+                <div className="container shadow-lg p-5 mb-5  rounded" style={{ background: "#87CEEB"}}>
                     <div>
                         <h3>Warranty Claim Details</h3>
 
