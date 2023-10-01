@@ -1,0 +1,47 @@
+/* TrackOrderDetails.css */
+#TrackOrderDetails .order-details-card {
+    background-color: #f8f9fa;
+    border: 1px solid #d1d3e2;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  #TrackOrderDetails .card-title {
+    font-size: 2.5rem;
+    color: #007bff;
+  }
+  
+  #TrackOrderDetails .detail-item {
+    font-size: 1.2rem;
+    color: #343a40;
+  }
+  
+  #TrackOrderDetails .list-group-item {
+    background-color: #ffffff;
+    border: 1px solid #d1d3e2;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  #TrackOrderDetails .list-group-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  #TrackOrderDetails .list-item {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  #TrackOrderDetails .order-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+/* TrackOrderDetails.css */
+#TrackOrderDetails .status-image {
+    max-width: 100px; /* Adjust the size as needed */
+    max-height: 100px;
+    margin-bottom: 10px;
+  }
+    

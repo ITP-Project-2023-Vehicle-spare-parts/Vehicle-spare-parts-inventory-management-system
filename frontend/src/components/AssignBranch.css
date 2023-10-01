@@ -1,0 +1,109 @@
+/* AssignBranch CSS */
+
+/* Center the entire content vertically and horizontally */
+#AssignBranch div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #AssignBranch div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  #AssignBranch h2 {
+    margin-bottom: 20px;
+    color: #01080c;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease-in-out;
+    text-align: center;
+  }
+  
+  #AssignBranch table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  
+  #AssignBranch th, td {
+    padding: 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  #AssignBranch th {
+    background-color: #3f22e5;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333333;
+  }
+  
+  #AssignBranch select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #3498db;
+    background-color: #acb2f4;
+    color: #ec3131;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  #AssignBranch select:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 12px rgba(41, 128, 185, 0.4);
+  }
+  
+  #AssignBranch button {
+    background-color: #f42222;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  #AssignBranch button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+  }
+  
+  #AssignBranch p {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  /* Loading spinner CSS */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  #AssignBranch .loader {
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 30px;
+  }
+  

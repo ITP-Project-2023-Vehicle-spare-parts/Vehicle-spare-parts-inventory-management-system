@@ -1,84 +1,95 @@
-/* AddCoupon.css */
-
-#AddCoupon .container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #5349d9;
-  }
-  
-  #AddCoupon .h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  #AddCoupon .form {
+  #AddCoupon body {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5; /* Light Grey Background */
+    font-family: 'Arial', sans-serif;
   }
   
-  #AddCoupon .label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #0b0909; /* Label text color */
-  }
-  
-  #AddCoupon .input[type="text"],
-  #AddCoupon .input[type="number"],
-  select {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  #AddCoupon .error {
-    color: red;
-    margin-top: 5px;
+  #AddCoupon {
+    width: 900px; /* Increased Width */
+    padding: 90px; /* Adjusted Padding */
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #735bcd, #4f46cb); /* Gradient Background */
     text-align: center;
+    justify-content: space-around;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
   
-  #AddCoupon .button[type="submit"] {
-    background-color: #f50909;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    margin-top: 15px;
+  #AddCoupon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
   }
   
-  #AddCoupon .button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Center the form within the container */
-  #AddCoupon .container form {
+  #AddCoupon form {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  /* Style the form fields as a grid */
-  #AddCoupon .container form > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+  #AddCoupon div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Adjusted Margin */
   }
+
+
+#AddCoupon input[type="text"],
+#AddCoupon input[type="number"],
+#AddCoupon input[type="date"] {
+  width: calc(100% - 90px);
+  padding: 18px; /* Adjusted Padding */
+  margin-bottom: 20px; /* Adjusted Margin */
+  border: 2px solid #ffcc29; /* Vibrant Yellow Border */
+  border-radius: 36px;
+  font-size: 20px;
+  color: #333333;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#AddOffer input[type="text"]:focus,
+#AddOffer input[type="number"]:focus,
+#AddCoupon input[type="date"]:focus {
+  border-color: #ff3333; /* Vibrant Red on Focus */
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+}
+
+#AddCoupon label {
+  font-weight: bold;
+  color: #050404; /* Vibrant Yellow */
+  font-size: 24px; /* Increased Font Size */
+  text-align: left;
+  width: 35%; /* Adjusted Width for Labels */
+}
   
-  /* Adjust label alignment for better aesthetics */
-  #AddCoupon .container form label {
-    text-align: left;
-    line-height: 32px;
-  }
-  
-  /* Style error messages */
   #AddCoupon .error {
-    grid-column: span 2;
+    color: #ff3333; /* Vibrant Red Error Messages */
+    font-size: 18px; /* Adjusted Font Size */
+    margin-top: 20px; /* Adjusted Margin */
+  }
+  
+  #AddCoupon button[type="submit"] {
+    background: #e63a3a; /* Vibrant Green Button */
+    color: rgb(6, 5, 5);
+    border: none;
+    padding: 22px 50px; /* Adjusted Padding */
+    margin-top: 40px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px; /* Increased Font Size */
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  #AddCoupon button[type="submit"]:hover {
+    background: #51ace5; /* Lighter Green on Hover */
+    transform: scale(1.1);
   }
   

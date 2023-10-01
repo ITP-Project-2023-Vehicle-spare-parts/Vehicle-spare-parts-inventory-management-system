@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './AvailableDeliveryPersonList.css'
 
 function AvailableDeliveryPersonList({ navigateToOrderList }) {
   const [deliveryPersons, setDeliveryPersons] = useState([]);
@@ -48,14 +49,14 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
     })
     .then((response) => {
       console.log('Delivery order added successfully.');
-      window.location.href = '/admin/orders';
+      window.location.href = '/admin/order';
     })
     .catch((error) => {
       console.error('Error adding delivery order:', error);
     });
 
     axios.put(`http://localhost:8000/allOrder/updateStatus/${orderid}`, {
-      orderStatus: "processing"
+      orderStatus: "delivery person assign"
     })
     .then((response) => {
       alert('Status updated successfully!');
@@ -66,47 +67,53 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
   };
 
   return (
-    <div>
-      <h2>Delivery Persons List</h2>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Delivery Person ID</th>
-            <th>User Name</th>
-            <th>Contact Number</th>
-            <th>Email</th>
-            <th>Vehicle Number</th>
-            <th>Working Branch</th>
-            <th>Actions</th>
+    
+    <div id='Available-delivery' className="container mt-4">
+    <h2>Delivery Persons List</h2>
+    <table className="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Delivery Person ID</th>
+          <th>User Name</th>
+          <th>Contact Number</th>
+          <th>Email</th>
+          <th>Vehicle Number</th>
+          <th>Working Branch</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {deliveryPersons.map((deliveryPerson) => (
+          <tr key={deliveryPerson._id}>
+            <td>{deliveryPerson._id}</td>
+            <td>{deliveryPerson.DeliveryPersonID}</td>
+            <td>{deliveryPerson.deliverypersonUsername}</td>
+            <td>{deliveryPerson.deliverypersonContactNumber}</td>
+            <td>{deliveryPerson.deliverypersonEmail}</td>
+            <td>{deliveryPerson.deliverypersonVehicleNumber}</td>
+            <td>{deliveryPerson.deliverypersonBranch}</td>
+            <td>
+              <input
+                type="radio"
+                name="deliveryPerson"
+                value={deliveryPerson._id}
+                onChange={() => handleRadioChange(deliveryPerson._id)}
+                checked={selectedDeliveryPerson === deliveryPerson._id}
+              />
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {deliveryPersons.map((deliveryPerson) => (
-            <tr key={deliveryPerson._id}>
-              <td>{deliveryPerson._id}</td>
-              <td>{deliveryPerson.DeliveryPersonID}</td>
-              <td>{deliveryPerson.deliverypersonUsername}</td>
-              <td>{deliveryPerson.deliverypersonContactNumber}</td>
-              <td>{deliveryPerson.deliverypersonEmail}</td>
-              <td>{deliveryPerson.deliverypersonVehicleNumber}</td>
-              <td>{deliveryPerson.deliverypersonBranch}</td>
-              <td>
-                <input
-                  type="radio"
-                  name="deliveryPerson"
-                  value={deliveryPerson._id}
-                  onChange={() => handleRadioChange(deliveryPerson._id)}
-                  checked={selectedDeliveryPerson === deliveryPerson._id}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={handleAssignDelivery}>Assign</button>
-    </div>
+        ))}
+      </tbody>
+    </table>
+    <button
+      className="btn btn-primary"
+      onClick={handleAssignDelivery}
+    >
+      Assign
+    </button>
+  </div>
+  
   );
 }
 

@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import toast from "react-hot-toast";
-import SupplierSideNavigation from "../../SupplierSideNavigation";
 import { useNavigate } from "react-router-dom";
 
 export default function AddSupplier() {
@@ -43,15 +42,17 @@ if (!CompanyName.trim()) {
 // Validate Company Email
 if (!CompanyEmail.trim()) {
   errors.CompanyEmail = "Company Email is required";
-} else if (!/^\S+@\S+\.\S+$/.test(CompanyEmail)) {
-  errors.CompanyEmail = "Company Email is invalid";
-}
+} 
 
 // Validate Company Phone
 if (!CompanyPhone.trim()) {
   errors.CompanyPhone = "Company Phone is required";
-} else if (!/^\d+$/.test(CompanyPhone)) {
+} else if (!/^\d{10}$/.test(CompanyPhone)) {
   errors.CompanyPhone = "Company Phone must be numeric";
+  toast.error("Phone Number Need 10 Digit Number", {
+    duration: 3000, // 3 seconds
+    position: "top-right", // You can change the position if needed
+  });
 }
 
 // Validate Company Address
@@ -65,16 +66,14 @@ if (!SupplierfirstName.trim()) {
 }
 
 // Validate Supplier Last Name
-if (!SupplierLastName.trim()) {
+if (!SupplierLastName.trim()){
   errors.SupplierLastName = "Supplier Last Name is required";
 }
 
 // Validate Supplier Email
 if (!SupplierEmail.trim()) {
   errors.SupplierEmail = "Supplier Email is required";
-} else if (!/^\S+@\S+\.\S+$/.test(SupplierEmail)) {
-  errors.SupplierEmail = "Supplier Email is invalid";
-}
+} 
 
 // Validate Supplier Phone
 if (!SupplierPhone.trim()) {
@@ -112,12 +111,13 @@ if (!ProvidedBrand.trim()) {
 
 // Validate System Email
 if (!SystemEmail.trim()) {
-  errors.SystemPassword = "System Password is required";
+  errors.SystemEmail = "System Email is required";
 }
 
 // Validate System Password
-if (!SystemPassword.trim()) {
+if (!SystemPassword.trim()  && (SystemPassword.length > 6) ) {
   errors.SystemPassword = "System Password is required";
+  toast.error("Password Must should be 6 digits");
 }
 
     // ... Add more validation rules for other fields ...
@@ -210,18 +210,18 @@ if (!SystemPassword.trim()) {
 
   return (
     <div id="AddSupplier">
-      <SupplierSideNavigation />
-
+      
+<div className="form-scroll-container">
       <div className="home_content">
         <div className="text">
           <div className="text1">
-            <h1>
-              <b>Add Suppliers.</b>
-            </h1>
           </div>
-
+    <div className="form-scroll-container">
           <Form onSubmit={handleSubmit} className="container">
           
+            <h1>
+              Add Suppliers...
+            </h1>
             <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Company Name</Form.Label>
@@ -544,8 +544,9 @@ if (!SystemPassword.trim()) {
           </Form>
         </div>
       </div>
+      </div>
     </div>
-    //   </div>
-    // </div>
+    
+   </div>
   );
 }

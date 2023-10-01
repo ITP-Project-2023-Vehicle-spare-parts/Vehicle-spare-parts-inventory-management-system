@@ -41,17 +41,6 @@ function EditCoupon() {
     }));
   };
 
-  const handleDateChange = (e) => {
-    const { name, value } = e.target;
-    setCoupon((prevCoupon) => ({
-      ...prevCoupon,
-      expirationDate: {
-        ...prevCoupon.expirationDate,
-        [name]: value,
-      },
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -111,57 +100,15 @@ function EditCoupon() {
           />
         </div>
         <div>
-          <label>Expiration Date:</label>
-          <div>
-            <select
-              name="year"
-              value={coupon.expirationDate.year}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Year</option>
-              {/* Generate options for years */}
-              {/* Example: Generate options for the next 10 years */}
-              {Array.from({ length: 10 }, (_, i) => (
-                <option
-                  key={i}
-                  value={new Date().getFullYear() + i}
-                >
-                  {new Date().getFullYear() + i}
-                </option>
-              ))}
-            </select>
-            <select
-              name="month"
-              value={coupon.expirationDate.month}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Month</option>
-              {/* Generate options for months */}
-              {/* Example: Generate options for months 1-12 */}
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-            <select
-              name="day"
-              value={coupon.expirationDate.day}
-              onChange={handleDateChange}
-              required
-            >
-              <option value="">Day</option>
-              {/* Generate options for days */}
-              {/* Example: Generate options for days 1-31 */}
-              {Array.from({ length: 31 }, (_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1}
-                </option>
-              ))}
-            </select>
-          </div>
+        <label htmlFor="expirationDate">Expiration Date:</label>
+          <input
+            type="date"
+            id="expirationDate"
+            name="expirationDate"
+            value={coupon.expirationDate}
+            onChange={handleInputChange}
+          />
+
         </div>
         <div className="button-container">
           <button type="submit">Update</button>

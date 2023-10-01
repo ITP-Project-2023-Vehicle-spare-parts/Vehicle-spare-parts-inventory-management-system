@@ -82,6 +82,9 @@ app.use("/Offers", OffersRoute);
 const SupplierRequestRoutes = require("./routes/SupplierRequestRoutes");
 app.use("/supplierReq", SupplierRequestRoutes);
 
+const deliveredOrderRoutes = require("./routes/deliveredOrdersRoute");
+app.use("/deliveredOrders", deliveredOrderRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 

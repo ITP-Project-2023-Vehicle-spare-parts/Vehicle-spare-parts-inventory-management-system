@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ClientProfile.css";
 import "boxicons/css/boxicons.min.css";
-import SupplierSideNavigation from "../../components/SupplierSideNavigation";
+
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -47,7 +47,7 @@ export default function ClientProfile() {
 
   return (
     <div id="SupplierProfile">
-      <SupplierSideNavigation />
+      
       <body>
         <span className="main_bg"></span>
 
@@ -74,7 +74,7 @@ export default function ClientProfile() {
                 </Link>
                 <Link to="/Admin/client/All">
                   <Button variant="success" style={{ marginLeft: "10px" }}>
-                    Suppliers
+                    Clients
                   </Button>
                 </Link>
               </div>

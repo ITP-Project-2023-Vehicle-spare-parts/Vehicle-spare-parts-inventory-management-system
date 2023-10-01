@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from 'react-router-dom';
 import axios from "axios";
+import './AssignBranch.css'; // Import your CSS file here
 
 function AssignBranch() {
   const [orderData, setOrderData] = useState([]);
@@ -58,7 +59,7 @@ function AssignBranch() {
   };
 
   return (
-    <div>
+    <div id="AssignBranch">
       <h2>Order Details</h2>
       {successMessage && <p>{successMessage}</p>}
       <table>

@@ -129,10 +129,10 @@ const Header = () => {
                         Contact
                       </NavLink>
                       <NavLink to="/home/about" className="text-white">
-                        About
+                        Pramotion
                       </NavLink>
-                      <NavLink to="/home/about" className="text-white">
-                        News
+                      <NavLink to="/track-order" className="text-white">
+                        Track Order
                       </NavLink>
                     </div>
                   </div>
