@@ -130,8 +130,7 @@ function App() {
             
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
            
-            <Route path="/user/profile" element={<UserProfile />} />
-            <Route path="/user/profile/update" element={<CustomerProfileUpdate />} />
+         
            
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
