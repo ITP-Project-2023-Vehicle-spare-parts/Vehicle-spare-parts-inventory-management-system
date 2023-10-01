@@ -25,6 +25,11 @@ const register = async (userData) => {
   }
 };
 
+const getCustomers = async () =>{
+  const response = await axios.get(`${base_url}user/`);
+  return response.data;
+}
+
 const login = async (userData) => {
   const response = await axios.post(`${base_url}user/login`, userData);
   if (response.data) {
@@ -92,4 +97,5 @@ export const authService = {
   createOrder,
   getUserOrders,
   emptyCart,
+  getCustomers ,
 }

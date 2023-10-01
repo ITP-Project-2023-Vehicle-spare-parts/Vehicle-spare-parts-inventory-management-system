@@ -125,7 +125,7 @@ export default function AllSupplier() {
       <body className="AllSupplier">
         <main class="table">
           <section class="table__header">
-            <h1>Supplier's Details</h1>
+          <Link to="/admin" style={{textDecoration:"none" ,backgroundColor:"transparent !important" }}><h1 style={{backgroundColor:"transparent !important"}}>Supplier's Details...</h1> </Link> 
             <div class="input-group">
               <input
                 type="search"

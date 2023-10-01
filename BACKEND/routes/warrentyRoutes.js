@@ -2,6 +2,7 @@ const router = require("express").Router();
 const WarrentyController = require("../controller/warrentyController");
 
 
+router.route("/existingBillNos").get(WarrentyController.getExistingBillNos);
 
 router.route("/addclaim").post(WarrentyController.addclaim);
 router.route("/").get(WarrentyController. getAllwarrenties);

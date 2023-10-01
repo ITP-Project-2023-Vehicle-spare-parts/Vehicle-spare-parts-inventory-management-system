@@ -99,7 +99,13 @@ import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
 import OrderDetails from "./components/OrderHistory";
 
-import StockReport from "./pages/stockReport"
+import StockReport from "./pages/stockReport";
+import Updatepduct from "./pages/Updateproduct";
+
+// import AdminCustomerList from "./pages/AdminCustomerList";
+// import AdminCustomerUpdate from "./pages/AdminCustomerUpdate";
+
+
 
 function App() {
   return (
@@ -119,13 +125,10 @@ function App() {
             <Route path="/reset-password" element={<Resetpassword />} />
 
             {/* Admin Routes */}
-            <Route path="/Admin/sup/add" element={<AddSupplier />} />
+            
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
-            <Route path="/Admin/client/add" element={<AddClient />} />
-            <Route
-              path="/Admin/Supplier/Profile"
-              element={<SupplierProfile />}
-            />
+           
+           
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
               path="/Admin/profile/update/:id"
@@ -227,6 +230,7 @@ function App() {
               <Route path="Add-category" element={<Addcategory />} />
               <Route path="Add-brand" element={<Addbrand />} />
               <Route path="Add-product" element={<Addproduct />} />
+              <Route path="UpdateProduct/:id" element={<Updatepduct />} />
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport/>}/>
@@ -235,6 +239,10 @@ function App() {
                 element={<InteractiveChartsPage />}
               />
               <Route path="Stock-Low" element={<LowStock />} />
+              
+              <Route path="sup/add" element={<AddSupplier />} />
+              <Route path="client/add" element={<AddClient />} />
+            
             </Route>
 
             <Route path="/home" element={<Layout />}>

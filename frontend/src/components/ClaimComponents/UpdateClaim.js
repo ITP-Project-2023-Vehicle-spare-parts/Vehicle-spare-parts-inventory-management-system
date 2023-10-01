@@ -96,7 +96,7 @@ function UpdateClaim() {
                         id="billno"
                         name="billno"
                         value={claimDetails.billno}
-                        onChange={handleChange}
+                        disabled
                     />
                 </div>
 

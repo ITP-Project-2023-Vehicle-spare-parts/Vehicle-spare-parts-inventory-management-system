@@ -11,9 +11,15 @@ const createBrand = async (Brand) =>{
     return response.data;
 }
 
+const deleteBrand = async (id) =>{
+    const response = await axios.delete(`${base_url}brand/deletBrand/${id}`);
+    return response.data;
+}
+
 const brandService = {
     getBrands,
     createBrand,
+    deleteBrand,
 }
 
 export default brandService;

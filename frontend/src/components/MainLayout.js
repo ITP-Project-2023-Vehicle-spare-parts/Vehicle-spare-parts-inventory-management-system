@@ -109,7 +109,7 @@ const MainLayout = () => {
               label: 'Supplier',
               children : [
                 {
-                  key: '/Admin/sup/add',
+                  key: 'sup/add',
                   icon: <BiSolidUserDetail className='fs-4'/>,
                   label: 'Add Supplier',
                 },
@@ -127,7 +127,7 @@ const MainLayout = () => {
               label: 'Clients',
               children : [
                 {
-                  key: '/Admin/client/add',
+                  key: 'client/add',
                   icon: <BiSolidUserDetail className='fs-4'/>,
                   label: 'Add Clients',
                 },
@@ -201,6 +201,13 @@ const MainLayout = () => {
               key: 'service',
               icon: <MdOutlineHomeRepairService className='fs-4'/>,
               label: 'Service',
+              children : [
+                {
+                  key: 'allclaim',
+                  icon: <BiSolidUserDetail className='fs-4'/>,
+                  label: 'All Claims',
+                },
+              ]
             },
             {
               key: 'signout',
