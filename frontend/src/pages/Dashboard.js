@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Column } from '@ant-design/plots';
-//import {BsArrowDownRight, BsArrowUpLeft} from "react-icons/bs";
-import {Table} from "antd";
-import { useDispatch, useSelector} from "react-redux";
+import { Table } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { getMonthlyData, getYearlyData, getOrders } from '../features/auth/authSlice';
-
+import "../CSS/Admin.css";
 
 const columns = [
   {
@@ -29,77 +28,57 @@ const columns = [
   },
 ];
 
-
 const Dashboard = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const monthlyDataState = useSelector((state) => state?.auth?.monthlyData);
   const yearlyDataState = useSelector((state) => state?.auth?.yearlyData);
   const orderState = useSelector((state) => state?.auth?.orders.orders);
-  const [dataMonthly, setDataMonthly] = useState([])
-  const [dataMonthlySales, setDataMonthlySales] = useState([])
-  const [orderData, setOrderdata] = useState([])
-  
+  const [dataMonthly, setDataMonthly] = useState([]);
+  const [dataMonthlySales, setDataMonthlySales] = useState([]);
+  const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
-    const getTokenFromLocalStorage = localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null;
-  
-    const config3 = {
-      headers: {
-        Authorization: `Bearer ${
-          getTokenFromLocalStorage !== null ? getTokenFromLocalStorage.token : ""
-        }`,
-        Accept: "application/json",
-      },
-    };
-  
-    dispatch(getMonthlyData(config3));
-    dispatch(getYearlyData(config3));
-    dispatch(getOrders(config3));
-  }, [dispatch]); 
-  
- 
-
-  console.log(monthlyDataState);
+    // Dispatch actions to fetch data when the component mounts
+    dispatch(getMonthlyData());
+    dispatch(getYearlyData());
+    dispatch(getOrders());
+  }, [dispatch]);
 
   useEffect(() => {
-    let monthNames= ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    let data = []
-    let monthlyOrderCount = []
-    for (let index = 0; index < monthlyDataState?.length; index++) {
-      const element = monthlyDataState[index];
-      data.push({type : monthNames[element?._id.month], income : element?.amount})
-      monthlyOrderCount.push({type : monthNames[element?._id?.month], sales : element?.count})
+    // Update the data for config and config2 when monthlyDataState and yearlyDataState change
+    if (monthlyDataState && yearlyDataState) {
+      let data = [];
+      let monthlyOrderCount = [];
+      for (let index = 0; index < monthlyDataState.length; index++) {
+        const element = monthlyDataState[index];
+        data.push({ type: element?._id?.month, income: element?.amount });
+        monthlyOrderCount.push({ type: element?._id?.month, sales: element?.count });
+      }
+      setDataMonthly(data);
+      setDataMonthlySales(monthlyOrderCount);
     }
-    setDataMonthly(data)
-    setDataMonthlySales(monthlyOrderCount)
+  }, [monthlyDataState, yearlyDataState]);
 
-    const data1 = [];
-    for (let i = 1; i < orderState?.length; i++) {
-      data1.push({
-        key: i,
-        name: orderState[i].user?.firstname + " " + orderState[i].user?.lastname,
-        product: orderState[i].orderItems?.length,
-        price : orderState[i]?.totalPrice,
-        dprice : orderState[i]?.totalPriceAfterDiscount,
-        status: orderState[i]?.orderStatus,
-      });
+  useEffect(() => {
+    // Update orderData when orderState changes
+    if (orderState) {
+      const data1 = orderState.map((order, index) => ({
+        key: index,
+        name: `${order.user?.firstname} ${order.user?.lastname}`,
+        product: order.orderItems?.length,
+        price: order?.totalPrice,
+        dprice: order?.totalPriceAfterDiscount,
+        status: order?.orderStatus,
+      }));
+      setOrderData(data1);
     }
-    setOrderdata(data1)
+  }, [orderState]);
 
-  },[monthlyDataState, yearlyDataState, orderState])
-
-  
   const config = {
-    data : dataMonthly,
+    data: dataMonthly,
     xField: 'type',
     yField: 'income',
-    color: ({ type }) => {
-      
-      return "#1890ff";
-    },
+    color: ({ type }) => "#1890ff",
     label: {
       position: 'middle',
       style: {
@@ -117,20 +96,17 @@ const Dashboard = () => {
       type: {
         alias: 'Month',
       },
-      sales: {
+      income: {
         alias: 'Income',
       },
     },
   };
 
   const config2 = {
-    data : dataMonthlySales,
+    data: dataMonthlySales,
     xField: 'type',
     yField: 'sales',
-    color: ({ type }) => {
-      
-      return "#1890ff";
-    },
+    color: ({ type }) => "#1890ff",
     label: {
       position: 'middle',
       style: {
@@ -166,7 +142,7 @@ const Dashboard = () => {
           </div>
           <div className='d-flex flex-column align-items-end'>
           
-          <p className='mb-0 desc'>Income in Last Year from Today</p>
+          <p className='mb-0 desc'></p>
           </div>
         </div>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
@@ -176,7 +152,7 @@ const Dashboard = () => {
           </div>
           <div className='d-flex flex-column align-items-end'>
             
-            <p className='mb-0 desc'>Sales in Last Year from Today</p>
+            <p className='mb-0 desc'></p>
           </div>
         </div>
         
