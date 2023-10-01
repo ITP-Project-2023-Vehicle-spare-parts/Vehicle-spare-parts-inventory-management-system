@@ -158,6 +158,7 @@ const handleSubmit = async (e) => {
               className="form-control"
               id="date"
               placeholder="MM/DD/YYYY"
+              max={getCurrentDate()}
               required
           
               onChange={(e) => {

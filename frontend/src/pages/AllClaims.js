@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
+ // Import autoTable correctly
 
 function AllClaims() {
   const [warrantys, setWarranty] = useState([]);
@@ -48,21 +49,35 @@ function AllClaims() {
     const doc = new jsPDF();
 
     // Define the content of your report
-    const reportContent = `Warranty Claims Report\n\n${filteredWarrantys
-      .map((claim) =>
-        `Product Name: ${claim.productname}\n` +
-        `Bill No: ${claim.billno}\n` +
-        `Purchase Date: ${claim.purchasedate}\n` +
-        `Claim Date: ${claim.claimdate}\n` +
-        `Contact No: ${claim.contactNo}\n` +
-        `Email: ${claim.email}\n` +
-        `Description: ${claim.description}\n` +
-        `Status: ${claim.status}\n\n`
-      )
-      .join('')}`;
+    const header = ['Product Name', 'Bill No', 'Purchase Date', 'Claim Date', 'Contact No', 'Email', 'Description', 'Status'];
+    const data = filteredWarrantys.map((claim) => [
+      claim.productname,
+      claim.billno,
+      claim.purchasedate,
+      claim.claimdate,
+      claim.contactNo,
+      claim.email,
+      claim.description,
+      claim.status,
+    ]);
 
-    // Add the content to the PDF
-    doc.text(reportContent, 10, 10);
+    // Set the table headers and data
+    doc.autoTable({
+        head: [header],
+        body: data,
+        startY: 50, // Adjust the starting position as needed
+      });
+
+      
+      // Add image at the top
+      //doc.addImage(process.env.PUBLIC_URL + '../LOGO.png', "PNG", 10, 10, 70, 35);
+
+      doc.text("All Claim Details", 85, 35);
+      doc.setFontSize(9);
+      doc.text("Chathura Motors", 155, 5);
+      doc.text("Negombo", 155, 10);
+      doc.text("chathura@gmail.com", 155, 15);
+      doc.text("0771268478", 155, 20);
 
     // Save the PDF or open it in a new tab
     doc.save('warranty_claims_report.pdf');
@@ -81,20 +96,18 @@ function AllClaims() {
         />
       </div>
 
-      
-
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
-          <th style={tableHeaderStyle}>product name</th>
-            <th style={tableHeaderStyle}>bill no</th>
-            <th style={tableHeaderStyle}>purchase date</th>
-            <th style={tableHeaderStyle}>claim added date</th>
-            <th style={tableHeaderStyle}>Contactno</th>
-            <th style={tableHeaderStyle}>email</th>
-            <th style={tableHeaderStyle}>description</th>
+            <th style={tableHeaderStyle}>Product Name</th>
+            <th style={tableHeaderStyle}>Bill No</th>
+            <th style={tableHeaderStyle}>Purchase Date</th>
+            <th style={tableHeaderStyle}>Claim Date</th>
+            <th style={tableHeaderStyle}>Contact No</th>
+            <th style={tableHeaderStyle}>Email</th>
+            <th style={tableHeaderStyle}>Description</th>
             <th style={tableHeaderStyle}>Status</th>
-            <th style={tableHeaderStyle}>action</th>
+            <th style={tableHeaderStyle}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -130,24 +143,21 @@ function AllClaims() {
       <button onClick={generateReport} className="btn btn-primary">
         Generate Report
       </button>
-      
     </div>
-    
   );
 }
 
-
 const tableHeaderStyle = {
-    border: '1px solid #ddd',
-    padding: '10px',
-    background: '#f2f2f2',
-    textAlign: 'center',
-  };
-  
-  const tableCellStyle = {
-    border: '1px solid #ddd',
-    padding: '4px',
-    textAlign: 'center',
-  };
+  border: '1px solid #ddd',
+  padding: '10px',
+  background: '#f2f2f2',
+  textAlign: 'center',
+};
+
+const tableCellStyle = {
+  border: '1px solid #ddd',
+  padding: '4px',
+  textAlign: 'center',
+};
 
 export default AllClaims;
