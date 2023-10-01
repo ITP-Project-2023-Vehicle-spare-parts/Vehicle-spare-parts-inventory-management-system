@@ -34,7 +34,7 @@ export default function Login() {
 
         if (res.data.role === "admin") {
           console.log(res.data.role);
-          Navigate("/Admin/client/add");
+          Navigate("/Admin");
         } else if (res.data.role === "supplier") {
           console.log(res.data.email);
           const email = res.data.email;
