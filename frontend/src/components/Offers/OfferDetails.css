@@ -18,7 +18,7 @@
   
 }
 
-#OfferDetails.offer-details-container h2 {
+#OfferDetails .offer-details-container h2 {
   margin-bottom: 20px;
   color: #01080c;
   font-size: 36px;
@@ -28,7 +28,7 @@
   animation: fadeInUp 1s ease-in-out;
 }
 
-#OfferDetails.offer-details-container p {
+#OfferDetails .offer-details-container p {
   font-size: 28px;
   margin-bottom: 15px;
   color: #0c0101;
@@ -36,7 +36,7 @@
   text-align: right;
 }
 
-#OfferDetails.offer-details-container p:last-child {
+#OfferDetails .offer-details-container p:last-child {
   margin-bottom: 0;
 }
 

@@ -32,11 +32,137 @@ function DeliveryForm() {
 
   const [formErrors, setFormErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const [passwordValidation, setPasswordValidation] = useState({
+    lowercase: false,
+    uppercase: false,
+    number: false,
+    symbol: false,
+  });
+
+  const [showPasswordConditions, setShowPasswordConditions] = useState(false);
+  const [backendErrors, setBackendErrors] = useState({});
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setFormData({ ...formData, deliverypersonPassword: password });
+
+    // Password validation conditions
+    const lowercaseRegex = /[a-z]/;
+    const uppercaseRegex = /[A-Z]/;
+    const numberRegex = /\d/;
+    const symbolRegex = /[-!$%^&*()_+|~=`{}[\]:";'<>?,./]/;
+
+    setPasswordValidation({
+      lowercase: lowercaseRegex.test(password),
+      uppercase: uppercaseRegex.test(password),
+      number: numberRegex.test(password),
+      symbol: symbolRegex.test(password),
+    });
   };
 
+  const handlePasswordClick = () => {
+    setShowPasswordConditions(true);
+  };
+
+  const handleFieldClick = () => {
+    setShowPasswordConditions(false);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let errors = { ...formErrors };
+
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+
+    setFormErrors(errors);
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    let errors = { ...formErrors };
+
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+
+    setFormErrors(errors);
+  };
   const validateForm = () => {
     const errors = {};
 
@@ -48,6 +174,8 @@ function DeliveryForm() {
     // Validate Full Name
     if (!formData.deliverypersonname) {
       errors.deliverypersonname = 'Full Name is required';
+    } else if (!/^\S+(\s+\S+)+$/.test(formData.deliverypersonname)) {
+      errors.deliverypersonname = 'Please enter the full name';
     }
 
     // Validate Date of Birth
@@ -55,12 +183,12 @@ function DeliveryForm() {
       errors.deliverypersonDOB = 'Date of Birth is required';
     }
 
-    // Validate Contact Number
     if (!formData.deliverypersonContactNumber) {
       errors.deliverypersonContactNumber = 'Contact Number is required';
     } else if (!/^\d+$/.test(formData.deliverypersonContactNumber)) {
       errors.deliverypersonContactNumber = 'Contact Number must be numeric';
     }
+
 
     // Validate Email
     if (!formData.deliverypersonEmail) {
@@ -96,6 +224,7 @@ function DeliveryForm() {
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
+  
   };
 
   const handleSubmit = async (e) => {
@@ -130,7 +259,7 @@ function DeliveryForm() {
           console.log(userResponse.status); // Log the HTTP status code
           console.log(userResponse.data);
   
-          
+          setBackendErrors({});
         }
   
         // Clear the form
@@ -162,9 +291,28 @@ function DeliveryForm() {
           position: "top-right",
         });
       } catch (error) {
-        console.error('Error submitting data:', error);
-      }
-    }
+        if (error.response) {
+          const { data } = error.response;
+          if (data.status === 'Error' && data.error) {
+            // Update formErrors state with the backend error
+            setBackendErrors({
+              deliverypersonUsername: data.error.deliverypersonUsername,
+              deliverypersonEmail: data.error.deliverypersonEmail,
+              DeliveryPersonID: data.error.DeliveryPersonID,
+              deliverypersonContactNumber: data.error.deliverypersonContactNumber,
+              deliverypersonDLN: data.error.deliverypersonDLN,
+              deliverypersonNIC: data.error.deliverypersonNIC,
+            });
+            
+            toast.error(data.error, {
+              duration: 3000,
+              position: "top-center",
+            });
+          }
+        } else {
+          console.error('Error submitting data:', error);
+        }
+    }}
   };
   
 
@@ -185,7 +333,7 @@ function DeliveryForm() {
               <Form.Group as={Col}>
                 <Form.Label>Delivery Person ID</Form.Label>
                 <Form.Control
-                  className={formErrors.DeliveryPersonID ? 'has-error' : ''}
+                  className={formErrors.DeliveryPersonID || backendErrors.DeliveryPersonID ? 'has-error' : ''}
                   type="text"
                   id="DeliveryPersonID"
                   name="DeliveryPersonID"
@@ -194,6 +342,9 @@ function DeliveryForm() {
                   />
                   {formErrors.DeliveryPersonID && (
                   <div className="error-message">{formErrors.DeliveryPersonID}</div>
+                )}
+                 {backendErrors.DeliveryPersonID && (
+                  <div className="error-message">{backendErrors.DeliveryPersonID}</div>
                 )}
               </Form.Group>
               </Row>
@@ -234,20 +385,20 @@ function DeliveryForm() {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Contact Number</Form.Label>
-                <Form.Control
-                  className={formErrors.deliverypersonContactNumber ? 'has-error' : ''}
-                  type = "number"
-                  id="deliverypersonContactNumber"
-                  name="deliverypersonContactNumber"
-                  value={formData.deliverypersonContactNumber}
-                  onChange={handleChange}
-                  
-                />
-                {formErrors.deliverypersonContactNumber && (
-                  <div className="error-message">{formErrors.deliverypersonContactNumber}</div>
-                )}
-              </Form.Group>
+            <Form.Label>Contact Number</Form.Label>
+            <Form.Control
+              className={formErrors.deliverypersonContactNumber ? 'has-error' : ''}
+              type="text"
+              id="deliverypersonContactNumber"
+              name="deliverypersonContactNumber"
+              value={formData.deliverypersonContactNumber}
+              onChange={handleChange}
+              onBlur={handleBlur} 
+            />
+            {formErrors.deliverypersonContactNumber && (
+              <div className="error-message">{formErrors.deliverypersonContactNumber}</div>
+            )}
+          </Form.Group>
             </Row>
 
             <Row className="mb-3">
@@ -439,19 +590,41 @@ function DeliveryForm() {
               </Form.Group>
 
               <Form.Group as={Col}>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  className={formErrors.deliverypersonPassword ? 'has-error' : ''}
-                  type="password"
-            id="deliverypersonPassword"
-            name="deliverypersonPassword"
-            value={formData.deliverypersonPassword}
-            onChange={handleChange}
-                />
-                {formErrors.deliverypersonPassword && (
-                  <div className="error-message">{formErrors.deliverypersonPassword}</div>
-                )}
-              </Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              className={formErrors.deliverypersonPassword ? 'has-error' : ''}
+              type="password"
+              id="deliverypersonPassword"
+              name="deliverypersonPassword"
+              value={formData.deliverypersonPassword}
+              onChange={handlePasswordChange}
+              onClick={handlePasswordClick}
+              onBlur={handleFieldClick}
+            />
+            {showPasswordConditions && (
+              <div className="password-conditions">
+                <div className="password-condition" style={{ color: passwordValidation.lowercase ? 'green' : 'red' }}>
+                  <span className="condition-icon">&#x2713;</span>
+                  <span className="condition-text">At least one lowercase letter</span>
+                </div>
+                <div className="password-condition" style={{ color: passwordValidation.uppercase ? 'green' : 'red' }}>
+                  <span className="condition-icon">&#x2713;</span>
+                  <span className="condition-text">At least one uppercase letter</span>
+                </div>
+                <div className="password-condition" style={{ color: passwordValidation.number ? 'green' : 'red' }}>
+                  <span className="condition-icon">&#x2713;</span>
+                  <span className="condition-text">At least one number</span>
+                </div>
+                <div className="password-condition" style={{ color: passwordValidation.symbol ? 'green' : 'red' }}>
+                  <span className="condition-icon">&#x2713;</span>
+                  <span className="condition-text">At least one symbol</span>
+                </div>
+              </div>
+            )}
+            {formErrors.deliverypersonPassword && (
+              <div className="error-message">{formErrors.deliverypersonPassword}</div>
+            )}
+          </Form.Group>
             </Row>
 
             <br />

@@ -111,7 +111,7 @@ function AllClaims() {
 
               <td style={tableCellStyle}>
                 <Link
-                  to={`/updates/${claim._id}/${claim.billno}`}
+                  to={`/admin/updates/${claim._id}/${claim.billno}`}
                   className="btn btn-warning"
                 >
                   Update

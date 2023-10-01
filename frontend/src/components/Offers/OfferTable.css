@@ -1,5 +1,7 @@
-.offer-table-container {
+#OfferTable .offer-table-container {
   display: flex;
+  margin: auto;
+  margin-top: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

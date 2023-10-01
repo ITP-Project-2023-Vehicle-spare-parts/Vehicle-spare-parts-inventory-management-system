@@ -139,7 +139,7 @@ function DeliveryTable() {
               />
             </div>
             <div className="table__buttons">
-              <Link to="/Admin/DeliveryPerson/add" className="btn btn-primary">
+              <Link to="/admin/DeliveryPerson-add" className="btn btn-primary">
                 Add Delivery Person
               </Link>
               <button className="btn btn-secondary" onClick={generateReport}>
@@ -198,13 +198,13 @@ function DeliveryTable() {
                           style={{ margin: "1px" }}
                           onClick={() => DeleteDeliveryPerson(dataobj._id)}
                         ></button>
-                        <Link to={"/Admin/profile/" + dataobj.DeliveryPersonID}>
+                        <Link to={"/admin/profile/" + dataobj.DeliveryPersonID}>
                           <button
                             className="bx bx-info-circle btn btn-outline-primary icon-lg"
                             style={{ margin: "5px" }}
                           ></button>
                         </Link>
-                        <Link to={`/Admin/dilivary/profiles/${dataobj._id}`}>
+                        <Link to={`/admin/delivery/profiles/${dataobj._id}`}>
                           <button
                             className="btn btn-outline-warning"
                             style={{ margin: "2px" }}

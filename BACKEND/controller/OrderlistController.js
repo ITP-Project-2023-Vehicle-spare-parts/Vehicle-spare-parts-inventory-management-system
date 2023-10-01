@@ -11,6 +11,18 @@ const getAllOrders = async (req, res) => {
     }
 };
 
+const getOrders = async (req, res) => {
+    try {
+        const assignBranch = await Order.find();
+        //{ branch: "Not Assign" }
+
+        res.json(assignBranch);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching assign Branch", error: err.message });
+    }
+};
+
 const updateOrderStatus = async (req, res) => {
     try {
         const OrderID = req.params.orderid;
@@ -53,6 +65,7 @@ const updateBranchLocation = async (req, res) => {
     }
 };
 
+
 const getOrderById = async (req, res) => {
     try {
       const DeliveringID = req.params.id;
@@ -79,6 +92,7 @@ module.exports = {
     getAllOrders,
     updateOrderStatus,
     updateBranchLocation,
-    getOrderById
+    getOrderById,
+    getOrders
 
  };

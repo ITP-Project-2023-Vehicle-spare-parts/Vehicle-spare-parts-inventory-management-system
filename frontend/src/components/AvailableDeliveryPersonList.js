@@ -49,7 +49,7 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
     })
     .then((response) => {
       console.log('Delivery order added successfully.');
-      window.location.href = '/admin/order';
+      window.location.href = '/admin/orders/';
     })
     .catch((error) => {
       console.error('Error adding delivery order:', error);

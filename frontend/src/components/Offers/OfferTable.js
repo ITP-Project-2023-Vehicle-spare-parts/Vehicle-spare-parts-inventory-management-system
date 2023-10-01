@@ -50,7 +50,8 @@ function OfferTable() {
         <thead>
           <tr>
             <th>Product ID</th> 
-            <th>Offer ID</th>
+            <th>Product Title</th>
+            
             {/* Add table headers for other attributes */}
             <th>Actions</th>
           </tr>
@@ -67,13 +68,13 @@ function OfferTable() {
                               style={{ margin: "1px" }}
                               onClick={() => handleDelete(offer.offerID)}
                         ></button>
-                        <Link to={"/offer/profile/" + offer.offerID}>
+                        <Link to={"/admin/offer/profile/" + offer.offerID}>
                           <button
                             className="bx bx-info-circle btn btn-outline-primary icon-lg"
                             style={{ margin: "5px" }}
                           ></button>
                         </Link>
-                        <Link to={"/offer/profile/update/" + offer._id}>
+                        <Link to={"/admin/offer/profile/update/" + offer._id}>
                           <button
                             className="btn btn-outline-warning"
                             style={{ margin: "2px" }}>
@@ -88,7 +89,6 @@ function OfferTable() {
           ))}
         </tbody>
       </table>
-      <button className="add-offers-button">Add Offers</button>
     </div>
   );
 }
