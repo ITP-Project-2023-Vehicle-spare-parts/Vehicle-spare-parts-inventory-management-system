@@ -39,11 +39,11 @@ import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
 import LowStock from "./pages/lowStock";
 import FetchStock from "./pages/fetchStock";
 
-import AddClaim from "./components/ClaimComponents/AddClaim";
-import FetchClaim from "./components/ClaimComponents/FetchClaim";
-import UpdateClaim from "./components/ClaimComponents/UpdateClaim";
-import DeleteClaim from "./components/ClaimComponents/DeleteClaim";
-import AllClaims from "./components/AdminClaimComponent/AllClaims";
+import AddClaim from "./pages/AddClaim";
+import FetchClaim from "./pages/FetchClaim";
+import UpdateClaim from "./pages/UpdateClaim";
+import DeleteClaim from "./pages/DeleteClaim";
+import AllClaims from "./pages/AllClaims";
 import AdminUpdateclaim from "./components/AdminClaimComponent/AdminUpdateclaim";
 
 import ClientProfile from "./components/Client/ClientProfile";
@@ -234,6 +234,7 @@ function App() {
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport/>}/>
+              <Route path="allclaim" element={<AllClaims />} />
               <Route
                 path="Stock-interactivechart"
                 element={<InteractiveChartsPage />}
@@ -254,6 +255,10 @@ function App() {
               <Route path="/home/store" element={<Store />} />
               <Route path="store/product/:id" element={<SingleProduct />} />
               <Route path="/home/wishlist" element={<Wishlist />} />
+              <Route path="/home/addclaim" element={<AddClaim />} />
+              <Route path="/home/get/:billno" element={<FetchClaim />} />
+              <Route path="/home/update/:id/:billno" element={<UpdateClaim />} />
+              <Route path="/home/delete/:id/:billno" element={<DeleteClaim />} />
             </Route>
 
             <Route path="/sidebar" element={<Sidebar />} />
