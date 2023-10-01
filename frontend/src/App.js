@@ -97,7 +97,7 @@ import ComparisionBarGraph from "./components/stockComponents/comparisiongraph";
 
 import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
-import OrderDetails from "./components/OrderHistory";
+
 
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
@@ -162,32 +162,7 @@ function App() {
               element={<AdminUpdateclaim />}
             />
 
-            <Route
-              path="/Admin/DeliveryPerson/add"
-              element={<DeliveryForm />}
-            />
-            <Route
-              path="/Admin/DeliveryPerson/getAll"
-              exact
-              element={<DeliveryTable />}
-            />
-            <Route
-              path="/Admin/profile/:deliveryPersonID"
-              element={<ProfileDetails />}
-            />
-            <Route
-              path="/Admin/dilivary/profiles/:id"
-              element={<EditDeliveryPerson />}
-            />
-            <Route
-              path="/Admin/profile/update/:id"
-              element={<EditDeliveryPerson />}
-            />
-            <Route path="/admin/orders" exact element={<OrderList />} />
-            <Route
-              path="/order/:orderid/:userid"
-              element={<AvailableDeliveryPersonList />}
-            />
+
 
             <Route
               path="/admin/interactivechart"
@@ -234,6 +209,12 @@ function App() {
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport/>}/>
+              <Route path="DeliveryPerson-add" element={<DeliveryForm />} />
+              <Route path="DeliveryPerson/getAll" exact element={<DeliveryTable />} />
+              <Route path="profile/:deliveryPersonID" element={<ProfileDetails />} />
+              <Route path="delivery/profiles/:id" element={<EditDeliveryPerson />} />
+              <Route path="orders" exact element={<OrderList />} />
+              <Route path="order/:orderid/:userid" element={<AvailableDeliveryPersonList />} />
               <Route path="allclaim" element={<AllClaims />} />
               <Route
                 path="Stock-interactivechart"
@@ -284,14 +265,8 @@ function App() {
             <Route path="/admin/assignBranch" element={<AssignBranch />} />
 
             <Route path="/track-order" element={<TrackOrder />} />
-            <Route
-              path="/order-details/:orderId"
-              element={<TrackOrderDetails />}
-            />
-            <Route
-              path="/Admin/deliveredOrder/:orderId"
-              element={<OrderDetails />}
-            />
+            <Route path="/order-details/:orderId" element={<TrackOrderDetails />}/>
+
           </Routes>
         </div>
       </Router>

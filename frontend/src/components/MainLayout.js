@@ -196,6 +196,24 @@ const MainLayout = () => {
               key: 'delivery',
               icon: <TbTruckDelivery className='fs-4'/>,
               label: 'Delivery',
+              children : [
+                {
+                     key: 'DeliveryPerson-add',
+                     icon: <TbTruckDelivery className='fs-4'/>,
+                     label: 'Add delivery porson',
+                },
+                {
+                  key: 'DeliveryPerson/getAll',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Delivery Person Info',
+                },
+                {
+                  key: 'orders',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Received Orders',
+                }, 
+
+              ]
             },
             {
               key: 'service',
