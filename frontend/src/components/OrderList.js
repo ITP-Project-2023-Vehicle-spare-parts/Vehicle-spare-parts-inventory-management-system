@@ -60,7 +60,7 @@ function OrderDetails({ navigateToDeliveryPersons }) {
 </td>
 <td>
   <a
-    href={`/Admin/order/${order._id}/${order.user}`}
+    href={`/admin/order/${order._id}/${order.user}`}
     className="action-btn"
   >
     View Details

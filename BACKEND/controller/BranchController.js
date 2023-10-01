@@ -104,15 +104,16 @@ module.exports = {
 
 const Branch = require("../model/BranchModel");
 
-// add branch
-const addBranch = async (req, res) => { // Note the correct order of parameters (req, res)
+const addBranch = async (req, res) => {
     try {
-        const BranchID = req.body.BranchID;
-        const BranchName = req.body.BranchName;
-        const ManagerID = req.body.ManagerID;
-        const ManagerName = req.body.ManagerName;
-        const BranchAddress = req.body.BranchAddress;
-        const TelePhoneNumber = req.body.TelePhoneNumber;
+        const { BranchID, BranchName, ManagerID, ManagerName, BranchAddress, TelePhoneNumber } = req.body;
+
+        // Check if the branch with the given BranchID already exists
+        const existingBranch = await Branch.findOne({ BranchID });
+
+        if (existingBranch) {
+            return res.status(400).json({ status: "Error adding branch", error: "Branch ID already exists" });
+        }
 
         const newBranch = new Branch({
             BranchID,
@@ -124,12 +125,13 @@ const addBranch = async (req, res) => { // Note the correct order of parameters 
         });
 
         await newBranch.save();
-        res.status(200).json({ status: "Branch Added" }); // Use `res.status(200)` to indicate success
+        res.status(200).json({ status: "Branch Added" });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ status: "Error adding branch", error: err.message }); // Use `res.status(500)`
+        res.status(500).json({ status: "Error adding branch", error: err.message });
     }
 };
+
 
 // getAllBranch
 const getAllBranch = async (req, res) => {

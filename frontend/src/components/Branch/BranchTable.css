@@ -1,12 +1,14 @@
 /* BranchTable.css */
 
 /* Center the table vertically and horizontally */
-.branch-table-container {
+#BranchTable .branch-table-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-left: 400px;
+  margin-right: 800px;
+  background-color: #f5f5f5; /* Light Grey Background */
   font-family: 'Arial', sans-serif;
 }
 
@@ -45,9 +47,9 @@
   }
 }
 
-#BranchTable th, td {
+#BranchTable th,td {
   border: 1px solid #e0e0e0;
-  padding: 15px;
+  padding: 10px;
   text-align: center;
   font-size: 23px;
 }

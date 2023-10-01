@@ -40,8 +40,8 @@
 }
 
 #EditOffer.edit-offer-container input[type="text"],
-.edit-offer-container input[type="number"],
-.edit-offer-container input[type="date"] {
+#EditOffer .edit-offer-container input[type="number"],
+#EditOffer .edit-offer-container input[type="date"] {
   width: calc(70% - 10px);
   padding: 18px; /* Adjusted Padding */
   margin-bottom: 30px; /* Adjusted Margin */

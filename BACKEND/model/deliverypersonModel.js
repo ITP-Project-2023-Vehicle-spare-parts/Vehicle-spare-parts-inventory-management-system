@@ -27,6 +27,7 @@ const deliverypersonSchema = new Schema ({
     },
     deliverypersonEmail : {
         type :String ,
+        unique: true,
         
     },
     deliverypersonNIC : {

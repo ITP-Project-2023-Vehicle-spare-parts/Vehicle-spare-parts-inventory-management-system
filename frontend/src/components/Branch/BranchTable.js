@@ -41,7 +41,7 @@ function BranchTable() {
             <h2>Branch List</h2>
             <Link to="/admin/branch/add">
               <button className="btn btn-primary" style={{ marginBottom: '10px' }}>
-               Add Offer
+               Add Branch
               </button>
              </Link>
              <Link to="/admin/assignBranch">
@@ -70,13 +70,13 @@ function BranchTable() {
                               style={{ margin: "1px" }}
                               onClick={() => handleDelete(branch._id)}
                         ></button>
-                        <Link to={`/branch/profile/${branch._id}`}>
+                        <Link to={`/admin/branch/profile/${branch._id}`}>
                           <button
                             className="bx bx-info-circle btn btn-outline-primary icon-lg"
                             style={{ margin: "5px" }}
                           ></button>
                         </Link>
-                        <Link to={`/profile/update/${branch._id}`}>
+                        <Link to={`/admin/profile/update/${branch._id}`}>
                           <button
                             className="btn btn-outline-warning"
                             style={{ margin: "2px" }}>

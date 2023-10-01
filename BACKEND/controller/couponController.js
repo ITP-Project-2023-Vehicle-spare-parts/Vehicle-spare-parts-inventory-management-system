@@ -5,6 +5,13 @@ const addCoupon = async (req, res) => {
   try {
     const { code, discount,description, expirationDate } = req.body;
 
+    // Check if the branch with the given BranchID already exists
+    const existingCoupon = await Coupon.findOne({ code });
+
+    if (existingCoupon) {
+        return res.status(400).json({ status: "Error adding coupon", error: "Code already exists" });
+    }
+
     const coupon = new Coupon({
       code,
       discount,

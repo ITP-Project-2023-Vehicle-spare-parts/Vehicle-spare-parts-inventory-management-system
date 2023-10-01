@@ -186,16 +186,52 @@ const MainLayout = () => {
               key: 'rebate',
               icon: <BiSolidOffer className='fs-4'/>,
               label: 'Rebate',
+              children : [
+                {
+                  key: 'offer/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Offers',
+                },
+                {
+                  key: 'coupon/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Coupons',
+                },
+              ]
             },
             {
               key: 'branch',
               icon: <AiOutlineBranches className='fs-4'/>,
               label: 'Branch',
+              children : [
+                {
+                  key: 'branch/read',
+                  icon: <AiOutlineStock className='fs-4'/>,
+                  label: 'Branch',
+                },]
             },
             {
               key: 'delivery',
               icon: <TbTruckDelivery className='fs-4'/>,
               label: 'Delivery',
+              children : [
+                {
+                     key: 'DeliveryPerson-add',
+                     icon: <TbTruckDelivery className='fs-4'/>,
+                     label: 'Add delivery porson',
+                },
+                {
+                  key: 'DeliveryPerson/getAll',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Delivery Person Info',
+                },
+                {
+                  key: 'orders',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Received Orders',
+                }, 
+
+              ]
             },
             {
               key: 'service',
