@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -25,6 +24,7 @@ export default function AddClient() {
   const [NoOfBranches, setBranch] = useState("");
   const [SystemEmail, setsysEmail] = useState("");
   const [SystemPassword, setsysPassword] = useState("");
+
   const Navigate = useNavigate();
 
   const validateForm = () => {
@@ -43,12 +43,6 @@ export default function AddClient() {
     // Validate Company Phone
     if (!ClientsPhone.trim()) {
       errors.ClientsPhone = "Clients Phone is Requierd";
-    } else if (!/^\d+$/.test(ClientsPhone)) {
-      errors.ClientsPhone = "Clients Phone  must be numeric";
-      toast.error("Phone Number Need 10 Digit Number", {
-        duration: 3000, // 3 seconds
-        position: "top-right", // You can change the position if needed
-      });
     }
 
     // Validate Company Address
@@ -113,8 +107,9 @@ export default function AddClient() {
           SystemPassword,
         };
 
-        await axios.post("http://localhost:8000/clients/addClients", newClient);
-        console.log("hi");
+        const userResponse = await axios.post("http://localhost:8000/clients/addClients", newClient);
+
+        console.log(userResponse);
         setFName("");
         setLName("");
         setEmail("");
@@ -132,6 +127,7 @@ export default function AddClient() {
           position: "top-right", // You can change the position if needed
         });
         Navigate("/Admin/client/All");
+
       } catch (err) {
         toast.error("Failed To Register", {
           duration: 3000, // 3 seconds
@@ -147,13 +143,10 @@ export default function AddClient() {
       <div className="home_content">
         <div className="text">
           <div className="text1"></div>
-          
+
           <div className="form-scroll-container">
-           
             <Form onSubmit={handleSubmit} className="container">
-            <h1>
-              Add Clients...
-            </h1>
+              <h1>Add Clients...</h1>
               <Row className="mb-3">
                 <Form.Group as={Col}>
                   <Form.Label>First Name</Form.Label>

@@ -11,7 +11,7 @@ const addSupplier = async (req, res) => {
     if (existingSupplier) {
       return res.status(400).json({
         status: "Error",
-        error: "Supplier with this email already exists",
+        message: "Supplier with this email already exists",
       });
     }
 
