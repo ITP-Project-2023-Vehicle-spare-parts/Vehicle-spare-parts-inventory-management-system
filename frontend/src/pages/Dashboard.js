@@ -4,7 +4,7 @@ import { Column } from '@ant-design/plots';
 import {Table} from "antd";
 import { useDispatch, useSelector} from "react-redux";
 import { getMonthlyData, getYearlyData, getOrders } from '../features/auth/authSlice';
-
+import "../CSS/Admin.css"
 
 const columns = [
   {
@@ -166,7 +166,7 @@ const Dashboard = () => {
           </div>
           <div className='d-flex flex-column align-items-end'>
           
-          <p className='mb-0 desc'>Income in Last Year from Today</p>
+          <p className='mb-0 desc'></p>
           </div>
         </div>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
@@ -176,7 +176,7 @@ const Dashboard = () => {
           </div>
           <div className='d-flex flex-column align-items-end'>
             
-            <p className='mb-0 desc'>Sales in Last Year from Today</p>
+            <p className='mb-0 desc'></p>
           </div>
         </div>
         
