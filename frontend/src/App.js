@@ -66,6 +66,8 @@ import Sidebar from "./components/Sidebar";
 import UserRegistration from "./components/Customers/UserRegistration";
 import Forgotpassword from "./components/Customers/Forgotpassword";
 import Resetpassword from "./components/Customers/Resetpassword";
+import UserProfile from "./components/Customers/UserProfile";
+import CustomerProfileUpdate from "./components/Customers/CustomerProfileUpdate";
 
 import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
 import ShipmentReport from "./components/Supplier/UserSupplierPage/ShipmentReport";
@@ -102,8 +104,7 @@ import TrackOrderDetails from "./components/TrackOrderDetails";
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
 
-// import AdminCustomerList from "./pages/AdminCustomerList";
-// import AdminCustomerUpdate from "./pages/AdminCustomerUpdate";
+
 
 
 
@@ -128,6 +129,8 @@ function App() {
             
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
            
+            <Route path="/user/profile" element={<UserProfile />} />
+            <Route path="/user/profile/update" element={<CustomerProfileUpdate />} />
            
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
@@ -243,6 +246,8 @@ function App() {
             <Route path="/home" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="contact" element={<Contact />} />
+              
+              
               <Route path="cart" element={<Cart />} />
               <Route path="my-orders" element={<Order />} />
               <Route path="Checkout" element={<Checkout />} />

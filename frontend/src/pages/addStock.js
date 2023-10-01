@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //import StockSideBar from '../components/stockComponents/stockSideBar';
 import './stockCss.css'; // Create a CSS file for styling
+import { useDispatch, useSelector } from 'react-redux';
+import { getBrands } from '../features/brand/brandSlice';
+import { getProducts } from '../features/product/productSlice';
 
 function AddStock() {
   const [productName, setProductName] = useState('');
@@ -13,6 +16,12 @@ function AddStock() {
   const [additionalDetails, setAdditionalDetails] = useState('');
   const [reorderpoint, setReorderpoint] = useState('');
   const [stockQuantity, setStockQuantity] = useState('');
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  const productState = useSelector((state) => state.product.products);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,12 +89,9 @@ function AddStock() {
      style={{ fontSize: '20px' }}
     
     >
-
-    <option value="Rim" >Rim</option>
-    <option value="Spokes">Spokes</option>
-    <option value="Hub">Hub</option>
-    <option value="Cylencers CT100">Cylencers CT100</option>
-    <option value="Horn">Horn</option>
+ {productState.map((i, j) =>{
+                      return <option key={j} value={i.Title}>{i.Title}</option>
+                    })}
 
     </select>
 

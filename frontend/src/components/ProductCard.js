@@ -17,25 +17,24 @@ const ProductCard = (props) => {
   }
   return (
     <>
-      {
-        data?.map((item, index) => {
-          return (
-            <div key={index} className={`${location.pathname === "/home/store" ? `gr-${grid}` : "col-3"}`}>
-              <div className='product-card position-relative'>
-                <div className='wishlist-icon position-absolute'>
-                  <button className='border-0 bg-transparent' onClick={(e) => {
-                    addWishlist(item?._id)
-                  }}>
-                    <img src='/images/wish.svg' alt='wishlist'/>
-                  </button>
-                </div>
-                <div className='product-image'>
-                  <img src='/images/oilcan.jpg' className='img-fluid' alt="product pic"/>
-                  <img src='/images/spare 5.1.jpg' className='img-fluid' alt="product pic"/>
-                </div>
-                <div className='product-details'>
-                  <h6 className='brand'>{item?.brand}</h6>
-                  <h5 className='product-title'>
+    {
+        data?.map((item, index)=>{
+            return (
+                <div key={index} className={`${location.pathname === "/home/store" ? `gr-${grid}` : "col-3"}`}>
+        <div className='product-card position-relative'>
+            <div className='wishlist-icon position-absolute'>
+                <button className='border-0 bg-transparent' onClick={(e)=>{addWishlist(item?._id)}}>
+                    <img src='/images/wish.svg' alt='wishlist' />
+                </button>
+            </div>
+            <div className='product-image'>
+                <img src='/images/oilcan.jpg' className='img-fluid' alt="product pic" />
+                <img src='/images/spare 5.1.jpg' className='img-fluid' alt="product pic" />
+            </div>
+            <div className='product-details'>
+                <h4 className='brand' style={{ color: 'blue' }}>{item?.brand}</h4>
+                <h4 className='brand' style={{ color: 'orange' }}>{item?.category}</h4>
+                <h5 className='product-title'>
                     {item?.Title}
                   </h5>
                   <ReactStars count={5} size={24} value={parseInt(item?.totalrating)} edit={false}
