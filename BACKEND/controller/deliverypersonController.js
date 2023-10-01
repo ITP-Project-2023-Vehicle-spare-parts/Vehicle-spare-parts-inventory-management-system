@@ -8,6 +8,31 @@ const addDeliveryPerson = async (req, res) => {
             return res.status(400).json({ status: "Error", error: "DeliveryPerson with this username already exists" });
         }
 
+        const existingEmail = await DeliveryPerson.findOne({ deliverypersonEmail: req.body.deliverypersonEmail });
+        if (existingEmail) {
+            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this email already exists" });
+        }
+
+        const existingID = await DeliveryPerson.findOne({ DeliveryPersonID: req.body.DeliveryPersonID });
+        if (existingID) {
+            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this ID already exists" });
+        }
+
+        const existingContactNumber = await DeliveryPerson.findOne({ deliverypersonContactNumber: req.body.deliverypersonContactNumber });
+        if (existingContactNumber) {
+            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this Contact Number already exists" });
+        }
+
+        const existingNIC = await DeliveryPerson.findOne({ deliverypersonNIC: req.body.deliverypersonNIC });
+        if (existingNIC) {
+            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this NIC already exists" });
+        }
+
+        const existingDLN = await DeliveryPerson.findOne({ deliverypersonDLN: req.body.deliverypersonDLN });
+        if (existingDLN) {
+            return res.status(400).json({ status: "Error", error: "DeliveryPerson with this DLN already exists" });
+        }
+
         // Use a different variable name (e.g., newDeliveryPerson) for the instance
         const newDeliveryPerson = new DeliveryPerson({
             DeliveryPersonID: req.body.DeliveryPersonID,
@@ -33,6 +58,25 @@ const addDeliveryPerson = async (req, res) => {
         await newDeliveryPerson.save();
         res.json("DeliveryPerson Added");
     } catch (err) {
+        if (err.code === 11000) {
+            // Duplicate key error, check which key violated the constraint
+            if (err.keyPattern.deliverypersonUsername) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this username already exists" });
+            } else if (err.keyPattern.deliverypersonEmail) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this email already exists" });
+            } else if (err.keyPattern.DeliveryPersonID) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this ID already exists" });
+            } 
+            else if (err.keyPattern.deliverypersonContactNumber) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this Contact Number already exists" });
+            }
+            else if (err.keyPattern.deliverypersonDLN) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this NIC already exists" });
+            }
+            else if (err.keyPattern.deliverypersonNIC) {
+                return res.status(400).json({ status: "Error", error: "DeliveryPerson with this DLN already exists" });
+            }
+        }
         console.log(err);
         res.status(500).send({ status: "Error adding DeliveryPerson", error: err.message });
     }
