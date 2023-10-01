@@ -47,7 +47,7 @@ export const createProducts = createAsyncThunk(
 );
 
 export const deleteProduct = createAsyncThunk(
-  "brand/delete-products",
+  "product/delete-products",
   async(id, thunkAPI) => {
       try{
           return await productService.deleteProduct(id);
@@ -159,3 +159,4 @@ export const productSlice = createSlice({
   },
 });
 export default productSlice.reducer;
+
