@@ -21,12 +21,13 @@ const SingleProduct = () => {
   }, [getProductID, dispatch])
 
   const uploadCart = () => {
+    
     if (color === null) {
       toast.error("Please choose color")
       return false
     } else {
       const cartData = {
-        getProductID: productState?._id,
+        productId: productState?._id,
         quantity: quantity,
         price: productState?.price,
         color: color,
