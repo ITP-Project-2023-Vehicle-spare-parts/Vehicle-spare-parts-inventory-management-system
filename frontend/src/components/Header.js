@@ -53,16 +53,7 @@ const Header = () => {
             </div>
             <div className="col-6">
               <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control py-2"
-                  placeholder="Search Product Here..."
-                  aria-label="Search Product Here..."
-                  aria-describedby="basic-addon2"
-                />
-                <span class="input-group-text p-3" id="basic-addon2">
-                  <BsSearch className="fs-6" />
-                </span>
+                <div style={{ fontFamily: 'cursive', color: 'white' }}><h2>Chathura Motors Spares Shop</h2></div>
               </div>
             </div>
             <div className="col-4">

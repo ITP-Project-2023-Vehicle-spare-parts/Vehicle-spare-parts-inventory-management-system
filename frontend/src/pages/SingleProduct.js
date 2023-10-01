@@ -48,7 +48,7 @@ const SingleProduct = () => {
                 <div className='col-6'>
                     <div className='main-product-details'>
                         <div className='border-bottom'>
-                            <h3>
+                            <h3 style={{ color: 'blue' }}>
                                 {productState?.Title}
                             </h3>
                         </div>
@@ -73,7 +73,7 @@ const SingleProduct = () => {
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Brand : </h3> 
-                                <p className='product-data'>{productState?.brand}</p>
+                                <p className='product-data' style={{ color: 'red' }}>{productState?.brand}</p>
                             </div>
                             <div className='d-flex gap-10 align-items-center my-2'>
                                 <h3 className='product-heading'>Categories : </h3> 
