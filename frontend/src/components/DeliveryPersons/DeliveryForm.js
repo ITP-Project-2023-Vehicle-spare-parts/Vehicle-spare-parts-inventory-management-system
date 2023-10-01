@@ -555,12 +555,12 @@ function DeliveryForm() {
             onChange={handleChange}
             >
             <option value="">Select Branch</option>
-            <option value="Branch A">Jafna</option>
-            <option value="Branch B">Ibbagamuwa main</option>
-            <option value="Branch C">Colombo</option>
-            <option value="Branch C">Galle</option>
-            <option value="Branch C">Nuwara Eliya</option>
-            <option value="Branch C">Batticaloa</option>
+            <option value="Jafna">Jafna</option>
+            <option value="Ibbagamuwa main">Ibbagamuwa main</option>
+            <option value="Colombo">Colombo</option>
+            <option value="Galle">Galle</option>
+            <option value="Nuwara Eliya">Nuwara Eliya</option>
+            <option value="Batticaloa">Batticaloa</option>
                 </Form.Select>
                 {formErrors.deliverypersonBranch && (
                   <div className="error-message">{formErrors.deliverypersonBranch}</div>
