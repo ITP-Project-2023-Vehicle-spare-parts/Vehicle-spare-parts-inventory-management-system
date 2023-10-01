@@ -133,33 +133,56 @@ const logout = asyncHandler(async (req, res) => {
   res.sendStatus(204); // forbidden
 });
 
-// Update a user
+// get a user profile by user 
+
+const getUserProfile = asyncHandler(async (req, res) => {
+  const {_id } = req.user;
+    validateMongoDbId(_id); 
+  try {
+    const userProfile = await User.findById(_id);
+   
+    res.status(200).json(userProfile);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
 
 //update user
 
 const updatedUser = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  validateMongoDbId(_id); 
+  const userId = req.params.id;
+ 
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
-      _id,
+      userId,
       {
-          firstname: req?.body?.firstname,
-          lastname: req?.body?.lastname,
-          mobile: req?.body?.mobile,
-          gender: req?.body?.gender,
-          address: req?.body?.address,
-          nic: req?.body?.nic,
-          dob: req?.body?.dob,
-      },  
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        mobile: req.body.mobile,
+        gender: req.body.gender,
+        nic: req.body.nic,
+        street: req.body.street,
+        state: req.body.state,
+        city: req.body.city,
+        postalcode: req.body.postalcode,
+        email: req.body.email,
+      },
       {
-      new: true,
-    }
+        new: true,
+      }
     );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
     res.json(updatedUser);
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
@@ -182,11 +205,14 @@ const getallUser = asyncHandler(async (req, res) => {
 // Get a single user
 
 const getaUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  validateMongoDbId(id);
+ 
 
   try {
+    const id  = req.params.id;
+    console.log(id);
+
     const getaUser = await User.findById(id);
+
     res.json({
       getaUser,
     });
@@ -254,6 +280,7 @@ const unblockUser = asyncHandler(async (req, res) => {
     throw new Error(error);
   }
 });
+
 
 const updatePassword = asyncHandler(async (req, res) => {
   const { _id } = req.user;
@@ -617,4 +644,5 @@ module.exports = {
   logout,
   handleRefreshToken,
   updatePassword,
+  getUserProfile
 };
