@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function DeleteClaim() {
     const { id,billno } = useParams();
@@ -19,7 +20,7 @@ function DeleteClaim() {
     useEffect(() => {
         const fetchClaimDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8030/warrenty/get/${billno}`);
+                const response = await axios.get(`http://localhost:8000/warrenty/get/${billno}`);
                 setClaimDetails(response.data.warrenty);
             } catch (error) {
                 console.error('Error fetching claim details:', error);
@@ -31,17 +32,24 @@ function DeleteClaim() {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:8030/warrenty/delete/${id}`);
+            await axios.delete(`http://localhost:8000/warrenty/delete/${id}`);
             console.log('Claim deleted');
-            alert('Claim deleted');
-            navigate('/'); // Navigate back to the list of all claims or any desired page
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Delete Successful',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              
+            navigate('/home'); // Navigate back to the list of all claims or any desired page
         } catch (error) {
             console.error('Error deleting claim:', error);
         }
     };
 
     return (
-        <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#4083be" }}>
+        <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#87CEEB" }}>
             <h2>Delete Claim</h2>
             <div>
                 <h3>Claim Details</h3>

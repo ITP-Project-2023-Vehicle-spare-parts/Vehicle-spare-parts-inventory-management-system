@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import {useFormik} from "formik";
-import { createBrand } from '../features/brand/brandSlice';
+import { createBrand, resetState } from '../features/brand/brandSlice';
 import { toast } from "react-toastify";
 
 let schema = yup.object().shape({
@@ -22,7 +22,7 @@ const Addbrand = () => {
       toast.success("Brand Added Successfullly!");
     }
     if (isError) {
-      toast.error("Something Went Wrong!");
+      toast.error("Brand Name is already there..");
     }
   }, [isSuccess, isError, isLoading, createdBrand]);
 
@@ -37,7 +37,7 @@ const Addbrand = () => {
       formik.resetForm();
       setTimeout(() => {
         navigate("/admin/brand-list");
-        //dispatch(resetState());
+        dispatch(resetState());
       }, 3000);
     },
   });

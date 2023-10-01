@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {  useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FetchClaim = () => {
     const [billno, setBillno] = useState('');
@@ -12,7 +13,7 @@ const FetchClaim = () => {
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`http://localhost:8030/warrenty/get/${billno}`);
+            const response = await axios.get(`http://localhost:8000/warrenty/get/${billno}`);
             const data = response.data;
 
             if (data.status === 'Claim fetched') {
@@ -29,13 +30,38 @@ const FetchClaim = () => {
 
     const handleUpdateClick = () => {
         if (claimDetails) {
-            navigate(`/update/${claimDetails._id}/${billno}`);
+            if (claimDetails.status === 'Under Review' || !claimDetails.status) {
+                navigate(`/home/update/${claimDetails._id}/${billno}`);
+            } else {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: 'You can only update claims that are "under review" or have no  status',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    
+                    
+                  });
+            }
         }
     };
-
+    
     const handleDeleteClick = () => {
         if (claimDetails) {
-            navigate(`/delete/${claimDetails._id}/${billno}`);
+            if (claimDetails.status === 'Under Review' || !claimDetails.status) {
+                navigate(`/home/delete/${claimDetails._id}/${billno}`);
+            } else {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'warning',
+                    title: 'You can only delete claims that are "under review" or have no status',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    
+                    
+                  });
+                
+            }
         }
     };
 
@@ -53,7 +79,7 @@ const FetchClaim = () => {
               <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Your claim details </h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#225894"}}>
+      <div className="container shadow-lg p-5 mb-5  rounded" style={{background:"#87CEEB"}}>
 
         
             <input
@@ -68,7 +94,7 @@ const FetchClaim = () => {
             {error && <p>Error: {error}</p>}
 
             {claimDetails && (
-                <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#225894" }}>
+                <div className="container shadow-lg p-5 mb-5  rounded" style={{ background: "#87CEEB"}}>
                     <div>
                         <h3>Warranty Claim Details</h3>
 

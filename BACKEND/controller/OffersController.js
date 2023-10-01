@@ -13,6 +13,13 @@ const addOffer = async (req, res) => {
       endDate,
     } = req.body;
 
+     // Check if an offer with the given offerID and productId already exists
+     const existingOffer = await Offer.findOne({ productId, offerID });
+
+     if (existingOffer) {
+      return res.status(400).json({ status: "Error adding offer", error: "Offer with the given offerID and productId already exists" });
+     }
+
     const offer = new Offer({
       productId, // Associate the offer with the product using productId
       offerID,
@@ -31,7 +38,7 @@ const addOffer = async (req, res) => {
 };
 
   
-  // Get all offers with product details
+  // // Get all offers with product details
   const getOffers = async (req, res) => {
     try {
       const offers = await Offer.find().populate("productId");

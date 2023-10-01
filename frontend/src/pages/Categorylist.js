@@ -1,9 +1,10 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import {Table} from "antd";
 import {RiDeleteBin5Fill} from 'react-icons/ri';
-import {getCategories} from '../features/pcategory/pcategorySlice';
+import {deleteCategory, getCategories} from '../features/pcategory/pcategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
+import CustomModal from '../components/CustomModal';
 
 const columns = [
     {
@@ -25,6 +26,20 @@ const columns = [
   ];
 
 const Categorylist = () => {
+  const [open, setOpen] = useState(false);
+  const [categoryId, setcategoryId] = useState("")
+  const showModal = (e) => {
+    setOpen(true);
+    setcategoryId(e)
+  };
+  const handleOk = (e) => {
+    dispatch(deleteCategory(e));
+    setOpen(false);
+    setTimeout(()=>{ dispatch(getCategories()) }, 100)
+  };
+  const handleCancel = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() =>{
     dispatch(getCategories());
@@ -37,9 +52,9 @@ const Categorylist = () => {
         title: pCategoryState[i].title,
         action: (
           <span>
-            <Link className="ms-3 fs-3 text-danger" to='/'>
+            <button className="ms-3 fs-3 text-danger bg-transparent border-0" onClick={()=>showModal(pCategoryState[i]._id)}>
               <RiDeleteBin5Fill />
-            </Link>
+            </button>
           </span>
         ),
     })
@@ -50,6 +65,7 @@ const Categorylist = () => {
         <div>
             <Table columns={columns} dataSource={data1} />
         </div>
+        <CustomModal hideModal={handleCancel} open={open} performAction={()=>{handleOk(categoryId)}} title="Are you sure you want to delete this category.?" />
     </div>
   )
 }

@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 function UpdateClaim() {
     const { billno, id } = useParams(); // Use billno for fetching details and id for updating
@@ -20,7 +22,7 @@ function UpdateClaim() {
     useEffect(() => {
         const fetchClaimDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8030/warrenty/get/${billno}`);
+                const response = await axios.get(`http://localhost:8000/warrenty/get/${billno}`);
                 setClaimDetails(response.data.warrenty);
             } catch (error) {
                 console.error('Error fetching claim details:', error);
@@ -32,10 +34,17 @@ function UpdateClaim() {
 
     const handleUpdate = async () => {
         try {
-            await axios.put(`http://localhost:8030/warrenty/update/${id}`, claimDetails);
+            await axios.put(`http://localhost:8000/warrenty/update/${id}`, claimDetails);
             console.log('Claim details updated');
-            alert("Claim updated");
-            navigate('/'); // Navigate back to the list of all claims or any desired page
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'update Successful',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              
+            navigate('/home/get/:billno'); // Navigate back to the list of all claims or any desired page
         } catch (error) {
             console.error('Error updating claim details:', error);
         }
@@ -60,15 +69,15 @@ function UpdateClaim() {
             
         }}>
         <div className="col-lg-9-mt-2 mb-2 p-3 pt-4 text-black">
-              <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Add New Warranty</h1>
+              <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>update Warranty claim</h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#225894"}}>
+      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB"}}>
 
         
     
             <form>
-                <div className="form-group">
+                <div className="mb-3 text-white">
                     <label htmlFor="productname">Product Name</label>
                     <input
                         type="text"
@@ -80,7 +89,7 @@ function UpdateClaim() {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="mb-3 text-white">
                     <label htmlFor="billno">Bill No</label>
                     <input
                         type="text"
@@ -88,11 +97,11 @@ function UpdateClaim() {
                         id="billno"
                         name="billno"
                         value={claimDetails.billno}
-                        onChange={handleChange}
+                        disabled
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="mb-3 text-white">
             <label htmlFor="date">Purchase Date:</label>
             <input
               type="date"
@@ -107,7 +116,7 @@ function UpdateClaim() {
             
             />
           </div>
-          <div className="form-group">
+          <div className="mb-3 text-white">
             <label htmlFor="date" >Claim Added Date:</label>
             <input
               type="date"
@@ -122,7 +131,7 @@ function UpdateClaim() {
             
             />
           </div>
-          <div className="form-group">
+          <div className="mb-3 text-white">
             <label htmlFor="email" className="form-label">Email:</label>
             <input
               type="email"
@@ -137,7 +146,7 @@ function UpdateClaim() {
             
             />
           </div>
-          <div className="form-group">
+          <div className="mb-3 text-white">
                     <label htmlFor="contactno">Contact No</label>
                     <input
                         type="text"
@@ -148,7 +157,7 @@ function UpdateClaim() {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="form-group">
+                <div className="mb-3 text-white">
                     <label htmlFor="description">Description</label>
                     <input
                         type="text"
@@ -163,7 +172,7 @@ function UpdateClaim() {
 
 
 
-
+                
 
                 {/* Add similar input fields for other claim details */}
                 <button type="button" className="btn btn-primary" onClick={handleUpdate}>

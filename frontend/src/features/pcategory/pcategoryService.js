@@ -11,9 +11,15 @@ const createCategory = async (Category) =>{
     return response.data;
 }
 
+const deleteCategory = async (id) =>{
+    const response = await axios.delete(`${base_url}category/deletCategoryProduct/${id}`);
+    return response.data;
+}
+
 const pcategoryService = {
     getProductCategories,
     createCategory,
+    deleteCategory,
 }
 
 export default pcategoryService;

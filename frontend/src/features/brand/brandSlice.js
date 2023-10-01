@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import brandService from './brandService'
 import { toast } from "react-toastify";
 
@@ -23,6 +23,19 @@ export const createBrand = createAsyncThunk(
       }
     }
   );
+
+  export const deleteBrand = createAsyncThunk(
+    "brand/delete-brands",
+    async(id, thunkAPI) => {
+        try{
+            return await brandService.deleteBrand(id);
+        }catch(error){
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+
+  export const resetState = createAction("Reset_all");
 
 const initialState ={
     brands: [],
@@ -74,10 +87,23 @@ export const brandSlice = createSlice ({
             state.isError = true;
             state.isSuccess = false;
             state.message = action.error;
-            if (state.isError === true) {
-                toast.error("Something Went Wrong !!!"); 
-            }
-        });
+        })
+        .addCase(deleteBrand.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(deleteBrand.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.isSuccess = true;
+            state.deletedBrand = action.payload;
+        })
+        .addCase(deleteBrand.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.error;
+        })
+        .addCase(resetState, () => initialState);
     },
 });
 

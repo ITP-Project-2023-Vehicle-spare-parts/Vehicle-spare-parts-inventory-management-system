@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -12,6 +13,20 @@ export default function AddClaim() {
   const [description, setdescription] = useState("");
   const [email, setemail] = useState("");
   const [contactNo, setcontactno] = useState("");
+  const [existingBillNos, setExistingBillNos] = useState([]);
+  // Maintain a list of unique billno values
+  
+  useEffect(() => {
+    // Fetch existing bill numbers from your API or wherever you store them
+    // For now, let's assume you have an API endpoint to fetch the existing bill numbers
+    axios.get("http://localhost:8000/warrenty/existingBillNos")
+      .then((response) => {
+        setExistingBillNos(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching existing bill numbers:", error);
+      });
+  }, []);
 
   function getCurrentDate() {
     const today = new Date();
@@ -31,6 +46,10 @@ export default function AddClaim() {
   const validatePhoneNumber = (phone) => {
     const phoneRegex = /^\d{10}$/; // Assumes a 10-digit phone number
     return phoneRegex.test(phone);
+  };
+
+  const isDuplicateBillno = (billnoToCheck) => {
+    return existingBillNos.includes(billnoToCheck);
   };
   
   
@@ -54,6 +73,10 @@ const handleSubmit = async (e) => {
     alert("Invalid contact number");
     return;
   }
+  if (isDuplicateBillno(billno)) {
+    alert("Duplicate billno. Please enter a unique billno.");
+    return;
+  }
 
   try {
     const newWarrenty = {
@@ -65,11 +88,20 @@ const handleSubmit = async (e) => {
       email,
       contactNo
     };
-    const response = await axios.post("http://localhost:8030/warrenty/addclaim", newWarrenty);
+    const response = await axios.post("http://localhost:8000/warrenty/addclaim", newWarrenty);
     console.log('warrenty added successfully:', response.data);
-    alert("warrenty added");
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: 'Add Successful',
+      showConfirmButton: false,
+      timer: 1500
+    })
     
     
+    
+     // Add the new billno to the list of existingBillNos
+     setExistingBillNos([...existingBillNos, billno]);
 
     setproductname('');
     setbillno('');
@@ -98,7 +130,7 @@ const handleSubmit = async (e) => {
               <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Add New Warranty</h1>
           </div>
           
-      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#4083be"}}>
+      <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB"}}>
 
 
    
@@ -187,7 +219,7 @@ const handleSubmit = async (e) => {
 
             <div className="col-4">
               
-              <Link to={`/get/:billno`} className="btn btn-warning">View claim</Link>
+              <Link to={`/home/get/:billno`} className="btn btn-warning">View claim</Link>
               
               
             </div>

@@ -22,11 +22,17 @@ const addToWishlist = async (ProductID) =>{
     return response.data;
 }
 
+const deleteProduct = async (id) =>{
+    const response = await axios.delete(`${base_url}product/${id}`);
+    return response.data;
+}
+
 const productService = {
     getProducts,
     createProduct,
     addToWishlist,
     getSingleProduct,
+    deleteProduct,
 }
 
 export default productService;

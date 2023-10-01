@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import pcategoryService from "./pcategoryService";
 import { toast } from "react-toastify";
 
@@ -23,6 +23,18 @@ export const createCategory = createAsyncThunk(
       }
     }
   );
+
+  export const deleteCategory = createAsyncThunk(
+    "brand/delete-categories",
+    async(id, thunkAPI) => {
+        try{
+            return await pcategoryService.deleteCategory(id);
+        }catch(error){
+            return thunkAPI.rejectWithValue(error);
+        }
+    }
+);
+  export const resetState = createAction("Reset_all");
 
 const initialState ={
     pCategories: [],
@@ -73,7 +85,23 @@ export const pCategorySlice = createSlice ({
             state.isError = true;
             state.isSuccess = false;
             state.message = action.error;
-        });
+        })
+        .addCase(deleteCategory.pending, (state) => {
+            state.isLoading = true;
+        })
+        .addCase(deleteCategory.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.isSuccess = true;
+            state.deletedCategory = action.payload;
+        })
+        .addCase(deleteCategory.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.error;
+        })
+        .addCase(resetState, () => initialState);
     },
 });
 
