@@ -12,6 +12,7 @@ function AddCoupon() {
   });
 
   const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,14 +69,23 @@ function AddCoupon() {
           });
           alert("Coupon Created successfully!");
         }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred while creating the coupon. Please try again.");
-      }
-    } else {
-      console.log('Form has errors. Please correct them.');
-    }
-  };
+
+} catch (error) {
+  // Handle errors here
+  if (error.response && error.response.data && error.response.data.error) {
+    // If there is an error message in the response, set it in the state
+    setErrorMessage(error.response.data.error);
+    alert(`Error: ${error.response.data.error}`); // Display error message in an alert
+  } else {
+    // If there is no specific error message in the response, display a generic error
+    console.error("Error:", error);
+    alert("An error occurred while adding the branch. Please try again.");
+  }
+}
+} else {
+console.log('Form has errors. Please correct them.');
+}
+};
 
   return (
     <div className="container" id="AddCoupon">
