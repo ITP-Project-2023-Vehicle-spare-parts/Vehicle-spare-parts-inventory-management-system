@@ -50,7 +50,7 @@ function OfferTable() {
         <thead>
           <tr>
             <th>Product ID</th> 
-            <th>Product Title</th>
+            <th>Offer ID</th>
             
             {/* Add table headers for other attributes */}
             <th>Actions</th>
