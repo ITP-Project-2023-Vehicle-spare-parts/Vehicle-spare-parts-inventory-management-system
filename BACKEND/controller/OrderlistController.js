@@ -2,7 +2,7 @@ const Order = require('../model/orderModel');
 
 const getAllOrders = async (req, res) => {
     try {
-        const DeliveryOrder = await Order.find();
+        const DeliveryOrder = await Order.find({ orderStatus: "Ordered" });
         //{ orderStatus: "Ordered" }
         res.json(DeliveryOrder);
     } catch (err) {
@@ -13,7 +13,7 @@ const getAllOrders = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const DeliveryOrderes = await Order.find();
+        const DeliveryOrderes = await Order.find({ orderStatus: "Delivered" });
         //{ orderStatus: "Delivered" }
         res.json(DeliveryOrderes);
     } catch (err) {
