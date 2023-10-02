@@ -18,6 +18,8 @@ function UpdateClaim() {
         status: '',
         contactNo: ''
     });
+    
+    
 
     useEffect(() => {
         const fetchClaimDetails = async () => {
@@ -32,7 +34,19 @@ function UpdateClaim() {
         fetchClaimDetails();
     }, [billno]);
 
+   
+
+    function getCurrentDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        let month = (today.getMonth() + 1).toString().padStart(2, '0');
+        let day = today.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
     const handleUpdate = async () => {
+       
+        
         try {
             await axios.put(`http://localhost:8000/warrenty/update/${id}`, claimDetails);
             console.log('Claim details updated');
@@ -109,7 +123,7 @@ function UpdateClaim() {
               id="purchasedate"
               name="purchasedate"
               placeholder="MM/DD/YYYY"
-        
+              max={getCurrentDate()}
               value={claimDetails.purchasedate}
               onChange={handleChange}
             
@@ -124,6 +138,7 @@ function UpdateClaim() {
               id="claimdate"
               name="claimdate"
               placeholder="MM/DD/YYYY"
+              min={getCurrentDate()}
               required
               value={claimDetails.claimdate}
               onChange={handleChange}
@@ -139,9 +154,11 @@ function UpdateClaim() {
               id="email"
               name="email"
               placeholder="MM/DD/YYYY"
+              min={getCurrentDate()}
               required
               value={claimDetails.email}
               onChange={handleChange}
+              
             
             
             />
