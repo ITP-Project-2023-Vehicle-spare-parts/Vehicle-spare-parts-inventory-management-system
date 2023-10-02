@@ -6,6 +6,14 @@
     position: relative;
     height: 100vh;
 }
+
+#CustomerProfileUpdate .center-container {
+    display: flex;
+    justify-content: center; /* Horizontally center child elements */
+    align-items: center; /* Vertically center child elements */
+    height: 100vh; /* Make the container full height of the viewport */
+  }
+  
 #CustomerProfileUpdate .account-settings .user-profile {
     margin: 1 1 1rem 0;
     padding-bottom: 1rem;
@@ -100,9 +108,3 @@
    
    
 }
-
-
-  
-
- 
- 

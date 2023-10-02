@@ -27,11 +27,7 @@ const columns = [
       dataIndex: 'nic',
       align: 'left'
     },
-    {
-      title: 'City',
-      dataIndex: 'city',
-      align: 'left'
-    },
+   
     {
       title: 'Mobile',
       dataIndex: 'mobile',
@@ -167,7 +163,7 @@ const columns = [
         FullName: `${customer.firstname} ${customer.lastname}`,
         email: customer.email,
         nic: customer.nic,
-        city: customer.city,
+        
         mobile: customer.mobile,
         gender: customer.gender,
         isBlocked: customer.isBlocked,
