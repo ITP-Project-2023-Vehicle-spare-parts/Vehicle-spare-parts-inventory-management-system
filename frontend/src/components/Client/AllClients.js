@@ -193,7 +193,7 @@ export default function AllClient() {
                           <img src="/images/me.jpg" alt="" />
                           {dataobj.ClientsfirstName} {dataobj.ClientsLastName}
                         </td>
-                        <td>{dataobj.ClientsCity}</td>
+                        <td>{dataobj.ClientsState}</td>
 
                         <td> {dataobj.ClientsStatus} </td>
 
@@ -213,7 +213,7 @@ export default function AllClient() {
                             onClick={() => ViewClient(dataobj._id)}
                           ></button></Link>
                           
-                          <Link to="/Admin/profile/update/id"> <button
+                          <Link to="/Admin/client/profile/update/:id"> <button
                             className="bx bx-pencil bx-lg btn btn-outline-warning"
                             style={{ margin: "10px" }}
                             onClick={() => UpdateClient(dataobj._id)}

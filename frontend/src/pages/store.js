@@ -5,19 +5,58 @@ import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/product/productSlice';
+import {BsSearch} from 'react-icons/bs';
+import { getCategories } from '../features/pcategory/pcategorySlice';
 
 const Store = () => {
   const [grid, setGrid] = useState(4);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const productState = useSelector((state) => state.product.products);
+  const pCategoryState = useSelector((state) => state.pcategory.pCategories);
+  //const [selectedSortOption, setSelectedSortOption] = useState('best-selling');
+
+  const filteredProducts = productState.filter((item) =>
+    item.Title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    item.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredProductsByCategory = productState.filter((item) =>
+    item.category.toLowerCase().includes(selectedCategory.toLowerCase())
+  );
+
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getProducts());
+    dispatch(getCategories());
   },[dispatch]);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setSearchQuery(''); // Clear search query when a category is selected
+  };
+
   return (
     <>
     <Meta title = {"Our Store"}/>
     <BreadCrumb title = "Our Store"/>
-
+    <div className="col-6 container-xxl">
+              <div class="input-group">
+        <input
+                  type="text"
+                  class="form-control py-2"
+                  placeholder="Search Product Here..."
+                  aria-label="Search Product Here..."
+                  aria-describedby="basic-addon2"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <span class="input-group-text p-3" id="basic-addon2">
+                  <BsSearch className="fs-6" />
+                </span>
+      </div></div>
     <div className='store-wrapper home-wrapper-2 py-5'>
       <div className='container-xxl'>
         <div className='row'>
@@ -26,10 +65,11 @@ const Store = () => {
               <h3 className='filter-title'>Shop By Category</h3>
               <div>
                 <ul className='ps-0'>
-                  <li>BAJAJ</li>
-                  <li>HERO</li>
-                  <li>YAMAHA</li>
-                  <li>PLATINA</li>
+                {pCategoryState.map((category, index) => (
+              <li key={index} onClick={() => handleCategoryClick(category.title)} value={category.title}>
+                {category.title}
+              </li>
+            ))}
                 </ul>
               </div>
             </div>
@@ -76,9 +116,10 @@ const Store = () => {
           <div className='col-9'>
             <div className='filter-sort-grid mb-4'>
               <div className='d-flex justify-content-between align-items-center gap-10'>
-              <div className='d-flex align-items-center '>
+              <p className='totalproducts'>Products</p>
+              {/* <div className='d-flex align-items-center '>
                 <p className='mb-0 d-block'>Sort_by: </p>
-                <select name='' className='form-control form-select sort_style_backgrond' id=''>
+                <select name='' className='form-control form-select sort_style_backgrond' id='' value={selectedSortOption}  onChange={(e) => setSelectedSortOption(e.target.value)}>
                     <option value="manual">Featured</option>
                     <option value='best-selling' selected="selected">Best selling</option>
                     <option value='title-ascending' selected="selected">Alphabetically: A - Z</option>
@@ -86,9 +127,9 @@ const Store = () => {
                     <option value='price-ascending' selected="selected">Price: low to high</option>
                     <option value='price-descending' selected="selected">Price: high to low</option>
                 </select>
-              </div>
+                </div> */}
               <div className='d-flex align-items-center gap-10'>
-                <p className='totalproducts'>Products</p>
+                
                 <div className='d-flex gap-10 align-items-center grid'>
                   <img onClick={()=>{setGrid(3);}} src='/images/gr4.svg' className='d-block img-fluid' alt='grid' />
                   <img onClick={()=>{setGrid(4);}} src='/images/gr3.svg' className='d-block img-fluid' alt='grid' />
@@ -100,7 +141,7 @@ const Store = () => {
             </div>
             <div className='product-list pb-5'>
               <div className='d-flex gap-10 flex-wrap'>
-              <ProductCard data={productState? productState:[]} grid={grid} />
+              <ProductCard data={selectedCategory ? filteredProductsByCategory : filteredProducts} grid={grid} />
               </div>
             </div>
           </div>

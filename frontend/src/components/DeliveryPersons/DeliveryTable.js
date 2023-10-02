@@ -56,12 +56,14 @@ function DeliveryTable() {
         header: "swal-header",
         title: "swal-title",
         text: "swal-text",
-        confirmButton: "swal-confirm-button swal-confirm-button-custom", // Use custom class
-        cancelButton: "swal-cancel-button swal-cancel-button-custom", // Use custom class
+        confirmButton: "swal-confirm-button swal-confirm-button-custom",
+        cancelButton: "swal-cancel-button swal-cancel-button-custom",
       },
       buttonsStyling: false,
       reverseButtons: true,
       showLoaderOnConfirm: true,
+      confirmButtonClass: 'swal-confirm-button-custom', // Add custom class for confirm button
+      cancelButtonClass: 'swal-cancel-button-custom', // Add custom class for cancel button
       preConfirm: () => {
         return axios
           .delete(`http://localhost:8000/deliveryPerson/delete/${id}`)

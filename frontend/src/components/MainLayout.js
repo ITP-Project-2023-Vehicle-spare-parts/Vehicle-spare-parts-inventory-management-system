@@ -55,6 +55,19 @@ const MainLayout = () => {
               key: 'user',
               icon: <BiUserCircle className='fs-4'/>,
               label: 'User',
+              children : [
+                {
+                  key: 'user/customerlist',
+                  icon: <BiSolidUserDetail className='fs-4'/>,
+                  label: 'User Table',
+                },
+                {
+                  key: 'user/statistics',
+                  icon: <BiSolidUserDetail className='fs-4'/>,
+                  label: 'Statistics',
+                },
+                
+              ]
             },
             {
               key: 'Catalog',
@@ -230,6 +243,11 @@ const MainLayout = () => {
                   icon: <TbTruckDelivery className='fs-4'/>,
                   label: 'Received Orders',
                 }, 
+                {
+                  key: 'orderHistory',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Order History',
+                },
 
               ]
             },

@@ -66,6 +66,8 @@ import Sidebar from "./components/Sidebar";
 import UserRegistration from "./components/Customers/UserRegistration";
 import Forgotpassword from "./components/Customers/Forgotpassword";
 import Resetpassword from "./components/Customers/Resetpassword";
+import UserProfile from "./components/Customers/UserProfile";
+import CustomerProfileUpdate from "./components/Customers/CustomerProfileUpdate";
 
 import UserSupplierUpdateProfile from "./components/Supplier/UserSupplierPage/UserSupplierUpdateProfile";
 import ShipmentReport from "./components/Supplier/UserSupplierPage/ShipmentReport";
@@ -97,13 +99,13 @@ import ComparisionBarGraph from "./components/stockComponents/comparisiongraph";
 
 import TrackOrder from "./components/TrackOrder";
 import TrackOrderDetails from "./components/TrackOrderDetails";
-
+import OrderHistoryTable from "./components/OrderHistryTable";
 
 import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
+import AdminCustomerList from "./components/Customers/AdminCustomerList";
 
-// import AdminCustomerList from "./pages/AdminCustomerList";
-// import AdminCustomerUpdate from "./pages/AdminCustomerUpdate";
+
 
 
 
@@ -128,6 +130,7 @@ function App() {
             
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
            
+         
            
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
@@ -215,6 +218,7 @@ function App() {
               <Route path="delivery/profiles/:id" element={<EditDeliveryPerson />} />
               <Route path="orders" exact element={<OrderList />} />
               <Route path="order/:orderid/:userid" element={<AvailableDeliveryPersonList />} />
+              <Route path="orderHistory" element={<OrderHistoryTable />} />
               <Route path="branch/add" element={<AddBranch />} />
               <Route path="offer/add" element={<AddOffer />} />
               <Route path="coupon/add" element={<AddCoupon />} />
@@ -229,6 +233,8 @@ function App() {
               <Route path="offer/profile/update/:id" element={<EditOffer />} />
               <Route path="assignBranch" element={<AssignBranch />} />
               <Route path="allclaim" element={<AllClaims />} />
+              <Route path="user/customerlist" element={<AdminCustomerList />} /> 
+
               <Route
                 path="Stock-interactivechart"
                 element={<InteractiveChartsPage />}
@@ -243,6 +249,8 @@ function App() {
             <Route path="/home" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="contact" element={<Contact />} />
+              
+              
               <Route path="cart" element={<Cart />} />
               <Route path="my-orders" element={<Order />} />
               <Route path="Checkout" element={<Checkout />} />
@@ -261,6 +269,14 @@ function App() {
 
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/order-details/:orderId" element={<TrackOrderDetails />}/>
+
+            
+            
+            <Route path="user/profile" element={<Layout />}>
+             <Route index element={<UserProfile />} />
+             <Route path="update" element={<CustomerProfileUpdate />} />
+    </Route>
+            
 
           </Routes>
         </div>

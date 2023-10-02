@@ -3,91 +3,93 @@ const mongoose = require('mongoose');
 
 //declare the schema of the product model
 var productSchema = new mongoose.Schema({
-    
-    productID:{
-        type: String,
-        required: true,
-        unique: true,
+
+    productID: {
+      type: String,
+      //required: true,
+      unique: true,
     },
 
-    Title:{
-        type: String,
-        required: true,
-        trim: true,
+    Title: {
+      type: String,
+      required: true,
+      trim: true,
     },
 
-    slug:{
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true,
+    slug: {
+      type: String,
+      //required: true,
+      unique: true,
+      lowercase: true,
     },
 
-    description:{
-        type: String,
-        required: true,
+    description: {
+      type: String,
+      required: true,
     },
 
-    price:{
-        type: Number,
-        required: true,
+    price: {
+      type: Number,
+      required: true,
     },
 
-    discount:{
-        type: Number,
-        required: true,
+    discount: {
+      type: Number,
+      //required: true,
     },
 
-    category:{
-        type: String,
-        required: true,
-        //type: mongoose.Schema.Types.ObjectId,
-        //ref: "Category",
+    category: {
+      type: String,
+      required: true,
+      //type: mongoose.Schema.Types.ObjectId,
+      //ref: "Category",
     },
 
-    brand:{
-        type: String,
-        //enum: ["Bajaj", "TVS", "Boxer", "Hero"]
-        required: true,
+    brand: {
+      type: String,
+      //enum: ["Bajaj", "TVS", "Boxer", "Hero"]
+      required: true,
     },
 
     sold: {
-        type: Number,
-        default: 0,
-      },
+      type: Number,
+      default: 0,
+    },
 
-    images:[{
-        public_id: String,
-        url: String,
+    images: [{
+      public_id: String,
+      url: String,
     }],
 
-    color:{
-        type: String,
-        required: true,
+    color: {
+      type: String,
+      required: true,
     },
 
-    tags:{
-        type: String,
-        required: true,
+    tags: {
+      type: String,
+      //required: true,
     },
 
-    ratings:[
-        {
+    ratings: [
+      {
         star: Number,
-        comment:String,
-        postedby: {type: mongoose.Schema.Types.ObjectId, 
-            ref: "User"}
-    },
-],
+        comment: String,
+        postedby: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User"
+        }
+      },
+    ],
 
-    totalrating:{
-        type: String,
-        default: 0,
+    totalrating: {
+      type: String,
+      default: 0,
     },
-},
-{timestamps: true}
+  },
+  {timestamps: true}
 );
 
-const Product = mongoose.model("Product" , productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
