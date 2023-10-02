@@ -8,7 +8,7 @@
   
   /* Style the profile container */
 #profile-details  .profile-container {
-    background-color: #87ebfd;
+  background: linear-gradient(to right, rgb(120, 184, 240), #a7b8e7);
     border-radius: 50px;
     box-shadow: 5px 5px 5px rgba(1, 8, 14, 0.1);
     padding: 30px;
@@ -18,7 +18,7 @@
  #profile-details .profile-heading {
     font-size: 28px;
     font-weight: bold;
-    color: #184cdbf1;
+    color: #0239d3f1;
     margin-bottom: 20px;
   }
   #profile-details {
@@ -56,8 +56,8 @@
 
   /* UserProfile.css */
 
-.generate-pdf-btn {
-  background-color: #007bff; /* Blue color for the button */
+  #profile-details .generate-pdf-btn {
+  background: linear-gradient(to right, rgb(22, 25, 212), #5077e2); /* Blue color for the button */
   color: #fff; /* White text color */
   border: none;
   border-radius: 5px;
@@ -67,7 +67,7 @@
   transition: background-color 0.3s;
 }
 
-.generate-pdf-btn:hover {
+#profile-details .generate-pdf-btn:hover {
   background-color: #0056b3; /* Darker blue color on hover */
 }
 

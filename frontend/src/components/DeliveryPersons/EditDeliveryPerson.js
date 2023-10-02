@@ -224,8 +224,9 @@ function EditDeliveryPerson() {
             <option value="Galle">Galle</option>
             <option value="Batticaloa">Batticaloa</option>
             <option value="Nuwara Eliya">Nuwara Eliya</option>
-            <option value="Ibbagaumuwa">Ibbagaumuwa</option>
+            <option value="ibbagamuwa_main">Ibbagaumuwa</option>
             <option value="Jaffna">Jaffna</option>
+            <option value="colombo">Colombo</option>
           </select>
         </div>
 

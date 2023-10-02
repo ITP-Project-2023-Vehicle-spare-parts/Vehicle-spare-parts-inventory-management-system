@@ -8,11 +8,11 @@
     border: none;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    background-color: #f5f5f5; /* Light gray background */
+    background-color: #c8e1f0; /* Light gray background */
   }
   
 #EditDeliveryPerson  .card-header {
-    background-color: #007bff; /* Blue header */
+  background: linear-gradient(to right, rgb(25, 138, 236), #1e53e2); /* Blue header */
     color: white;
     text-align: center;
     border-radius: 10px 10px 0 0;
@@ -32,7 +32,7 @@
   }
   
 #EditDeliveryPerson  .btn-primary {
-    background-color: #007bff; /* Blue button */
+    background: linear-gradient(to right, rgb(25, 138, 236), #1e53e2); /* Blue button */
     border: none;
     width: 100%;
     padding: 15px;
