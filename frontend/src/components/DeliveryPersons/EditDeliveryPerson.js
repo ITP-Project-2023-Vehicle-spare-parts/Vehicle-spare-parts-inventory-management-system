@@ -80,6 +80,8 @@ function EditDeliveryPerson() {
             name="deliverypersonGender"
             value={deliveryPerson.deliverypersonGender}
             onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
           >
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
@@ -98,6 +100,8 @@ function EditDeliveryPerson() {
             name="deliverypersonDOB"
             value={deliveryPerson.deliverypersonDOB}
             onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
           />
         </div>
 
@@ -122,6 +126,7 @@ function EditDeliveryPerson() {
             name="deliverypersonEmail"
             value={deliveryPerson.deliverypersonEmail}
             onChange={handleInputChange}
+            
           />
         </div>
 
@@ -134,7 +139,95 @@ function EditDeliveryPerson() {
             name="deliverypersonNIC"
             value={deliveryPerson.deliverypersonNIC}
             onChange={handleInputChange}
+            style={{ cursor: 'not-allowed' }}
           />
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonNIC">Address</label>
+          <input
+            type="text"
+            className="form-control input-blue"
+            id="deliverypersonAddress"
+            name="deliverypersonAddress"
+            value={deliveryPerson.deliverypersonAddress}
+            onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonNIC">Driving license number</label>
+          <input
+            type="text"
+            className="form-control input-blue"
+            id="deliverypersonDLN"
+            name="deliverypersonDLN"
+            value={deliveryPerson.deliverypersonDLN}
+            onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonNIC">Driving license expire date</label>
+          <input
+            type="date"
+            className="form-control input-blue"
+            id="deliverypersonDLexpire"
+            name="deliverypersonDLexpire"
+            value={deliveryPerson.deliverypersonDLexpire}
+            onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonGender">Vehicle type</label>
+          <select
+            className="form-control select-blue"
+            id="deliverypersonVehicleType"
+            name="deliverypersonVehicleType"
+            value={deliveryPerson.deliverypersonVehicleType}
+            onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
+          >
+            <option value="">Select Vehicle</option>
+            <option value="Male">Bike</option>
+            <option value="Female">Three wheel</option>
+            <option value="Unspecified">Lorry</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonNIC">Vehicle number</label>
+          <input
+            type="text"
+            className="form-control input-blue"
+            id="deliverypersonVehicleNumber"
+            name="deliverypersonVehicleNumber"
+            value={deliveryPerson.deliverypersonVehicleNumber}
+            onChange={handleInputChange}
+            readOnly
+            style={{ cursor: 'not-allowed' }}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="deliverypersonBranch">Branch</label>
+          <select
+            className="form-control select-blue"
+            id="deliverypersonBranch"
+            name="deliverypersonBranch"
+            value={deliveryPerson.deliverypersonBranch}
+            onChange={handleInputChange}
+          >
+            <option value="">Select Branch</option>
+            <option value="Galle">Galle</option>
+            <option value="Batticaloa">Batticaloa</option>
+            <option value="Nuwara Eliya">Nuwara Eliya</option>
+            <option value="ibbagamuwa_main">Ibbagaumuwa</option>
+            <option value="Jaffna">Jaffna</option>
+            <option value="colombo">Colombo</option>
+          </select>
         </div>
 
         {/* Add similar input fields with custom styles for other form properties */}

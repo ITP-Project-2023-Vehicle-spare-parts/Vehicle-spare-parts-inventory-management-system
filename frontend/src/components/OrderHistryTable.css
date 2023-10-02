@@ -1,0 +1,102 @@
+/* OrderList.css */
+#OrderHistoryList {
+    max-width: 1500px;
+    margin: 30px auto;
+    padding: 50px;
+    border: 2px solid #6fb5e4;
+    border-radius: 10px;
+    background-color: #9acaf1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+ #OrderHistoryList h2 {
+    color: #060a0c;
+    text-align: center;
+  }
+  
+  #OrderHistoryList .search-bar {
+    margin-bottom: 10px;
+  }
+  
+  #OrderHistoryList .search-bar input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #046fc7;
+    border-radius: 4px;
+  }
+  
+  #OrderHistoryList .search-bar button {
+    padding: 10px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #OrderHistoryList .table-container {
+    overflow-x: auto;
+  }
+  
+  #OrderHistoryList .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  #OrderHistoryList .table th,
+  #OrderHistoryList .table td {
+    padding: 10px;
+    border: 2px solid #ddd;
+    text-align: left;
+  }
+  
+  #OrderHistoryList .table th {
+    background-color: #2c8efd;
+  }
+  
+  #OrderHistoryList .action-buttons {
+    margin-top: 20px;
+  }
+  
+  #OrderHistoryList .action-buttons button {
+    padding: 12px 16px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #OrderHistoryList .success-badge {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #cf1d16;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+  
+  #OrderHistoryList .status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #b32929;
+    border-radius: 4px;
+  }
+  
+  #OrderHistoryList .pending-status {
+    background-color: #ffc107;
+  }
+  
+  #OrderHistoryList .processing-status {
+    background-color: #007bff;
+  }
+  
+  #OrderHistoryList .completed-status {
+    background-color: #28a745;
+  }
+  
+  #OrderHistoryList .failed-status {
+    background-color: #dc3545;
+  }
+  

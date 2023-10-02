@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import CustomInput from '../components/CustomeInput';
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {getCategories} from '../features/pcategory/pcategorySlice';
 import {getColors} from '../features/color/colorSlice';
 import Dropzone from 'react-dropzone';
-import { delImg, uploadImg } from '../features/upload/uploadSlice';
+import { uploadImg } from '../features/upload/uploadSlice';
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getSingleProducts, resetState } from "../features/product/productSlice";
@@ -36,22 +36,20 @@ const Addproduct = () => {
   const productid = location.pathname.split("/")[3];
   //const [images, setImages] = useState([]);
   const productState = useSelector((state) => state.product.Singledproduct);
-    useEffect(()=>{
-        dispatch(getSingleProducts(productid));
-    })
     console.log(productState);
     useEffect(()=>{
+    dispatch(getSingleProducts(productid));
     dispatch(getBrands());
     dispatch(getCategories());
     dispatch(getColors());
-  }, [dispatch]);
+  }, [dispatch, productid]);
   const brandState = useSelector((state) => state.brand.brands);
   const pCategoryState = useSelector((state) => state.pcategory.pCategories);
   const colorState = useSelector((state) => state.color.colors);
-  const imgState = useSelector((state) => state.upload.images);
-  const updateProduct = useSelector((state) => state.product);
-  const { isSuccess, isError, isLoading, updatedProduct } = updateProduct;
-
+  //const imgState = useSelector((state) => state.upload.images);
+ // const updateProduct = useSelector((state) => state.product);
+ // const { isSuccess, isError, isLoading, updatedProduct } = updateProduct;
+/*
   useEffect(() => {
     if (isSuccess && updatedProduct) {
       toast.success("Product updated Successfullly!");
@@ -60,7 +58,7 @@ const Addproduct = () => {
       toast.error("something went wrong");
     }
   }, [isSuccess, isError, isLoading, updatedProduct]);
-
+*/
   const colors = [];
   colorState.forEach(i => {
     colors.push({
@@ -68,7 +66,7 @@ const Addproduct = () => {
       color: i.title,
     })
   });
-
+/*
   const img = [];
   imgState.forEach(i => {
     img.push({
@@ -76,7 +74,7 @@ const Addproduct = () => {
       url: i.url,
     })
   });
-
+*/
  // useEffect(()=>{
   //  formik.values.images = img;
  // }, [img]);
@@ -109,6 +107,7 @@ const Addproduct = () => {
             showConfirmButton: false,
             timer: 15
           })
+          toast.success("Product updated Successfullly!");
           navigate("/Admin/product-list");
           // You can add additional logic here, such as redirecting to another page
         })
@@ -118,17 +117,15 @@ const Addproduct = () => {
       setTimeout(() => {
         navigate("/admin/product-list");
         dispatch(resetState());
-      }, 300);
+      }, 30000);
     },
   });
-
+/*
     const [desc, setDesc] = useState();
     const handleDesc = (e) =>{
         setDesc(e);
     };
-    console.log(handleDesc)
-    console.log(desc)
-
+*/
   return (
     <div>
         <h2 className='mb-4 title text text-center'> Update Product...</h2><br/><br/>
@@ -194,7 +191,7 @@ const Addproduct = () => {
                       )}
                 </Dropzone>
                 </div>
-                <div className='showimages d-flex flex-wrap gap-3'>
+              {/* <div className='showimages d-flex flex-wrap gap-3'>
                   {imgState?.map((i,j)=>{
                     return(
                       <div key={j} className='position-relative'>
@@ -207,7 +204,7 @@ const Addproduct = () => {
                     );
                   })};
                   
-                </div>
+                </div> */}  
             <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Edit-Product</button>
             </form>
         </div>

@@ -40,6 +40,7 @@ function OrderDetails({ navigateToDeliveryPersons }) {
               <th className="text-center">Order ID</th>
               <th>Customer Name</th>
               <th>Shipping Address</th>
+              <th>Branch</th>
               <th>Order Status</th>
               <th>Action</th>
             </tr>
@@ -50,6 +51,9 @@ function OrderDetails({ navigateToDeliveryPersons }) {
                 <td className="text-center">{order._id}</td>
                 <td>{`${order.shippingInfo.firstName} ${order.shippingInfo.lastName}`}</td>
                 <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
+                <td>
+                  {order.branch}
+          </td>
                 <td>
   {order.isActive && (
     <span className="success-badge" title="Active Process"></span>

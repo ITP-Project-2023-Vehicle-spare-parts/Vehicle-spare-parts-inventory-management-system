@@ -11,6 +11,17 @@ const getAllOrders = async (req, res) => {
     }
 };
 
+const getOrderHistory = async (req, res) => {
+    try {
+        const DeliveryOrderes = await Order.find();
+        //{ orderStatus: "Delivered" }
+        res.json(DeliveryOrderes);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching Order history", error: err.message });
+    }
+};
+
 const getOrders = async (req, res) => {
     try {
         const assignBranch = await Order.find();
@@ -93,6 +104,7 @@ module.exports = {
     updateOrderStatus,
     updateBranchLocation,
     getOrderById,
-    getOrders
+    getOrders,
+    getOrderHistory
 
  };

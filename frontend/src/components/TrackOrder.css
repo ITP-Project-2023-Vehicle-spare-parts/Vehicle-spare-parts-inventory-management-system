@@ -8,6 +8,7 @@ body {
     align-items: center;
     justify-content: center;
     
+    
   }
   
   #Track-Order .search-container {
@@ -40,4 +41,33 @@ body {
   #Track-Order button:hover {
     background-color: #0056b3;
   }
+
+  .popup {
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to left, rgb(109, 160, 204), #86c8e2);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 6000px; /* Adjust the width as needed */
+    max-width: 90%; /* Set a maximum width if you want it to be responsive */
+  }
+
+  #Track-Order {
+    position: relative; /* Ensure the relative positioning for absolute children */
+  }
+  /* TrackOrder.css */
+
+.spacer {
+  height: 800px; /* Adjust the height as needed */
+}
+
+  
+  /* .popup-content {
+    /* Add any styles you need for the popup content */
+  
+  
+  /* Add more styles as needed */
+  
   

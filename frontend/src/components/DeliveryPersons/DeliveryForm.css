@@ -13,7 +13,7 @@
   
   #DeliveryForm .home_content {
     background-color: #bcdefa;
-    padding: 50px;
+    padding: 60px;
     border-radius: 50px;
     box-shadow: 5px 5px 10px rgba(64, 12, 185, 0.2);
   }
@@ -90,7 +90,7 @@
     border-color: #dc3545
   }
 
-  .password-conditions {
+  #DeliveryForm .password-conditions {
     background: linear-gradient(to right, #86d6db, #7bd9fe); /* Gradient background */
     color: #fff; /* White text color */
     padding: 15px;
@@ -100,22 +100,22 @@
     font-size: 16px;
   }
   
-  .password-condition {
+  #DeliveryForm .password-condition {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
   }
   
-  .condition-icon {
+  #DeliveryForm .condition-icon {
     margin-right: 10px;
   }
   
-  .condition-text {
+  #DeliveryForm .condition-text {
     flex-grow: 1;
   }
   
-  .condition-icon, .condition-text {
+  #DeliveryForm .condition-icon, .condition-text {
     font-size: 14px;
   }
-  
+
   
