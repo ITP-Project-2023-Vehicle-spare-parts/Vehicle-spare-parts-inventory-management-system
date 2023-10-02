@@ -15,11 +15,33 @@ import { toast } from "react-toastify";
 import { createProducts, resetState } from "../features/product/productSlice";
 
 let schema = yup.object().shape({
-  productID: yup.string().required("productID is required"),
+  productID: yup
+    .string()
+    .required("Product ID is required")
+    .test(
+      'is-valid-product-id',
+      'Invalid Product ID. ID should be in "QQ11111111" format',
+      value => /^[A-Z]{2}\d{8}$/.test(value)
+    ),
   Title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
-  price: yup.number().required("Price is required"),
-  discount: yup.number().required("Discount is required"),
+  price: yup
+    .number()
+    .required("Price is required")
+    .positive("Price must be a positive number")
+    .integer("Price must be an integer")
+    .test(
+      'is-not-zero',
+      'Price must be greater than 0',
+      value => value > 0
+    ),
+  discount: yup
+    .number()
+    .required("Discount is required")
+    .positive("Discount must be a positive number")
+    .integer("Discount must be an integer")
+    .min(1, "Discount must be greater than 0")
+    .max(100, "Discount cannot exceed 100"),
   brand: yup.string().required("Brand is required"),
   category: yup.string().required("Category is required"),
   color: yup.string().required("Color is required"),
@@ -94,7 +116,7 @@ const Addproduct = () => {
       setTimeout(() => {
         navigate("/admin/product-list");
         dispatch(resetState());
-      }, 300);
+      }, 3000);
     },
   });
 

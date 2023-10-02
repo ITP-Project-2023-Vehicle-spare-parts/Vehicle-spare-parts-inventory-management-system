@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./UpdateProfileAdmin.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function UpdateProfileAdmin() {
@@ -357,7 +357,7 @@ export default function UpdateProfileAdmin() {
                     <div class="row gutters">
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right">
-                          <button
+                         <Link to="/Admin/Sup/Profile/:id"> <button
                             type="button"
                             id="submit"
                             name="submit"
@@ -365,7 +365,7 @@ export default function UpdateProfileAdmin() {
                             style={{ margin: "10px" }}
                           >
                             Cancel
-                          </button>
+                          </button> </Link>
                           <button
                             type="button"
                             id="submit"

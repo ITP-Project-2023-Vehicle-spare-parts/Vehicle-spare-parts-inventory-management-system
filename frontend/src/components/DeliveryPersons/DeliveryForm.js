@@ -112,6 +112,16 @@ function DeliveryForm() {
         delete errors.deliverypersonDLN;
       }
     }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
 
     setFormErrors(errors);
     setFormData({ ...formData, [name]: value });
@@ -160,11 +170,23 @@ function DeliveryForm() {
         delete errors.deliverypersonDLN;
       }
     }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
 
     setFormErrors(errors);
   };
-  const validateForm = () => {
-    const errors = {};
+  const validateForm = (e) => {
+    //const errors = {};
+    const { name, value } = e.target;
+    let errors = { ...formErrors };
 
     // Validate Delivery Person ID
     if (!formData.DeliveryPersonID) {
@@ -187,6 +209,13 @@ function DeliveryForm() {
       errors.deliverypersonContactNumber = 'Contact Number is required';
     } else if (!/^\d+$/.test(formData.deliverypersonContactNumber)) {
       errors.deliverypersonContactNumber = 'Contact Number must be numeric';
+    }
+    const limitedNumericValue = formData.deliverypersonContactNumber;
+
+    if (limitedNumericValue.length !== 10) {
+      errors.deliverypersonContactNumber = 'Contact Number must be exactly 10 digits';
+    } else {
+      delete errors.deliverypersonContactNumber;
     }
 
 
@@ -220,6 +249,57 @@ function DeliveryForm() {
     if (!formData.deliverypersonPassword) {
       errors.deliverypersonPassword = 'Password is required';
     }
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+    
     // ... Add more validation rules for other fields ...
 
     setFormErrors(errors);
@@ -229,7 +309,7 @@ function DeliveryForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const isValid = validateForm();
+    const isValid = validateForm(e);
   
     if (isValid) {
       try {
@@ -476,11 +556,11 @@ function DeliveryForm() {
                 <Form.Label>Driving License Number</Form.Label>
                 <Form.Control
                   className={formErrors.deliverypersonDLN ? 'has-error' : ''}
-                  type="text"
-      id="deliverypersonDLN"
-      name="deliverypersonDLN"
-      value={formData.deliverypersonDLN}
-      onChange={handleChange}
+                    type="text"
+                   id="deliverypersonDLN"
+                   name="deliverypersonDLN"
+                   value={formData.deliverypersonDLN}
+                   onChange={handleChange}
                 />
                 {formErrors.deliverypersonDLN && (
                   <div className="error-message">{formErrors.deliverypersonDLN}</div>
@@ -492,10 +572,10 @@ function DeliveryForm() {
                 <Form.Control
                   className={formErrors.deliverypersonDLexpire ? 'has-error' : ''}
                   type="date"
-     id="deliverypersonDLexpire"
-     name="deliverypersonDLexpire"
-     value={formData.deliverypersonDLexpire}
-     onChange={handleChange}
+                  id="deliverypersonDLexpire"
+                  name="deliverypersonDLexpire"
+                  value={formData.deliverypersonDLexpire}
+                  onChange={handleChange}
                 />
                 {formErrors.deliverypersonDLexpire && (
                   <div className="error-message">{formErrors.deliverypersonDLexpire}</div>
@@ -555,8 +635,8 @@ function DeliveryForm() {
             onChange={handleChange}
             >
             <option value="">Select Branch</option>
-            <option value="Jafna">Jafna</option>
-            <option value="Ibbagamuwa main">Ibbagamuwa main</option>
+            <option value="Jaffna">Jaffna</option>
+            <option value="Ibbagamuwa main">Ibbagamuwa_main</option>
             <option value="Colombo">Colombo</option>
             <option value="Galle">Galle</option>
             <option value="Nuwara Eliya">Nuwara Eliya</option>
