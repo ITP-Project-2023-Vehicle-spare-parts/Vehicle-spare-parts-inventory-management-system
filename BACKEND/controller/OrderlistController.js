@@ -24,7 +24,7 @@ const getOrderHistory = async (req, res) => {
 
 const getOrders = async (req, res) => {
     try {
-        const assignBranch = await Order.find();
+        const assignBranch = await Order.find({ branch: "Not Assigned" });
         //{ branch: "Not Assign" }
 
         res.json(assignBranch);

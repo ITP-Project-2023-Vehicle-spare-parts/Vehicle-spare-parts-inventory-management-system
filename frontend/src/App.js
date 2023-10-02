@@ -227,8 +227,8 @@ function App() {
               <Route path="offer/read" element={<OfferTable />} />
               <Route path="offer/profile/:offerID" element={<OfferDetails />} />
               <Route path="coupon/read" exact element={<CouponTable />} />
-              <Route path="coupon/profile" element={<CouponDetails />}/>
-              <Route path="profile/update/:id" element={<EditBranch />} />
+              <Route path="coupon/profiles/:id" element={<CouponDetails />}/>
+              <Route path="branch/update/:id" element={<EditBranch />} />
               <Route path="coupon/profile/update/:id" element={<EditCoupon />}/>
               <Route path="offer/profile/update/:id" element={<EditOffer />} />
               <Route path="assignBranch" element={<AssignBranch />} />

@@ -76,7 +76,7 @@ function BranchTable() {
                             style={{ margin: "5px" }}
                           ></button>
                         </Link>
-                        <Link to={`/admin/profile/update/${branch._id}`}>
+                        <Link to={`/admin/branch/update/${branch._id}`}>
                           <button
                             className="btn btn-outline-warning"
                             style={{ margin: "2px" }}>
