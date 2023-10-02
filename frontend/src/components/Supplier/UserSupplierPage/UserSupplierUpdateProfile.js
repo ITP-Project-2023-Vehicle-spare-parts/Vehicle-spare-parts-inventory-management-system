@@ -173,7 +173,7 @@ export default function UpdateProfileAdmin() {
                         <div class="form-group">
                           <label for="phone">Company Phone</label>
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="CompanyPhone"
                             name="CompanyPhone"
@@ -247,7 +247,7 @@ export default function UpdateProfileAdmin() {
                         <div class="form-group">
                           <label for="phone">Phone</label>
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="SupplierPhone"
                             name="SupplierPhone"
@@ -291,7 +291,7 @@ export default function UpdateProfileAdmin() {
                         <div class="form-group">
                           <label for="sTate">PostalCode</label>
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="SupplierPostalCode"
                             name="SupplierPostalCode"
