@@ -32,7 +32,7 @@ import Order from "./pages/Order";
 
 import CategoryPieChart from "./components/stockComponents/pieChart";
 import CategoryBarGraph from "./components/stockComponents/barGraph";
-import UpdateStock from "./pages/updateStock";
+
 import InteractiveChartsPage from "./pages/interactiveChart";
 import AddStock from "./pages/addStock";
 import LowStockBarGraph from "./components/stockComponents/lowStockGraph";
@@ -105,9 +105,7 @@ import StockReport from "./pages/stockReport";
 import Updatepduct from "./pages/Updateproduct";
 import AdminCustomerList from "./components/Customers/AdminCustomerList";
 
-
-
-
+import UpdateStock from "./pages/updateStock";
 
 function App() {
   return (
@@ -127,11 +125,9 @@ function App() {
             <Route path="/reset-password" element={<Resetpassword />} />
 
             {/* Admin Routes */}
-            
+
             <Route path="/Admin/sup/All" element={<AllSupplier />} />
-           
-         
-           
+
             <Route path="/Admin/client/All" element={<AllClient />} />
             <Route
               path="/Admin/profile/update/:id"
@@ -154,18 +150,14 @@ function App() {
 
             <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
             <Route path="/admin/lowstock" element={<LowStock />} />
-            <Route path="/admin/updatestock" element={<UpdateStock />} />
 
             <Route path="/admin/bargraph" element={<CategoryBarGraph />} />
-            <Route path="/admin/updatestock/:id" element={<UpdateStock />} />
 
             <Route path="/" element={<AllClaims />} />
             <Route
               path="admin/updates/:id/:billno"
               element={<AdminUpdateclaim />}
             />
-
-
 
             <Route
               path="/admin/interactivechart"
@@ -211,13 +203,26 @@ function App() {
               <Route path="UpdateProduct/:id" element={<Updatepduct />} />
               <Route path="Add-stock" element={<AddStock />} />
               <Route path="Fetch-stock" element={<FetchStock />} />
-              <Route path="Stock-Report" element={<StockReport/>}/>
+              <Route path="Stock-Report" element={<StockReport />} />
               <Route path="DeliveryPerson-add" element={<DeliveryForm />} />
-              <Route path="DeliveryPerson/getAll" exact element={<DeliveryTable />} />
-              <Route path="profile/:deliveryPersonID" element={<ProfileDetails />} />
-              <Route path="delivery/profiles/:id" element={<EditDeliveryPerson />} />
+              <Route
+                path="DeliveryPerson/getAll"
+                exact
+                element={<DeliveryTable />}
+              />
+              <Route
+                path="profile/:deliveryPersonID"
+                element={<ProfileDetails />}
+              />
+              <Route
+                path="delivery/profiles/:id"
+                element={<EditDeliveryPerson />}
+              />
               <Route path="orders" exact element={<OrderList />} />
-              <Route path="order/:orderid/:userid" element={<AvailableDeliveryPersonList />} />
+              <Route
+                path="order/:orderid/:userid"
+                element={<AvailableDeliveryPersonList />}
+              />
               <Route path="orderHistory" element={<OrderHistoryTable />} />
               <Route path="branch/add" element={<AddBranch />} />
               <Route path="offer/add" element={<AddOffer />} />
@@ -227,30 +232,41 @@ function App() {
               <Route path="offer/read" element={<OfferTable />} />
               <Route path="offer/profile/:offerID" element={<OfferDetails />} />
               <Route path="coupon/read" exact element={<CouponTable />} />
-              <Route path="coupon/profile" element={<CouponDetails />}/>
-              <Route path="profile/update/:id" element={<EditBranch />} />
+
+              <Route path="coupon/profiles/:id" element={<CouponDetails />}/>
+              <Route path="branch/update/:id" element={<EditBranch />} />
               <Route path="coupon/profile/update/:id" element={<EditCoupon />}/>
+
+              <Route path="coupon/profile" element={<CouponDetails />} />
+              <Route
+                path="branch/profile/update/:id"
+                element={<EditBranch />}
+              />
+              <Route
+                path="coupon/profiles/update/:id"
+                element={<EditCoupon />}
+              />
+
               <Route path="offer/profile/update/:id" element={<EditOffer />} />
               <Route path="assignBranch" element={<AssignBranch />} />
               <Route path="allclaim" element={<AllClaims />} />
-              <Route path="user/customerlist" element={<AdminCustomerList />} /> 
+              <Route path="user/customerlist" element={<AdminCustomerList />} />
 
               <Route
                 path="Stock-interactivechart"
                 element={<InteractiveChartsPage />}
               />
               <Route path="Stock-Low" element={<LowStock />} />
-              
+
               <Route path="sup/add" element={<AddSupplier />} />
               <Route path="client/add" element={<AddClient />} />
-            
+              <Route path="updatestock/:id" element={<UpdateStock />} />
             </Route>
 
             <Route path="/home" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="contact" element={<Contact />} />
-              
-              
+
               <Route path="cart" element={<Cart />} />
               <Route path="my-orders" element={<Order />} />
               <Route path="Checkout" element={<Checkout />} />
@@ -259,25 +275,28 @@ function App() {
               <Route path="/home/wishlist" element={<Wishlist />} />
               <Route path="/home/addclaim" element={<AddClaim />} />
               <Route path="/home/get/:billno" element={<FetchClaim />} />
-              <Route path="/home/update/:id/:billno" element={<UpdateClaim />} />
-              <Route path="/home/delete/:id/:billno" element={<DeleteClaim />} />
+              <Route
+                path="/home/update/:id/:billno"
+                element={<UpdateClaim />}
+              />
+              <Route
+                path="/home/delete/:id/:billno"
+                element={<DeleteClaim />}
+              />
             </Route>
 
             <Route path="/sidebar" element={<Sidebar />} />
 
-
-
             <Route path="/track-order" element={<TrackOrder />} />
-            <Route path="/order-details/:orderId" element={<TrackOrderDetails />}/>
+            <Route
+              path="/order-details/:orderId"
+              element={<TrackOrderDetails />}
+            />
 
-            
-            
             <Route path="user/profile" element={<Layout />}>
-             <Route index element={<UserProfile />} />
-             <Route path="update" element={<CustomerProfileUpdate />} />
-    </Route>
-            
-
+              <Route index element={<UserProfile />} />
+              <Route path="update" element={<CustomerProfileUpdate />} />
+            </Route>
           </Routes>
         </div>
       </Router>

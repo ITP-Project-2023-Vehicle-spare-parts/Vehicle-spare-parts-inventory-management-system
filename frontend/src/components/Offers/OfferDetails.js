@@ -72,16 +72,15 @@ function OfferDetails() {
     return <div>Error retrieving offer details.</div>;
   }
 
-  const productId = offer.productID;
-if (!productId) {
-  return <div>Product ID not found.</div>;
-}
+//   const productId = offer.productID;
+// if (!productId) {
+//   return <div>Product ID not found.</div>;
+// }
 
   return (
     <div className='offer-details-container'id='OfferDetails'>
       <h2>Offer Details</h2>
-      <p>Product ID: {offer.productID._id}</p>
-
+      {/* <p>Product ID: {offer.productID}</p> */}
       <p>Offer ID: {offer.offerID}</p>
       <p>Rate: {offer.rate}</p>
       <p>Description: {offer.description}</p>
