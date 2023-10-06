@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from 'react-redux';
 const Cart = () => {
   const dispatch = useDispatch();
   const [productUpdateDetail, setProductUpdateDetail] = useState(null);
-  const userCart = useSelector(state => state.auth.userCart);
+  const userCart = useSelector(state => state.user.userCart);
 
   useEffect(() => {
     if (productUpdateDetail !== null) {
@@ -39,10 +39,10 @@ const Cart = () => {
               <h4 className='cart-col-3'>Quantity</h4>
               <h4 className='cart-col-4'>Total</h4>
             </div>
-            {(userCart == null || userCart?.products.length === 0) && <div className='col-12 p-5'>
+            {(userCart == null ||  userCart?.products?.length === 0) && <div className='col-12 p-5'>
               <div className='d-flex justify-content-center align-middle'>
                 <h4>🛒&ensp;Your cart is empty</h4></div>
-            </div>}
+            </div>}`
             {userCart && userCart.products?.map((cartProduct, index) => {
               return (
                 <div key={index} className='cart-data mb-2 py-3 d-flex justify-content-between align-items-center'>
@@ -86,14 +86,14 @@ const Cart = () => {
                 </div>
               );
             })}
-            <div className='col-12 py-2 mt-4'>
+            <div className='col-12 py-2 mt-4'>``
               <div className='d-flex justify-content-between align-items-baseline'>
-                <Link to='/home/store' className="button">Continue to shopping</Link>
-                {(userCart == null || userCart?.products.length === 0) ? <div></div> :
+                <Link to='/store' className="button">Continue to shopping</Link>
+                {(userCart == null || userCart?.products?.length === 0) ? <div></div> :
                   <div className='d-flex flex-column align-items-end'>
                     <h4>SubTotal : Rs.{userCart ? userCart.cartTotal : "0.00"}</h4>
                     <p>Discount and shipping calculated at checkout</p>
-                    <Link to='/checkout' className='button'>Checkout</Link>
+                    <Link to='/home/checkout' className='button'>Checkout</Link>
                   </div>
 
                 }
