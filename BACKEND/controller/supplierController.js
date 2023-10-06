@@ -29,6 +29,7 @@ const addSupplier = async (req, res) => {
     const SupplierAddress = req.body.SupplierAddress;
     const SupplierStatus = req.body.SupplierStatus;
     const ProvidedBrand = req.body.ProvidedBrand;
+    const ProvidedCategory = req.body.ProvidedCategory;
     const role = req.body.role;
     const dateAdded = req.body.dateAdded;
     const SystemEmail = req.body.SystemEmail;
@@ -52,6 +53,7 @@ const addSupplier = async (req, res) => {
       role,
       SupplierPostalCode,
       ProvidedBrand,
+      ProvidedCategory,
       dateAdded,
     });
 

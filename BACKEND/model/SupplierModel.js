@@ -59,6 +59,10 @@ const supplierSchema = new Schema(
       type: String,
       default: "Bajaj",
     },
+    ProvidedCategory: {
+      type: String,
+    },
+
 
     SystemEmail: {
       type: String,
