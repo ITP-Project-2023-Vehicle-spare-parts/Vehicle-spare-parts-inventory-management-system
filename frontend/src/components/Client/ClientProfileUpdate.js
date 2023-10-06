@@ -178,7 +178,7 @@ export default function ClientProfileUpdate() {
                         <div class="form-group">
                           <label for="phone">Phone</label>
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="ClientsPhone"
                             name="ClientsPhone"
@@ -222,7 +222,7 @@ export default function ClientProfileUpdate() {
                         <div class="form-group">
                           <label for="sTate">PostalCode</label>
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="ClientsPostalCode"
                             name="ClientsPostalCode"

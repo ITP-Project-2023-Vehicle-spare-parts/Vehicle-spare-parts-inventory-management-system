@@ -7,17 +7,13 @@ const createLowStockOrder = async (req, res) => {
 
       const suppliername = await Supplier.findById(supplierId);
 
-      if (!suppliername) {
-        return res.status(404).json({ error: 'Supplier not found' });
-      }
-
       const lowStockOrder = new SupplierRequst({
         productname,
         stockQuantity,
         reorderpoint,
         neededStockQuantity,
         supplierId,
-        suppliername:suppliername.SupplierfirstName,
+        suppliername,
       });
   
       await lowStockOrder.save();

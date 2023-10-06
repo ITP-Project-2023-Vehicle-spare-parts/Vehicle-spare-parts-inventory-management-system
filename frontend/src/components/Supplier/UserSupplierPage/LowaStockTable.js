@@ -73,7 +73,7 @@ function LowStockTable() {
       stockQuantity: stock.stockQuantity,
       reorderpoint: stock.reorderpoint,
       neededStockQuantity: stock.reorderpoint - stock.stockQuantity,
-      supplierId: userId, // Replace with the actual supplier name
+      supplierName: stock.supplierName, // Replace with the actual supplier name
     };
 
     // Send the individual low stock order data to the backend for saving
