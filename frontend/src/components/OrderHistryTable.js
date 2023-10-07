@@ -9,18 +9,34 @@ function OrderHistoryTable() {
   const [orderData, setOrderData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [deliveryPersonData, setDeliveryPersonData] = useState([]);
+  const [loadingDeliveryPerson, setLoadingDeliveryPerson] = useState(true);
 
   console.log(loading)
   useEffect(() => {
+    // Fetch order data
     axios.get('http://localhost:8000/allOrder/orderHistory')
       .then((response) => {
         setOriginalOrderData(response.data);
         setOrderData(response.data);
         setLoading(false);
+        console.log(response.data)
       })
       .catch((error) => {
         console.error('Error fetching order data:', error);
         setLoading(false);
+      });
+
+    // Fetch delivery person data
+    axios.get('http://localhost:8000/deliveryPerson/')
+      .then((response) => {
+        setDeliveryPersonData(response.data);
+        setLoadingDeliveryPerson(false);
+        console.log("Delivery Person Data:", response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching delivery person data:', error);
+        setLoadingDeliveryPerson(false);
       });
   }, []);
 
@@ -35,6 +51,11 @@ function OrderHistoryTable() {
     );
 
     setOrderData(filteredOrders);
+  };
+
+  const getDeliveryPersonDetails = (deliveryPersonId) => {
+    const deliveryPerson = deliveryPersonData.find(person => person._id === deliveryPersonId);
+    return deliveryPerson;
   };
 
   const handleReportGeneration = () => {
@@ -91,6 +112,9 @@ function OrderHistoryTable() {
               <th>Customer Name</th>
               <th>Shipping Address</th>
               <th>Branch</th>
+              <th>Delivery Perosn ID</th>
+              <th>Delivery Person</th>
+              <th>Delivery Person Contact</th>
               <th>Order Status</th>
             </tr>
           </thead>
@@ -101,6 +125,9 @@ function OrderHistoryTable() {
                 <td>{`${order.shippingInfo.firstName} ${order.shippingInfo.lastName}`}</td>
                 <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
                 <td>{order.branch}</td>
+                <td>{getDeliveryPersonDetails(order.deliveryPersonid)?.DeliveryPersonID || 'Not Assigned'}</td>
+                <td>{getDeliveryPersonDetails(order.deliveryPersonid)?.deliverypersonname || 'Not Assigned'}</td>
+                <td>{getDeliveryPersonDetails(order.deliveryPersonid)?.deliverypersonContactNumber || 'Not Assigned'}</td>
                 <td>
                   {order.isActive && (
                     <span className="success-badge" title="Active Process"></span>

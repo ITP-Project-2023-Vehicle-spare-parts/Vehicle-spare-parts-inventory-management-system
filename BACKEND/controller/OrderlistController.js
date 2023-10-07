@@ -13,7 +13,7 @@ const getAllOrders = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const DeliveryOrderes = await Order.find({ orderStatus: "Delivered" });
+        const DeliveryOrderes = await Order.find({ orderStatus: "delivery person assign" });
         //{ orderStatus: "Delivered" }
         res.json(DeliveryOrderes);
     } catch (err) {
@@ -47,6 +47,26 @@ const updateOrderStatus = async (req, res) => {
         };
 
         await Order.findByIdAndUpdate(req.params.orderid , updateOrderStatuses); // Correct variable name
+        res.status(200).send({ status: "Order status Updated" });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error updating Order status", error: err.message });
+    }
+};
+
+const updateDeliveryPersonID = async (req, res) => {
+    try {
+        const OrderID = req.params.orderid;
+        console.log(req.body); // Correct variable name
+
+        const { deliveryPersonid  } = req.body;
+        console.log(req.params.orderid);
+        const updateDeliveryPersonID = {
+            
+            deliveryPersonid
+        };
+
+        await Order.findByIdAndUpdate(req.params.orderid , updateDeliveryPersonID); // Correct variable name
         res.status(200).send({ status: "Order status Updated" });
     } catch (err) {
         console.log(err);
@@ -105,6 +125,7 @@ module.exports = {
     updateBranchLocation,
     getOrderById,
     getOrders,
-    getOrderHistory
+    getOrderHistory,
+    updateDeliveryPersonID
 
  };
