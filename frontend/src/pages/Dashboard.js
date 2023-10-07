@@ -3,7 +3,7 @@ import { Column } from '@ant-design/plots';
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getMonthlyData, getYearlyData, getOrders } from '../features/auth/authSlice';
-import "../CSS/Admin.css";
+import '../CSS/Admin.css';
 
 const columns = [
   {
@@ -15,11 +15,11 @@ const columns = [
     dataIndex: 'product',
   },
   {
-    title: 'Total Price',
+    title: 'Amount',
     dataIndex: 'price',
   },
   {
-    title: 'Product Price After Discount',
+    title: 'Total Price',
     dataIndex: 'dprice',
   },
   {
@@ -35,50 +35,66 @@ const Dashboard = () => {
   const orderState = useSelector((state) => state?.auth?.orders.orders);
   const [dataMonthly, setDataMonthly] = useState([]);
   const [dataMonthlySales, setDataMonthlySales] = useState([]);
-  const [orderData, setOrderData] = useState([]);
+  const [orderData, setOrderdata] = useState([]);
 
   useEffect(() => {
-    // Dispatch actions to fetch data when the component mounts
-    dispatch(getMonthlyData());
-    dispatch(getYearlyData());
-    dispatch(getOrders());
+    const getTokenFromLocalStorage = localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null;
+
+    const config3 = {
+      headers: {
+        Authorization: `Bearer ${
+          getTokenFromLocalStorage !== null ? getTokenFromLocalStorage.token : ""
+        }`,
+        Accept: "application/json",
+      },
+    };
+
+    dispatch(getMonthlyData(config3));
+    dispatch(getYearlyData(config3));
+    dispatch(getOrders(config3));
   }, [dispatch]);
 
   useEffect(() => {
-    // Update the data for config and config2 when monthlyDataState and yearlyDataState change
-    if (monthlyDataState && yearlyDataState) {
-      let data = [];
-      let monthlyOrderCount = [];
-      for (let index = 0; index < monthlyDataState.length; index++) {
-        const element = monthlyDataState[index];
-        data.push({ type: element?._id?.month, income: element?.amount });
-        monthlyOrderCount.push({ type: element?._id?.month, sales: element?.count });
-      }
-      setDataMonthly(data);
-      setDataMonthlySales(monthlyOrderCount);
-    }
-  }, [monthlyDataState, yearlyDataState]);
+    let monthNames = [
+      "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ];
+    let data = [];
+    let monthlyOrderCount = [];
 
-  useEffect(() => {
-    // Update orderData when orderState changes
-    if (orderState) {
-      const data1 = orderState.map((order, index) => ({
-        key: index,
-        name: `${order.user?.firstname} ${order.user?.lastname}`,
-        product: order.orderItems?.length,
-        price: order?.totalPrice,
-        dprice: order?.totalPriceAfterDiscount,
-        status: order?.orderStatus,
-      }));
-      setOrderData(data1);
+    for (let index = 0; index < monthlyDataState?.length; index++) {
+      const element = monthlyDataState[index];
+      data.push({ type: monthNames[element?._id.month], income: element?.amount });
+      monthlyOrderCount.push({ type: monthNames[element?._id?.month], sales: element?.count });
     }
-  }, [orderState]);
+
+    setDataMonthly(data);
+    setDataMonthlySales(monthlyOrderCount);
+
+    const data1 = [];
+
+    for (let i = 1; i < orderState?.length; i++) {
+      data1.push({
+        key: i,
+        name: orderState[i].user?.firstname + " " + orderState[i].user?.lastname,
+        product: orderState[i].orderItems?.length,
+        price: orderState[i]?.totalPrice,
+        dprice: orderState[i]?.totalPriceAfterDiscount,
+        status: orderState[i]?.orderStatus,
+      });
+    }
+
+    setOrderdata(data1);
+  }, [monthlyDataState, yearlyDataState, orderState]);
 
   const config = {
     data: dataMonthly,
     xField: 'type',
     yField: 'income',
-    color: ({ type }) => "#1890ff",
+    color: ({ type }) => {
+      return "#1890ff";
+    },
     label: {
       position: 'middle',
       style: {
@@ -96,7 +112,7 @@ const Dashboard = () => {
       type: {
         alias: 'Month',
       },
-      income: {
+      sales: {
         alias: 'Income',
       },
     },
@@ -106,7 +122,9 @@ const Dashboard = () => {
     data: dataMonthlySales,
     xField: 'type',
     yField: 'sales',
-    color: ({ type }) => "#1890ff",
+    color: ({ type }) => {
+      return "#1890ff";
+    },
     label: {
       position: 'middle',
       style: {
@@ -131,54 +149,43 @@ const Dashboard = () => {
   };
 
   return (
-    
     <div>
-      <h3 className='mb-4 title'>Dashboard</h3>
+      <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px' }}>Dashboard</h3>
       <div className='d-flex justify-content-between align-items-center gap-3'>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
           <div>
-            <p className='desc'>Total Income</p>
-            <h4 className='mb-0 sub-title'>Rs.{yearlyDataState && yearlyDataState[0]?.amount}</h4>
-          </div>
-          <div className='d-flex flex-column align-items-end'>
-          
-          <p className='mb-0 desc'></p>
+            <p className='desc' style={{ fontSize: '24px', color: '#6c757d' }}>Total Income</p>
+            <h4 className='mb-0 sub-title' style={{ fontSize: '30px' }}>Rs.{yearlyDataState && yearlyDataState[0]?.amount}</h4>
           </div>
         </div>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
-        <div>
-            <p className='desc'>Total Sales</p>
-            <h4 className='mb-0 sub-title'>{yearlyDataState && yearlyDataState[0]?.count}</h4>
-          </div>
-          <div className='d-flex flex-column align-items-end'>
-            
-            <p className='mb-0 desc'></p>
+          <div>
+            <p className='desc' style={{fontSize: '24px', color: '#6c757d' }}>Total Sales</p>
+            <h4 className='mb-0 sub-title' style={{ fontSize: '30px' }}>{yearlyDataState && yearlyDataState[0]?.count}</h4>
           </div>
         </div>
-        
       </div>
       <div className='d-flex justify-content-between gap-3'>
-      <div className='mt-4 flex-grow-1 w-50'>
-        <h3 className='mb-5 title'>Income Statics</h3>
-        <div>
-          <Column {...config} />
-        </div>
+        <div className='mt-4 flex-grow-1 w-50'>
+          <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Income Statics</h3>
+          <div>
+            <Column {...config} />
+          </div>
         </div>
         <div className='mt-4 flex-grow-1 w-50 '>
-        <h3 className='mb-5 title'>Sales Statics</h3>
-        <div>
-          <Column {...config2} />
-        </div>
+          <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Sales Statics</h3>
+          <div>
+            <Column {...config2} />
+          </div>
         </div>
       </div>
-        <div className='mt-4 '>
-          <h3 className='mb-5 title'>Recent Orders</h3>
-          <div>
+      <div className='mt-4 '>
+        <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Recent Orders</h3>
+        <div>
           <Table columns={columns} dataSource={orderData} />
-          </div>
-        </div>       
-    </div>  
-     
+        </div>
+      </div>
+    </div>
   );
 };
 

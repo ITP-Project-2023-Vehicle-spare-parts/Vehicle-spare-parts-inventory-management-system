@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "../features/user/userSlice";
 import { getUserFromLocalStorage } from "../utils/axiosconfig";
 
+
 const Header = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state?.user?.userCart?.products) || [];
   const navigate = useNavigate();
+  console.log(navigate)
 
   useEffect(() => {
     if (getUserFromLocalStorage !== null) {
@@ -55,9 +57,7 @@ const Header = () => {
             </div>
             <div className="col-6">
               <div className="input-group">
-                <div
-                  style={{ fontFamily: "cursive", color: "white" }}
-                >
+                <div style={{ fontFamily: "cursive", color: "white" }}>
                   <h2>Chathura Motors Spares Shop</h2>
                 </div>
               </div>

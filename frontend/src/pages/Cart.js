@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const userCart = useSelector((state) => state.user.userCart.products) || [];
+  const userCart = useSelector((state) => state.user.userCart?.products || []);
   const [productUpdateDetail, setProductUpdateDetail] = useState(null);
 
   useEffect(() => {
@@ -59,6 +59,7 @@ const Cart = () => {
             )}
             {userCart &&
               userCart.map((cartProduct, index) => {
+                const productTitle = cartProduct?.product?.Title || 'Product Title Not Available'; // Default text if Title is not available
                 return (
                   <div
                     key={index}
@@ -69,7 +70,7 @@ const Cart = () => {
                         <img src={watch} alt='product img' />
                       </div>
                       <div className='w-75 '>
-                        <p>{cartProduct?.product.Title}</p>
+                        <p>{productTitle}</p>
                         <div className='d-flex gap-2'>
                           Color :
                           <ul className='colors ps-0'>

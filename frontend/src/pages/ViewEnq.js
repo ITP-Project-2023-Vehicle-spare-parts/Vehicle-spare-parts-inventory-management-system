@@ -104,7 +104,7 @@ const ViewEnq = () => {
   return (
     <div>
       <div className='d-flex justify-content-between align-items-center'>
-        <h3 className='mb-4 title'>View Inquiry</h3>
+        <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px' }}>View Inquiry</h3>
         <button className='bg-transparent border-0 fs-6 mb-0 d-flex align-items-center gap-3' onClick={goBack}>
           <BiArrowBack className='fs-5'/>
           Go Back

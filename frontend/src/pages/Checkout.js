@@ -33,8 +33,9 @@ const Checkout = () => {
 
   const authState = useSelector((state) => state.auth);
   const userState = useSelector((state) => state.user);
-  const [totalAmount, setTotalAmount] = useState(null);
+  //const [totalAmount, setTotalAmount] = useState(null);
   const [shippingInfo, setShippingInfo] = useState(null);
+  console.log(shippingInfo)
   const navigate = useNavigate();
   //
   // useEffect(() => {
@@ -48,7 +49,7 @@ const Checkout = () => {
   useEffect(() => {
     // get user cart and store it in redux store
     dispatch(getUserCart());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (userState.createdOrder != null && userState.createdOrder.success === true) {
@@ -94,33 +95,7 @@ const Checkout = () => {
         <div className='col-7'>
           <div className='checkout-left-data'>
             <h3 className='website-name'>Chathura Motors</h3>
-            <nav
-              style={{'--bs-breadcrumb-divider': '>'}}
-              aria-label='breadcrumb'
-            >
-              <ol className='breadcrumb'>
-                <li className='breadcrumb-item'>
-                  <Link className='text-dark total-price' to='/home/cart'>
-                    Cart
-                  </Link>
-                </li>
-                &nbsp; /
-                <li
-                  className='breadcrumb-item total-price active'
-                  aria-current='page'
-                >
-                  Information
-                </li>
-                &nbsp; /&nbsp;
-                <li className='breadcrumb-item total-price active'>
-                  Shipping
-                </li>
-                &nbsp; /
-                <li className='breadcrumb-item active' aria-current='page'>
-                  Payment
-                </li>
-              </ol>
-            </nav>
+            
             <h4 className='title total'>Contact Information</h4>
             <p className='user-details total'>
               {authState?.user?.firstname} {authState?.user?.lastname}
