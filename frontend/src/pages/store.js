@@ -86,11 +86,7 @@ const Store = () => {
                   <input type="email" className="form-control" id="floatingInput1" placeholder="To"/>
                   <label htmlFor="floatingInput1">To</label>
                 </div>
-                </div>
-                <h5 className='sub-title'>Colors</h5>
-                <div>
-                    <Color />
-                </div>          
+                </div>      
               </div>
             </div>
             <div className='filter-card mb-3'>

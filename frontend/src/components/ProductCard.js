@@ -28,8 +28,8 @@ const ProductCard = (props) => {
                 </button>
             </div>
             <div className='product-image'>
-                <img src='/images/oilcan.jpg' className='img-fluid' alt="product pic" />
-                <img src='/images/spare 5.1.jpg' className='img-fluid' alt="product pic" />
+                <img src={item?.images} className='img-fluid' alt="product pic" style={{ width: 400, height: 250 }}/>
+                <img src={item?.images} className='img-fluid' alt="product pic" style={{ width: 400, height: 250 }}/>
             </div>
             <div className='product-details'>
                 <h4 className='brand' style={{ color: 'blue' }}>{item?.category}</h4>
