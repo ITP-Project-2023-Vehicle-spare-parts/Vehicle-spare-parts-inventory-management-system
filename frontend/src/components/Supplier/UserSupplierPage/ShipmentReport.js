@@ -112,8 +112,12 @@ function DeleteRequest() {
               <h1>Suggest Order Report</h1>
              
               <Link to="">
-                <Button variant="outline-danger " size="lg" onClick={DeleteRequest}>
+                <Button variant="outline-danger " size="lg" onClick={DeleteRequest} >
                 <i class='bx bxs-trash bx-md bx-tada'>Clear Report</i>  
+                </Button></Link>
+                <Link to="">
+                <Button variant="outline-success " size="md"  style={{marginLeft:"0px"}}>
+                <i class='bx bx-pen bx-sm'>UpdateOrder</i>  
                 </Button></Link>
               
 

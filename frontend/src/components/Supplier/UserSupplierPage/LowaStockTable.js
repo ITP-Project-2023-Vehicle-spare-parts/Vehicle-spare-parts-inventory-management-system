@@ -75,6 +75,7 @@ function LowStockTable() {
       neededStockQuantity: stock.reorderpoint - stock.stockQuantity,
       supplierName: stock.supplierName, // Replace with the actual supplier name
     };
+    console.log(suggestedOrder)
 
     // Send the individual low stock order data to the backend for saving
     saveLowStockOrder(suggestedOrder);
