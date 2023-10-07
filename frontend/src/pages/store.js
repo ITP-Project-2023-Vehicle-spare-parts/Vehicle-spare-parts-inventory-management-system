@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import Color from '../components/Color';
+//import Color from '../components/Color';
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import {useDispatch, useSelector} from "react-redux";
