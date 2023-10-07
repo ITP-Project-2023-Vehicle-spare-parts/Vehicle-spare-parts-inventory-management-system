@@ -15,6 +15,9 @@ router.route('/low-stock').get(stockController.getLowStockProducts);
 router.route('/search/:search').get(stockController.searchStock);
 router.route('/report').get(stockController.getStock);
 
+// Get the cost of stock for a particular month
+router.route('/getcost').get(stockController.getCost);
+
 
 
 module.exports = router;

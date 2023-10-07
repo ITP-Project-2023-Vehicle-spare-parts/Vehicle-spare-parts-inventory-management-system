@@ -202,6 +202,41 @@ const searchStock = async (req, res) => {
 
 
 
+const getCost = async (req, res) => {
+  try {
+    const today = new Date();
+    const lastMonthStart = new Date(today);
+    lastMonthStart.setMonth(lastMonthStart.getMonth() - 1);
+    lastMonthStart.setDate(1);
+
+    const lastMonthEnd = new Date(today);
+    lastMonthEnd.setDate(0); // Set the date to the last day of the previous month
+
+    const totalCostData = await Stock.aggregate([
+      {
+        $match: {
+          createdAt: {
+            $gte: lastMonthStart,
+            $lte: lastMonthEnd,
+          },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          totalCost: { $sum: "$stockAmount" }, // Sum the stockAmount field
+        },
+      },
+    ]);
+
+    const totalCost = totalCostData.length > 0 ? totalCostData[0].totalCost : 0;
+
+    res.json({ totalCost });
+  } catch (error) {
+    console.error('Error calculating total cost:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
 
  
 
@@ -223,4 +258,5 @@ const searchStock = async (req, res) => {
         deleteStock,
         getLowStockProducts,
         searchStock,
+        getCost,
     };
