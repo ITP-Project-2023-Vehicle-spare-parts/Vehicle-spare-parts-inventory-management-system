@@ -119,7 +119,8 @@ export default function SupplierProfile() {
                   <i className="bx bx-location-plus bx-md"></i>
                   <span>{supplier.SupplierCity}</span>
                 </div>
-                <p>Bajaj Ref</p>
+                <p>{supplier.ProvidedBrand} ref</p>
+                <p>Only Provide <span style={{color:"red" , fontSize:"20px"}}>{supplier.ProvidedCategory} </span>Parts</p>
               </div>
 
               <div className="rank">

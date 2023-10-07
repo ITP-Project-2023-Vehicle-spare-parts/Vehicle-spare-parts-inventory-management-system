@@ -131,6 +131,7 @@ export default function UserSupplierProfile() {
                   <span>{supplier.SupplierCity}</span>
                 </div>
                 <p>{supplier.role} profile</p>
+                <p>Only Provide <span style={{color:"red" , fontSize:"20px"}}>{supplier.ProvidedCategory} </span>Parts</p>
               </div>
 
               <div className="rank">

@@ -163,7 +163,6 @@ const columns = [
         FullName: `${customer.firstname} ${customer.lastname}`,
         email: customer.email,
         nic: customer.nic,
-        
         mobile: customer.mobile,
         gender: customer.gender,
         isBlocked: customer.isBlocked,

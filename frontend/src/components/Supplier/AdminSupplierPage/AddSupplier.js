@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import toast from "react-hot-toast";
 import "./AddSupplier.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../../features/pcategory/pcategorySlice";
 
 export default function AddSupplier() {
   const [CompanyName, setCName] = useState("");
@@ -22,6 +24,7 @@ export default function AddSupplier() {
   const [SupplierPostalCode, setPostalcode] = useState("");
   const [SupplierStatus, setStatus] = useState("");
   const [ProvidedBrand, setBrand] = useState("");
+  const [ProvidedCategory, setCtegory] = useState("");
   const [SystemEmail, setsysEmail] = useState("");
   const [SystemPassword, setsysPassword] = useState("");
 
@@ -129,7 +132,6 @@ export default function AddSupplier() {
     const isValid = validateForm();
 
     if (isValid) {
-     
       try {
         const newSupplier = {
           CompanyName,
@@ -147,6 +149,7 @@ export default function AddSupplier() {
           SupplierState,
           SupplierPostalCode,
           ProvidedBrand,
+          ProvidedCategory,
         };
 
         const Supplierresponse = await axios.post(
@@ -184,6 +187,7 @@ export default function AddSupplier() {
             setPostalcode("");
             setStatus("");
             setBrand("");
+            setCtegory("");
             setsysEmail("");
             setsysPassword("");
 
@@ -214,6 +218,11 @@ export default function AddSupplier() {
       }
     }
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+  const pCategoryState = useSelector((state) => state.pcategory.pCategories);
 
   return (
     <div id="AddSupplier">
@@ -226,7 +235,15 @@ export default function AddSupplier() {
                 <h1>Add Suppliers...</h1>
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Company Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Company Name
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -245,7 +262,15 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Company Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Company Email
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -264,7 +289,12 @@ export default function AddSupplier() {
                   </Form.Group>
                 </Row>
                 <Form.Group as={Col}>
-                  <Form.Label>Company Phone<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                  <Form.Label>
+                    Company Phone
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="number"
@@ -283,7 +313,12 @@ export default function AddSupplier() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Company Address<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                  <Form.Label>
+                    Company Address
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     placeholder="1234 Main St"
@@ -302,7 +337,15 @@ export default function AddSupplier() {
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>First Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      First Name
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -321,7 +364,15 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Last Name<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Last Name
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -342,7 +393,15 @@ export default function AddSupplier() {
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Supplier Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Supplier Email
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -361,7 +420,15 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Supplier Phone<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Supplier Phone
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       pattern="[0-9]{10}"
                       className="shadow-lg p-3 mb-2 bg-white rounded"
@@ -383,11 +450,27 @@ export default function AddSupplier() {
 
                 <Row className="mb-3">
                   <h2>
-                    <b>Supplier Address<span className="text-danger" style={{fontSize:"25px"}}>*</span></b>
+                    <b>
+                      Supplier Address
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </b>
                   </h2>
 
                   <Form.Group as={Col}>
-                    <Form.Label>City<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      City
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Select
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       defaultValue="Galle"
@@ -411,6 +494,10 @@ export default function AddSupplier() {
                       <option>Amabalangoda</option>
                       <option>Gampaha</option>
                       <option>Kurunegala</option>
+                      <option>Kelaniya</option>
+                      <option>Panadura</option>
+                      <option>Amabalangoda</option>
+                      <option>Matara</option>
                     </Form.Select>
                   </Form.Group>
                   <Form.Group as={Col}>
@@ -432,7 +519,15 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>PostalCode<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      PostalCode
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       id="SupplierPostalCode"
@@ -452,7 +547,12 @@ export default function AddSupplier() {
                 </Row>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Company Status<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                  <Form.Label>
+                    Company Status
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     as="textarea"
@@ -472,10 +572,15 @@ export default function AddSupplier() {
                 </Form.Group>
 
                 <Form.Group as={Col}>
-                  <Form.Label>Provided Brand<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                  <Form.Label>
+                    Provided Brand
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
                   <Form.Select
                     className="shadow-lg p-3 mb-2 bg-white rounded"
-                    defaultValue="Brand"
+                    defaultValue="Bajaj"
                     id="ProvidedBrand"
                     value={ProvidedBrand}
                     style={{
@@ -499,13 +604,57 @@ export default function AddSupplier() {
                   </Form.Select>
                 </Form.Group>
                 <br />
+                <Form.Group as={Col}>
+                  <Form.Label>
+                    Brand Category
+                    <span className="text-danger" style={{ fontSize: "25px" }}>
+                      *
+                    </span>
+                  </Form.Label>
+                  <Form.Select
+                    className="shadow-lg p-3 mb-2 bg-white rounded"
+                    defaultValue="Brand"
+                    id="ProvidedCategory"
+                    value={ProvidedCategory}
+                    style={{
+                      border: "3px solid #073dff",
+                      borderRadius: "2px",
+                      fontSize: "1.4rem",
+                    }}
+                    onChange={(e) => {
+                      setCtegory(e.target.value);
+                    }}
+                  >
+                    {formErrors.ProvidedBrand && (
+                      <div className="error-message">
+                        {formErrors.ProvidedBrand}
+                      </div>
+                    )}
+                    {pCategoryState.map((i, j) => {
+                      return (
+                        <option key={j} value={i.title}>
+                          {i.title}
+                        </option>
+                      );
+                    })}
+                  </Form.Select>
+                </Form.Group>
+                <br />
                 <h2>
                   <b>Supplier Login Credentials</b>
                 </h2>
 
                 <Row className="mb-3">
                   <Form.Group as={Col}>
-                    <Form.Label>Email<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Email
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-lightrounded"
                       type="email"
@@ -524,7 +673,15 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
-                    <Form.Label>Password<span className="text-danger" style={{fontSize:"25px"}}>*</span></Form.Label>
+                    <Form.Label>
+                      Password
+                      <span
+                        className="text-danger"
+                        style={{ fontSize: "25px" }}
+                      >
+                        *
+                      </span>
+                    </Form.Label>
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-lightrounded"
                       type="password"
