@@ -32,18 +32,15 @@ export const addProToCart = createAsyncThunk(
         }
     });
 
-    export const createAnOrder = createAsyncThunk(
-      "user/cart/create-order",
-      async (orderDetail, thunkAPI) => {
-          try {
-              return await userService.createOrder(orderDetail);
-          } catch (error) {
-              const errorMessage = error.response?.data?.message || 'An error occurred';
-              return thunkAPI.rejectWithValue({ message: errorMessage });
-          }
-      }
-  );
-  
+export const createAnOrder = createAsyncThunk(
+    "user/cart/create-order",
+    async (orderDetail, thunkAPI) => {
+        try {
+            return await userService.createOrder(orderDetail);
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    });
 
 
 export const getUserCart = createAsyncThunk(

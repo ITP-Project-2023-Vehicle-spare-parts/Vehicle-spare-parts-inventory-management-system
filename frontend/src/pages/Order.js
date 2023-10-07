@@ -7,7 +7,7 @@ import {getOrders} from '../features/user/userSlice'
 const Orders = () => {
 
   const dispatch = useDispatch()
-  const orderState = useSelector(state => state.auth.getorderedProduct?.orders || [])
+  const orderState = useSelector(state => state.user.getorderedProduct?.orders || [])
   console.log(orderState)
 
   useEffect(() => {
@@ -25,10 +25,10 @@ const Orders = () => {
                 <h5>Order Id</h5>
               </div>
               <div className='col-3'>
-                <h5>Amount</h5>
+                <h5>Total Amount</h5>
               </div>
               <div className='col-3'>
-                <h5>Total Amount</h5>
+                <h5>Total Amount After Discount</h5>
               </div>
               <div className='col-3'>
                 <h5>Status</h5>
