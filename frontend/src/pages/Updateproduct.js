@@ -21,12 +21,28 @@ let schema = yup.object().shape({
   productID: yup.string().required("productID is required"),
   Title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
-  price: yup.number().required("Price is required"),
-  discount: yup.number().required("Discount is required"),
+  price: yup
+    .number()
+    .required("Price is required")
+    .positive("Price must be a positive number")
+    .integer("Price must be an integer")
+    .test(
+      'is-not-zero',
+      'Price must be greater than 0',
+      value => value > 0
+    ),
+  discount: yup
+    .number()
+    .required("Discount is required")
+    .positive("Discount must be a positive number")
+    .integer("Discount must be an integer")
+    .min(1, "Discount must be greater than 0")
+    .max(50, "Discount cannot exceed 100"),
   brand: yup.string().required("Brand is required"),
   category: yup.string().required("Category is required"),
   color: yup.string().required("Color is required"),
   tags: yup.string().required("Tag is required"),
+  images: yup.string().required("Images is required"),
 });
 
 const Addproduct = () => {
@@ -91,7 +107,7 @@ const Addproduct = () => {
       discount: "",
       color: "",
       tags:"",
-      images: [],
+      images: "",
     },
 
     validationSchema: schema,
@@ -179,18 +195,10 @@ const Addproduct = () => {
                 </select>
                 <br/>
                 <ReactQuill theme='snow' name="description"  onChange={formik.handleChange("description")}/><br/><br/>
-                <div className='imageUploadProduct border-1 p-5 text-center'>
-                <Dropzone onDrop={acceptedFiles => dispatch(uploadImg(acceptedFiles))}>
-                    {({getRootProps, getInputProps}) => (
-                <section>
-                    <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    </div>
-                </section>
-                      )}
-                </Dropzone>
-                </div>
+                <CustomInput type="text" label="Image Url: " name="images" onCh={formik.handleChange("images")} onBl={formik.handleBlur("images")} val={formik.values.images} />
+                  <div className='error'>
+                    {formik.touched.images && formik.errors.images}
+                  </div>
               {/* <div className='showimages d-flex flex-wrap gap-3'>
                   {imgState?.map((i,j)=>{
                     return(

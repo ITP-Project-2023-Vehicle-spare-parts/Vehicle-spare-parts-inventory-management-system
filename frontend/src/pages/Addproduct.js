@@ -41,7 +41,7 @@ let schema = yup.object().shape({
     .positive("Discount must be a positive number")
     .integer("Discount must be an integer")
     .min(1, "Discount must be greater than 0")
-    .max(100, "Discount cannot exceed 100"),
+    .max(50, "Discount cannot exceed 100"),
   brand: yup.string().required("Brand is required"),
   category: yup.string().required("Category is required"),
   color: yup.string().required("Color is required"),

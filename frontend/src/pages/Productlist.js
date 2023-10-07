@@ -14,7 +14,7 @@ import {AiOutlineFilePdf} from 'react-icons/ai';
 
 const columns = [
     {
-      title: 'ProductID',
+      title: 'Serial NO.',
       dataIndex: 'productID',
       sorter: (a,b) => a.productID.length - b.productID.length,
       align: 'left'
