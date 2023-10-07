@@ -230,7 +230,7 @@ const Checkout = () => {
                           >
                             {item?.count}
                           </span>
-                          <img className='img-fluid' src={watch} alt='product' />
+                          <img className='img-fluid' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s"} alt='product' />
                     {item?.product?.images?.length > 0 &&
                       <img
                       width={100}
