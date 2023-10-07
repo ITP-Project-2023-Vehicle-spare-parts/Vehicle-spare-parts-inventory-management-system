@@ -1,20 +1,5 @@
 import axios from "axios";
-import {base_url} from "../../utils/axiosconfig";
-
-
-const getTokenFromLocalStorage = localStorage.getItem("userToken")
-  //? JSON.parse(localStorage.getItem("userToken"))
-  //: null;
-
-export const config = {
-  headers: {
-    Authorization: `Bearer ${
-      getTokenFromLocalStorage !== null ? getTokenFromLocalStorage : ""
-    }`,
-    Accept: "application/json",
-    ContentType: "application/json",
-  },
-};
+import {base_url, config, getUserFromLocalStorage} from "../../utils/axiosconfig";
 
 const register = async (userData) => {
   const response = await axios.post("", userData);
@@ -28,7 +13,6 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   const response = await axios.post(`${base_url}user/login`, userData);
-  console.log(response);
   if (response.data) {
     return response.data;
   }
@@ -46,9 +30,12 @@ const addToCart = async (cartData) => {
 const getCart = async () => {
   const response = await axios.get(`${base_url}user/cart`, config);
   if (response.data) {
-    console.log(response.data)
-    return response.data;
+    console.log(response.data);
+      return response.data;
   }
+
+  // return [];
+  return response.data;
 }
 
 const removeProductFromCart = async (data) => {
@@ -87,7 +74,7 @@ const emptyCart = async () => {
   }
 }
 
-export const authService = {
+export const userService = {
   register,
   login,
   addToCart,

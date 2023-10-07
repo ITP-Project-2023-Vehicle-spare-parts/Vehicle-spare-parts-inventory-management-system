@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"); 
 
 // Declare the Schema of the Mongo model
-var orderSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,62 +30,51 @@ var orderSchema = new mongoose.Schema(
         required: true
       }
     },
-/*    paymentInfo : {
-      razorpayOrderId : {
-        type : String,
-        required : true
-      },
-      razorpayPaymentOrderId : {
-        type : String,
-        required : true
-      }
-    },*/
-    orderItems : [
+    orderItems: [
       {
-        product : {
-          type : mongoose.Schema.Types.ObjectId,
-          ref : "Product",
-          required : true
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true
         },
-        color : {
-          //type : mongoose.Schema.Types.ObjectId,
-          type : String,
-          ref : "Color",
-          required : true
+        color: {
+          type: String,
+          ref: "Color",
+          required: true
         },
-        quantity : {
-          type : Number,
-          required : true
+        count: { // Add the quantity field
+          type: Number,
+          required: true
         },
-        price : {
-          type : Number,
-          required : true
+        price: {
+          type: Number,
+          required: true
         }
       }
     ],
-    paidAt : {
-      type : Date,
-      default : Date.now()
+    paidAt: {
+      type: Date,
+      default: Date.now()
     },
     month: {
       type: String,
       default: new Date().getMonth(), 
     },    
-    totalPrice : {
-      type : Number,
-      required : true
+    totalPrice: {
+      type: Number,
+      required: true
     },
-    totalPriceAfterDiscount : {
-      type : Number,
-      required : true
+    totalPriceAfterDiscount: {
+      type: Number,
+      required: true
     },
-    orderStatus : {
-      type : String,
-      default : "Ordered"
+    orderStatus: {
+      type: String,
+      default: "Ordered"
     },
-    branch : {
-      type : String,
-      default : "Not Assign"
+    branch: {
+      type: String,
+      default: "Not Assigned"
     }
   },
   {

@@ -27,9 +27,10 @@ const shippingSchema = yup.object({
 
 const Checkout = () => {
   const dispatch = useDispatch();
-  const cartState = useSelector((state) => state.auth.userCart);
+  const cartState = useSelector((state) => state.user.userCart);
 
   const authState = useSelector((state) => state.auth);
+  const userState = useSelector((state) => state.user);
   const [totalAmount, setTotalAmount] = useState(null);
   const [shippingInfo, setShippingInfo] = useState(null);
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    if (authState.createdOrder != null && authState.createdOrder.success === true) {
+    if (userState.createdOrder != null && userState.createdOrder.success === true) {
       navigate('../my-orders');
     }
   });
@@ -205,15 +206,9 @@ const Checkout = () => {
                 >
                   <option value='' disabled>
                     Select city
-                    </option>
+                  </option>
                   <option value='Colombo'>Colombo</option>
-                  <option value='Colombo'>Kurunegala</option>
-                  <option value='Colombo'>Ratnapura</option>
-                  <option value='Colombo'>Galle</option>
-                  <option value='Colombo'>Anuradhapura</option>
-                  <option value='Colombo'>Jaffna</option>
                 </select>
-
 
                 <div
                   className={`error ms-2 my-1 ${formik.touched.city && formik.errors.city ? 'errors' : ''}`}
@@ -223,11 +218,11 @@ const Checkout = () => {
               </div>
               <div className='w-100'>
                 <div className='d-flex justify-content-between align-items-center'>
-                  <Link to='/home/cart' className='text-dark'>
+                  <Link to='/cart' className='text-dark'>
                     <AiOutlineArrowLeft className='me-2'/>
                     Return to Cart
                   </Link>
-                  <Link to='/home/store' className='button'>
+                  <Link to='/store' className='button'>
                     Continue to Shipping
                   </Link>
                   <button className='button' type='submit'>
@@ -240,7 +235,7 @@ const Checkout = () => {
         </div>
         <div className='col-5'>
           <div className='border-bottom py-4'>
-            {cartState && cartState?.products.map((item, index) => {
+            {cartState && cartState?.products?.map((item, index) => {
               return (<div
                 key={index}
                 className='d-flex gap-10 mb-2 align-items-center'
@@ -285,7 +280,10 @@ const Checkout = () => {
                 Rs.{cartState?.cartTotal ? cartState.cartTotal : '0'}
               </p>
             </div>
-            
+            <div className='d-flex justify-content-between align-items-center'>
+              <p className='mb-0 total'>Discounts</p>
+              <p className='mb-0 total-price'>Rs.0</p>
+            </div>
             <div className='d-flex justify-content-between align-items-center'>
               <p className='mb-0 total'>Shipping</p>
               <p className='mb-0 total-price'>Rs.350</p>
