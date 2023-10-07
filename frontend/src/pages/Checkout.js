@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {createAnOrder, getUserCart} from '../features/user/userSlice';
+import watch from '../images/watch.jpg';
+
 
 
 const shippingSchema = yup.object({
@@ -98,7 +100,7 @@ const Checkout = () => {
             >
               <ol className='breadcrumb'>
                 <li className='breadcrumb-item'>
-                  <Link className='text-dark total-price' to='/cart'>
+                  <Link className='text-dark total-price' to='/home/cart'>
                     Cart
                   </Link>
                 </li>
@@ -208,6 +210,11 @@ const Checkout = () => {
                     Select city
                   </option>
                   <option value='Colombo'>Colombo</option>
+                  <option value='Colombo'>Ratnapura</option>
+                  <option value='Colombo'>Kurunegala</option>
+                  <option value='Colombo'>Galle</option>
+                  <option value='Colombo'>Jaffna</option>
+                  <option value='Colombo'>Kandy</option>
                 </select>
 
                 <div
@@ -218,11 +225,11 @@ const Checkout = () => {
               </div>
               <div className='w-100'>
                 <div className='d-flex justify-content-between align-items-center'>
-                  <Link to='/cart' className='text-dark'>
+                  <Link to='/home/cart' className='text-dark'>
                     <AiOutlineArrowLeft className='me-2'/>
                     Return to Cart
                   </Link>
-                  <Link to='/store' className='button'>
+                  <Link to='/home/store' className='button'>
                     Continue to Shipping
                   </Link>
                   <button className='button' type='submit'>
@@ -248,6 +255,7 @@ const Checkout = () => {
                           >
                             {item?.count}
                           </span>
+                          <img className='img-fluid' src={watch} alt='product' />
                     {item?.product?.images?.length > 0 &&
                       <img
                       width={100}
