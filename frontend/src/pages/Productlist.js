@@ -14,7 +14,7 @@ import {AiOutlineFilePdf} from 'react-icons/ai';
 
 const columns = [
     {
-      title: 'ProductID',
+      title: 'Serial NO.',
       dataIndex: 'productID',
       sorter: (a,b) => a.productID.length - b.productID.length,
       align: 'left'
@@ -143,7 +143,7 @@ const Productlist = () => {
       product.productID,
       product.Title,
       product.price,
-      product.discount,
+      product.price - (product.price / 100 * product.discount),
       product.category,
       product.brand,
       product.color,
@@ -153,7 +153,7 @@ const Productlist = () => {
   
     doc.autoTable({
       head: [
-        ['ProductID', 'Title', 'Price in Rs.', 'Discount in %', 'Category', 'Brand', 'Color', 'Description', 'Tags'],
+        ['Serial No', 'Title', 'Price in Rs.', 'Discounted price', 'Category', 'Brand', 'Color', 'Description', 'Tags'],
       ],
       body: tableData,
       startY: 40,
