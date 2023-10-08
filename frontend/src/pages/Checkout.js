@@ -238,7 +238,7 @@ const Checkout = () => {
                         >
                           {item?.count}
                         </span>
-                        <img className='img-fluid' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s"} alt='product' />
+                        <img className='img-fluid' src={item?.product?.images} alt='product' />
                       </div>
                       <div>
                         <h5 className='total-price' style={{ fontSize: '15px', fontWeight: 'bold', color: '#333' }}>
