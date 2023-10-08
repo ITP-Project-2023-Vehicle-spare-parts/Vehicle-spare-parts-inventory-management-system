@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import Helmet from 'react-helmet';
-import ReactImageZoom from 'react-image-zoom';
+import React, { useEffect, useState } from 'react';
+//import Helmet from 'react-helmet';
 import ReactStars from 'react-rating-stars-component';
-import Color from '../components/Color'
-import {Link, useLocation} from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-import {getSingleProducts} from '../features/product/productSlice';
-import {toast} from "react-toastify";
-import {addProToCart} from '../features/user/userSlice';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProducts } from '../features/product/productSlice';
+import { toast } from "react-toastify";
+import { addProToCart } from '../features/user/userSlice';
+import BreadCrumb from '../components/BreadCrumb';
+import Meta from '../components/Meta';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1)
@@ -16,6 +16,7 @@ const SingleProduct = () => {
   const dispatch = useDispatch();
   const productState = useSelector((state) => state.product.Singledproduct);
   const color = productState?.color;
+
   useEffect(() => {
     dispatch(getSingleProducts(getProductID));
   }, [getProductID, dispatch])
@@ -40,45 +41,32 @@ const SingleProduct = () => {
     }
   }
 
-  const props = {
-    width: 400,
-    height: 250,
-    zoomWidth: 500,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s",
-  };
-
-  const [orderedProduct, setoderedProduct] = useState(true);
-
-  console.log(orderedProduct)
-  console.log(setoderedProduct)
-
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8"/>
-        <title>Product Info</title>
-      </Helmet>
-      <div className='home-wrapper-2'>
-        <center><h4><br/>.....Details.....<br/><br/></h4></center>
-      </div>
-
+      <Meta title="Product Details" />
+      <BreadCrumb title="Product Details" />
       <div className='main-product-wrapper py-5 home-wrapper-2'>
         <div className='container-xxl'>
           <div className='row'>
             <div className='col-6'>
               <div className='main-product-image'>
-              <img src={productState?.images} className='img-fluid' alt="product pic" style={{ width: 400, height: 250 }} />
+                <img
+                  src={productState?.images}
+                  className='img-fluid'
+                  alt="product pic"
+                  style={{ width: 400, height: 250 }}
+                />
               </div>
             </div>
             <div className='col-6'>
               <div className='main-product-details'>
                 <div className='border-bottom'>
-                  <h3>
+                  <h3 style={{ fontSize: '26px', color: 'black', fontWeight: 'bold' }}>
                     {productState?.Title}
                   </h3>
                 </div>
                 <div className='border-bottom'>
-                  <p className='price'>
+                  <p className='price' style={{ fontSize: '20px', color: 'green', fontWeight: 'bold' }}>
                     Rs.{productState?.price}.00
                   </p>
                   <div className='d-flex align-items-center gap-10'>
@@ -93,33 +81,49 @@ const SingleProduct = () => {
                 </div>
                 <div className='border-bottom'>
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Type : </h3>
-                    <p className='product-data'>{productState?.slug}</p>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Type : </h3>
+                    <p className='product-data' style={{ fontSize: '18px', color: 'black', fontWeight: 'normal' }}>{productState?.slug}</p>
                   </div>
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Brand : </h3>
-                    <p className='product-data'>{productState?.brand}</p>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Brand : </h3>
+                    <p className='product-data' style={{ fontSize: '18px', color: 'black', fontWeight: 'normal' }}>{productState?.brand}</p>
                   </div>
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Categories : </h3>
-                    <p className='product-data'>{productState?.category}</p>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Categories : </h3>
+                    <p className='product-data'style={{ fontSize: '18px', color: 'black', fontWeight: 'normal' }}>{productState?.category}</p>
                   </div>
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Tags : </h3>
-                    <p className='product-data'>{productState?.tags}</p>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Tags : </h3>
+                    <p className='product-data' style={{ fontSize: '18px', color: 'black', fontWeight: 'normal' }}>{productState?.tags}</p>
                   </div>
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Product ID : </h3>
-                    <p className='product-data'>{productState?.productID}</p>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Product ID : </h3>
+                    <p className='product-data' style={{ fontSize: '18px', color: 'black', fontWeight: 'normal' }}>{productState?.productID}</p>
                   </div>
                   <div className='d-flex gap-10 fle-column mt-2 mb-3'>
-                    <h3 className='product-heading'>Color : </h3>
-                    <button value={productState?.color}><p>{productState?.color}</p></button>
-
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Color : </h3>
+                    <button
+                      value={productState?.color}
+                      style={{
+                        fontSize: '10px',
+                        color: 'transparent',
+                        fontWeight: 'bold',
+                        backgroundColor: productState?.color,
+                        borderRadius: '50%', // Set border-radius to 50% for a rounded shape
+                        width: '30px', // Set the width to control the size of the circle
+                        height: '30px', // Set the height to control the size of the circle
+                        border: 'none', // Remove the button border
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        boxShadow: '0 0 5px black', // Add black shadow
+                      }}
+                    >
+                      <p>{productState?.color}</p>
+                    </button>
                   </div>
-
                   <div className='d-flex gap-10 align-items-center my-2'>
-                    <h3 className='product-heading'>Quantity : </h3>
+                    <h3 className='product-heading' style={{ fontSize: '20px', color: 'black', fontWeight: 'bold' }}>Quantity : </h3>
                     <div className=''>
                       <input
                         type='number'
@@ -127,7 +131,7 @@ const SingleProduct = () => {
                         name=''
                         min={1}
                         max={10}
-                        style={{width: "70px"}}
+                        style={{ fontSize: '16px', color: 'black', fontWeight: 'bold', width: "70px" }}
                         id=''
                         onChange={(e) => setQuantity(parseInt(e.target.value))}
                         value={quantity}
@@ -137,11 +141,16 @@ const SingleProduct = () => {
                     <div className='d-flex align-items-center gap-30 ms-5'>
                       <button
                         className="button border-0"
-                        /* data-bs-toggle="modal"
-                         data-bs-target="#staticBackdrop" */
                         type="button"
                         onClick={() => {
                           uploadCart(productState?._id)
+                        }}
+                        style={{
+                          fontSize: '18px',
+                          color: 'white',
+                          fontWeight: 'bold',
+                          backgroundColor: '#2A3847',
+                          textDecoration: 'none'
                         }}
                       >
                         Add To Cart
@@ -150,8 +159,9 @@ const SingleProduct = () => {
                   </div>
                   <div className='d-flex gap-10 align-items-center gap-15'>
                     <div>
-                      <a href='#!'><img src='/images/wish.svg' alt='wishlist' className='fs-5 me-2'/>&nbsp; Add to
-                        Wishlist</a>
+                      <a href='#!' style={{ fontSize: '16px', color: 'black', fontWeight: 'bold' }}>
+                        <img src='/images/wish.svg' alt='wishlist' className='fs-5 me-2' />&nbsp; Add to Wishlist
+                      </a>
                     </div>
                   </div>
                 </div>

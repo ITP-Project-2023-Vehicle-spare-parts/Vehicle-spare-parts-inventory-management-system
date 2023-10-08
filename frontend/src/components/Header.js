@@ -8,6 +8,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state?.user?.userCart?.products) || [];
   const navigate = useNavigate();
+  console.log(navigate)
 
   useEffect(() => {
     if (getUserFromLocalStorage !== null) {
