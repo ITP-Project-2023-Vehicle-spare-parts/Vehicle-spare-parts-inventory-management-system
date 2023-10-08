@@ -131,7 +131,7 @@ const DeliveryPersonSideBar = () => {
                   <p className='mb-0'>{email}</p>
                 </div>
                 <div className='delivery-dropdown-menu'>
-                  <Link className="delivery-dropdown-item" to="/">
+                  <Link className="delivery-dropdown-item" to="/delivery/UserProfile">
                     View Profile
                   </Link>
                   <button className="delivery-dropdown-item" onClick={handleSignout}>
