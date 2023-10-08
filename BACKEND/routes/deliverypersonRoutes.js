@@ -9,6 +9,8 @@ router.put("/update/:id", deliveryPersonController.updateDeliveryPerson);
 router.delete("/delete/:id", deliveryPersonController.deleteDeliveryPerson);
 router.get("/get/:id", deliveryPersonController.getDeliveryPerson);
 router.get("/getById/:id", deliveryPersonController.getDeliveryPersonById);
+router.get("/getByMail/:email", deliveryPersonController.getDeliveryPersonByMail);
+
 
 
 module.exports = router;

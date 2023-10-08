@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import Color from '../components/Color';
+//import Color from '../components/Color';
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import {useDispatch, useSelector} from "react-redux";
@@ -86,11 +86,7 @@ const Store = () => {
                   <input type="email" className="form-control" id="floatingInput1" placeholder="To"/>
                   <label htmlFor="floatingInput1">To</label>
                 </div>
-                </div>
-                <h5 className='sub-title'>Colors</h5>
-                <div>
-                    <Color />
-                </div>          
+                </div>      
               </div>
             </div>
             <div className='filter-card mb-3'>

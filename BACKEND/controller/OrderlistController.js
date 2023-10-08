@@ -13,7 +13,7 @@ const getAllOrders = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const DeliveryOrderes = await Order.find({ orderStatus: "Delivered" });
+        const DeliveryOrderes = await Order.find({ orderStatus: "delivery person assign" });
         //{ orderStatus: "Delivered" }
         res.json(DeliveryOrderes);
     } catch (err) {
@@ -24,8 +24,9 @@ const getOrderHistory = async (req, res) => {
 
 const getOrders = async (req, res) => {
     try {
-        const assignBranch = await Order.find({ branch: "Not Assigned" });
+        const assignBranch = await Order.find({ orderStatus: "Ordered" });
         //{ branch: "Not Assign" }
+         //{ branch: { $nin: ["Not Assign", "Not Assigned"] } }
 
         res.json(assignBranch);
     } catch (err) {
@@ -54,6 +55,26 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+const updateDeliveryPersonID = async (req, res) => {
+    try {
+        const OrderID = req.params.orderid;
+        console.log(req.body); // Correct variable name
+
+        const { deliveryPersonid  } = req.body;
+        console.log(req.params.orderid);
+        const updateDeliveryPersonID = {
+            
+            deliveryPersonid
+        };
+
+        await Order.findByIdAndUpdate(req.params.orderid , updateDeliveryPersonID); // Correct variable name
+        res.status(200).send({ status: "Order status Updated" });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error updating Order status", error: err.message });
+    }
+};
+
 
 const updateBranchLocation = async (req, res) => {
     try {
@@ -62,17 +83,20 @@ const updateBranchLocation = async (req, res) => {
         console.log("Received PUT request with data:", req.body);
 
 
-        const { branch } = req.body;
+        const { billNumber,billedDate,billExpiredDate,branch, orderStatus } = req.body;
         const updateBranchLocations = {
-            
-            branch
+            billNumber,
+            billedDate,
+            billExpiredDate,
+            branch,
+            orderStatus
         };
 
         await Order.findByIdAndUpdate(req.params.orderid , updateBranchLocations ); // Correct variable name
-        res.status(200).send({ status: "Branch Location Updated" });
+        res.status(200).send({ status: "Bill details Updated" });
     } catch (err) {
         console.log(err);
-        res.status(500).send({ status: "Error updating branch location", error: err.message });
+        res.status(500).send({ status: "Error updating bill details", error: err.message });
     }
 };
 
@@ -95,6 +119,30 @@ const getOrderById = async (req, res) => {
       res.status(500).send({ status: "Error fetching order", error: err.message });
     }
   };
+
+  const getOrdersByBranch = async (req, res) => {
+    try {
+        const ordersByBranch = await Order.aggregate([
+            {
+                $group: {
+                    _id: "$branch",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $sort: {
+                    _id: 1
+                }
+            }
+        ]);
+
+        res.json(ordersByBranch);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching orders by branch", error: err.message });
+    }
+};
+
   
 
   
@@ -105,6 +153,8 @@ module.exports = {
     updateBranchLocation,
     getOrderById,
     getOrders,
-    getOrderHistory
+    getOrderHistory,
+    updateDeliveryPersonID,
+    getOrdersByBranch
 
  };

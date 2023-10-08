@@ -52,7 +52,7 @@ const ViewOrder = () => {
         
         name : orderState?.orderItems[i]?.product.Title,
         brand : orderState?.orderItems[i]?.product.brand,
-        count : orderState?.orderItems[i]?.quantity,
+        count : orderState?.orderItems[i]?.count,
         amount : orderState?.orderItems[i]?.price, 
         color : orderState?.orderItems[i]?.color,
         //color : orderState?.orderItems[i]?.color?.title,
@@ -64,7 +64,7 @@ const ViewOrder = () => {
 
   return (
     <div>
-      <h3 className='mb-4 title'>View Order</h3>
+      <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px' }}>View Order</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

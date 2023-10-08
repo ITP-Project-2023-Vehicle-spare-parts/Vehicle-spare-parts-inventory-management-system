@@ -64,13 +64,14 @@ function EditBranch() {
   if (error) {
     return <div>{error}</div>;
   }
+  
 
   return (
     <div className='edit-branch-container' id='EditBranch'>
       <h2>Edit Branch Details</h2>
       <form onSubmit={handleSubmit}>
         {/* Add input fields for other branch properties */}
-        <div>
+        {/* <div>
           <label htmlFor="BranchID">Branch ID:</label>
           <input
             type="text"
@@ -79,7 +80,7 @@ function EditBranch() {
             value={branch.BranchID}
             onChange={handleInputChange}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="BranchName">Branch Name:</label>
           <input

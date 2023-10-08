@@ -8,8 +8,8 @@ import { getBrands } from '../features/brand/brandSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {getCategories} from '../features/pcategory/pcategorySlice';
 import {getColors} from '../features/color/colorSlice';
-import Dropzone from 'react-dropzone';
-import { delImg, uploadImg } from '../features/upload/uploadSlice';
+//import Dropzone from 'react-dropzone';
+//import { delImg, uploadImg } from '../features/upload/uploadSlice';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createProducts, resetState } from "../features/product/productSlice";
@@ -41,12 +41,40 @@ let schema = yup.object().shape({
     .positive("Discount must be a positive number")
     .integer("Discount must be an integer")
     .min(1, "Discount must be greater than 0")
-    .max(100, "Discount cannot exceed 100"),
+    .max(50, "Discount cannot exceed 100"),
   brand: yup.string().required("Brand is required"),
   category: yup.string().required("Category is required"),
   color: yup.string().required("Color is required"),
   tags: yup.string().required("Tag is required"),
+  images: yup.string().required("Images is required"),
 });
+
+/*
+const firebaseConfig = {
+
+  apiKey: "AIzaSyCj1O039dYb_wUOENHYClYLZLtepaOr5GM",
+
+  authDomain: "chathuraspareproducts.firebaseapp.com",
+
+  projectId: "chathuraspareproducts",
+
+  databaseUTL : "gs://chathuraspareproducts.appspot.com",
+
+  storageBucket: "chathuraspareproducts.appspot.com",
+
+  messagingSenderId: "441849999475",
+
+  appId: "1:441849999475:web:ab1a3a3e21e9031f40ba06",
+
+  measurementId: "G-RVYDXBZX25"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const analytics = getAnalytics(app);
+
+*/
 
 const Addproduct = () => {
   const dispatch = useDispatch();
@@ -106,7 +134,7 @@ const Addproduct = () => {
       discount: "",
       color: "",
       tags:"",
-      images: [],
+      images: "",
     },
 
     validationSchema: schema,
@@ -185,32 +213,11 @@ const Addproduct = () => {
                 </select>
                 <br/>
                 <ReactQuill theme='snow' name="description"  onChange={formik.handleChange("description")}/><br/><br/>
-                <div className='imageUploadProduct border-1 p-5 text-center'>
-                <Dropzone onDrop={acceptedFiles => dispatch(uploadImg(acceptedFiles))}>
-                    {({getRootProps, getInputProps}) => (
-                <section>
-                    <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
-                    </div>
-                </section>
-                      )}
-                </Dropzone>
-                </div>
-                <div className='showimages d-flex flex-wrap gap-3'>
-                  {imgState?.map((i,j)=>{
-                    return(
-                      <div key={j} className='position-relative'>
-                        <button type='button'
-                        onClick={()=> dispatch(delImg(i.public_id))}
-                        className='btn-close position-absolute'
-                        style={{top:"10px", right:"10px"}} />
-                       <img src={i.url} alt='' width={200} height={200}/>
-                      </div>
-                    );
-                  })};
-                  
-                </div>
+
+                <CustomInput type="text" label="Image Url: " name="images" onCh={formik.handleChange("images")} onBl={formik.handleBlur("images")} val={formik.values.images} />
+                  <div className='error'>
+                    {formik.touched.images && formik.errors.images}
+                  </div>
             <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Add-Product</button>
             </form>
         </div>
