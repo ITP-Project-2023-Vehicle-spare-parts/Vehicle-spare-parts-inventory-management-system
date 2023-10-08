@@ -204,14 +204,14 @@ const Checkout = () => {
                 </div>
                 <div className='w-100'>
                   <div className='d-flex justify-content-between align-items-center' style={{ marginTop: '40px' }}>
-                    <Link to='/home/cart' className='text-dark'>
+                    <Link to='/home/cart' className='text-dark'style={{ textDecoration: 'none' }}>
                       <AiOutlineArrowLeft className='me-2' />
                       Return to Cart
                     </Link>
-                    <Link to='/home/store' className='button' style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', backgroundColor: '#2A3847', transition: 'background-color 0.3s' }}>
+                    <Link to='/home/store' className='button' style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', backgroundColor: '#2A3847', transition: 'background-color 0.3s',textDecoration: 'none'  }}>
                       Continue to Shipping
                     </Link>
-                    <button className='button' type='submit' style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', backgroundColor: '#2A3847', transition: 'background-color 0.3s' }}>
+                    <button className='button' type='submit' style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', backgroundColor: '#2A3847', transition: 'background-color 0.3s' ,textDecoration: 'none' }}>
                       Place Order
                     </button>
                   </div>

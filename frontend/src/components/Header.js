@@ -4,27 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserCart } from "../features/user/userSlice";
 import { getUserFromLocalStorage } from "../utils/axiosconfig";
 
-
 const Header = () => {
   const dispatch = useDispatch();
   const cartState = useSelector((state) => state?.user?.userCart?.products) || [];
   const navigate = useNavigate();
-  console.log(navigate)
 
   useEffect(() => {
     if (getUserFromLocalStorage !== null) {
       dispatch(getUserCart());
     }
   }, [dispatch]);
-
-  // Calculate total count and total amount
-  const totalCount = cartState.reduce((total, cartProduct) => {
-    return total + cartProduct.count;
-  }, 0);
-
-  const totalAmount = cartState.reduce((total, cartProduct) => {
-    return total + cartProduct.price * cartProduct.count;
-  }, 0);
 
   return (
     <>
@@ -37,8 +26,8 @@ const Header = () => {
             <div className="col-6">
               <p className="text-end text-white mb-0">
                 Hotline:
-                <a className="text-white" href="+94 912245891">
-                  (+94)91 2245891
+                <a className="text-white" href="+94 912245891" style={{ fontSize: '16px', fontWeight: 'bold', color: '#333', textDecoration: 'none' }}>
+                  (+94) 91 2245891
                 </a>
               </p>
             </div>
@@ -57,53 +46,56 @@ const Header = () => {
             </div>
             <div className="col-6">
               <div className="input-group">
-                <div style={{ fontFamily: "cursive", color: "white" }}>
+                <div style={{ fontFamily: "cursive", fontSize: '18px', fontWeight: 'bold', color: 'white' }}>
                   <h2>Chathura Motors Spares Shop</h2>
                 </div>
               </div>
             </div>
             <div className="col-4">
-              <div className="header-upper-links d-flex align-items-center justify-content-between">
-                <div>
-                  <NavLink
-                    to="/home/wishlist"
-                    className="d-flex align-items-center gap-10 text-white"
-                  >
-                    <img src="/images/wishlist.svg" alt="wishlist" />
-                    <p className="mb-0">
-                      Favourites <br /> Wishlist
-                    </p>
-                  </NavLink>
-                </div>
-                <div>
-                  <h6 className="text-white text-center">
-                    {getUserFromLocalStorage
-                      ? "Hi, " + getUserFromLocalStorage?.firstname + "!"
-                      : "Please login"}
-                  </h6>
-                  <Link
-                    to="/user/profile"
-                    className="d-flex align-items-center gap-10 text-white"
-                  >
-                    <img src="/images/user.svg" alt="user" />
-                    <p className="mb-0">My Account</p>
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    to="/home/cart"
-                    className="d-flex align-items-center gap-10 text-white"
-                  >
-                    <img src="/images/cart.svg" alt="cart" />
-                    <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">
-                        {totalCount}
-                      </span>
-                      <p className="mb-0">Rs.{totalAmount.toFixed(2)}</p>
-                    </div>
-                  </Link>
-                </div>
+            <div className="header-upper-links d-flex align-items-center justify-content-between">
+              <div>
+                <NavLink
+                  to="/home/wishlist"
+                  className="d-flex align-items-center gap-15 text-white"
+                  style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
+                >
+                  <img src="/images/wishlist.svg" alt="wishlist" />
+                  <p className="mb-0">Favourites <br /> Wishlist</p>
+                </NavLink>
               </div>
+              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}> {/* Add margin and flex styles */}
+                <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
+                  {getUserFromLocalStorage
+                    ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
+                    : "Please login"}
+                </h6>
+                <Link
+                  to="/user/profile"
+                  className="d-flex align-items-center gap-15 text-white"
+                  style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
+                >
+                  <img src="/images/user.svg" alt="user" />
+                  <p className="mb-0" style={{ whiteSpace: 'nowrap' }}>My Account</p>
+                </Link>
+              </div>
+
+              <div style={{ marginLeft: '20px' }}> {/* Add margin here */}
+                <Link
+                  to="/home/cart"
+                  className="d-flex align-items-center gap-15 text-white"
+                  style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
+                >
+                  <img src="/images/cart.svg" alt="cart" />
+                  <div className="d-flex flex-column gap-15">
+                    <span className="badge bg-white text-dark">
+                      {cartState.reduce((total, cartProduct) => total + cartProduct.count, 0)}
+                    </span>
+                    <p className="mb-0">Rs.{cartState.reduce((total, cartProduct) => total + cartProduct.price * cartProduct.count, 0).toFixed(2)}</p>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
             </div>
           </div>
         </div>
@@ -115,26 +107,26 @@ const Header = () => {
               <div className="col-8">
                 <div className="menu-bottom d-flex align-items-center">
                   <div className="menu-links">
-                    <div className="d-flex align-items-center gap-15 ">
-                      <NavLink to="/home" className="text-white">
+                    <div className="d-flex align-items-center gap-15">
+                      <NavLink to="/home" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Home
                       </NavLink>
-                      <NavLink to="/home/store" className="text-white">
+                      <NavLink to="/home/store" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Store
                       </NavLink>
-                      <NavLink to="/home/my-orders" className="text-white">
+                      <NavLink to="/home/my-orders" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         My Orders
                       </NavLink>
-                      <NavLink to="/home/contact" className="text-white">
+                      <NavLink to="/home/contact" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Contact
                       </NavLink>
-                      <NavLink to="/home/about" className="text-white">
-                        Pramotion
+                      <NavLink to="/home/about" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                        Promotion
                       </NavLink>
-                      <NavLink to="/track-order" className="text-white">
+                      <NavLink to="/track-order" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Track Order
                       </NavLink>
-                      <NavLink to="/home/addclaim" className="text-white">
+                      <NavLink to="/home/addclaim" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Service
                       </NavLink>
                     </div>

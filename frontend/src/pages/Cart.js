@@ -117,7 +117,7 @@ const Cart = () => {
               })}
             <div className='col-12 py-2 mt-4'>
               <div className='d-flex justify-content-between align-items-baseline'>
-                <Link to='/home/store' className='button' style={{ fontSize: '1rem', color: 'white', fontWeight: 'bold' ,backgroundColor: '#2A3847', transition: 'background-color 0.3s' }}>
+                <Link to='/home/store' className='button' style={{ fontSize: '1rem', color: 'white', fontWeight: 'bold' ,backgroundColor: '#2A3847', transition: 'background-color 0.3s',textDecoration: 'none'  }}>
                   Continue to shopping
                 </Link>
                 {(userCart == null || userCart.length === 0) ? (
@@ -126,7 +126,7 @@ const Cart = () => {
                   <div className='d-flex flex-column align-items-end'>
                     <h4 style={{ fontSize: '25px', fontWeight: 'bold', color: 'black' }}>SubTotal : Rs.{totalAmount.toFixed(2)}</h4>
                     <p style={{ fontSize: '20px', color: 'black' }}>Discount and shipping calculated at checkout</p>
-                    <Link to='/home/checkout' className='button' style={{ fontSize: '1rem', color: 'white', fontWeight: 'bold', backgroundColor: '#2A3847', transition: 'background-color 0.3s' }}>
+                    <Link to='/home/checkout' className='button' style={{ fontSize: '1rem', color: 'white', fontWeight: 'bold', backgroundColor: '#2A3847', transition: 'background-color 0.3s',textDecoration: 'none'  }}>
                       Checkout
                     </Link>
                   </div>
