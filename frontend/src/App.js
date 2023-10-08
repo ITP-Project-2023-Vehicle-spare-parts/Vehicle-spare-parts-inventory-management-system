@@ -107,6 +107,11 @@ import AdminCustomerList from "./components/Customers/AdminCustomerList";
 
 import UpdateStock from "./pages/updateStock";
 import UpdateShipmentReport from "./components/Supplier/UserSupplierPage/UpdateShipmentReport";
+import DeliveryPersonSideBar from "./components/deliveryPersonSideBar";
+import DeliveryPersonPrivate from "./components/deliveyPersonprivate";
+import ViewBranchOrder from "./components/Branch/ViewBranchOrder";
+import BillAssign from "./components/Branch/BillAssign";
+import BranchSales from "./components/Branch/BranchSales";
 
 function App() {
   return (
@@ -299,7 +304,19 @@ function App() {
               <Route index element={<UserProfile />} />
               <Route path="update" element={<CustomerProfileUpdate />} />
             </Route>
+
+            <Route path="/delivery" element={<DeliveryPersonSideBar />}>
+               <Route index element={<DeliveryPersonPrivate />} />
+            </Route>
+
+            <Route path="/admin/viewBranchOrder" element={<ViewBranchOrder />} />
+              <Route path="/admin/billAssign/:id" element={<BillAssign />} />
+              <Route path="/admin/branchSales"  element={<BranchSales />}/>
+
+
           </Routes>
+
+
         </div>
       </Router>
     </Provider>
