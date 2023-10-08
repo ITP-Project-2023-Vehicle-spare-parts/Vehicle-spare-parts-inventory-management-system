@@ -9,6 +9,8 @@ import toast from "react-hot-toast";
 import "./AddSupplier.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories } from "../../../features/pcategory/pcategorySlice";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function AddSupplier() {
   const [CompanyName, setCName] = useState("");
@@ -231,9 +233,11 @@ export default function AddSupplier() {
           <div className="text">
             <div className="text1"></div>
             <div className="form-scroll-container">
+
               <Form onSubmit={handleSubmit} className="container">
                 <h1>Add Suppliers...</h1>
                 <Row className="mb-3">
+
                   <Form.Group as={Col}>
                     <Form.Label>
                       Company Name
@@ -244,16 +248,25 @@ export default function AddSupplier() {
                         *
                       </span>
                     </Form.Label>
-                    <Form.Control
-                      className="shadow-lg p-3 mb-2 bg-white rounded"
-                      type="text"
-                      placeholder="Company Name"
-                      id="CompanyName"
-                      value={CompanyName}
-                      onChange={(e) => {
-                        setCName(e.target.value);
-                      }}
-                    />
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                          Required field
+                        </Tooltip>
+                      }
+                    >
+                      <Form.Control
+                        className="shadow-lg p-3 mb-2 bg-white rounded"
+                        type="text"
+                        placeholder="Company Name"
+                        id="CompanyName"
+                        value={CompanyName}
+                        onChange={(e) => {
+                          setCName(e.target.value);
+                        }}
+                      />
+                    </OverlayTrigger>
                     {formErrors.CompanyName && (
                       <div className="error-message">
                         {formErrors.CompanyName}
@@ -271,6 +284,14 @@ export default function AddSupplier() {
                         *
                       </span>
                     </Form.Label>
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                          Required field
+                        </Tooltip>
+                      }
+                    >
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-white rounded"
                       type="text"
@@ -281,6 +302,7 @@ export default function AddSupplier() {
                         setCEmail(e.target.value);
                       }}
                     />
+                    </OverlayTrigger>
                     {formErrors.CompanyEmail && (
                       <div className="error-message">
                         {formErrors.CompanyEmail}
@@ -295,6 +317,14 @@ export default function AddSupplier() {
                       *
                     </span>
                   </Form.Label>
+                  <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                         Phone Number Needs to be a 10-digit number
+                        </Tooltip>
+                      }
+                    >
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="number"
@@ -305,6 +335,7 @@ export default function AddSupplier() {
                       setCPhone(e.target.value);
                     }}
                   />
+                  </OverlayTrigger>
                   {formErrors.CompanyPhone && (
                     <div className="error-message">
                       {formErrors.CompanyPhone}
@@ -420,6 +451,7 @@ export default function AddSupplier() {
                   </Form.Group>
 
                   <Form.Group as={Col}>
+
                     <Form.Label>
                       Supplier Phone
                       <span
@@ -429,6 +461,14 @@ export default function AddSupplier() {
                         *
                       </span>
                     </Form.Label>
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                         Phone Number Needs to be a 10-digit number
+                        </Tooltip>
+                      }
+                    >
                     <Form.Control
                       pattern="[0-9]{10}"
                       className="shadow-lg p-3 mb-2 bg-white rounded"
@@ -440,6 +480,7 @@ export default function AddSupplier() {
                         setPhone(e.target.value);
                       }}
                     />
+                  </OverlayTrigger>
                     {formErrors.SupplierPhone && (
                       <div className="error-message">
                         {formErrors.SupplierPhone}
@@ -674,7 +715,7 @@ export default function AddSupplier() {
 
                   <Form.Group as={Col}>
                     <Form.Label>
-                      Password
+                      Password                                            
                       <span
                         className="text-danger"
                         style={{ fontSize: "25px" }}
@@ -682,6 +723,15 @@ export default function AddSupplier() {
                         *
                       </span>
                     </Form.Label>
+                    <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                          Password Must be at least 6 characters long
+                        </Tooltip>
+                      }
+                    >
+                   
                     <Form.Control
                       className="shadow-lg p-3 mb-2 bg-lightrounded"
                       type="password"
@@ -692,6 +742,7 @@ export default function AddSupplier() {
                         setsysPassword(e.target.value);
                       }}
                     />
+                    </OverlayTrigger>
                     {formErrors.SystemPassword && (
                       <div className="error-message">
                         {formErrors.SystemPassword}

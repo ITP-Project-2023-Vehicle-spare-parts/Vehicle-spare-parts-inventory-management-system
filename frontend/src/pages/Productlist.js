@@ -142,18 +142,18 @@ const Productlist = () => {
     const tableData = productState.map((product, index) => [
       product.productID,
       product.Title,
+      product.category,
+      product.color,
+      product.tags,
       product.price,
       product.price - (product.price / 100 * product.discount),
-      product.category,
-      product.brand,
-      product.color,
-      stripHtmlTags(product.description),
-      product.tags,
+      product.sold,
+      product.price *  product.sold,
     ]);
   
     doc.autoTable({
       head: [
-        ['Serial No', 'Title', 'Price in Rs.', 'Discounted price', 'Category', 'Brand', 'Color', 'Description', 'Tags'],
+        ['Serial No', 'Title', 'Category', 'Color', 'Tags', 'Price in Rs.', 'Discounted price in Rs.', 'Sold Amount', 'Total Income in Rs.'],
       ],
       body: tableData,
       startY: 40,

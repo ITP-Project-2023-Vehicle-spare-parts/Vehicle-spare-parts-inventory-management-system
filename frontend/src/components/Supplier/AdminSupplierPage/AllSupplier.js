@@ -193,7 +193,7 @@ export default function AllSupplier() {
                   return (
                     <tbody>
                       <tr key={dataobj._id}>
-                        <td>
+                        <td style={{textAlign:"left"  }}>
                           {" "}
                           <img
                             src="/images/me.jpg"
