@@ -3,9 +3,9 @@ const Supplier = require ('../model/SupplierModel')
 
 const createLowStockOrder = async (req, res) => {
     try {
-      const { productname, stockQuantity, reorderpoint, neededStockQuantity, supplierId } = req.body;
+      const { productname, stockQuantity, reorderpoint, neededStockQuantity, supplierId ,suppliername } = req.body;
 
-      const suppliername = await Supplier.findById(supplierId);
+      // const suppliername = await Supplier.findById(supplierId);
 
       const lowStockOrder = new SupplierRequst({
         productname,
@@ -54,10 +54,35 @@ const createLowStockOrder = async (req, res) => {
     }
   };
 
+  const UpdateOrderQuantity = async (req, res) => {
+    const productId = req.params.id;
+    const { neededStockQuantity } = req.body;
+  
+    try {
+      // Find the SupplierRequest by ID and update the stock quantity
+      const updatedRequest = await SupplierRequst.findByIdAndUpdate(
+        productId,
+        { neededStockQuantity },
+        { new: true } // Return the updated document
+      );
+  
+      if (!updatedRequest) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+  
+      // Send a success response
+      res.status(200).json({ message: "Stock Quantity Updated Successfully", updatedRequest });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
 
 
   module.exports = {
     createLowStockOrder,
     getRequestList,
     deleteAllRequest,
+    UpdateOrderQuantity,
   }

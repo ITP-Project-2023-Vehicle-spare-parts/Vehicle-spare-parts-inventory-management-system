@@ -67,7 +67,7 @@ const SingleProduct = () => {
           <div className='row'>
             <div className='col-6'>
               <div className='main-product-image'>
-                <div><ReactImageZoom {...props} /></div>
+              <img src={productState?.images} className='img-fluid' alt="product pic" style={{ width: 400, height: 250 }} />
               </div>
             </div>
             <div className='col-6'>
