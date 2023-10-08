@@ -1,38 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SupplierSideNavigation from "../../SupplierSideNavigation";
 import SupplierNavBar from "../../NavBar/SupplierNavBar";
 import "./SupplierHome.css";
 import "boxicons/css/boxicons.min.css";
 import { Table } from "antd";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function SupplierHome() {
-  const [orderData, setOrderData] = useState([]);
-  console.log(setOrderData);
+  const [branches, setBranches] = useState([]);
+
+  useEffect(() => {
+    function getSupplier() {
+      axios
+        .get("http://localhost:8000/Branch/", getSupplier)
+        .then((res) => {
+          console.log(res.data);
+          setBranches(res.data);
+          toast.success("Data Fetched Successfully!", {
+            duration: 3000, // 3 seconds
+            position: "top-right", // You can change the position if needed
+          });
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    }
+    getSupplier();
+  }, []);
+
+  const data1 = branches.map((branches, index) => ({
+    key: index + 1,
+    ManagerName: branches.ManagerName,
+    BranchName: branches.BranchName,
+    TelePhoneNumber: branches.TelePhoneNumber,
+    BranchAddress: branches.BranchAddress,
+  }));
+
   const columns = [
     {
-      title: "Product Name",
-      dataIndex: "name",
+      title: "Menager Name",
+      dataIndex: "ManagerName",
+      align: "left",
     },
     {
-      title: "Product Count",
-      dataIndex: "product",
+      title: "Branch Name",
+      dataIndex: "BranchName",
+      align: "left",
     },
     {
-      title: "Total Price",
-      dataIndex: "price",
+      title: "Contact Number",
+      dataIndex: "TelePhoneNumber",
+      align: "left",
     },
     {
-      title: "Shipment Date",
-      dataIndex: "dprice",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
+      title: "Branch Address",
+      dataIndex: "BranchAddress",
+      align: "left",
     },
   ];
 
   return (
-    <div id="SupplierHome">
+    <div
+      id="SupplierHome"
+      style={{ backgroundColor: "#d8eaeb", height: "100vh" }}
+    >
       <SupplierSideNavigation />
 
       <SupplierNavBar />
@@ -189,9 +221,13 @@ export default function SupplierHome() {
       <br />
       <br />
       <div className="mt-4 " style={{ marginLeft: "200px", padding: "40px" }}>
-        <h3 className="mb-5 title">Recent Orders</h3>
+        <h3 className="mb-5 title">CM Moters Branch Details...</h3>
         <div>
-          <Table columns={columns} dataSource={orderData} />
+          <Table
+            columns={columns}
+            dataSource={data1}
+            style={{ margin: "10px" }}
+          />
         </div>
       </div>
     </div>
