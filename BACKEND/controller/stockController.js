@@ -1,7 +1,8 @@
 const Stock = require('../model/stockModel');
 const Product = require('../model/productModel');
 const DeletedStock =require('../model/deletedStockModel');
-
+const Supplier = require("../model/SupplierModel");
+//const OrderStock = require("../model/orderStockModel");
 
  const addStock = async (req, res) => {
     try{
@@ -161,15 +162,13 @@ const deleteStock = async (req, res) => {
 
 
 
-// New function to get low stock products
 const getLowStockProducts = async (req, res) => {
   try {
     // Find all stocks where stockQuantity is less than reorderPoint
     const lowStockProducts = await Stock.find();
 
     if (!lowStockProducts || lowStockProducts.length === 0) {
-      res.status(404).send({ status: "No low stock products found" });
-      return;
+      return res.status(404).json({ status: "No low stock products found" });
     }
 
     // Filter low stock products based on reorder point
@@ -177,12 +176,63 @@ const getLowStockProducts = async (req, res) => {
       return stock.stockQuantity < stock.reorderpoint;
     });
 
-    res.status(200).send({ status: "Low stock products fetched", lowStockProducts: filteredLowStockProducts });
+    // Assuming you have a function to place an order with the supplier,
+    // you can call it here for each low stock product
+    for (const lowStockProduct of filteredLowStockProducts) {
+      // Identify the relevant supplier for this product
+      const supplierDetails = await Supplier.findOne({ ProvidedCategory: lowStockProduct.productName });
+
+      if (!supplierDetails) {
+        console.error(`Supplier not found for ${lowStockProduct.productName}`);
+        continue; // Skip this product and continue with the next one
+      }
+
+      // Define the productName and quantityToOrder based on your business logic
+      const productName = lowStockProduct.productName;
+      const quantityToOrder = calculateQuantityToOrder(lowStockProduct); // Implement this function
+
+      // Place an order with the supplier
+      await placeOrderWithSupplier(supplierDetails, productName, quantityToOrder);
+    }
+
+    res.status(200).json({ status: "Low stock products fetched", lowStockProducts: filteredLowStockProducts });
   } catch (err) {
-    console.log(err.message);
-    res.status(500).send({ status: "Error with getting low stock products", error: err.message });
+    console.error(err.message);
+    res.status(500).json({ status: "Error with getting low stock products", error: err.message });
   }
 };
+
+// Function to calculate the quantity to order based on your business logic
+const calculateQuantityToOrder = (lowStockProduct) => {
+  // Implement your logic to calculate the quantity to order
+  // For example, you can use reorder point, historical data, etc.
+  // Return the calculated quantity.
+};
+
+// Function to place an order with the supplier
+const placeOrderWithSupplier = async (supplierDetails, productName, quantityToOrder) => {
+  try {
+    // Here, you can create an order record to track the order details
+    const order = new OrderStock({
+      supplier: supplierDetails._id, // Associate the order with the supplier
+      productName,
+      quantityOrdered: quantityToOrder,
+      orderDate: new Date(),
+      // Add any other relevant order details here
+    });
+
+    // Save the order to the database
+    await order.save();
+
+    // You can also implement the actual communication with the supplier's system here,
+    // such as sending an API request or an email to place the order with them.
+
+    console.log(`Order placed with ${supplierDetails.CompanyName} for ${quantityToOrder} units of ${productName}`);
+  } catch (error) {
+    console.error('Error placing order with supplier:', error.message);
+  }
+};
+
 
 
 // Add a new route to search for stocks
@@ -215,7 +265,7 @@ const getCost = async (req, res) => {
     const totalCostData = await Stock.aggregate([
       {
         $match: {
-          createdAt: {
+          dateAdded: {
             $gte: lastMonthStart,
             $lte: lastMonthEnd,
           },
@@ -225,18 +275,44 @@ const getCost = async (req, res) => {
         $group: {
           _id: null,
           totalCost: { $sum: "$stockAmount" }, // Sum the stockAmount field
+
+          
         },
       },
     ]);
+    
 
     const totalCost = totalCostData.length > 0 ? totalCostData[0].totalCost : 0;
 
+    if (!totalCostLogged) { // Check the flag before logging
+      console.log(totalCost);
+      totalCostLogged = true; // Set the flag to true to prevent further logging
+    }
+
     res.json({ totalCost });
+    console.log(totalCost)
   } catch (error) {
     console.error('Error calculating total cost:', error);
     res.status(500).json({ error: error.message });
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+       
+
 
  
 
@@ -259,4 +335,6 @@ const getCost = async (req, res) => {
         getLowStockProducts,
         searchStock,
         getCost,
+        placeOrderWithSupplier,
+        
     };
