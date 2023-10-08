@@ -113,6 +113,9 @@ import ViewBranchOrder from "./components/Branch/ViewBranchOrder";
 import BillAssign from "./components/Branch/BillAssign";
 import BranchSales from "./components/Branch/BranchSales";
 import CustomerDetails from "./components/Customers/CustomerDetails";
+import DeliveryChart from "./components/DeliveryChart";
+import DeliveryDashboard from "./components/DeliveryDashboard";
+import DeliveryPersonCurrentOrder from "./components/DeliveryPersonCurrentOrder";
 
 function App() {
   return (
@@ -216,6 +219,7 @@ function App() {
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport />} />
               <Route path="DeliveryPerson-add" element={<DeliveryForm />} />
+              <Route path="DeliveryChart" element={<DeliveryChart />} />
               <Route
                 path="DeliveryPerson/getAll"
                 exact
@@ -314,9 +318,6 @@ function App() {
               <Route path="update" element={<CustomerProfileUpdate />} />
             </Route>
 
-            <Route path="/delivery" element={<DeliveryPersonSideBar />}>
-              <Route index element={<DeliveryPersonPrivate />} />
-            </Route>
 
             <Route
               path="/admin/viewBranchOrder"
@@ -324,6 +325,12 @@ function App() {
             />
             <Route path="/admin/billAssign/:id" element={<BillAssign />} />
             <Route path="/admin/branchSales" element={<BranchSales />} />
+
+            <Route path="/delivery" element={<DeliveryPersonSideBar />}>
+               <Route index element={<DeliveryDashboard />} />
+               <Route path="UserProfile" element = {<DeliveryPersonPrivate />} />
+               <Route path="CurrentOrder" element = {<DeliveryPersonCurrentOrder />} />
+            </Route>
           </Routes>
         </div>
       </Router>

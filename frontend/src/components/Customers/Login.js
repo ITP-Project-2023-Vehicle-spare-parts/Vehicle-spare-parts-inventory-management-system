@@ -52,14 +52,17 @@ export default function Login() {
 
     useEffect(() => {
       if (userState && userState.user != null && userState.isError === false) {
-            if (userState.user.role === "admin") {
-                Navigate("/Admin");
-            } else if (userState.user.role === "supplier") {
-                sessionStorage.setItem("userEmail", userState.user.email);
-                Navigate("/supplier/home");
-            } else {
-                sessionStorage.setItem("userID", userState.user._id);
-                Navigate("/home");
+        if (userState.user.role === "admin") {
+            Navigate("/Admin");
+        } else if (userState.user.role === "supplier") {
+            sessionStorage.setItem("userEmail", userState.user.email);
+            Navigate("/supplier/home");
+        } else if (userState.user.role === "Delivery Person") {
+            sessionStorage.setItem("userEmail", userState.user.email);
+            Navigate("/delivery");
+        } else {
+            sessionStorage.setItem("userID", userState.user._id);
+            Navigate("/home");
             }
         }
     }, [userState, navigate])
