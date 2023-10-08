@@ -50,6 +50,7 @@ function AdminUpdateclaim() {
         <p><strong>Bill No:</strong> {claimDetails.billno}</p>
         <p><strong>Purchase Date:</strong> {claimDetails.purchasedate}</p>
         <p><strong>Claim added Date:</strong> {claimDetails.claimdate}</p>
+        <p><strong>branch name:</strong> {claimDetails.branch}</p>
         <p><strong>Contact No:</strong> {claimDetails.contactNo}</p>
         <p><strong>Email:</strong> {claimDetails.email}</p>
         <p><strong>Description:</strong> {claimDetails.description}</p>

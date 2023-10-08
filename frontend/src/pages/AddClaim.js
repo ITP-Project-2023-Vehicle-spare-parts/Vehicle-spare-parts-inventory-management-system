@@ -10,6 +10,7 @@ export default function AddClaim() {
   const [billno, setbillno] = useState("");
   const [purchasedate, setpurchasedate] = useState("");
   const [claimdate, setclaimdate] = useState("");
+  const [branch, setBranch] = useState("");
   const [description, setdescription] = useState("");
   const [email, setemail] = useState("");
   const [contactNo, setcontactno] = useState("");
@@ -58,7 +59,7 @@ export default function AddClaim() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!productname || !billno || !purchasedate || !claimdate || !description || !email || !contactNo) {
+  if (!productname || !billno || !purchasedate || !claimdate || !branch || !description || !email || !contactNo) {
     alert("All fields are required.");
     return;
   }
@@ -84,6 +85,7 @@ const handleSubmit = async (e) => {
       billno,
       purchasedate,
       claimdate,
+      branch,
       description,
       email,
       contactNo
@@ -107,6 +109,7 @@ const handleSubmit = async (e) => {
     setbillno('');
     setpurchasedate('');
     setclaimdate('');
+    setBranch('');
     setdescription('');
     setemail('');
     setcontactno('');
@@ -181,6 +184,14 @@ const handleSubmit = async (e) => {
                 setclaimdate(e.target.value);
               }}
             />
+          </div>
+
+          <div className="mb-3 text-white">
+            <label htmlFor="fullname" className="form-label">Branch name</label>
+            <input type="text" className="form-control ml-2 mr-5" id="fullname" placeholder="Enter branch name"
+              required onChange={(e) => {
+                setBranch(e.target.value);
+              }} />
           </div>
 
           <div className="mb-3 text-white">

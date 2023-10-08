@@ -3,22 +3,23 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
- // Import autoTable correctly
+import 'jspdf-autotable'; // Import autoTable correctly
+import '../CSS/AllClaim.css'; // Import your CSS file
 
 function AllClaims() {
   const [warrantys, setWarranty] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    getclaims();
+    getClaims();
   }, []);
 
-  const getclaims = async () => {
+  const getClaims = async () => {
     try {
       const response = await axios.get('http://localhost:8000/warrenty/');
       setWarranty(response.data);
     } catch (error) {
-      console.error('Error fetching claim:', error);
+      console.error('Error fetching claims:', error);
     }
   };
 
@@ -33,7 +34,7 @@ function AllClaims() {
         timer: 1500,
       });
 
-      getclaims(); // Refresh the student list after deletion
+      getClaims(); // Refresh the claims list after deletion
     } catch (error) {
       console.error('Error deleting claim:', error);
     }
@@ -49,12 +50,13 @@ function AllClaims() {
     const doc = new jsPDF();
 
     // Define the content of your report
-    const header = ['Product Name', 'Bill No', 'Purchase Date', 'Claim Date', 'Contact No', 'Email', 'Description', 'Status'];
+    const header = ['Product Name', 'Bill No', 'Purchase Date', 'Claim Date', 'Branch', 'Contact No', 'Email', 'Description', 'Status'];
     const data = filteredWarrantys.map((claim) => [
       claim.productname,
       claim.billno,
       claim.purchasedate,
       claim.claimdate,
+      claim.branch,
       claim.contactNo,
       claim.email,
       claim.description,
@@ -63,21 +65,19 @@ function AllClaims() {
 
     // Set the table headers and data
     doc.autoTable({
-        head: [header],
-        body: data,
-        startY: 50, // Adjust the starting position as needed
-      });
+      head: [header],
+      body: data,
+      startY: 50, // Adjust the starting position as needed
+    });
 
-      
-      // Add image at the top
-      //doc.addImage(process.env.PUBLIC_URL + '../LOGO.png', "PNG", 10, 10, 70, 35);
-
-      doc.text("All Claim Details", 85, 35);
-      doc.setFontSize(9);
-      doc.text("Chathura Motors", 155, 5);
-      doc.text("Negombo", 155, 10);
-      doc.text("chathura@gmail.com", 155, 15);
-      doc.text("0771268478", 155, 20);
+    // Add text and styles for the report title and metadata
+    doc.setFontSize(14);
+    doc.text('All Claim Details', 105, 30, { align: 'center' });
+    doc.setFontSize(9);
+    doc.text('Chathura Motors', 155, 5);
+    doc.text('Negombo', 155, 10);
+    doc.text('chathura@gmail.com', 155, 15);
+    doc.text('0771268478', 155, 20);
 
     // Save the PDF or open it in a new tab
     doc.save('warranty_claims_report.pdf');
@@ -85,52 +85,54 @@ function AllClaims() {
 
   return (
     <div className="container">
-      <h1>All Claims</h1>
+      <h1 className="page-title">All Claims</h1>
 
-      <div>
+      <div className="search-container">
         <input
           type="text"
-          placeholder="Search by product name or bill no"
+          placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <table className="claimtable">
         <thead>
           <tr>
-            <th style={tableHeaderStyle}>Product Name</th>
-            <th style={tableHeaderStyle}>Bill No</th>
-            <th style={tableHeaderStyle}>Purchase Date</th>
-            <th style={tableHeaderStyle}>Claim Date</th>
-            <th style={tableHeaderStyle}>Contact No</th>
-            <th style={tableHeaderStyle}>Email</th>
-            <th style={tableHeaderStyle}>Description</th>
-            <th style={tableHeaderStyle}>Status</th>
-            <th style={tableHeaderStyle}>Action</th>
+            <th>Product Name</th>
+            <th>Bill No</th>
+            <th>Purchase Date</th>
+            <th>Claim Date</th>
+            <th>Branch</th>
+            <th>Contact No</th>
+            <th>Email</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {filteredWarrantys.map((claim) => (
             <tr key={claim._id}>
-              <td style={tableCellStyle}>{claim.productname}</td>
-              <td style={tableCellStyle}>{claim.billno}</td>
-              <td style={tableCellStyle}>{claim.purchasedate}</td>
-              <td style={tableCellStyle}>{claim.claimdate}</td>
-              <td style={tableCellStyle}>{claim.contactNo}</td>
-              <td style={tableCellStyle}>{claim.email}</td>
-              <td style={tableCellStyle}>{claim.description}</td>
-              <td style={tableCellStyle}>{claim.status}</td>
+              <td>{claim.productname}</td>
+              <td>{claim.billno}</td>
+              <td>{claim.purchasedate}</td>
+              <td>{claim.claimdate}</td>
+              <td>{claim.branch}</td>
+              <td>{claim.contactNo}</td>
+              <td>{claim.email}</td>
+              <td>{claim.description}</td>
+              <td>{claim.status}</td>
 
-              <td style={tableCellStyle}>
+              <td>
                 <Link
                   to={`/admin/updates/${claim._id}/${claim.billno}`}
-                  className="btn btn-warning"
+                  className="update"
                 >
                   Update
                 </Link>
                 <button
-                  className="btn btn-danger ml-2"
+                  className="delete"
                   onClick={() => handleDelete(claim._id)}
                 >
                   Delete
@@ -140,24 +142,12 @@ function AllClaims() {
           ))}
         </tbody>
       </table>
-      <button onClick={generateReport} className="btn btn-primary">
+
+      <button onClick={generateReport} id='butt' className="report">
         Generate Report
       </button>
     </div>
   );
 }
-
-const tableHeaderStyle = {
-  border: '1px solid #ddd',
-  padding: '10px',
-  background: '#f2f2f2',
-  textAlign: 'center',
-};
-
-const tableCellStyle = {
-  border: '1px solid #ddd',
-  padding: '4px',
-  textAlign: 'center',
-};
 
 export default AllClaims;

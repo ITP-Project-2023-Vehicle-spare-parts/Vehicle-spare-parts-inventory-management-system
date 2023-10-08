@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { /*useEffect,*/ useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import Container from '../components/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { createAnOrder, getUserCart } from '../features/user/userSlice';
+import { createAnOrder /* , getUserCart*/ } from '../features/user/userSlice';
 
 const shippingSchema = yup.object({
   firstName: yup
@@ -33,8 +33,11 @@ const Checkout = () => {
   const cartState = useSelector((state) => state.user.userCart);
   const authState = useSelector((state) => state.auth);
   const userState = useSelector((state) => state.user);
+  console.log(userState)
   const [shippingInfo, setShippingInfo] = useState(null);
+  console.log(shippingInfo)
   const navigate = useNavigate();
+  console.log(navigate)
 
   const formik = useFormik({
     initialValues: {
@@ -235,7 +238,7 @@ const Checkout = () => {
                         >
                           {item?.count}
                         </span>
-                        <img className='img-fluid' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s"} alt='product' />
+                        <img className='img-fluid' src={item?.product?.images} alt='product' />
                       </div>
                       <div>
                         <h5 className='total-price' style={{ fontSize: '15px', fontWeight: 'bold', color: '#333' }}>

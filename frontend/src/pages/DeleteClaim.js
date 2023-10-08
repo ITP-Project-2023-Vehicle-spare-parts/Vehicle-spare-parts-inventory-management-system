@@ -12,6 +12,7 @@ function DeleteClaim() {
         email: '',
         purchasedate: '',
         claimdate: '',
+        branch:'',
         description: '',
         status: '',
         contactNo: ''
@@ -52,11 +53,12 @@ function DeleteClaim() {
         <div className="container shadow-lg p-3 mb-5  rounded" style={{ background: "#87CEEB" }}>
             <h2>Delete Claim</h2>
             <div>
-                <h3>Claim Details</h3>
+                
                 <p>Product Name: {claimDetails.productname}</p>
                 <p>Bill No: {claimDetails.billno}</p>
                 <p>Purchase Date: {claimDetails.purchasedate}</p>
                 <p>Claim added Date: {claimDetails.claimdate}</p>
+                <p>Branch name: {claimDetails.branch}</p>
                 <p>Contact No: {claimDetails.contactNo}</p>
                 <p>Email: {claimDetails.email}</p>
                 <p>Description: {claimDetails.description}</p>

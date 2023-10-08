@@ -8,6 +8,7 @@ import './stockCss.css'; // Create a CSS file for styling
 import { useDispatch, useSelector } from 'react-redux';
 //import { getBrands } from '../features/brand/brandSlice';
 import { getProducts } from '../features/product/productSlice';
+import { getCategories } from '../features/pcategory/pcategorySlice';
 
 function AddStock() {
   const [productName, setProductName] = useState('');
@@ -19,9 +20,11 @@ function AddStock() {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getProducts());
+    dispatch(getCategories())
   }, [dispatch]);
 
   const productState = useSelector((state) => state.product.products);
+  const pCategoryState = useSelector((state) => state.pcategory.pCategories);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,8 +97,14 @@ function AddStock() {
                     })}
 
     </select>
+    
 
           </div>
+
+
+        
+
+
           <div className="form-group col-md-6">
             <label htmlFor="supplierName"  style={{ fontSize: '20px' }} >Supplier Name</label>
             <input

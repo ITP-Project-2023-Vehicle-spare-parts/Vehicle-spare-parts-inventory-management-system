@@ -3,6 +3,7 @@ const Product = require("../model/productModel");
 const Cart = require("../model/cartModel");
 const Coupon = require("../model/couponModel");
 const Order = require("../model/orderModel");
+const Stock = require("../model/stockModel");
 const uniqid = require("uniqid");
 
 const asyncHandler = require("express-async-handler");
@@ -478,7 +479,6 @@ const emptyCart = asyncHandler(async (req, res) => {
 const createOrder = asyncHandler(async (req, res) => {
   const {shippingInfo, paymentInfo} = req.body;
   const {_id} = req.user;
-
   try {
     // Get the current month name
     const existingCart = await Cart.findOne({user: _id});
@@ -498,9 +498,17 @@ const createOrder = asyncHandler(async (req, res) => {
       }).save();
 
       if (newOrder) {
+        let productId = existingCart.products[0].product;
+        let pro_id = productId.toString(productId);
+        let count = existingCart.products[0].count;
         // Delete the cart as the order is successfully created
         const deleteCart = await Cart.deleteOne({user: _id})
+        let changeStock = await Stock.findOne({
+          product: pro_id
+        });
+        changeStock.stockQuantity = changeStock.stockQuantity - count;
 
+        await changeStock.save();
         res.json({
           newOrder, success: true,
         });

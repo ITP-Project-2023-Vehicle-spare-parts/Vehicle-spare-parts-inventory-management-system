@@ -12,6 +12,7 @@ function OrderHistoryTable() {
   const [searchQuery, setSearchQuery] = useState('');
   const [deliveryPersonData, setDeliveryPersonData] = useState([]);
   const [loadingDeliveryPerson, setLoadingDeliveryPerson] = useState(true);
+  console.log(loadingDeliveryPerson)
 
   console.log(loading)
   useEffect(() => {

@@ -8,6 +8,9 @@ import './stockCss.css'; // Create a CSS file for styling
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+ 
+
+  
   //const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,7 +48,10 @@ function FetchStock() {
     stock.productName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
+  
+  
+
+return (
     <div id="Allstock">
       <div className="fetch-stock-container">
         <h1 className="fetch-stock-title" >All Stock...</h1>
@@ -59,6 +65,15 @@ function FetchStock() {
   />
   <BsSearch></BsSearch>
        </div>
+
+       
+         
+ 
+         
+
+        
+
+
         <table className="stock-table">
           <thead>
             <tr>

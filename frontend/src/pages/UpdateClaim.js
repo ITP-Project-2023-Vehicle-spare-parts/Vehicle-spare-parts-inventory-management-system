@@ -14,6 +14,7 @@ function UpdateClaim() {
         email: '',
         purchasedate: '',
         claimdate: '',
+        branch:'',
         description: '',
         status: '',
         contactNo: ''
@@ -146,6 +147,18 @@ function UpdateClaim() {
             
             />
           </div>
+
+          <div className="mb-3 text-white">
+                    <label htmlFor="branchname">Branch Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="branch"
+                        name="branch"
+                        value={claimDetails.branch}
+                        onChange={handleChange}
+                    />
+                </div>
           <div className="mb-3 text-white">
             <label htmlFor="email" className="form-label">Email:</label>
             <input
@@ -153,8 +166,7 @@ function UpdateClaim() {
               className="form-control"
               id="email"
               name="email"
-              placeholder="MM/DD/YYYY"
-              min={getCurrentDate()}
+    
               required
               value={claimDetails.email}
               onChange={handleChange}

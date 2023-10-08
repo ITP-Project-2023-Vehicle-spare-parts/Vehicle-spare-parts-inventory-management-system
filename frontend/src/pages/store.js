@@ -12,20 +12,25 @@ const Store = () => {
   const [grid, setGrid] = useState(4);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [priceRange, setPriceRange] = useState({ from: '', to: '' });
   const productState = useSelector((state) => state.product.products);
   const pCategoryState = useSelector((state) => state.pcategory.pCategories);
   //const [selectedSortOption, setSelectedSortOption] = useState('best-selling');
 
   const filteredProducts = productState.filter((item) =>
-    item.Title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  (item.Title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  item.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  item.category.toLowerCase().includes(searchQuery.toLowerCase())) &&
+  ((priceRange.from === '' || parseInt(item.price) >= parseInt(priceRange.from)) &&
+  (priceRange.to === '' || parseInt(item.price) <= parseInt(priceRange.to)))
+);
 
-  const filteredProductsByCategory = productState.filter((item) =>
-    item.category.toLowerCase().includes(selectedCategory.toLowerCase())
-  );
+const filteredProductsByCategory = productState.filter((item) =>
+  (item.category.toLowerCase().includes(selectedCategory.toLowerCase())) &&
+  ((priceRange.from === '' || parseInt(item.price) >= parseInt(priceRange.from)) &&
+  (priceRange.to === '' || parseInt(item.price) <= parseInt(priceRange.to)))
+);
 
   const dispatch = useDispatch();
   useEffect(()=>{
@@ -34,7 +39,7 @@ const Store = () => {
   },[dispatch]);
 
   const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category === 'all' ? '' : category);
     setSearchQuery(''); // Clear search query when a category is selected
   };
 
@@ -70,6 +75,8 @@ const Store = () => {
                 {category.title}
               </li>
             ))}
+            <li>..................................................................</li>
+            <li onClick={() => handleCategoryClick('all')}>All Products</li>
                 </ul>
               </div>
             </div>
@@ -79,11 +86,37 @@ const Store = () => {
                 <h5 className='sub-title'>Price (Rs.)</h5>
                 <div className='d-flex align-items-center gap-10'>
                 <div className="form-floating">
-                  <input type="email" className="form-control" id="floatingInput" placeholder="From" />
+                <input
+    type="text" 
+    className="form-control"
+    id="floatingInput"
+    placeholder="From"
+    value={priceRange.from}
+    onChange={(e) => {
+      const input = e.target.value;
+      if (/^\d+$/.test(input)) {
+        // Only update the state if the input is a positive integer
+        setPriceRange({ ...priceRange, from: input });
+      }
+    }}
+  />
                   <label htmlFor="floatingInput">From</label>
                 </div>
                 <div className="form-floating">
-                  <input type="email" className="form-control" id="floatingInput1" placeholder="To"/>
+                <input
+    type="text"  
+    className="form-control"
+    id="floatingInput1"
+    placeholder="To"
+    value={priceRange.to}
+    onChange={(e) => {
+      const input = e.target.value;
+      if (/^\d+$/.test(input)) {
+        // Only update the state if the input is a positive integer
+        setPriceRange({ ...priceRange, to: input });
+      }
+    }}
+  />
                   <label htmlFor="floatingInput1">To</label>
                 </div>
                 </div>      
