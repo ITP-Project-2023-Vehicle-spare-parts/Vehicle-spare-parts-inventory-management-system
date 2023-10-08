@@ -19,6 +19,7 @@ const addclaim = async (req, res) => {
     const billno = req.body.billno;
     const purchasedate = req.body.purchasedate;
     const claimdate = req.body.claimdate;
+    const branch=req.body.branch;
     const description = req.body.description;
     const email = req.body.email;
     const contactNo = req.body.contactNo;
@@ -30,6 +31,7 @@ const addclaim = async (req, res) => {
             billno,
             purchasedate,
             claimdate,
+            branch,
             description,
             email,
             contactNo,
@@ -59,11 +61,11 @@ const updatewarrenty = async (req, res) => {
     try {
         const claimid = req.params.id;
 
-        const { productname ,billno,purchasedate , claimdate, description, email, contactNo,status} = req.body;
+        const { productname ,billno,purchasedate , claimdate,branch, description, email, contactNo,status} = req.body;
 
 
         const updatedWarrentyData = {
-            productname ,billno,purchasedate , claimdate, description, email, contactNo,status
+            productname ,billno,purchasedate , claimdate,branch, description, email, contactNo,status
         };
 
         await Warrenty.findByIdAndUpdate(claimid, updatedWarrentyData);
