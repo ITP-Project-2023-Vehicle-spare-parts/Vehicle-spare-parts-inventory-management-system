@@ -8,6 +8,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function AddClient() {
   const [formErrors, setFormErrors] = useState({});
@@ -168,6 +170,7 @@ export default function AddClient() {
                       *
                     </span>
                   </Form.Label>
+
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="text"
@@ -242,6 +245,14 @@ export default function AddClient() {
                       *
                     </span>
                   </Form.Label>
+                  <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                         Phone Number Needs to be a 10-digit number
+                        </Tooltip>
+                      }
+                    >
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-white rounded"
                     type="number"
@@ -252,6 +263,7 @@ export default function AddClient() {
                       setPhone(e.target.value);
                     }}
                   />
+                  </OverlayTrigger>
                   {formErrors.ClientsPhone && (
                     <div className="error-message">
                       {formErrors.ClientsPhone}
@@ -443,6 +455,14 @@ export default function AddClient() {
                       *
                     </span>
                   </Form.Label>
+                  <OverlayTrigger
+                      placement="top"
+                      overlay={
+                        <Tooltip id="tooltip-company-name">
+                         Password Must be at least 6 characters long
+                        </Tooltip>
+                      }
+                    >
                   <Form.Control
                     className="shadow-lg p-3 mb-2 bg-lightrounded"
                     type="password"
@@ -453,6 +473,7 @@ export default function AddClient() {
                       setsysPassword(e.target.value);
                     }}
                   />
+                  </OverlayTrigger>
                   {formErrors.SystemPassword && (
                     <div className="error-message">
                       {formErrors.SystemPassword}
