@@ -150,39 +150,50 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px' }}>Dashboard</h3>
+      <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px',fontFamily: 'Arial, sans-serif' }}>Dashboard</h3>
       <div className='d-flex justify-content-between align-items-center gap-3'>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
           <div>
-            <p className='desc' style={{ fontSize: '24px', color: '#6c757d' }}>Total Income</p>
-            <h4 className='mb-0 sub-title' style={{ fontSize: '30px' }}>Rs.{yearlyDataState && yearlyDataState[0]?.amount}</h4>
+            <p className='desc' style={{ fontSize: '24px', color: '#6c757d',fontFamily: 'Arial, sans-serif' }}>Total Income</p>
+            <h4 className='mb-0 sub-title' style={{ fontSize: '30px',fontFamily: 'Arial, sans-serif' }}>Rs.{yearlyDataState && yearlyDataState[0]?.amount}</h4>
           </div>
         </div>
         <div className='d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 rounded-3'>
           <div>
-            <p className='desc' style={{fontSize: '24px', color: '#6c757d' }}>Total Sales</p>
-            <h4 className='mb-0 sub-title' style={{ fontSize: '30px' }}>{yearlyDataState && yearlyDataState[0]?.count}</h4>
+            <p className='desc' style={{fontSize: '24px', color: '#6c757d',fontFamily: 'Arial, sans-serif' }}>Total Sales</p>
+            <h4 className='mb-0 sub-title' style={{ fontSize: '30px' ,fontFamily: 'Arial, sans-serif'}}>{yearlyDataState && yearlyDataState[0]?.count}</h4>
           </div>
         </div>
       </div>
       <div className='d-flex justify-content-between gap-3'>
         <div className='mt-4 flex-grow-1 w-50'>
-          <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Income Statics</h3>
+          <h3 className='mb-5 title' style={{ fontSize: '30px' ,fontFamily: 'Arial, sans-serif'}}>Income Statics</h3>
           <div>
             <Column {...config} />
           </div>
         </div>
         <div className='mt-4 flex-grow-1 w-50 '>
-          <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Sales Statics</h3>
+          <h3 className='mb-5 title' style={{ fontSize: '30px',fontFamily: 'Arial, sans-serif' }}>Sales Statics</h3>
           <div>
             <Column {...config2} />
           </div>
         </div>
       </div>
       <div className='mt-4 '>
-        <h3 className='mb-5 title' style={{ fontSize: '30px' }}>Recent Orders</h3>
+        <h3 className='mb-5 title' style={{ fontSize: '30px' ,fontFamily: 'Arial, sans-serif'}}>Recent Orders</h3>
         <div>
-          <Table columns={columns} dataSource={orderData} />
+          <Table
+            columns={columns}
+            dataSource={orderData}
+            bordered // Add border to the table
+            // Add CSS styles to the table
+            style={{
+              fontSize: '20px',
+              fontWeight: 'normal',
+              color: 'black',
+              fontFamily: 'Arial, sans-serif'
+            }}
+          />
         </div>
       </div>
     </div>
