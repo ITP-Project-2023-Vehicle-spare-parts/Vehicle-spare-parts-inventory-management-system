@@ -102,6 +102,7 @@ const FetchClaim = () => {
                         <p>Bill No: {claimDetails.billno}</p>
                         <p>purchasedate: {claimDetails.purchasedate}</p>
                         <p>claim added date: {claimDetails.claimdate}</p>
+                        <p>Branch: {claimDetails.branch}</p>
                         <p>contactNo: {claimDetails.contactNo}</p>
                         <p>email: {claimDetails.email}</p>
                         <p>description: {claimDetails.description}</p>

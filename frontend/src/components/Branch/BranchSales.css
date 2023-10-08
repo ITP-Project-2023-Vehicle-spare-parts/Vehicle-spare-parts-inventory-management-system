@@ -1,0 +1,72 @@
+#BranchSales .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+   
+  }
+
+  #BranchSales .chart-container h2 {
+    margin-bottom: 20px;
+    color: #01080c;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease-in-out;
+  }
+  
+  #BranchSales .chart {
+    background-color: #e8e9f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #BranchSales .recharts-wrapper {
+    font-size: 18px; /* Adjust the font size as needed */
+  }
+
+  #BranchSales .recharts-text {
+    fill: #333; /* Axis label color */
+  }
+  
+  #BranchSales .recharts-tooltip {
+    background-color: rgba(255, 255, 255, 0.9); /* Tooltip background color */
+    border: 1px solid #ccc; /* Tooltip border color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Tooltip box shadow */
+    font-size: 14px;
+    color: #333;
+  }
+
+  #BranchSales .recharts-legend {
+    font-size: 16px; /* Legend font size */
+  }
+  
+  #BranchSales .recharts-legend-item-text {
+    fill: #333; /* Legend text color */
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  #BranchSales .fadeInUp {
+    animation: fadeInUp 1s ease-in-out;
+  }
+
+  #BranchSales .recharts-bar {
+    fill: #3f51b5; /* Bar color */
+    transition: fill 0.3s ease; /* Smooth transition on hover */
+  }
+  
+  #BranchSales .recharts-bar:hover {
+    fill: #1a237e; /* Bar color on hover */
+  }

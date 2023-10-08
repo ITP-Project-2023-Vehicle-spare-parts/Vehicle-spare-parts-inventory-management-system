@@ -1,0 +1,74 @@
+#BillAssign {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+#BillAssign h2 {
+    margin-bottom: 30px;
+    color: #01080c;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+#BillAssign form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+#BillAssign label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    text-align: left;
+}
+
+#BillAssign input[type="text"],
+#BillAssign input[type="date"],
+#BillAssign select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+#BillAssign button {
+    width: 50%;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+#BillAssign button:hover {
+    background-color: #45a049;
+}
+
+#BillAssign input[type="text"][readonly],
+#BillAssign input[type="date"][readonly],
+#BillAssign select[readonly] {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+#BillAssign input[type="text"][readonly]:focus,
+#BillAssign input[type="date"][readonly]:focus,
+#BillAssign select[readonly]:focus {
+    outline: none;
+}

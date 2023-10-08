@@ -41,7 +41,11 @@ const warrentySchema =new Schema(
         status:{
             type:String
             
+        },
+        branch:{
+            type:String
         }
+
 
     }
 )

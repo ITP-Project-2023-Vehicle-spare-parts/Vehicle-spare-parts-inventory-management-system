@@ -94,6 +94,7 @@ function AddStock() {
                     })}
 
     </select>
+    
 
           </div>
           <div className="form-group col-md-6">
