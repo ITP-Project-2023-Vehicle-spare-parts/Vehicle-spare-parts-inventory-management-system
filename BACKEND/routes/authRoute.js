@@ -64,8 +64,8 @@ router.put("/update-product-cart/:cartItemId/:newQuantity", authMiddleware, upda
 router.delete("/empty-cart", authMiddleware, emptyCart);
 router.delete("/:id", deleteaUser);
 router.put("/edit-user/:id", updatedUser);
-router.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
-router.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
+router.put("/block-user/:id", blockUser);
+router.put("/unblock-user/:id",unblockUser);
 router.post("/cart", authMiddleware, addToUserCart);
 
 
