@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './OrderHistryTable.css';
 import jsPDF from 'jspdf';
+import DeliveryChart from './DeliveryChart';
 
 function OrderHistoryTable() {
   const [originalOrderData, setOriginalOrderData] = useState([]);
@@ -145,6 +146,7 @@ function OrderHistoryTable() {
       <div className="action-buttons">
         <button onClick={handleReportGeneration}>Generate Report</button>
       </div>
+      <DeliveryChart />
     </div>
   );
 }

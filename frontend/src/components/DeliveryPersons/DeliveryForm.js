@@ -325,7 +325,7 @@ function DeliveryForm() {
           const newUser = {
             firstname: formData.deliverypersonname,
             lastname: formData.deliverypersonGender,
-            email: formData.deliverypersonEmail,
+            email: formData.deliverypersonUsername,
             password: formData.deliverypersonPassword,
             nic: formData.deliverypersonNIC,
             mobile: formData.deliverypersonContactNumber,
