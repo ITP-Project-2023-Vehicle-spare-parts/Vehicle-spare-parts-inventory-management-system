@@ -66,15 +66,14 @@ function LowStockTable() {
   }, [showLowStockList]); // Add showLowStockList as a dependency
 
   const handleAddOrderClick = (stock) => {
-
-    console.log(stock);
     const suggestedOrder = {
       productname: stock.productName,
       stockQuantity: stock.stockQuantity,
       reorderpoint: stock.reorderpoint,
       neededStockQuantity: stock.reorderpoint - stock.stockQuantity,
-      supplierName: stock.supplierName, // Replace with the actual supplier name
+      suppliername: stock.supplierName, // Replace with the actual supplier name
     };
+    console.log(suggestedOrder);
 
     // Send the individual low stock order data to the backend for saving
     saveLowStockOrder(suggestedOrder);
@@ -87,7 +86,7 @@ function LowStockTable() {
         "http://localhost:8000/supplierReq/save-low-stock-order",
         ReqOrder
       );
-      console.log(response);
+      console.log(response.data);
       // Check if the order was saved successfully on the backend
       if (response.data) {
         // Show a success toast notification
@@ -155,26 +154,33 @@ function LowStockTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {stocks.map((stock) => (
-                    !hiddenRows.includes(stock._id) && (
-                      <tr key={stock._id}>
-                        <td style={stocktableCellStyle}>{stock.productName}</td>
-                        <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
-                        <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
-                        <td style={stocktableCellStyle}>
-                          {stock.reorderpoint - stock.stockQuantity}
-                        </td>
-                        <td style={stocktableCellStyle}>
-                          <button
-                            className="btn btn-outline-success"
-                            onClick={() => handleAddOrderClick(stock)}
-                          >
-                            Add
-                          </button>
-                        </td>
-                      </tr>
-                    )
-                  ))}
+                  {stocks.map(
+                    (stock) =>
+                      !hiddenRows.includes(stock._id) && (
+                        <tr key={stock._id}>
+                          <td style={stocktableCellStyle}>
+                            {stock.productName}
+                          </td>
+                          <td style={stocktableCellStyle}>
+                            {stock.stockQuantity}
+                          </td>
+                          <td style={stocktableCellStyle}>
+                            {stock.reorderpoint}
+                          </td>
+                          <td style={stocktableCellStyle}>
+                            {stock.reorderpoint - stock.stockQuantity}
+                          </td>
+                          <td style={stocktableCellStyle}>
+                            <button
+                              className="btn btn-outline-success"
+                              onClick={() => handleAddOrderClick(stock)}
+                            >
+                              Add
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                  )}
                 </tbody>
               </table>
             )}

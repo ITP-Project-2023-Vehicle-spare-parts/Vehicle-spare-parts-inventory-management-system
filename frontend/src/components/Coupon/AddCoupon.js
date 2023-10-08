@@ -13,6 +13,7 @@ function AddCoupon() {
 
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+  console.log(errorMessage)
 
   const handleChange = (e) => {
     const { name, value } = e.target;

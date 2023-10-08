@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './EditDeliveryPersonProfile.css'; // Import your custom CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
+import toast from 'react-hot-toast';
 
 function EditDeliveryPerson() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ function EditDeliveryPerson() {
     deliverypersonGender: '',
     // Add other form fields here
   });
+  const [formErrors, setFormErrors] = useState({});
 
   useEffect(() => {
     // Fetch the delivery person's details from your API
@@ -30,27 +32,268 @@ function EditDeliveryPerson() {
       });
   }, [id]);
 
-  const handleInputChange = (e) => {
+  const validateForm = (e) => {
+    //const errors = {};
     const { name, value } = e.target;
-    // Update the state using a callback function
-    setDeliveryPerson((prevDeliveryPerson) => ({
-      ...prevDeliveryPerson,
-      [name]: value,
-    }));
+    let errors = { ...formErrors };
+
+    // Validate Delivery Person ID
+    if (!deliveryPerson.DeliveryPersonID) {
+      errors.DeliveryPersonID = 'Delivery Person ID is required';
+    }
+
+    // Validate Full Name
+    if (!deliveryPerson.deliverypersonname) {
+      errors.deliverypersonname = 'Full Name is required';
+    } else if (!/^\S+(\s+\S+)+$/.test(deliveryPerson.deliverypersonname)) {
+      errors.deliverypersonname = 'Please enter the full name';
+    }
+
+    // Validate Date of Birth
+    if (!deliveryPerson.deliverypersonDOB) {
+      errors.deliverypersonDOB = 'Date of Birth is required';
+    }
+
+    if (!deliveryPerson.deliverypersonContactNumber) {
+      errors.deliverypersonContactNumber = 'Contact Number is required';
+    } else if (!/^\d+$/.test(deliveryPerson.deliverypersonContactNumber)) {
+      errors.deliverypersonContactNumber = 'Contact Number must be numeric';
+    }
+    const limitedNumericValue = deliveryPerson.deliverypersonContactNumber;
+
+    if (limitedNumericValue.length !== 10) {
+      errors.deliverypersonContactNumber = 'Contact Number must be exactly 10 digits';
+    } else {
+      delete errors.deliverypersonContactNumber;
+    }
+
+
+    // Validate Email
+    if (!deliveryPerson.deliverypersonEmail) {
+      errors.deliverypersonEmail = 'Email is required';
+    } else if (!/^\S+@\S+\.\S+$/.test(deliveryPerson.deliverypersonEmail)) {
+      errors.deliverypersonEmail = 'Email is invalid';
+    }
+    if (!deliveryPerson.deliverypersonGender) {
+      errors.deliverypersonGender = 'Gender is required';
+    }
+    if (!deliveryPerson.deliverypersonNIC) {
+      errors.deliverypersonNIC = 'NIC is required';
+    }
+    if (!deliveryPerson.deliverypersonAddress) {
+      errors.deliverypersonAddress = 'Address is required';
+    }
+    if (!deliveryPerson.deliverypersonDLN) {
+      errors.deliverypersonDLN = 'Driving license number is required';
+    }
+    if (!deliveryPerson.deliverypersonDLexpire) {
+      errors.deliverypersonDLexpire = 'DL Expire is required';
+    }
+    if (!deliveryPerson.deliverypersonVehicleType) {
+      errors.deliverypersonVehicleType = 'Vehicle type is required';
+    }
+    if (!deliveryPerson.deliverypersonUsername) {
+      errors.deliverypersonUsername = 'User name is required';
+    }
+    if (!deliveryPerson.deliverypersonPassword) {
+      errors.deliverypersonPassword = 'Password is required';
+    }
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+    
+    // ... Add more validation rules for other fields ...
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Send an HTTP PUT request to update the data on the server
-    axios
-      .put(`http://localhost:8000/deliveryPerson/update/${id}`, deliveryPerson)
-      .then((response) => {
-        alert('Profile updated successfully!');
-      })
-      .catch((error) => {
-        console.error('Error updating profile:', error);
-      });
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    let errors = { ...formErrors };
+
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+
+    setFormErrors(errors);
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    let errors = { ...formErrors };
+
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+  
+
+    setFormErrors(errors);
+    setDeliveryPerson({ ...deliveryPerson, [name]: value }); 
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isValid = validateForm(e);
+  
+    if (isValid) {
+      try {
+        // Send a PUT request to your API endpoint
+        await axios.put(`http://localhost:8000/deliveryPerson/update/${id}`, deliveryPerson);
+  
+        toast.success("Successfully update Delivery Person!", {
+          duration: 3000,
+          position: "top-right",
+        });
+      } catch (error) {
+        console.error('Error updating profile:', error);
+      }
+    }
+  };
+
 
   return (
   //  
@@ -70,6 +313,7 @@ function EditDeliveryPerson() {
             name="deliverypersonname"
             value={deliveryPerson.deliverypersonname}
             onChange={handleInputChange}
+            onBlur={handleBlur}
           />
         </div>
         <div className="form-group">
@@ -114,6 +358,7 @@ function EditDeliveryPerson() {
             name="deliverypersonContactNumber"
             value={deliveryPerson.deliverypersonContactNumber}
             onChange={handleInputChange}
+            onBlur={handleBlur}
           />
         </div>
 
@@ -126,6 +371,7 @@ function EditDeliveryPerson() {
             name="deliverypersonEmail"
             value={deliveryPerson.deliverypersonEmail}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             
           />
         </div>
@@ -140,6 +386,7 @@ function EditDeliveryPerson() {
             value={deliveryPerson.deliverypersonNIC}
             onChange={handleInputChange}
             style={{ cursor: 'not-allowed' }}
+            onBlur={handleBlur}
           />
         </div>
         <div className="form-group">
@@ -177,6 +424,7 @@ function EditDeliveryPerson() {
             name="deliverypersonDLexpire"
             value={deliveryPerson.deliverypersonDLexpire}
             onChange={handleInputChange}
+            onBlur={handleBlur}
             readOnly
             style={{ cursor: 'not-allowed' }}
           />

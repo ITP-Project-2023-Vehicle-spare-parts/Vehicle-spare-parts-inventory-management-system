@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import SupplierSideNavigation from "../../SupplierSideNavigation";
 import SupplierNavBar from "../../NavBar/SupplierNavBar";
 import "./SupplierHome.css";
 import "boxicons/css/boxicons.min.css";
+import { Table } from "antd";
 
 export default function SupplierHome() {
-
-
-
-  
+  const [orderData, setOrderData] = useState([]);
+  console.log(setOrderData);
+  const columns = [
+    {
+      title: "Product Name",
+      dataIndex: "name",
+    },
+    {
+      title: "Product Count",
+      dataIndex: "product",
+    },
+    {
+      title: "Total Price",
+      dataIndex: "price",
+    },
+    {
+      title: "Shipment Date",
+      dataIndex: "dprice",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+    },
+  ];
 
   return (
     <div id="SupplierHome">
@@ -162,6 +183,15 @@ export default function SupplierHome() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div className="mt-4 " style={{ marginLeft: "200px", padding: "40px" }}>
+        <h3 className="mb-5 title">Recent Orders</h3>
+        <div>
+          <Table columns={columns} dataSource={orderData} />
         </div>
       </div>
     </div>

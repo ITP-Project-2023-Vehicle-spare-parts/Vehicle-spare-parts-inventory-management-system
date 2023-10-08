@@ -20,11 +20,6 @@ function AssignBranch() {
       });
   }, []);
 
-  // Function to handle changes in branch location
-  const handleBranchLocationChange = (event, id) => {
-    const selectedLocation = event.target.value;
-    setSelectedBranch(selectedLocation);
-  };
 
   const updateClusterDatabase = (id) => {
     console.log("Updating order with ID:", id);
@@ -58,7 +53,6 @@ function AssignBranch() {
             <th>Customer Name</th>
             <th>Shipping Address</th>
             <th>Order Status</th>
-            <th>Branch Location</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -70,28 +64,13 @@ function AssignBranch() {
               <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
               <td>{order.orderStatus}</td>
               <td>
-                <select
-                  onChange={(e) => handleBranchLocationChange(e, order._id)}
-                  disabled={disabledButtons[order._id]} // Disable the dropdown if branch is selected
+                <a
+                     href={`/admin/billAssign/${order._id}`}
+                    className="action-btn"
                 >
-                  <option value="Not Assign">Not Assign</option>
-                  <option value="jaffna">Jaffna</option>
-                  <option value="ibbagamuwa_main">Ibbagamuwa Main</option>
-                  <option value="galle">Galle</option>
-                  <option value="colombo">Colombo</option>
-                  <option value="nuwara_eliya">Nuwara Eliya</option>
-                  <option value="batticaloa">Batticaloa</option>
-                  {/* Add more options as needed */}
-                </select>
-              </td>
-              <td>
-                <button
-                  onClick={() => updateClusterDatabase(order._id)}
-                  disabled={disabledButtons[order._id]} // Disable the button if branch is selected
-                >
-                  Update
-                </button>
-              </td>
+                  View Details
+                </a>
+</td>
             </tr>
           ))}
         </tbody>

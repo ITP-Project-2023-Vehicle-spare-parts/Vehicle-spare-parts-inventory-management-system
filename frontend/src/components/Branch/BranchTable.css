@@ -14,6 +14,8 @@
 
 #BranchTable h2 {
   margin-bottom: 20px;
+  align-items: center;
+  text-align: center;
   color: #01080c;
   font-size: 36px;
   font-weight: bold;
@@ -24,7 +26,7 @@
 
 
 #BranchTable table {
-  width: 50%;
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
   background-color: #e3e2f1;
@@ -49,15 +51,15 @@
 
 #BranchTable th,td {
   border: 1px solid #e0e0e0;
-  padding: 10px;
-  text-align: center;
-  font-size: 23px;
+  padding: 20px;
+  text-align: right;
+  font-size: 40px;
 }
 
 #BranchTable th {
   background-color: #5444e4;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 32px;
   text-align: center;
 }
 
@@ -102,7 +104,7 @@
   transition: transform 0.2s;
 }
 
-/* Style for the "Add Coupon" button */
+
 #BranchTable .btn-primary {
   background: linear-gradient(to bottom, #735bcd, #4f46cb);
   color: white; /* White text color */
@@ -114,8 +116,14 @@
   transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and transform */
 }
 
-/* Hover effect for the "Add Coupon" button */
+
 #BranchTable .btn-primary:hover {
   background-color: #5c29e8; /* Darker green color on hover */
   transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+#BranchTable .btn-container {
+  position: absolute;
+  top: 110px;
+  right: 70px;
 }
