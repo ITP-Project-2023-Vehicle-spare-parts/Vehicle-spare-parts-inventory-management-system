@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Helmet from 'react-helmet';
-import ReactImageZoom from 'react-image-zoom';
+//import ReactImageZoom from 'react-image-zoom';
 import ReactStars from 'react-rating-stars-component';
-import Color from '../components/Color'
-import {Link, useLocation} from 'react-router-dom';
+//import Color from '../components/Color'
+import {useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {getSingleProducts} from '../features/product/productSlice';
 import {toast} from "react-toastify";
@@ -39,14 +39,14 @@ const SingleProduct = () => {
       dispatch(addProToCart(cartData));
     }
   }
-
+/*
   const props = {
     width: 400,
     height: 250,
     zoomWidth: 500,
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s",
   };
-
+*/
   const [orderedProduct, setoderedProduct] = useState(true);
 
   console.log(orderedProduct)
