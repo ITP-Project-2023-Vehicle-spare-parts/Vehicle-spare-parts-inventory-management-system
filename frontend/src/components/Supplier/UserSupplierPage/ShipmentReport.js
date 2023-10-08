@@ -113,7 +113,7 @@ export default function ShipmentReport() {
         <SupplierSideNavigation />
         <main class="table">
           <section class="table__header">
-            <h1>Suggest Order Report</h1>
+           <Link to="/supplier/analyse" style={{textDecoration:"none",backgroundColor:"transparent !important"}}> <h1 style={{backgroundColor:"transparent !important"}}>Suggest Order Report</h1> </Link>
 
             <Link to="">
               <Button

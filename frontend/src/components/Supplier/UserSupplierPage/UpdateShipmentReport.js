@@ -83,7 +83,7 @@ export default function UpdateShipmentReport() {
     pdf.setFontSize(16);
 
     // Add a title
-    pdf.text("Suggest Shipment Report - CMspare", 80, 30);
+    pdf.text("Update Shipment Report - CMspare", 80, 30);
 
     // Create a table for client data
     const tableData = supplierReq.map((dataobj, index) => {
@@ -120,7 +120,7 @@ export default function UpdateShipmentReport() {
     });
 
     // Save or display the PDF
-    pdf.save("Suggest-Order_report.pdf"); // Save the PDF with a filename
+    pdf.save("Update-Order_report.pdf"); // Save the PDF with a filename
   };
 
   return (
