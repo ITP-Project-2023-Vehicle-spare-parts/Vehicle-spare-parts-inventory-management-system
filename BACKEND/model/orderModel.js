@@ -28,6 +28,10 @@ const orderSchema = new mongoose.Schema(
       city: {
         type: String,
         required: true
+      },
+      phone: {
+        type: Number,
+        required: true
       }
     },
     orderItems: [
@@ -72,9 +76,24 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "Ordered"
     },
-    branch: {
-      type: String,
-      default: "Not Assigned"
+    deliveryPersonid:{
+      type : String
+    },
+billNumber: {
+  type: String,
+  //required: true
+},
+billedDate: {
+  type: Date,
+  //required: true
+},
+billExpiredDate: {
+  type: Date,
+  //required: true
+},
+  branch : {
+type : String,
+default : "Not Assign"
     }
   },
   {
