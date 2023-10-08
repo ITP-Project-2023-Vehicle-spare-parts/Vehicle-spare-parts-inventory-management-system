@@ -55,8 +55,8 @@ const Orders = () => {
       const filtered = orderState.filter(order => {
         const lowerSearchText = searchText.toLowerCase();
         const nameMatch =
-          order.user.firstname.toLowerCase().includes(lowerSearchText) ||
-          order.user.lastname.toLowerCase().includes(lowerSearchText);
+          order.user?.firstname.toLowerCase().includes(lowerSearchText) ||
+          order.user?.lastname.toLowerCase().includes(lowerSearchText);
         const amountMatch = order.totalPrice.toString().includes(lowerSearchText);
         const dateMatch = new Date(order.createdAt).toLocaleString().includes(lowerSearchText);
         const actionMatch = order.orderStatus.toLowerCase().includes(lowerSearchText);
@@ -70,7 +70,7 @@ const Orders = () => {
 
   const data1 = filteredOrders.map((order, i) => ({
     key: i + 1,
-    name: order.user.firstname + " " + order.user.lastname,
+    name: order.user?.firstname + " " + order.user?.lastname,
     product: (
       <Link className="ms-3 fs-3 text-danger" to={`/admin/order/${order._id}`}>
         <AiOutlineEye />
