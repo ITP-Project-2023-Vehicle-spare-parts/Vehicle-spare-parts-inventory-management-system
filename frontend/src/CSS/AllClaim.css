@@ -1,0 +1,94 @@
+/* AllClaims.css */
+
+/* Page Title */
+.page-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Search Input */
+  .search-container {
+    margin-bottom: 20px;
+    width:100%;
+    
+    
+    
+    
+  }
+  
+  /* Claims Table */
+  .claimtable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .claimtable th,
+  .claimtable td {
+    border: 1px solid #c9b2b2;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .claimtable th {
+    background: #f2f2f2;
+  }
+  
+  /* Action Buttons */
+  .btn {
+    padding: 6px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .update {
+    background-color: #ffc107; /* Update button color */
+    color: #eeeaea;
+    padding: 6px 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    
+  }
+  
+  .delete {
+    background-color: #d51f2b; /* Delete button color */
+    color: #fff;
+    padding: 6px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    
+  }
+  
+  .report {
+    background-color: #007bff; /* Generate Report button color */
+    color: #fff;
+    margin-top: 20px;
+    border-radius: 10%;
+    border-color: #fff;
+    size: 20px;
+    padding: 10px;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 20px;
+    }
+  
+    .claimtable th,
+    .claimtable td {
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+  
