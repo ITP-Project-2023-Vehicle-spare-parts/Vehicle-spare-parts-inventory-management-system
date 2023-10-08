@@ -102,23 +102,7 @@ function AddStock() {
           </div>
 
 
-          <div className="form-group col-md-6">
-          <label htmlFor="productName" style={{ fontSize: '20px' }}>Product Category</label>
-
-    <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)}
-     requiredclassName="form-control"
-     className="form-control custom-select"
-     style={{ fontSize: '20px' }}
-    
-    >
- {pCategoryState.map((i, j) =>{
-                      return <option key={j} value={i.title}>{i.title}</option>
-                    })}
-
-    </select>
-    
-
-          </div>
+        
 
 
           <div className="form-group col-md-6">
