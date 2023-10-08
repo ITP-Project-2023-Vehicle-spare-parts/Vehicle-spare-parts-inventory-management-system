@@ -8,6 +8,9 @@ import './stockCss.css'; // Create a CSS file for styling
 function FetchStock() {
   const [stocks, setStocks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sfilteredStocks, ssetFilteredStocks] = useState([]);
+
+  
   //const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,6 +48,36 @@ function FetchStock() {
     stock.productName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleSearch1 = (e) => {
+    const keyword = e.target.value.toLowerCase();
+    setSearchTerm('b');
+
+    // Filter stocks by product names containing the keyword
+    const filtered = stocks.filter((stock) =>
+      stock.productName.toLowerCase().includes('b')
+    );
+    ssetFilteredStocks(filtered);
+  };
+
+  const handleSearch2 = (e) => {
+    const keyword = e.target.value.toLowerCase();
+    setSearchTerm('f');
+
+    // Filter stocks by product names containing the keyword
+    const filtered = stocks.filter((stock) =>
+      stock.productName.toLowerCase().includes('f')
+    );
+    ssetFilteredStocks(filtered);
+  };
+
+  
+  
+
+  
+
+  
+  
+
   return (
     <div id="Allstock">
       <div className="fetch-stock-container">
@@ -59,6 +92,21 @@ function FetchStock() {
   />
   <BsSearch></BsSearch>
        </div>
+
+       
+         
+ 
+          <Button className="clear-filter-button" onClick={handleSearch1}>
+       B
+        </Button>
+        
+          <Button className="clear-filter-button" onClick={handleSearch2}>
+       F
+        </Button>
+
+        
+
+
         <table className="stock-table">
           <thead>
             <tr>

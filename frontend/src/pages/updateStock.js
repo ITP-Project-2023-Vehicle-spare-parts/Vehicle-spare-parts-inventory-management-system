@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import './stockCss.css'; // Create a CSS file for styling
 
 function UpdateStock() {
   const { id } = useParams();
@@ -14,6 +15,12 @@ function UpdateStock() {
     reorderpoint: 0,
     stockQuantity: 0,
   });
+
+  const [errors, setErrors] = useState({
+    stockAmount: '',
+    stockQuantity: '',
+  });
+
 
   useEffect(() => {
     const fetchStockDetails = async () => {
@@ -78,7 +85,7 @@ function UpdateStock() {
     const { name, value } = e.target;
 
     // Use parseInt only if the value is not an empty string
-    const parsedValue = value !== '' ? parseInt(value, 10) : '';
+    const parsedValue = value !== '' ? parseFloat(value) : '';
 
     setStock({
       ...stock,
@@ -86,60 +93,105 @@ function UpdateStock() {
     });
   };
 
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+
+    // Use a temporary errors object to validate the input
+    const tempErrors = { ...errors };
+    if (name === 'stockAmount' || name === 'stockQuantity') {
+      if (value.trim() === '') {
+        tempErrors[name] = 'This field is required';
+      } else if (isNaN(value) || parseFloat(value) < 0) {
+        tempErrors[name] = 'Please enter a valid non-negative number';
+      } else {
+        tempErrors[name] = ''; // Clear the error message
+      }
+    }
+   
+
+    setErrors(tempErrors);
+  };
+
+
   return (
     <div className="stockcontainer">
        <div className="flex-grow-1 p-4">
       <h2>Edit Stock Details</h2>
       <form onSubmit={handleUpdate}>
 
+
+      <div className="form-row">
       <div className="form-group col-md-6">
       <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Product Name:</label>
           <input
             type="text"
+            className="form-control custom-input"
             name="productName"
             readOnly
             value={stock.productName}
             style={{ fontSize: '18px' }} 
           />
           </div>
+          </div>
           
+          <div className="form-row">
           <div className="form-group col-md-6">
           <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Supplier Name:</label>
           <input
             type="text"
+            className="form-control custom-input"
             name="supplierName"
             readOnly
             value={stock.supplierName}
           />
           </div>
+          </div>
 
+          <div className="form-row">   
           <div className="form-group col-md-6">
           <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Amount:</label>
           <input
             type="text"
+            className="form-control custom-input"
             name="stockAmount"
             value={stock.stockAmount}
             onChange={handleChange}
+            onBlur={handleBlur} // Added onBlur event handler
+
           />
+          <div className="error">{errors.stockAmount}</div> {/* Display error message */}
           </div>
+          </div>
+
+          <div className="form-row">   
           <div className="form-group col-md-6">
           <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Quantity:</label>
           <input
             type="text"
+            className="form-control custom-input"
             name="stockQuantity"
             value={stock.stockQuantity}
             onChange={handleChange}
+            onBlur={handleBlur} // Added onBlur event handler
+
           />
+          <div className="error">{errors.stockAmount}</div> {/* Display error message */}
+          
+          </div>
           </div>
 
+          <div className="form-row"> 
           <div className="form-group col-md-6">
           <label htmlFor="supplierName"  style={{ fontSize: '18px' }} >Stock Re Order Level:</label>
           <input
             type="text"
+            className="form-control custom-input"
             name="reorderpoint"
+            readOnly
             value={stock.reorderpoint}
             onChange={handleChange}
           />
+          </div>
           </div>
         
         
