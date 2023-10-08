@@ -30,47 +30,53 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
     var id = selectedDeliveryPerson;
     if (id) {
       axios.put(`http://localhost:8000/deliveryPerson/update/${id}`, {
-        personStatus: "not-availabe"
+        personStatus: "not-availabe",
       })
-      .then((response) => {
-        alert('Status updated successfully!');
+        .then((response) => {
+          alert('Status updated successfully!');
+        })
+        .catch((error) => {
+          console.error('Error updating:', error);
+        });
+  
+      axios.post('http://localhost:8000/deliveryOrder/adddeliveryOrderController', {
+        orderid: orderid,
+        deliveryPersonID: selectedDeliveryPerson,
+        userID: userid,
       })
-      .catch((error) => {
-        console.error('Error updating :', error);
-      });
+        .then((response) => {
+          console.log('Delivery order added successfully.');
+          window.location.href = '/admin/orders/';
+        })
+        .catch((error) => {
+          console.error('Error adding delivery order:', error);
+        });
+  
+      axios.put(`http://localhost:8000/allOrder/updateStatus/${orderid}`, {
+        orderStatus: "delivery person assign",
+      })
+        .then((response) => {
+          alert('Status updated successfully!');
+        })
+        .catch((error) => {
+          console.error('Error updating:', error);
+        });
+  
+      axios.put(`http://localhost:8000/allOrder/updatedeliverypersonid/${orderid}`, {
+        deliveryPersonid: selectedDeliveryPerson,
+      })
+        .then((response) => {
+          alert('Delivery person ID updated in order table successfully!');
+        })
+        .catch((error) => {
+          console.error('Error updating delivery person ID in order table:', error);
+        });
     } else {
       console.error('ID is undefined, cannot update status.');
     }
-    // const filteredDeliveryPersons = deliveryPersons.filter(person =>
-    //   person.deliverypersonBranch.toLowerCase().includes(searchBranch.toLowerCase())
-    // );
-
-    //console.log('ID:', id);
-
-
-    axios.post('http://localhost:8000/deliveryOrder/adddeliveryOrderController', {
-      orderid: orderid,
-      deliveryPersonID: selectedDeliveryPerson,
-      userID: userid,
-    })
-    .then((response) => {
-      console.log('Delivery order added successfully.');
-      window.location.href = '/admin/orders/';
-    })
-    .catch((error) => {
-      console.error('Error adding delivery order:', error);
-    });
-
-    axios.put(`http://localhost:8000/allOrder/updateStatus/${orderid}`, {
-      orderStatus: "delivery person assign"
-    })
-    .then((response) => {
-      alert('Status updated successfully!');
-    })
-    .catch((error) => {
-      console.error('Error updating :', error);
-    });
   };
+  
+  
   const filteredDeliveryPersons = deliveryPersons.filter(person =>
     person.deliverypersonBranch.toLowerCase().includes(searchBranch.toLowerCase())
   );

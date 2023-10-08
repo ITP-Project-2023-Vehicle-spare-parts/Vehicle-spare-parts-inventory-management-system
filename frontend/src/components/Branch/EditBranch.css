@@ -6,7 +6,7 @@
   margin-top: 100px;
   margin-bottom: 100px;
   padding: 10px;
-  background: linear-gradient(to bottom, #6b68c9, #0c0759); /* Gradient Background */
+  background: linear-gradient(to bottom, #e3e3f0, #dcdcdf); /* Gradient Background */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-family: 'Arial', sans-serif;
@@ -39,13 +39,15 @@
   margin-bottom: 15px;
   color: #050404; /* Vibrant Yellow */
   font-size: 18px; /* Increased Font Size */
+  text-align: justify;
 }
 
 #EditBranch.edit-branch-container input[type="text"] {
   width: calc(70% - 10px);
+  text-align: justify;
   padding: 18px; /* Adjusted Padding */
   margin-bottom: 30px; /* Adjusted Margin */
-  border: 2px solid #ffcc29; /* Vibrant Yellow Border */
+  border: 2px solid #070600; 
   border-radius: 10px;
   font-size: 16px;
   color: #333333;

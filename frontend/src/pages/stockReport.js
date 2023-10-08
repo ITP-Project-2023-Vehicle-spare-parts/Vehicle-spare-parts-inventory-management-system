@@ -36,6 +36,7 @@ function StockReport() {
     pdf.text('Stock Report', 10, 10);
 
     const table = document.getElementById('stock-table');
+    console.log(table)
     pdf.autoTable({ html: '#stock-table' });
 
     // Save the PDF with a specific name

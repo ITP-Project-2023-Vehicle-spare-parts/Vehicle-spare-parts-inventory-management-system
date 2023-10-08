@@ -23,7 +23,9 @@ const loginSchema = yup.object({
 
 export default function Login() {
     const [email, setEmail] = useState("");
+    console.log(setEmail)
     const [password, setPassword] = useState("");
+    console.log(setPassword)
     const Navigate = useNavigate();
 
     // useEffect(() => {

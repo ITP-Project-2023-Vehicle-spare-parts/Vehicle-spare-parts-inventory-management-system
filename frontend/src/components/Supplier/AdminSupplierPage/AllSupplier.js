@@ -91,11 +91,11 @@ export default function AllSupplier() {
         dataobj.CompanyName,
         dataobj.SupplierCity,
         dataobj.SystemEmail,
-        dataobj.ProvidedBrand,
+        dataobj.ProvidedCategory,
       ];
     });
   
-    const tableHeaders = ['Supplier Name', 'Company Name', 'Address', 'System Email', 'Main Brand'];
+    const tableHeaders = ['Supplier Name', 'Company Name', 'Address', 'System Email', 'Provide Category'];
   
     // Set the table style
     pdf.setFontSize(12);
@@ -179,7 +179,7 @@ export default function AllSupplier() {
                     dataobj.SupplierLastName.toLowerCase();
                   const lowerCaseSystemEmail =
                     dataobj.SystemEmail.toLowerCase();
-                  const lowerCaseBrand = dataobj.ProvidedBrand.toLowerCase();
+                  const lowerCaseBrand = dataobj.ProvidedCategory.toLowerCase();
 
                   return (
                     lowerCaseSearch === "" ||
@@ -193,7 +193,7 @@ export default function AllSupplier() {
                   return (
                     <tbody>
                       <tr key={dataobj._id}>
-                        <td>
+                        <td style={{textAlign:"left"  }}>
                           {" "}
                           <img
                             src="/images/me.jpg"
@@ -206,7 +206,7 @@ export default function AllSupplier() {
                         <td>{dataobj.CompanyName}</td>
                         <td>{dataobj.SupplierCity} </td>
                         <td>{dataobj.SystemEmail} </td>
-                        <td>{dataobj.ProvidedBrand}</td>
+                        <td>{dataobj.ProvidedCategory}</td>
                         <td style={{ marginLeft: "auto" }}>
                           <button
                             className="bx bx-trash bx-lg btn btn-outline-danger"

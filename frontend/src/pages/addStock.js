@@ -6,8 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 //import StockSideBar from '../components/stockComponents/stockSideBar';
 import './stockCss.css'; // Create a CSS file for styling
 import { useDispatch, useSelector } from 'react-redux';
-import { getBrands } from '../features/brand/brandSlice';
+//import { getBrands } from '../features/brand/brandSlice';
 import { getProducts } from '../features/product/productSlice';
+import { getCategories } from '../features/pcategory/pcategorySlice';
 
 function AddStock() {
   const [productName, setProductName] = useState('');
@@ -19,9 +20,11 @@ function AddStock() {
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getProducts());
+    dispatch(getCategories())
   }, [dispatch]);
 
   const productState = useSelector((state) => state.product.products);
+  const pCategoryState = useSelector((state) => state.pcategory.pCategories);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,8 +97,30 @@ function AddStock() {
                     })}
 
     </select>
+    
 
           </div>
+
+
+          <div className="form-group col-md-6">
+          <label htmlFor="productName" style={{ fontSize: '20px' }}>Product Category</label>
+
+    <select name="disabled" id="cars" value={productName}onChange={(e) => setProductName(e.target.value)}
+     requiredclassName="form-control"
+     className="form-control custom-select"
+     style={{ fontSize: '20px' }}
+    
+    >
+ {pCategoryState.map((i, j) =>{
+                      return <option key={j} value={i.title}>{i.title}</option>
+                    })}
+
+    </select>
+    
+
+          </div>
+
+
           <div className="form-group col-md-6">
             <label htmlFor="supplierName"  style={{ fontSize: '20px' }} >Supplier Name</label>
             <input

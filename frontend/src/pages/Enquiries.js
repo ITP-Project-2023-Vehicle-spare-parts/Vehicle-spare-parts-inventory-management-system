@@ -11,27 +11,58 @@ import { AiFillDelete, AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CustomModal from "../components/CustomModal";
 import { toast } from "react-toastify"; // Import the toast library
+import "../CSS/Admin.css"; // Import your custom CSS file
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
+    // Add CSS styles to the column
+    style: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: 'blue',
+    },
   },
   {
     title: 'Email',
     dataIndex: 'email',
+    // Add CSS styles to the column
+    style: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: 'blue',
+    },
   },
   {
     title: 'Mobile',
     dataIndex: 'mobile',
+    // Add CSS styles to the column
+    style: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: 'blue',
+    },
   },
   {
     title: 'Status',
     dataIndex: 'status',
+    // Add CSS styles to the column
+    style: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: 'blue',
+    },
   },
   {
     title: 'Action',
     dataIndex: 'action',
+    // Add CSS styles to the column
+    style: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: 'blue',
+    },
   },
 ];
 
@@ -139,9 +170,20 @@ const Enquiries = () => {
 
   return (
     <div>
-      <h3 className="mb-4 title">Inquiries</h3>
+      <h3 className="mb-4 title" style={{ fontWeight: 'bold', fontSize: '35px' }}>Inquiries</h3>
       <div>
-        <Table columns={columns} dataSource={data1} />
+        <Table
+          columns={columns}
+          dataSource={data1}
+          bordered // Add border to the table
+          // Add CSS styles to the table
+          style={{
+            fontSize: '20px',
+            fontWeight: 'normal',
+            color: 'black',
+            fontFamily: 'Arial, sans-serif', // Add font family
+          }}
+        />
       </div>
       <CustomModal
         hideModal={hideModal}

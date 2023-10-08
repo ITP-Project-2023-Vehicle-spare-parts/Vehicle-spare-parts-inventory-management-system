@@ -161,13 +161,34 @@ const getDeliveryPersonById = async (req, res) => {
     }
 };
 
+const getDeliveryPersonByMail = async (req, res) => {
+    try {
+        const deliveryPersonEmail = req.params.email; // Assuming you have email as a route parameter
+        console.log(req.params.email);
+
+        const deliveryPerson = await DeliveryPerson.findOne({ deliverypersonEmail: deliveryPersonEmail });
+        console.log(deliveryPerson);
+
+        if (!deliveryPerson) {
+            return res.status(404).send({ status: "DeliveryPerson not found" });
+        }
+
+        res.status(200).send({ status: "DeliveryPerson fetched", deliveryPerson });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching DeliveryPerson", error: err.message });
+    }
+};
+
+
 module.exports = {
    addDeliveryPerson,
    getAllDeliveryPerson,
    updateDeliveryPerson,
     deleteDeliveryPerson,
     getDeliveryPersonById,
-    getDeliveryPerson
+    getDeliveryPerson,
+    getDeliveryPersonByMail
 };
 
 

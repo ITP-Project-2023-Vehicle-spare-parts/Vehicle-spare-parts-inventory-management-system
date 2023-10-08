@@ -3,6 +3,7 @@ const router = express.Router();
 const stockController = require('../controller/stockController.js');
 const Stock = require('../model/stockModel'); // Import the Stock model
 const DeletedStock =require('../model/deletedStockModel'); // Import
+const Supplier = require("../model/SupplierModel");
 
 
 // Create a new stock
@@ -14,6 +15,14 @@ router.route('/delete/:id').delete(stockController.deleteStock);
 router.route('/low-stock').get(stockController.getLowStockProducts);
 router.route('/search/:search').get(stockController.searchStock);
 router.route('/report').get(stockController.getStock);
+
+// Get the cost of stock for a particular month
+router.route('/getCost').get(stockController.getCost);
+router.route('/orderSupplier').get( stockController.placeOrderWithSupplier);
+
+
+
+
 
 
 
