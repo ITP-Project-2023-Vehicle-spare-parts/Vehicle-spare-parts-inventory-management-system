@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {createAnOrder, getUserCart} from '../features/user/userSlice';
-import watch from '../images/watch.jpg';
 
 
 
@@ -25,7 +24,12 @@ const shippingSchema = yup.object({
     .matches(/^[A-Za-z]+$/, 'Street should contain only letters')
     .required('Street is required'),
   city: yup.string().required('City is required'),
+  phone: yup
+    .string()
+    .matches(/^\d+$/, 'Phone Number should contain only digits')
+    .required('Phone Number is required'),
 });
+
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -64,7 +68,9 @@ const Checkout = () => {
       address: '',
       street: '',
       city: '',
+      phone: '', // Add the phoneNumber field
     },
+    
     validationSchema: shippingSchema,
     onSubmit: async (values) => {
       // Set shipping info to state and local storage
@@ -191,6 +197,7 @@ const Checkout = () => {
                   <option value='Colombo'>Jaffna</option>
                   <option value='Colombo'>Kandy</option>
                 </select>
+            
 
                 <div
                   className={`error ms-2 my-1 ${formik.touched.city && formik.errors.city ? 'errors' : ''}`}
@@ -198,6 +205,27 @@ const Checkout = () => {
                   {formik.touched.city && formik.errors.city}
                 </div>
               </div>
+
+              <div className='flex-grow-1'>
+                <input
+                  type='text'
+                  placeholder='Phone Number'
+                  className='form-control'
+                  name='phone'
+                  value={formik.values.phone}
+                  onChange={formik.handleChange('phone')}
+                  onBlur={formik.handleBlur('phone')}
+                />
+                <div
+                  className={`error ms-2 my-1 ${
+                    formik.touched.phone && formik.errors.phone ? 'errors' : ''
+                  }`}
+                >
+                  {formik.touched.phone && formik.errors.phone}
+                </div>
+              </div>
+
+
               <div className='w-100'>
                 <div className='d-flex justify-content-between align-items-center'>
                   <Link to='/home/cart' className='text-dark'>
@@ -231,14 +259,14 @@ const Checkout = () => {
                             {item?.count}
                           </span>
                           <img className='img-fluid' src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTabWOctkyajxAVbHV4UN0AaUaQPUkMmyv_LW12Jq2t&s"} alt='product' />
-                    {item?.product?.images?.length > 0 &&
+                    {/*item?.product?.images?.length > 0 &&
                       <img
                       width={100}
                       height={100}
                       src={item?.product?.images[0]?.url}
                       alt='product img'
                     />
-                    }
+              */}
                   </div>
                   <div>
                     <h5 className='total-price'>
