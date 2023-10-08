@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { AiOutlineEye } from "react-icons/ai";
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Button from "react-bootstrap/esm/Button";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -39,7 +41,7 @@ const columns = [
   },
 
   {
-    title: "Access Status",
+    title: "Status to change",
     dataIndex: "action",
     align: "left",
   },
@@ -48,6 +50,7 @@ const columns = [
     dataIndex: "action2",
     align: "left",
   },
+
 ];
 
 const AdminCustomerList = () => {
@@ -235,6 +238,12 @@ const AdminCustomerList = () => {
     ),
     action2: (
       <span className="d-flex">
+        <Link
+          to={`/admin/customer/${customer._id}`} // Link to view customer details
+          className="ms-3 fs-3 text-info bg-transparent border-0"
+        >
+          <AiOutlineEye />
+        </Link>
         <button
           className="ms-3 fs-3 text-danger bg-transparent border-0"
           onClick={() => DeleteCustomer(customer._id)}

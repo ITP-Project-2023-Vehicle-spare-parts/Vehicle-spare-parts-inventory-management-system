@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { addProToCart } from '../features/user/userSlice';
 import BreadCrumb from '../components/BreadCrumb';
 import Meta from '../components/Meta';
+import axios from 'axios';
+import { base_url } from "../../src/utils/base_url";
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1)
@@ -21,7 +23,7 @@ const SingleProduct = () => {
     dispatch(getSingleProducts(getProductID));
   }, [getProductID, dispatch])
 
-  const uploadCart = () => {
+  const uploadCart = async() => {
     
     if (color === null) {
       toast.error("Please choose color")
@@ -38,6 +40,30 @@ const SingleProduct = () => {
       console.log(jsonData);
       console.log(productState?._id);
       dispatch(addProToCart(cartData));
+
+      const soldAmount = productState?.sold + quantity;
+
+      const soldAdd ={
+        productID: productState?.productID,
+        Title: productState?.Title,
+        category: productState?.category,
+        brand: productState?.brand,
+        sold: soldAmount,
+        description: productState?.description,
+        price: productState?.price,
+        discount: productState?.discount,
+        color: productState?.color,
+        tags: productState?.tags,
+        images: productState?.images,
+      };
+      const SoldData = JSON.stringify(soldAdd);
+    console.log()
+      try {
+       await axios.put(`${base_url}product/${getProductID}`, soldAdd);
+        // Additional logic after the axios call if needed
+      } catch (error) {
+        console.error("Error updating product:", error);
+      }
     }
   }
 
