@@ -13,7 +13,9 @@ function AddOffer() {
   });
 
   const [errors, setErrors] = useState({});
+  console.log(errors)
   const [errorMessage, setErrorMessage] = useState('');
+  console.log(errorMessage)
 
   const handleChange = (e) => {
     const { name, value } = e.target;

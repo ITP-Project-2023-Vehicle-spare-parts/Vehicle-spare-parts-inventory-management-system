@@ -6,6 +6,7 @@ function AssignBranch() {
   const [orderData, setOrderData] = useState([]);
   const [selectedBranch, setSelectedBranch] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  console.log(setSuccessMessage)
   const [disabledButtons, setDisabledButtons] = useState({});
 
   useEffect(() => {

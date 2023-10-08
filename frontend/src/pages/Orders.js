@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { AiOutlineEye } from "react-icons/ai";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import OrderReport from '../pages/OrderReport';
+//import OrderReport from '../pages/OrderReport';
 import "../CSS/Admin.css"
 
 const { Search } = Input;
@@ -111,7 +111,9 @@ const Orders = () => {
   // Calculate status, total income, and total product count
   const status = filteredOrders.map(order => order.orderStatus);
   const totalIncome = filteredOrders.reduce((total, order) => total + order.totalPrice, 0);
+  console.log(totalIncome)
   const totalProducts = filteredOrders.length;
+  console.log(totalProducts)
 
   // Define the handleGenerateReport function
   const handleGenerateReport = () => {
@@ -133,8 +135,8 @@ const Orders = () => {
 
     doc.setFontSize(12);
     doc.text(`Order Report`, 80, 10); // Add the heading
-    doc.text(`Total Income: Rs.${totalIncome.toFixed(2)}`, 14, doc.autoTable.previous.finalY + 10);
-    doc.text(`Product Count: ${totalProducts}`, 14, doc.autoTable.previous.finalY + 20);
+    //doc.text(`Total Income: Rs.${totalIncome.toFixed(2)}`, 14, doc.autoTable.previous.finalY + 10);
+    //doc.text(`Product Count: ${totalProducts}`, 14, doc.autoTable.previous.finalY + 20);
 
     doc.save('order_report.pdf');
   };
@@ -145,10 +147,10 @@ const Orders = () => {
 
   return (
     <div>
-      <h3 className='mb-4 title'>Orders</h3>
+      <h3 className='mb-4 title' style={{ fontWeight: 'bold', fontSize: '35px' }}>Orders</h3>
       <div className="d-flex justify-content-between mb-4">
         <Search
-          style={{ width: 300 }}
+          style={{ width: 300, fontSize: '30px', height: '60px'  }}
           placeholder="Search"
           allowClear
           enterButton="Search"
@@ -156,14 +158,14 @@ const Orders = () => {
           onChange={(e) => setSearchText(e.target.value)}
           onSearch={handleSearch}
         />
-        <Button type="primary" onClick={handleGenerateReport}>
+        <Button type="primary" onClick={handleGenerateReport} style={{ fontSize: '20px', height: '60px', lineHeight: '50px' }}>
           Generate Report
         </Button>
       </div>
+
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
-      <OrderReport orders={filteredOrders} status={status} totalIncome={totalIncome} totalProducts={totalProducts} />
     </div>
   );
 };

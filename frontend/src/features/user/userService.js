@@ -1,5 +1,5 @@
 import axios from "axios";
-import {base_url, config, getUserFromLocalStorage} from "../../utils/axiosconfig";
+import {base_url, config  /*, getUserFromLocalStorage*/} from "../../utils/axiosconfig";
 
 const register = async (userData) => {
   const response = await axios.post("", userData);

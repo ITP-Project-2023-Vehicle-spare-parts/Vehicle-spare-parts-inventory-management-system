@@ -55,10 +55,9 @@ const Contact = () => {
           <div className='col-12 mt-5'>
             <div className='contact-inner-wrapper d-flex justify-content-between'>
               <div>
-                <h3 className='contact-title mb-4'>Contact</h3>
+                <h3 className='contact-title mb-4' style={{ fontSize: '30px' }}>Contact</h3>
                 <form action='' onSubmit={formik.handleSubmit} className='d-flex flex-column gap-15'>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -73,7 +72,6 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -88,7 +86,6 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -103,7 +100,6 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    
                     <textarea
                       id=''
                       className='w-100 form-control'
@@ -126,7 +122,7 @@ const Contact = () => {
                 </form>
               </div>
               <div>
-                <h3 className='contact-title mb-4'>Get in touch with us</h3>
+                <h3 className='contact-title mb-4' style={{ fontSize: '30px' }}>Get in touch with us</h3>
                 <div>
                   <ul className='ps-0'>
                     <li className='mb-3 d-flex gap-15 align-items-center'>
