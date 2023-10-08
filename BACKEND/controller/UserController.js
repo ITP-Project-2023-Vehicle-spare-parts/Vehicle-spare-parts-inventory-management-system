@@ -112,25 +112,13 @@ const handleRefreshToken = asyncHandler(async (req, res) => {
 // logout functionality
 
 const logout = asyncHandler(async (req, res) => {
-  const cookie = req.cookies;
-  if (!cookie?.refreshToken) throw new Error("No Refresh Token in Cookies");
-  const refreshToken = cookie.refreshToken;
-  const user = await User.findOne({ refreshToken });
-  if (!user) {
-    res.clearCookie("refreshToken", {
-      httpOnly: true,
-      secure: true,
-    });
-    return res.sendStatus(204); // forbidden
-  }
-  await User.findOneAndUpdate(refreshToken, {
-    refreshToken: "",
-  });
-  res.clearCookie("refreshToken", {
-    httpOnly: true,
-    secure: true,
-  });
-  res.sendStatus(204); // forbidden
+  const userId = req.user; // Assuming you have the user's ID in the request object
+  const user = await User.findByIdAndUpdate(userId, { refreshToken: null });
+
+  // Clear the refresh token cookie from the client
+  res.clearCookie("refreshToken");
+
+  res.json({ message: "Logout successful" });
 });
 
 // get a user profile by user 

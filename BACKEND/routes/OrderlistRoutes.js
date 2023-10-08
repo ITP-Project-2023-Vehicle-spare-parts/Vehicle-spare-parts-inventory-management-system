@@ -9,6 +9,6 @@ router.get("/getOrderByID/:id", OrderlistController.getOrderById);
 router.get("/branchAdding", OrderlistController.getOrders);
 router.get("/orderHistory", OrderlistController.getOrderHistory);
 router.put("/updatedeliverypersonid/:orderid", OrderlistController.updateDeliveryPersonID);
-
+router.get("/ordersByBranch", OrderlistController.getOrdersByBranch);
 
 module.exports = router;

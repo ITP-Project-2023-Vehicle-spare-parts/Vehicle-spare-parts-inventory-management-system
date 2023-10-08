@@ -106,6 +106,7 @@ import Updatepduct from "./pages/Updateproduct";
 import AdminCustomerList from "./components/Customers/AdminCustomerList";
 
 import UpdateStock from "./pages/updateStock";
+import UpdateShipmentReport from "./components/Supplier/UserSupplierPage/UpdateShipmentReport";
 
 function App() {
   return (
@@ -185,6 +186,7 @@ function App() {
               element={<UserSupplierUpdateProfile />}
             />
             <Route path="/supplier/order" element={<ShipmentReport />} />
+            <Route path="/supplier/update/order" element={<UpdateShipmentReport />} />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />

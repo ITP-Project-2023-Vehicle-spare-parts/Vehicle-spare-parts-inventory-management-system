@@ -55,10 +55,9 @@ const Contact = () => {
           <div className='col-12 mt-5'>
             <div className='contact-inner-wrapper d-flex justify-content-between'>
               <div>
-                <h3 className='contact-title mb-4'>Contact</h3>
+                <h3 className='contact-title mb-4' style={{ fontSize: '30px' , fontWeight: 'bold'}}>Contact</h3>
                 <form action='' onSubmit={formik.handleSubmit} className='d-flex flex-column gap-15'>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -67,13 +66,13 @@ const Contact = () => {
                       onChange={formik.handleChange("name")}
                       onBlur={formik.handleBlur('name')}
                       value={formik.values.name}
+                      style={{ fontSize: '16px', fontWeight: 'bold', color: '#333', boxShadow: '0 0 5px rgba(0, 0, 255, 0.2)' }}
                     />
-                    <div className='errors'>
+                    <div className='errors' style={{ fontSize: '14px', fontWeight: 'bold', color: 'red' }}>
                       {formik.touched.name && formik.errors.name}
                     </div>
                   </div>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -82,13 +81,13 @@ const Contact = () => {
                       onChange={formik.handleChange("email")}
                       onBlur={formik.handleBlur('email')}
                       value={formik.values.email}
+                      style={{ fontSize: '16px', fontWeight: 'bold', color: '#333', boxShadow: '0 0 5px rgba(0, 0, 255, 0.2)' }}
                     />
-                    <div className='errors'>
+                    <div className='errors' style={{ fontSize: '14px', fontWeight: 'bold', color: 'red' }}>
                       {formik.touched.email && formik.errors.email}
                     </div>
                   </div>
                   <div>
-                    
                     <input
                       type='text'
                       className='form-control'
@@ -97,13 +96,13 @@ const Contact = () => {
                       onChange={formik.handleChange("mobile")}
                       onBlur={formik.handleBlur('mobile')}
                       value={formik.values.mobile}
+                      style={{ fontSize: '16px', fontWeight: 'bold', color: '#333', boxShadow: '0 0 5px rgba(0, 0, 255, 0.2)' }}
                     />
-                    <div className='errors'>
+                    <div className='errors' style={{ fontSize: '14px', fontWeight: 'bold', color: 'red' }}>
                       {formik.touched.mobile && formik.errors.mobile}
                     </div>
                   </div>
                   <div>
-                    
                     <textarea
                       id=''
                       className='w-100 form-control'
@@ -114,38 +113,39 @@ const Contact = () => {
                       onChange={formik.handleChange("comment")}
                       onBlur={formik.handleBlur('comment')}
                       value={formik.values.comment}
+                      style={{ fontSize: '16px', fontWeight: 'bold', color: '#333', boxShadow: '0 0 5px rgba(0, 0, 255, 0.2)' }}
                     >
                     </textarea>
-                    <div className='errors'>
+                    <div className='errors' style={{ fontSize: '14px', fontWeight: 'bold', color: 'red' }}>
                       {formik.touched.comment && formik.errors.comment}
                     </div>
                   </div>
                   <div>
-                    <button className='button border-0 button-color button-oval'>Submit</button>
+                    <button className='button border-0 button-color button-oval' style={{ fontSize: '16px', fontWeight: 'bold', color: 'white', backgroundColor: '#2A3847', boxShadow: '0 0 5px rgba(0, 0, 255, 0.2)', transition: 'background-color 0.3s' }}>Submit</button>
                   </div>
                 </form>
               </div>
-              <div>
-                <h3 className='contact-title mb-4'>Get in touch with us</h3>
+              <div style={{ marginTop: '100px', marginLeft: '100px' }}>
+                <h3 className='contact-title mb-4' style={{ fontSize: '30px' , fontWeight: 'bold'}}>Get in touch with us</h3>
                 <div>
                   <ul className='ps-0'>
                     <li className='mb-3 d-flex gap-15 align-items-center'>
                       <AiOutlineHome className='fs-5' />
-                      <address className='mb-0'>
+                      <address className='mb-0'style={{ fontSize: '16px', fontWeight: 'normal', color: '#333' }}>
                         No.65, Opposite People’s Bank, Dambulla Road, Ibbagamuwa.
                       </address>
                     </li>
                     <li className='mb-3 d-flex gap-15 align-items-center'>
                       <BiPhoneCall className='fs-5' />
-                      <a href='tel : +94 123456789'>+94 123456789</a>
+                      <a href='tel:+94123456789' style={{ fontSize: '16px', fontWeight: 'normal', color: '#333',textDecoration: 'none' }}>+94 123456789</a>
                     </li>
                     <li className='mb-3 d-flex gap-15 align-items-center'>
                       <AiOutlineMail className='fs-5' />
-                      <a href='mailto:chathu@gmail.com'>chathu@gmail.com</a>
+                      <a href='mailto:chathu@gmail.com' style={{ fontSize: '16px', fontWeight: 'normal', color: '#333',textDecoration: 'none' }}>chathu@gmail.com</a>
                     </li>
                     <li className='mb-3 d-flex gap-15 align-items-center'>
                       <BiInfoCircle className='fs-5' />
-                      <p className='mb-0'>Monday - Saturday 9 AM - 7 PM</p>
+                      <p className='mb-0' style={{ fontSize: '16px', fontWeight: 'normal', color: '#333' }}>Monday - Saturday 9 AM - 7 PM</p>
                     </li>
                   </ul>
                 </div>

@@ -144,7 +144,7 @@ export const userSlice = createSlice({
                 console.log(action.payload)
                 if (state.isSuccess === true) {
                     localStorage.setItem('user', JSON.stringify(action.payload));
-                    toast.success("Login successful!");
+                    toast.success("User Login successfully");
                 }
             })
             .addCase(loginUser.rejected, (state, action) => {

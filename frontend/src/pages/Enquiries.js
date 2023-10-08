@@ -139,7 +139,7 @@ const Enquiries = () => {
 
   return (
     <div>
-      <h3 className="mb-4 title">Inquiries</h3>
+      <h3 className="mb-4 title" style={{ fontWeight: 'bold', fontSize: '35px' }}>Inquiries</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

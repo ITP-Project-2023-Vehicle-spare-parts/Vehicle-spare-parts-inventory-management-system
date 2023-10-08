@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 //import StockSideBar from '../components/stockComponents/stockSideBar';
 import './stockCss.css'; // Create a CSS file for styling
 import { useDispatch, useSelector } from 'react-redux';
-import { getBrands } from '../features/brand/brandSlice';
+//import { getBrands } from '../features/brand/brandSlice';
 import { getProducts } from '../features/product/productSlice';
 
 function AddStock() {

@@ -2,27 +2,28 @@ import SupplierSideNavigation from "../../SupplierSideNavigation";
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "boxicons/css/boxicons.min.css";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import "./ShipmentReport.css";
+import "./UpdateShipmentReport.css";
 import toast from "react-hot-toast";
-import Swal from "sweetalert2";
+import { Link} from "react-router-dom";
 
-export default function ShipmentReport() {
+export default function UpdateShipmentReport() {
   const [supplierReq, setRequst] = useState([]);
+  const [updatedStockQuantities, setUpdatedStockQuantities] = useState({});
+ 
 
   useEffect(() => {
     function getRequest() {
       axios
-        .get("http://localhost:8000/supplierReq/requestlist", getRequest)
+        .get("http://localhost:8000/supplierReq/requestlist")
         .then((res) => {
           console.log(res.data);
           setRequst(res.data);
           toast.success("Data Fetched Successfully!", {
-            duration: 3000, // 3 seconds
-            position: "top-right", // You can change the position if needed
+            duration: 3000,
+            position: "top-right",
           });
         })
         .catch((err) => {
@@ -32,25 +33,44 @@ export default function ShipmentReport() {
     getRequest();
   }, []);
 
-  function DeleteRequest() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "red",
-      cancelButtonColor: "green",
-      confirmButtonText: "Yes, Delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios.delete("http://localhost:8000/supplierReq/deleteAll/");
 
-        Swal.fire("Deleted!", "Your Request has been Clear...", "success");
 
-        window.location.reload();
-      }
+  const handleChange = (productId, newValue) => {
+    setUpdatedStockQuantities((prevState) => ({
+      ...prevState,
+      [productId]: newValue,
+    }));
+  };
+
+  const handleSaveOrder = () => {
+    // Here, you can send a request to update the stock quantities for all products using the updatedStockQuantities state.
+    // Iterate through the entries in the updatedStockQuantities object and send individual requests.
+
+    Object.entries(updatedStockQuantities).forEach(([productId, newValue]) => {
+      axios
+        .put(`http://localhost:8000/supplierReq/quantity/${productId}`, {
+          neededStockQuantity: newValue,
+        })
+        .then((res) => {
+          console.log(res.data);
+          // Handle success, e.g., show a success message
+          toast.success("Stock Quantity Updated Successfully!", {
+            duration: 3000,
+            position: "top-right",
+          });
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log(err.message);
+          // Handle error, e.g., show an error message
+          toast.error("Error updating Stock Quantity", {
+            duration: 3000,
+            position: "top-right",
+          });
+        });
     });
-  }
+  };
+
   const generatePDF = () => {
     const pdf = new jsPDF();
 
@@ -71,8 +91,6 @@ export default function ShipmentReport() {
         `${dataobj.dayAdded}-${dataobj.monthAdded}-${dataobj.yearAdded}`,
         dataobj.suppliername,
         dataobj.productname,
-        dataobj.stockQuantity,
-        dataobj.reorderpoint,
         dataobj.neededStockQuantity,
       ];
     });
@@ -81,8 +99,6 @@ export default function ShipmentReport() {
       "Added Date",
       "Supplier Name",
       "Product Name",
-      "Stock Quantity",
-      "Reorderpoint",
       "Needed StockQuantity",
     ];
 
@@ -108,31 +124,12 @@ export default function ShipmentReport() {
   };
 
   return (
-    <div id="ShipmentReport">
-      <body className="ShipmentReport">
+    <div id="UpdateShipmentReport">
+      <body className="UpdateShipmentReport">
         <SupplierSideNavigation />
         <main class="table">
           <section class="table__header">
-            <h1>Suggest Order Report</h1>
-
-            <Link to="">
-              <Button
-                variant="outline-danger "
-                size="lg"
-                onClick={DeleteRequest}
-              >
-                <i class="bx bxs-trash bx-md bx-tada">Clear Report</i>
-              </Button>
-            </Link>
-            <Link to="/supplier/update/order">
-              <Button
-                variant="outline-success "
-                size="md"
-                style={{ marginLeft: "0px" }}
-              >
-                <i class="bx bx-pen bx-sm">UpdateOrder</i>
-              </Button>
-            </Link>
+            <h1>Update Order Report</h1>
 
             <div class="export__file">
               <label
@@ -158,36 +155,57 @@ export default function ShipmentReport() {
               <table>
                 <thead>
                   <tr>
-                    <th>Added Date</th>
-                    <th> Supplier Name</th>
                     <th> Product Name </th>
-                    <th> Stock Quantity </th>
-                    <th> Reorderpoint</th>
                     <th> Needed StockQuantity </th>
                   </tr>
                 </thead>
-
-                {supplierReq.map((dataobj) => {
-                  return (
-                    <tbody>
+                <tbody>
+                  {supplierReq.map((dataobj) => {
+                    return (
                       <tr key={dataobj._id}>
-                        <td>
-                          {dataobj.dayAdded}-{dataobj.monthAdded}-
-                          {dataobj.yearAdded}
-                        </td>
-                        <td> {dataobj.suppliername}</td>
                         <td>{dataobj.productname}</td>
-                        <td>{dataobj.stockQuantity} </td>
-                        <td>{dataobj.reorderpoint} </td>
-                        <td style={{ backgroundColor: "red", color: "white" }}>
-                          {dataobj.neededStockQuantity}
+                        <td>
+                          <input
+                            type="number"
+                            name={`neededStockQuantity-${dataobj._id}`}
+                            id={`neededStockQuantity-${dataobj._id}`}
+                            value={
+                              updatedStockQuantities[dataobj._id] ||
+                              dataobj.neededStockQuantity
+                            }
+                            min={dataobj.neededStockQuantity}
+                            onChange={(e) =>
+                              handleChange(dataobj._id, e.target.value)
+                            }
+                          />
                         </td>
                       </tr>
-                    </tbody>
-                  );
-                })}
+                    );
+                  })}
+                </tbody>
               </table>
             )}
+            <Link to="/supplier/order">
+              {" "}
+              <Button
+                variant="outline-danger "
+                size="md"
+                style={{ margin: "10px", float: "right" }}
+              >
+                <i className="bx bx-book bx-sm">SuggestReport</i>
+              </Button>{" "}
+            </Link>
+
+            <Link to="">
+              <Button
+                variant="outline-success "
+                size="md"
+                style={{ margin: "10px", float: "right" }}
+                onClick={handleSaveOrder}
+              >
+                <i className="bx bx-pen bx-sm">SaveOrder</i>
+              </Button>
+            </Link>
           </section>
         </main>
       </body>
