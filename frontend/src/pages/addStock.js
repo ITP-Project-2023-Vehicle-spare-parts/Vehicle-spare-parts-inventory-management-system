@@ -26,7 +26,7 @@ function AddStock() {
         .get("http://localhost:8000/supplier/")
         .then((res) => {
           const formattedSuppliers = res.data.map((supplier) => {
-            return `${supplier.SupplierfirstName} ${supplier.SupplierlastName}`;
+            return `${supplier.SupplierfirstName} ${supplier.SupplierLastName}`;
           });
           setorgSupplier(formattedSuppliers);
           toast.success("Data Fetched Successfully!", {
