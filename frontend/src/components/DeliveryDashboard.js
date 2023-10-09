@@ -23,7 +23,7 @@ const DeliveryDashboard = () => {
       {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">
-          Delivery Dashboard
+          Delivery Person Dashboard
         </a>
       </nav>
 
