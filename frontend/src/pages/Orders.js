@@ -72,8 +72,8 @@ const Orders = () => {
         <AiOutlineEye />
       </Link>
     ),
-    amount: order.totalPrice,
-    date: new Date(order.createdAt).toLocaleString(),
+    amount: `Rs.${order.totalPrice}`,
+    date: new Date(order.createdAt).toLocaleDateString(),
     action: (
       <>
         <select
