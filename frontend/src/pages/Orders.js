@@ -105,7 +105,9 @@ const Orders = () => {
 
   const status = filteredOrders.map(order => order.orderStatus);
   const totalIncome = filteredOrders.reduce((total, order) => total + order.totalPrice, 0);
+  console.log(totalIncome)
   const totalProducts = filteredOrders.length;
+  console.log(totalProducts)
 
   const handleGenerateReport = () => {
     const doc = new jsPDF();
