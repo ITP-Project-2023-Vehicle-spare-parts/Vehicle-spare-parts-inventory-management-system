@@ -9,7 +9,7 @@ const columns = [
   {
     title: 'Product Name',
     dataIndex: 'name',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -19,7 +19,7 @@ const columns = [
   {
     title: 'Brand',
     dataIndex: 'brand',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -29,7 +29,7 @@ const columns = [
   {
     title: 'Count',
     dataIndex: 'count',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -39,7 +39,7 @@ const columns = [
   {
     title: 'Color',
     dataIndex: 'color',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -49,7 +49,7 @@ const columns = [
   {
     title: 'Amount',
     dataIndex: 'amount',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -87,8 +87,8 @@ const ViewOrder = () => {
         <Table
           columns={columns}
           dataSource={data1}
-          bordered // Add border to the table
-          // Add CSS styles to the table
+          bordered 
+          
           style={{
             fontSize: '20px',
             fontWeight: 'normal',
