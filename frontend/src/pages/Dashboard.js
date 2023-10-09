@@ -185,8 +185,8 @@ const Dashboard = () => {
           <Table
             columns={columns}
             dataSource={orderData}
-            bordered // Add border to the table
-            // Add CSS styles to the table
+            bordered 
+            
             style={{
               fontSize: '20px',
               fontWeight: 'normal',

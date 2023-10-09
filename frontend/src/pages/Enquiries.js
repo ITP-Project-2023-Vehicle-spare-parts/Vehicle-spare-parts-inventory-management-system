@@ -10,14 +10,14 @@ import {
 import { AiFillDelete, AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import CustomModal from "../components/CustomModal";
-import { toast } from "react-toastify"; // Import the toast library
-import "../CSS/Admin.css"; // Import your custom CSS file
+import { toast } from "react-toastify"; 
+import "../CSS/Admin.css"; 
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -27,7 +27,7 @@ const columns = [
   {
     title: 'Email',
     dataIndex: 'email',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -57,7 +57,7 @@ const columns = [
   {
     title: 'Action',
     dataIndex: 'action',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -71,8 +71,7 @@ const Enquiries = () => {
 
   const [open, setOpen] = useState(false);
   const [enqId, setEnqId] = useState("");
-  const [statusUpdated, setStatusUpdated] = useState(false); // Added state for status update toast
-
+  const [statusUpdated, setStatusUpdated] = useState(false); 
   const showModal = (e) => {
     setOpen(true);
     setEnqId(e);
@@ -95,11 +94,11 @@ const Enquiries = () => {
     const data = { id: i, enqData: e };
     dispatch(updateAEnquiry(data))
       .then(() => {
-        toast.success("Status updated successfully"); // Show a success toast
+        toast.success("Status updated successfully"); 
         setStatusUpdated(true);
       })
       .catch((error) => {
-        toast.error("Status update failed"); // Show an error toast
+        toast.error("Status update failed"); 
         console.error(error);
       });
   };
@@ -107,7 +106,7 @@ const Enquiries = () => {
   const deleteEnq = (e) => {
     dispatch(deleteAEnquiry(e))
       .then(() => {
-        toast.success("Inquiry deleted successfully"); // Show a success toast
+        toast.success("Inquiry deleted successfully"); 
         setOpen(false);
         setTimeout(() => {
           dispatch(getEnquiries());
@@ -124,7 +123,7 @@ const Enquiries = () => {
     if (statusUpdated) {
       const timer = setTimeout(() => {
         setStatusUpdated(false);
-      }, 3000); // 3 seconds
+      }, 3000); 
       return () => clearTimeout(timer);
     }
   }, [statusUpdated]);
@@ -175,13 +174,13 @@ const Enquiries = () => {
         <Table
           columns={columns}
           dataSource={data1}
-          bordered // Add border to the table
-          // Add CSS styles to the table
+          bordered 
+          
           style={{
             fontSize: '20px',
             fontWeight: 'normal',
             color: 'black',
-            fontFamily: 'Arial, sans-serif', // Add font family
+            fontFamily: 'Arial, sans-serif', 
           }}
         />
       </div>
