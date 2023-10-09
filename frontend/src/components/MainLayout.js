@@ -167,11 +167,7 @@ const MainLayout = () => {
                   icon: <AiOutlineStock className='fs-4'/>,
                   label: 'View Stock',
                 },
-                {
-                  key: 'Stock-interactivechart',
-                  icon: <AiOutlineStock className='fs-4'/>,
-                  label: 'Stock Level',
-                },
+                
                 {
                   key: 'Stock-Low',
                   icon: <AiOutlineStock className='fs-4'/>,
