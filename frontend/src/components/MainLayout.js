@@ -248,6 +248,11 @@ const MainLayout = () => {
                   icon: <TbTruckDelivery className='fs-4'/>,
                   label: 'Order History',
                 },
+                {
+                  key: 'DeliveryChart',
+                  icon: <TbTruckDelivery className='fs-4'/>,
+                  label: 'Order History chart',
+                },
 
               ]
             },

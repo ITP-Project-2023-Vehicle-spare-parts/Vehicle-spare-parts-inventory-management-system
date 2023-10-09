@@ -10,5 +10,8 @@ router.get("/branchAdding", OrderlistController.getOrders);
 router.get("/orderHistory", OrderlistController.getOrderHistory);
 router.put("/updatedeliverypersonid/:orderid", OrderlistController.updateDeliveryPersonID);
 router.get("/ordersByBranch", OrderlistController.getOrdersByBranch);
+router.get("/AllOrdersForDelivery", OrderlistController.getAllOrdersForDeliveryPerson);
+router.get("/OrderByDeliveryPersonID/:id", OrderlistController.getOrdersByDeliveryPersonId);
+router.get("/ordersByMonth", OrderlistController.getOrdersByMonth);
 
 module.exports = router;
