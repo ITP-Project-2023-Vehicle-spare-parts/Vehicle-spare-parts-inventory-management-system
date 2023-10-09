@@ -4,6 +4,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function UpdateProfileAdmin() {
   const id = localStorage.getItem("userID");
@@ -11,7 +13,7 @@ export default function UpdateProfileAdmin() {
   const Navigate = useNavigate();
 
   const [supplier, setSupplier] = useState({
-    SupplierfirstName : "",
+    SupplierfirstName: "",
     CompanyName: "",
     CompanyEmail: "",
     CompanyPhone: "",
@@ -19,19 +21,16 @@ export default function UpdateProfileAdmin() {
     SupplierLastName: "",
     SupplierEmail: "",
     SupplierPhone: "",
-    SupplierStatus:"",
+    SupplierStatus: "",
     SystemEmail: "",
     SystemPassword: "",
     SupplierCity: "",
     SupplierState: "",
     SupplierPostalCode: "",
     ProvidedBrand: "",
-
   });
 
-
   useEffect(() => {
-
     const fetchSupplier = () => {
       axios
         .get("http://localhost:8000/supplier/get/" + id)
@@ -46,12 +45,25 @@ export default function UpdateProfileAdmin() {
         .catch((err) => {
           alert(err.message);
         });
-    }
+    };
     fetchSupplier();
   }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (name === "CompanyPhone" || name === "SupplierPhone") {
+      if (!phoneRegex.test(value)) {
+        // Display an error message or handle the validation error as needed
+        // For example, you can show a toast or set an error state
+        // In this example, we'll use a toast notification
+        toast.error("Please enter a valid 10-digit phone number.");
+        return;
+      }
+    }
+
     setSupplier((prevSupplier) => ({
       ...prevSupplier,
       [name]: value,
@@ -64,13 +76,13 @@ export default function UpdateProfileAdmin() {
       .then((res) => {
         console.log(res.data);
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'SuccessFully Updated!',
+          position: "top-end",
+          icon: "success",
+          title: "SuccessFully Updated!",
           showConfirmButton: false,
-          timer: 150
-        })
-        Navigate("/Admin/Sup/Profile/:id")
+          timer: 150,
+        });
+        Navigate("/Admin/Sup/Profile/:id");
         // You can add additional logic here, such as redirecting to another page
       })
       .catch((err) => {
@@ -81,283 +93,300 @@ export default function UpdateProfileAdmin() {
   return (
     <div id="UpdateProfileAdmin">
       <body>
-        
-          <div class="container shadow p-2 ">
-            <div class="row gutters">
-              <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <div class="account-settings">
-                      <div class="user-profile">
-                        <div class="user-avatar">
-                          <img src="/images/me.jpg" alt="" />
-                          <div className="middle">
-                            <input
-                              type="file"
-                              class="text"
-                              style={{ display: "flex" }}
-                            />
-                          </div>
+        <div class="container shadow p-2 ">
+          <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+              <div class="card h-100">
+                <div class="card-body">
+                  <div class="account-settings">
+                    <div class="user-profile">
+                      <div class="user-avatar">
+                        <img src="/images/me.jpg" alt="" />
+                        <div className="middle">
+                          <input
+                            type="file"
+                            class="text"
+                            style={{ display: "flex" }}
+                          />
                         </div>
-                        <h5 class="user-name">{supplier.SupplierfirstName} {supplier.SupplierLastName
-}</h5>
-                        <h6 class="user-email">{supplier.SupplierEmail}</h6>
                       </div>
-                      <div class="about">
-                        <h5>About</h5>
-                        <p>
-                          {supplier.SupplierStatus}
-                        </p>
-                      </div>
-                      <div class="about">
-                        <h5>About</h5>
-                        <p>
-                          I'm Yuki. Full Stack Designer I enjoy creating
-                          user-centric, delightful and human experiences.
-                        </p>
-                      </div>
+                      <h5 class="user-name">
+                        {supplier.SupplierfirstName} {supplier.SupplierLastName}
+                      </h5>
+                      <h6 class="user-email">{supplier.SupplierEmail}</h6>
+                    </div>
+                    <div class="about">
+                      <h5>About</h5>
+                      <p>{supplier.SupplierStatus}</p>
+                    </div>
+                    <div class="about">
+                      <h5>About</h5>
+                      <p>
+                        I'm Yuki. Full Stack Designer I enjoy creating
+                        user-centric, delightful and human experiences.
+                      </p>
+                    </div>
 
-                      <div class="about">
-                        <h5>About</h5>
-                        <p>
-                          I'm Yuki. Full Stack Designer I enjoy creating
-                          user-centric, delightful and human experiences.
-                        </p>
-                      </div>
+                    <div class="about">
+                      <h5>About</h5>
+                      <p>
+                        I'm Yuki. Full Stack Designer I enjoy creating
+                        user-centric, delightful and human experiences.
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <span style={{ textDecoration: "none" }}>
-                      <h1 class="mb-2 text-Dark">Update Account</h1>
-                    </span>
-                  </div>
-                  <div class="card-body">
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <b>
-                          <h4 class="mb-2 text-primary">Company Details</h4>
-                        </b>
-                      </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+              <div class="card h-100">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <span style={{ textDecoration: "none" }}>
+                    <h1 class="mb-2 text-Dark">Update Account</h1>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <b>
+                        <h4 class="mb-2 text-primary">Company Details</h4>
+                      </b>
+                    </div>
 
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">Company Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="CompanyName"
-                            name="CompanyName"
-                            value={supplier.CompanyName}
-                            onChange={handleChange}
-                            readOnly
-                          />
-                        </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="fullName">Company Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="CompanyName"
+                          name="CompanyName"
+                          value={supplier.CompanyName}
+                          onChange={handleChange}
+                          readOnly
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="eMail">Company Email</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="CompanyEmail"
-                            name="CompanyEmail"
-                            value={supplier.CompanyEmail}
-                            onChange={handleChange}
-                          />
-                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="eMail">Company Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="CompanyEmail"
+                          name="CompanyEmail"
+                          value={supplier.CompanyEmail}
+                          onChange={handleChange}
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="phone">Company Phone</label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="phone">Company Phone</label>
+                        <OverlayTrigger
+                          placement="top"
+                          overlay={
+                            <Tooltip id="tooltip-company-name">
+                              Phone Number Needs to be a 10-digit number
+                            </Tooltip>
+                          }
+                        >
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="CompanyPhone"
                             name="CompanyPhone"
                             value={supplier.CompanyPhone}
                             onChange={handleChange}
                           />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="website">Company Address</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="CompanyAddress"
-                            name="CompanyAddress"
-                            value={supplier.CompanyAddress}
-                            onChange={handleChange}
-                          />
-                        </div>
+                        </OverlayTrigger>
                       </div>
                     </div>
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="mb-2 text-primary">Supplier Details</h4>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="website">Company Address</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="CompanyAddress"
+                          name="CompanyAddress"
+                          value={supplier.CompanyAddress}
+                          onChange={handleChange}
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">First Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="SupplierfirstName"
-                            name="SupplierfirstName"
-                            value={supplier.SupplierfirstName}
-                            onChange={handleChange}
-                          />
-                        </div>
+                    </div>
+                  </div>
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h4 class="mb-2 text-primary">Supplier Details</h4>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="fullName">First Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="SupplierfirstName"
+                          name="SupplierfirstName"
+                          value={supplier.SupplierfirstName}
+                          onChange={handleChange}
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">Last Name</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="SupplierLastName"
-                            name="SupplierLastName"
-                            value={supplier.SupplierLastName}
-                            onChange={handleChange}
-                          />
-                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="fullName">Last Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="SupplierLastName"
+                          name="SupplierLastName"
+                          value={supplier.SupplierLastName}
+                          onChange={handleChange}
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="eMail">Email</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="SupplierEmail"
-                            name="SupplierEmail"
-                            value={supplier.SupplierEmail}
-                            onChange={handleChange}
-                          />
-                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="eMail">Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="SupplierEmail"
+                          name="SupplierEmail"
+                          value={supplier.SupplierEmail}
+                          onChange={handleChange}
+                        />
                       </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="phone">Phone</label>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <OverlayTrigger
+                          placement="top"
+                          overlay={
+                            <Tooltip id="tooltip-company-name">
+                              Phone Number Needs to be a 10-digit number
+                            </Tooltip>
+                          }
+                        >
                           <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             id="SupplierPhone"
                             name="SupplierPhone"
                             value={supplier.SupplierPhone}
                             onChange={handleChange}
                           />
-                        </div>
+                        </OverlayTrigger>
                       </div>
                     </div>
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h5 class="mt-3 mb-2 text-primary">Address</h5>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="Street">City</label>
-                          <input
-                            type="name"
-                            class="form-control"
-                            id="SupplierCity"
-                            name="SupplierCity"
-                            value={supplier.SupplierCity}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="ciTy">State</label>
-                          <input
-                            type="name"
-                            class="form-control"
-                            id="SupplierState"
-                            name="SupplierState"
-                            value={supplier.SupplierState}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="sTate">PostalCode</label>
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="SupplierPostalCode"
-                            name="SupplierPostalCode"
-                            value={supplier.SupplierPostalCode}
-                            onChange={handleChange}
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label
-                            for="exampleFormControlTextarea1"
-                            class="form-label"
-                          >
-                            Supplier Status
-                          </label>
-                          <textarea
-                            class="form-control"
-                            id="exampleFormControlTextarea1"
-                            rows="3"
-                            name="SupplierStatus"
-                            value={supplier.SupplierStatus}
-                            onChange={handleChange}
-                            readOnly
-                            style={{ backgroundColor: "#c5cde4" }}
-                          ></textarea>
-                        </div>
+                  </div>
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h5 class="mt-3 mb-2 text-primary">Address</h5>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="Street">City</label>
+                        <input
+                          type="name"
+                          class="form-control"
+                          id="SupplierCity"
+                          name="SupplierCity"
+                          value={supplier.SupplierCity}
+                          onChange={handleChange}
+                        />
                       </div>
                     </div>
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h4 class="mb-2 text-primary">Login Credential</h4>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">System Email</label>
-                          <input
-                            type="email"
-                            class="form-control"
-                            id="SystemEmail"
-                            name="SystemEmail"
-                            value={supplier.SystemEmail}
-                            onChange={handleChange}
-                            readOnly
-                          />
-                        </div>
-                      </div>
-                      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div class="form-group">
-                          <label for="fullName">System Password</label>
-                          <input
-                            type="password"
-                            class="form-control"
-                            id="SystemPassword"
-                            name="SystemPassword"
-                            value={supplier.SystemPassword}
-                            onChange={handleChange}
-                            
-                          />
-                        </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="ciTy">State</label>
+                        <input
+                          type="name"
+                          class="form-control"
+                          id="SupplierState"
+                          name="SupplierState"
+                          value={supplier.SupplierState}
+                          onChange={handleChange}
+                        />
                       </div>
                     </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="sTate">PostalCode</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="SupplierPostalCode"
+                          name="SupplierPostalCode"
+                          value={supplier.SupplierPostalCode}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label
+                          for="exampleFormControlTextarea1"
+                          class="form-label"
+                        >
+                          Supplier Status
+                        </label>
+                        <textarea
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          rows="3"
+                          name="SupplierStatus"
+                          value={supplier.SupplierStatus}
+                          onChange={handleChange}
+                          readOnly
+                          style={{ backgroundColor: "#c5cde4" }}
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h4 class="mb-2 text-primary">Login Credential</h4>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="fullName">System Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="SystemEmail"
+                          name="SystemEmail"
+                          value={supplier.SystemEmail}
+                          onChange={handleChange}
+                          readOnly
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-group">
+                        <label for="fullName">System Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="SystemPassword"
+                          name="SystemPassword"
+                          value={supplier.SystemPassword}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-                    <br />
+                  <br />
 
-                    <div class="row gutters">
-                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="text-right">
-                         <Link to="/Admin/Sup/Profile/:id"> <button
+                  <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="text-right">
+                        <Link to="/Admin/Sup/Profile/:id">
+                          {" "}
+                          <button
                             type="button"
                             id="submit"
                             name="submit"
@@ -365,18 +394,17 @@ export default function UpdateProfileAdmin() {
                             style={{ margin: "10px" }}
                           >
                             Cancel
-                          </button> </Link>
-                          <button
-                            type="button"
-                            id="submit"
-                            name="submit"
-                            class="btn btn-primary"
-                            onClick={updateData}
-
-                          >
-                            Update
-                          </button>
-                        </div>
+                          </button>{" "}
+                        </Link>
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          class="btn btn-primary"
+                          onClick={updateData}
+                        >
+                          Update
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -384,7 +412,7 @@ export default function UpdateProfileAdmin() {
               </div>
             </div>
           </div>
-        
+        </div>
       </body>
     </div>
   );

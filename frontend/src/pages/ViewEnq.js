@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAEnquiry, resetState, updateAEnquiry } from '../features/enquiry/enquirySlice';
 import { BiArrowBack } from "react-icons/bi";
-import { toast } from "react-toastify"; // Import the toast component
-import { Table } from "antd"; // Import the Ant Design Table component
+import { toast } from "react-toastify"; 
+import { Table } from "antd"; 
 import "../CSS/Admin.css"
 
 const ViewEnq = () => {
@@ -40,7 +40,7 @@ const ViewEnq = () => {
     }, 100);
   };
 
-  // Define columns for the Ant Design Table
+  
  const columns = [
     {
       title: 'Attribute',
@@ -54,7 +54,7 @@ const ViewEnq = () => {
     },
   ];
 
-  // Data for the Ant Design Table
+  
   const data = [
     {
       key: '1',

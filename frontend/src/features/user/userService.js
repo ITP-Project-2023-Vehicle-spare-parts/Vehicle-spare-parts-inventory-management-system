@@ -34,7 +34,7 @@ const getCart = async () => {
       return response.data;
   }
 
-  // return [];
+  
   return response.data;
 }
 
