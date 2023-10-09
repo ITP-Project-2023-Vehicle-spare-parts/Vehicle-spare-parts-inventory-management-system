@@ -55,15 +55,13 @@ const TrackOrder = () => {
               {orderDetails ? (
                 <div className="order-details-popup">
                   <p><strong>Order ID:</strong> {orderDetails._id}</p>
-                  <p><strong>User ID:</strong> {orderDetails.user}</p>
                   <p><strong>Order Status:</strong> {orderDetails.orderStatus}</p>
                   <p><strong>Total Price:</strong> ${orderDetails.totalPrice}</p>
                   <p><strong>Delivering Branch:</strong> {orderDetails.branch}</p>
                   <p><strong>Items:</strong></p>
                   <ul className="list-group mb-4">
                     {orderDetails.orderItems.map((item) => (
-                      <li key={item._id} className="list-group-item">
-                        <strong>Product:</strong> {item.product}, 
+                      <li key={item._id} className="list-group-item">                         
                         <strong>Color:</strong> {item.color}, 
                         <strong>Quantity:</strong> {item.quantity}, 
                         <strong>Price:</strong> ${item.price}

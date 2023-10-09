@@ -2,7 +2,7 @@ const Order = require('../model/orderModel');
 
 const getAllOrders = async (req, res) => {
     try {
-        const DeliveryOrder = await Order.find({ orderStatus: "Ordered" });
+        const DeliveryOrder = await Order.find({ orderStatus: "Billed" });
         //{ orderStatus: "Ordered" }
         res.json(DeliveryOrder);
     } catch (err) {
@@ -13,7 +13,7 @@ const getAllOrders = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const DeliveryOrderes = await Order.find({ orderStatus: "delivery person assign" });
+        const DeliveryOrderes = await Order.find({ orderStatus: "Delivered" });
         //{ orderStatus: "Delivered" }
         res.json(DeliveryOrderes);
     } catch (err) {
@@ -142,10 +142,103 @@ const getOrderById = async (req, res) => {
         res.status(500).send({ status: "Error fetching orders by branch", error: err.message });
     }
 };
+const getAllOrdersForDeliveryPerson = async (req, res) => {
+    try {
+        const DeliveryOrderes = await Order.find({ orderStatus: "delivery person assign" });
+        //{ orderStatus: "Ordered" }
+        res.json(DeliveryOrderes);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching DeliveryOrder", error: err.message });
+    }
+};
 
+const getOrdersByDeliveryPersonId = async (req, res) => {
+    try {
+      const deliveryPersonId = req.params.id; // Assuming this is the delivery person's ID
+      console.log(req.params.id);
   
+      // Use find instead of findById to find orders with the given delivery person ID
+      const deliveryOrders = await Order.find({ deliveryPersonid: deliveryPersonId });
+  
+      if (!deliveryOrders || deliveryOrders.length === 0) {
+        return res.status(404).send({ status: "Orders not found for the given delivery person ID" });
+      }
+  
+      console.log(deliveryOrders);
+      res.status(200).send({ status: "Orders fetched", deliveryOrders });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ status: "Error fetching orders", error: err.message });
+    }
+  };
 
+  const getOrdersByMonth = async (req, res) => {
+    try {
+      const ordersByMonth = await Order.aggregate([
+        {
+          $match: {
+            orderStatus: "Delivered",
+            billedDate: {
+              $gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
+              $lt: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1)
+            }
+          }
+        },
+        {
+          $group: {
+            _id: {
+              month: { $month: "$billedDate" },
+              year: { $year: "$billedDate" }
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $sort: {
+            "_id.year": 1,
+            "_id.month": 1
+          }
+        }
+        // Your additional aggregation stages go here
+      ]);
   
+      console.log('Orders by month:', ordersByMonth);
+  
+      const formattedOrders = ordersByMonth.map(item => {
+        const { _id, count } = item;
+  
+        if (_id && _id.year !== undefined && _id.month !== undefined) {
+          const monthYear = `${_id.month}/${_id.year}`;
+          return {
+            monthYear,
+            count
+          };
+        } else {
+          console.log('Invalid _id structure:', _id);
+          return null;
+        }
+      });
+  
+      const validOrders = formattedOrders.filter(order => order !== null);
+  
+      console.log('Valid formatted data for chart:', validOrders);
+  
+      res.json(validOrders);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ status: 'Error fetching orders by month', error: err.message });
+    }
+  };
+  
+  module.exports = {
+    getOrdersByMonth
+  };
+  
+  
+  
+  
+   
 
 module.exports = {
     getAllOrders,
@@ -155,6 +248,9 @@ module.exports = {
     getOrders,
     getOrderHistory,
     updateDeliveryPersonID,
-    getOrdersByBranch
+    getOrdersByBranch,
+    getAllOrdersForDeliveryPerson,
+    getOrdersByDeliveryPersonId,
+    getOrdersByMonth
 
  };

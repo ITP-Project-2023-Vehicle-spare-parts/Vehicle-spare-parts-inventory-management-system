@@ -10,7 +10,7 @@ router.delete("/delete/:id", deliveryPersonController.deleteDeliveryPerson);
 router.get("/get/:id", deliveryPersonController.getDeliveryPerson);
 router.get("/getById/:id", deliveryPersonController.getDeliveryPersonById);
 router.get("/getByMail/:email", deliveryPersonController.getDeliveryPersonByMail);
-
+router.get("/getdeliveryPersonForOrder", deliveryPersonController.getAllDeliveryPersonForOrder);
 
 
 module.exports = router;

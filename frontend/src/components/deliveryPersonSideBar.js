@@ -46,7 +46,7 @@ const DeliveryPersonSideBar = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   return (
-    <Layout>
+    <Layout id='deliverypersonsidebar'>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className='text-white fs-5 text-center py-3 mb-0'>
@@ -73,32 +73,15 @@ const DeliveryPersonSideBar = () => {
               label: 'Dashboard',
             },
             {
-              key: 'user',
+              key: 'UserProfile',
               icon: <BiUserCircle className='fs-4'/>,
               label: 'User',
-              children : [
-                {
-                  key: 'user/customerlist',
-                  icon: <BiSolidUserDetail className='fs-4'/>,
-                  label: 'User Table',
-                },
-                {
-                  key: 'user/statistics',
-                  icon: <BiSolidUserDetail className='fs-4'/>,
-                  label: 'Statistics',
-                },
-                
-              ]
+
             },
             {
-              key: 'order',
+              key: 'CurrentOrder',
               icon: <AiOutlineShoppingCart className='fs-4'/>,
-              label: 'Order',
-            },
-            {
-              key: 'inquiry',
-              icon: <BsCardChecklist className='fs-4'/>,
-              label: 'Inquiry',
+              label: 'Current Working Order',
             },
             {
               key: 'signout',
@@ -148,7 +131,7 @@ const DeliveryPersonSideBar = () => {
                   <p className='mb-0'>{email}</p>
                 </div>
                 <div className='delivery-dropdown-menu'>
-                  <Link className="delivery-dropdown-item" to="/">
+                  <Link className="delivery-dropdown-item" to="/delivery/UserProfile">
                     View Profile
                   </Link>
                   <button className="delivery-dropdown-item" onClick={handleSignout}>

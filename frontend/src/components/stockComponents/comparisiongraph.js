@@ -61,8 +61,8 @@ const StockComparisonBarGraph = () => {
         <YAxis domain={[0, 'dataMax']} /> {/* Set custom domain */}
         <Tooltip />
         <Legend />
-        <Bar dataKey="quantity" name="Quantity" barSize={30} fill={quantityColor} />
-        <Bar dataKey="reorderLevel" name="Reorder Level" barSize={30} fill={reorderColor} />
+        <Bar dataKey="quantity" name="Quantity" barSize={100} fill={quantityColor} />
+        <Bar dataKey="reorderLevel" name="Reorder Level" barSize={100} fill={reorderColor} />
       </BarChart>
     </div>
   );

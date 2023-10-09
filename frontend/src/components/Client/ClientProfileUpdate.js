@@ -51,6 +51,19 @@ export default function ClientProfileUpdate() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (name === 'ClientsPhone') {
+      if (!phoneRegex.test(value)) {
+        // Display an error message or handle the validation error as needed
+        // For example, you can show a toast or set an error state
+        // In this example, we'll use a toast notification
+        toast.error('Please enter a valid 10-digit phone number.');
+        return;
+      }
+    }
+
     setClient((prevclient) => ({
       ...prevclient,
       [name]: value,

@@ -1,0 +1,57 @@
+/* DeliveryChart.css */
+
+#DeliveryChart .chart-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  #DeliveryChart .chart-title {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  #DeliveryChart .chart-wrapper {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  #DeliveryChart .recharts-bar-rectangles {
+    fill: #2238b3; /* Change the fill color of the bars */
+  }
+  
+  /* Style for the axis and grid lines */
+  #DeliveryChart .recharts-cartesian-grid-horizontal line {
+    stroke: #96b6cc; /* Change the color of the horizontal grid lines */
+  }
+  
+  #DeliveryChart .recharts-cartesian-axis-tick {
+    fill: #333; /* Change the color of the axis ticks */
+  }
+  
+  #DeliveryChart .recharts-tooltip {
+    background-color: #07ac2b;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  #DeliveryChart .recharts-legend-item-text {
+    fill: #333; /* Change the color of the legend text */
+  }
+  #DeliveryChart .recharts-bar-rectangles {
+    fill: #7e1f0f; /* Change the fill color of the bars to a coral color */
+  }
+  
+  
+  /* Customize the colors as needed */
+  
