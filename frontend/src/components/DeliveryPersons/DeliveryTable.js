@@ -119,9 +119,19 @@ function DeliveryTable() {
       theme: "grid", // "striped", "grid", or "plain"
     });
 
+    // Add signature
+    pdfDoc.text(".....................................", 10, pdfDoc.internal.pageSize.height - 15);
+    pdfDoc.text("Signature of manager", 10, pdfDoc.internal.pageSize.height - 10);
+
+    // Add address
+    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 80, 20);
+    pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 80, 15);
+
     // Save or download the PDF
     pdfDoc.save("delivery_report.pdf");
-  }
+}
+
+
   
   
   

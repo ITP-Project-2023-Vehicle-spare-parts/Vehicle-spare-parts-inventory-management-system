@@ -10,6 +10,12 @@ var productSchema = new mongoose.Schema({
       unique: true,
     },
 
+    SerialNo: {
+      type: String,
+      //required: true,
+      unique: true,
+    },
+
     Title: {
       type: String,
       required: true,
@@ -70,6 +76,8 @@ var productSchema = new mongoose.Schema({
       type: String,
       //required: true,
     },
+
+
 
     ratings: [
       {

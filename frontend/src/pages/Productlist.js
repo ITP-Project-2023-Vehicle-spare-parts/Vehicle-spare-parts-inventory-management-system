@@ -14,9 +14,15 @@ import {AiOutlineFilePdf} from 'react-icons/ai';
 
 const columns = [
     {
-      title: 'Serial NO.',
+      title: 'Product ID.',
       dataIndex: 'productID',
       sorter: (a,b) => a.productID.length - b.productID.length,
+      align: 'left'
+    },
+    {
+      title: 'Serial NO.',
+      dataIndex: 'SerialNo',
+      sorter: (a,b) => a.SerialNo.length - b.SerialNo.length,
       align: 'left'
     },
     {
@@ -103,6 +109,7 @@ const Productlist = () => {
     data1.push({
         key: i + 1,
         productID: productState[i].productID,
+        SerialNo: productState[i].SerialNo,
         Title: productState[i].Title,
         price: productState[i].price,
         discount: productState[i].discount,
