@@ -44,6 +44,19 @@ export default function CustomerProfileUpdate() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    const phoneRegex = /^[0-9]{10}$/;
+
+    if (name === "mobile") {
+      if (!phoneRegex.test(value)) {
+        // Display an error message or handle the validation error as needed
+        // For example, you can show a toast or set an error state
+        // In this example, we'll use a toast notification
+        toast.error("Please enter a valid 10-digit phone number.");
+        return;
+      }
+    }
+
     setUser((prevCustomer) => ({
       ...prevCustomer,
       [name]: value,
@@ -119,7 +132,7 @@ export default function CustomerProfileUpdate() {
                     <div class="form-group">
                       <label for="phone">Mobile Number</label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         id="mobile"
                         name="mobile"
@@ -190,7 +203,7 @@ export default function CustomerProfileUpdate() {
                     <div class="form-group">
                       <label for="sTate">PostalCode</label>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         id="SupplierPostalCode"
                         name="SupplierPostalCode"
