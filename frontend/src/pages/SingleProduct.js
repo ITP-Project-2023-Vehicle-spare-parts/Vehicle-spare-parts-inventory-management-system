@@ -57,7 +57,7 @@ const SingleProduct = () => {
         images: productState?.images,
       };
       const SoldData = JSON.stringify(soldAdd);
-    console.log()
+    console.log(SoldData)
       try {
        await axios.put(`${base_url}product/${getProductID}`, soldAdd);
         // Additional logic after the axios call if needed

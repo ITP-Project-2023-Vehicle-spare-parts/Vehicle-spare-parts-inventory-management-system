@@ -77,7 +77,8 @@ const orderSchema = new mongoose.Schema(
       default: "Ordered"
     },
     deliveryPersonid:{
-      type : String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "DeliveryPerson",
     },
 billNumber: {
   type: String,

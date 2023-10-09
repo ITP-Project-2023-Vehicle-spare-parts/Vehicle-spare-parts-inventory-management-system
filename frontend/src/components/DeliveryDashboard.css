@@ -1,0 +1,36 @@
+/* DeliveryDashboard.css */
+#DeliveryDashBoard .dashboard-container {
+  background-color: #f8f9fa; /* Light gray background */
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+#DeliveryDashBoard .dashboard-content {
+  padding: 20px;
+}
+
+#DeliveryDashBoard .dashboard-card {
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+#DeliveryDashBoard .statistics-card {
+  background-color: #d1eefc; /* Light blue background */
+}
+
+#DeliveryDashBoard .recent-orders-card {
+  background-color: #edf7ef; /* Light green background */
+}
+
+#DeliveryDashBoard .additional-card {
+  background-color: #fde2e4; /* Light pink background */
+}
+
+#DeliveryDashBoard .additional-section {
+  background-color: #fef3db; /* Light yellow background */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Add more styling as needed */

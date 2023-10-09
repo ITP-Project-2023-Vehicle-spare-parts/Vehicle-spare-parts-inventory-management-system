@@ -112,6 +112,10 @@ import DeliveryPersonPrivate from "./components/deliveyPersonprivate";
 import ViewBranchOrder from "./components/Branch/ViewBranchOrder";
 import BillAssign from "./components/Branch/BillAssign";
 import BranchSales from "./components/Branch/BranchSales";
+import CustomerDetails from "./components/Customers/CustomerDetails";
+import DeliveryChart from "./components/DeliveryChart";
+import DeliveryDashboard from "./components/DeliveryDashboard";
+import DeliveryPersonCurrentOrder from "./components/DeliveryPersonCurrentOrder";
 
 function App() {
   return (
@@ -191,7 +195,10 @@ function App() {
               element={<UserSupplierUpdateProfile />}
             />
             <Route path="/supplier/order" element={<ShipmentReport />} />
-            <Route path="/supplier/update/order" element={<UpdateShipmentReport />} />
+            <Route
+              path="/supplier/update/order"
+              element={<UpdateShipmentReport />}
+            />
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
@@ -212,6 +219,7 @@ function App() {
               <Route path="Fetch-stock" element={<FetchStock />} />
               <Route path="Stock-Report" element={<StockReport />} />
               <Route path="DeliveryPerson-add" element={<DeliveryForm />} />
+              <Route path="DeliveryChart" element={<DeliveryChart />} />
               <Route
                 path="DeliveryPerson/getAll"
                 exact
@@ -240,9 +248,12 @@ function App() {
               <Route path="offer/profile/:offerID" element={<OfferDetails />} />
               <Route path="coupon/read" exact element={<CouponTable />} />
 
-              <Route path="coupon/profiles/:id" element={<CouponDetails />}/>
+              <Route path="coupon/profiles/:id" element={<CouponDetails />} />
               <Route path="branch/update/:id" element={<EditBranch />} />
-              <Route path="coupon/profile/update/:id" element={<EditCoupon />}/>
+              <Route
+                path="coupon/profile/update/:id"
+                element={<EditCoupon />}
+              />
 
               <Route path="coupon/profile" element={<CouponDetails />} />
               <Route
@@ -268,6 +279,8 @@ function App() {
               <Route path="sup/add" element={<AddSupplier />} />
               <Route path="client/add" element={<AddClient />} />
               <Route path="updatestock/:id" element={<UpdateStock />} />
+
+              <Route path="customer/:id" element={<CustomerDetails />} />
             </Route>
 
             <Route path="/home" element={<Layout />}>
@@ -305,18 +318,20 @@ function App() {
               <Route path="update" element={<CustomerProfileUpdate />} />
             </Route>
 
+
+            <Route
+              path="/admin/viewBranchOrder"
+              element={<ViewBranchOrder />}
+            />
+            <Route path="/admin/billAssign/:id" element={<BillAssign />} />
+            <Route path="/admin/branchSales" element={<BranchSales />} />
+
             <Route path="/delivery" element={<DeliveryPersonSideBar />}>
-               <Route index element={<DeliveryPersonPrivate />} />
+               <Route index element={<DeliveryDashboard />} />
+               <Route path="UserProfile" element = {<DeliveryPersonPrivate />} />
+               <Route path="CurrentOrder" element = {<DeliveryPersonCurrentOrder />} />
             </Route>
-
-            <Route path="/admin/viewBranchOrder" element={<ViewBranchOrder />} />
-              <Route path="/admin/billAssign/:id" element={<BillAssign />} />
-              <Route path="/admin/branchSales"  element={<BranchSales />}/>
-
-
           </Routes>
-
-
         </div>
       </Router>
     </Provider>

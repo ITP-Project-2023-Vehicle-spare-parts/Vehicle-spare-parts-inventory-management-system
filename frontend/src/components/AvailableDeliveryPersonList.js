@@ -13,7 +13,7 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
 
   useEffect(() => {
     // Fetch the list of delivery persons from your API
-    axios.get('http://localhost:8000/deliveryPerson/')
+    axios.get('http://localhost:8000/deliveryPerson/getdeliveryPersonForOrder')
       .then((response) => {
         setDeliveryPersons(response.data);
       })

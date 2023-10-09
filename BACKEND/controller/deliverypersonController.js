@@ -1,5 +1,8 @@
 const DeliveryPerson = require('../model/deliverypersonModel');
 
+
+
+
 const addDeliveryPerson = async (req, res) => {
     try {
         const existingDeliveryPerson = await DeliveryPerson.findOne({ deliverypersonUsername: req.body.deliverypersonUsername });
@@ -180,6 +183,16 @@ const getDeliveryPersonByMail = async (req, res) => {
     }
 };
 
+const getAllDeliveryPersonForOrder = async (req, res) => {
+    try {
+        const DeliveryPersons = await DeliveryPerson.find({ personStatus: "available" });
+        res.json(DeliveryPersons);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ status: "Error fetching DeliveryPersons", error: err.message });
+    }
+};
+
 
 module.exports = {
    addDeliveryPerson,
@@ -188,7 +201,8 @@ module.exports = {
     deleteDeliveryPerson,
     getDeliveryPersonById,
     getDeliveryPerson,
-    getDeliveryPersonByMail
+    getDeliveryPersonByMail,
+    getAllDeliveryPersonForOrder
 };
 
 

@@ -125,7 +125,7 @@ function LowStockTable() {
   return (
     <div id="Allstock">
       <div className="fetch-stock-container">
-        <h1 className="fetch-stock-title">Suggest Stock</h1>
+      
         <div className="bar-chart-container">
           {/* Add a button to toggle the low stock list */}
           <button
