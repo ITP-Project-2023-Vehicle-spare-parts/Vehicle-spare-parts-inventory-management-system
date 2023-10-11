@@ -135,14 +135,14 @@ const SingleProduct = () => {
                         color: 'transparent',
                         fontWeight: 'bold',
                         backgroundColor: productState?.color,
-                        borderRadius: '50%', // Set border-radius to 50% for a rounded shape
-                        width: '30px', // Set the width to control the size of the circle
-                        height: '30px', // Set the height to control the size of the circle
-                        border: 'none', // Remove the button border
+                        borderRadius: '50%',
+                        width: '30px',
+                        height: '30px',
+                        border: 'none',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        boxShadow: '0 0 5px black', // Add black shadow
+                        boxShadow: '0 0 5px black',
                       }}
                     >
                       <p>{productState?.color}</p>
