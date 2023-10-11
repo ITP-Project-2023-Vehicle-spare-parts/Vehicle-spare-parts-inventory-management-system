@@ -10,6 +10,7 @@ var productSchema = new mongoose.Schema({
       unique: true,
     },
 
+    //serial number adding
     SerialNo: {
       type: String,
       //required: true,
