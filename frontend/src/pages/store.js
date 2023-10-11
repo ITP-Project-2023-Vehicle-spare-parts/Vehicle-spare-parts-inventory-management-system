@@ -128,7 +128,7 @@ const filteredProductsByCategory = productState.filter((item) =>
                     Original
                   </span>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    NS150
+                    Local
                   </span>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
                     NS200
