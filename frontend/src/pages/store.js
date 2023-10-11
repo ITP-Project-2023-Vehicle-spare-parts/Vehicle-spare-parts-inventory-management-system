@@ -40,7 +40,7 @@ const filteredProductsByCategory = productState.filter((item) =>
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === 'all' ? '' : category);
-    setSearchQuery(''); // Clear search query when a category is selected
+    setSearchQuery('');
   };
 
   return (
@@ -95,7 +95,6 @@ const filteredProductsByCategory = productState.filter((item) =>
     onChange={(e) => {
       const input = e.target.value;
       if (/^\d+$/.test(input)) {
-        // Only update the state if the input is a positive integer
         setPriceRange({ ...priceRange, from: input });
       }
     }}
@@ -112,7 +111,6 @@ const filteredProductsByCategory = productState.filter((item) =>
     onChange={(e) => {
       const input = e.target.value;
       if (/^\d+$/.test(input)) {
-        // Only update the state if the input is a positive integer
         setPriceRange({ ...priceRange, to: input });
       }
     }}
