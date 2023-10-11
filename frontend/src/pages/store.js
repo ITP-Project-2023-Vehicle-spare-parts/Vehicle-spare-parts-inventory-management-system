@@ -125,7 +125,7 @@ const filteredProductsByCategory = productState.filter((item) =>
               <div>
                 <div className='product-tags d-flex flex-wrap align-items-center gap-10'>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    CT100
+                    Original
                   </span>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
                     NS150
