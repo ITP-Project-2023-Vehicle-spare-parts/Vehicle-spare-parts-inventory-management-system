@@ -8,8 +8,6 @@ import { getBrands } from '../features/brand/brandSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {getCategories} from '../features/pcategory/pcategorySlice';
 import {getColors} from '../features/color/colorSlice';
-//import Dropzone from 'react-dropzone';
-//import { uploadImg } from '../features/upload/uploadSlice';
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getSingleProducts, resetState } from "../features/product/productSlice";
@@ -50,7 +48,6 @@ const Addproduct = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const productid = location.pathname.split("/")[3];
-  //const [images, setImages] = useState([]);
   const productState = useSelector((state) => state.product.Singledproduct);
     console.log(productState);
     useEffect(()=>{
@@ -125,7 +122,6 @@ const Addproduct = () => {
           })
           toast.success("Product updated Successfullly!");
           navigate("/Admin/product-list");
-          // You can add additional logic here, such as redirecting to another page
         })
         .catch((err) => {
           alert("Error updating data: " + err.message);
