@@ -64,7 +64,7 @@ const Header = () => {
                   <p className="mb-0">Favourites <br /> Wishlist</p>
                 </NavLink>
               </div>
-              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}> {/* Add margin and flex styles */}
+              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>
                 <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
                   {getUserFromLocalStorage
                     ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
@@ -80,7 +80,7 @@ const Header = () => {
                 </Link>
               </div>
 
-              <div style={{ marginLeft: '20px' }}> {/* Add margin here */}
+              <div style={{ marginLeft: '20px' }}>
                 <Link
                   to="/home/cart"
                   className="d-flex align-items-center gap-15 text-white"
