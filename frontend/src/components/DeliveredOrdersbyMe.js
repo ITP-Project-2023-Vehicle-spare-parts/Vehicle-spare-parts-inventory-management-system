@@ -67,7 +67,6 @@ function DeliveryPersonCurrentOrder() {
 
       console.log('Order status updated successfully:', response.data);
 
-      // You might want to update the state or do other actions here
 
       window.location.href = '/delivery';
 
