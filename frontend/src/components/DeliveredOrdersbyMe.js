@@ -69,7 +69,6 @@ function DeliveryPersonCurrentOrder() {
 
       // You might want to update the state or do other actions here
 
-      // Redirect to '/delivery'
       window.location.href = '/delivery';
 
     } catch (error) {
