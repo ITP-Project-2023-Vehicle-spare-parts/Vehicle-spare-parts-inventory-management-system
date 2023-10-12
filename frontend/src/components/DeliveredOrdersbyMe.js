@@ -41,7 +41,6 @@ function DeliveryPersonCurrentOrder() {
         });
     }
 
-    // Fetch order status options from your API
 
   }, [deliveryPerson]);
 
