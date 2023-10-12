@@ -129,7 +129,6 @@ function DeliveryPersonCurrentOrder() {
                     <option value="Shipping">Shipping</option>
                     <option value="Estimated to Location in Few Hours">Estimated to Location in Few Hours</option>
                     <option value="Delivered">Delivered</option>
-                    {/* Add more status options as needed */}
                   </select>
                 </label>
               </div>
