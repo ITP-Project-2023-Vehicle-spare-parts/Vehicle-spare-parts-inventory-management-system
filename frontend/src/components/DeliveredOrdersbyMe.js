@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './DeliveryPersonCurrentOrder.css'; // Import the external CSS file
+import './DeliveryPersonCurrentOrder.css';
 
 function DeliveryPersonCurrentOrder() {
   const [orderData, setOrderData] = useState([]);
