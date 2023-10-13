@@ -8,7 +8,7 @@ import { Layout, Menu, Button, theme } from 'antd';
 import { Link } from "react-router-dom";
 import { AiOutlineDashboard, AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
 import { BiUserCircle, BiSolidUserDetail } from "react-icons/bi";
-import { BsCardChecklist } from "react-icons/bs";
+//import { BsCardChecklist } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
