@@ -84,6 +84,11 @@ const DeliveryPersonSideBar = () => {
               label: 'Current Working Order',
             },
             {
+              key: 'OrderHistory',
+              icon: <AiOutlineShoppingCart className='fs-4'/>,
+              label: 'Delivered Orders',
+            },
+            {
               key: 'signout',
               icon: <AiOutlineLogout className='fs-4'/>,
               label: 'Sign Out',
