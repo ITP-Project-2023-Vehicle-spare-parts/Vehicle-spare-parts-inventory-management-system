@@ -116,6 +116,7 @@ import CustomerDetails from "./components/Customers/CustomerDetails";
 import DeliveryChart from "./components/DeliveryChart";
 import DeliveryDashboard from "./components/DeliveryDashboard";
 import DeliveryPersonCurrentOrder from "./components/DeliveryPersonCurrentOrder";
+import DeliveredOrderHistory from "./components/DeliveredOrderHistory";
 
 function App() {
   return (
@@ -330,6 +331,7 @@ function App() {
                <Route index element={<DeliveryDashboard />} />
                <Route path="UserProfile" element = {<DeliveryPersonPrivate />} />
                <Route path="CurrentOrder" element = {<DeliveryPersonCurrentOrder />} />
+               <Route path = "OrderHistory" element = {<DeliveredOrderHistory />} />
             </Route>
           </Routes>
         </div>
