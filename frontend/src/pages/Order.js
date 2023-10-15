@@ -20,7 +20,7 @@ const Orders = () => {
           <div className='col-12'>
             <div className='row'>
               <div className='col-3'>
-                <h5 style={{ fontSize: '22px', fontWeight: 'bold', color: '#333' }}>Order Id</h5>
+                <h5 style={{ fontSize: '22px', fontWeight: 'bold', color: '#333' }}>Tracking Id</h5>
               </div>
               <div className='col-3'>
                 <h5 style={{ fontSize: '22px', fontWeight: 'bold', color: '#333' }}>Amount</h5>
