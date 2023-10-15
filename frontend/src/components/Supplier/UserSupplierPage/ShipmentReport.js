@@ -215,8 +215,8 @@ export default function ShipmentReport() {
                         <td>{dataobj.productname}</td>
                         <td>{dataobj.stockQuantity} </td>
                         <td>{dataobj.reorderpoint} </td>
-                        <td style={{ backgroundColor: "red", color: "white" }}>
-                          {dataobj.neededStockQuantity}
+                        <td style={{ backgroundColor: "#f53d3d", color: "white", }}>
+                          <b>{dataobj.neededStockQuantity}</b>
                         </td>
                       </tr>
                     </tbody>
