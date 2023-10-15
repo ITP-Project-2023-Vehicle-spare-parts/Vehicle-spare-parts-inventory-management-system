@@ -40,7 +40,7 @@ const filteredProductsByCategory = productState.filter((item) =>
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === 'all' ? '' : category);
-    setSearchQuery(''); // Clear search query when a category is selected
+    setSearchQuery('');
   };
 
   return (
@@ -95,7 +95,6 @@ const filteredProductsByCategory = productState.filter((item) =>
     onChange={(e) => {
       const input = e.target.value;
       if (/^\d+$/.test(input)) {
-        // Only update the state if the input is a positive integer
         setPriceRange({ ...priceRange, from: input });
       }
     }}
@@ -112,7 +111,6 @@ const filteredProductsByCategory = productState.filter((item) =>
     onChange={(e) => {
       const input = e.target.value;
       if (/^\d+$/.test(input)) {
-        // Only update the state if the input is a positive integer
         setPriceRange({ ...priceRange, to: input });
       }
     }}
@@ -127,16 +125,13 @@ const filteredProductsByCategory = productState.filter((item) =>
               <div>
                 <div className='product-tags d-flex flex-wrap align-items-center gap-10'>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    CT100
+                    Original
                   </span>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    NS150
+                    Local
                   </span>
                   <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    NS200
-                  </span>
-                  <span className='badge bg-light text-secondary rounded-3 py-2 px-3'>
-                    ZR100
+                    imported
                   </span>
                 </div> 
               </div>

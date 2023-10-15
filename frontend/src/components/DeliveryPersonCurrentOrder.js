@@ -12,7 +12,7 @@ function DeliveryPersonCurrentOrder() {
   const [showOrderDetails, setShowOrderDetails] = useState(true);
   const [showButton, setShowButton] = useState(true);
   const email = sessionStorage.getItem("userEmail");
-  const [selectedOrderStatus, setSelectedOrderStatus] = useState('');
+  //const [selectedOrderStatus, setSelectedOrderStatus] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)

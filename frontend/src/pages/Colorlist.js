@@ -3,7 +3,6 @@ import {Table} from "antd";
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import {deleteColor, getColors} from '../features/color/colorSlice';
 import { useDispatch, useSelector } from 'react-redux';
-//import {Link} from 'react-router-dom';
 import CustomModal from '../components/CustomModal';
 
 
