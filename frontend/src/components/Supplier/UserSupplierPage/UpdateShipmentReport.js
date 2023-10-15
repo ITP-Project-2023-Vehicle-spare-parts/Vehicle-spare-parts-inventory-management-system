@@ -73,6 +73,8 @@ export default function UpdateShipmentReport() {
 
   const generatePDF = () => {
     const pdf = new jsPDF();
+    const currentDate = new Date();
+    const currentTimestamp = currentDate.getTime();
 
     // Add the logo
     const logoURL = "/images/CMLogo.png";
@@ -106,8 +108,6 @@ export default function UpdateShipmentReport() {
     pdf.setFontSize(16);
     pdf.setTextColor(0, 0, 0); // Text color (black)
 
-    // Define the column widths and row heights
-
     // Add the table
     pdf.autoTable({
       head: [tableHeaders],
@@ -120,6 +120,23 @@ export default function UpdateShipmentReport() {
     });
 
     let currentYPosition = pdf.lastAutoTable.finalY + 20; // Get the Y position of the last table row + 20 for padding
+
+    // Warning for stock fill within 7 days
+    let warningShown = false; // Flag to determine if a warning was shown
+    supplierReq.forEach(dataobj => {
+      const itemDate = new Date(dataobj.yearAdded, dataobj.monthAdded - 1, dataobj.dayAdded);
+      const differenceInDays = (currentTimestamp - itemDate.getTime()) / (1000 * 60 * 60 * 24);
+
+      if (differenceInDays <= 7 && !warningShown) {
+        pdf.setTextColor(255, 0, 0); // Set text color to red
+        pdf.text("WARNING: Some items need to be filled within the next 7 days!", 10, currentYPosition);
+        currentYPosition += 20;
+        warningShown = true; // Set the flag to true
+      }
+    });
+
+    // Reset text color for the rest of the document
+    pdf.setTextColor(0, 0, 0); // Text color (black)
 
     // Add shop address
     pdf.setFontSize(14);
@@ -145,19 +162,14 @@ export default function UpdateShipmentReport() {
     pdf.line(10, currentYPosition, 110, currentYPosition); // Signature line for supplier
     pdf.text('Supplier Signature:', 10, currentYPosition + 10); 
 
-
-    
-    const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
-
     pdf.text(`Date: ${formattedDate}`, 130, currentYPosition +10);
-    currentYPosition += 15;
 
-   // Signature line for shop representative
+    currentYPosition += 15;
 
     // Save or display the PDF
     pdf.save("Update-Order_report.pdf"); // Save the PDF with a filename
-  };
+};
 
   return (
     <div id="UpdateShipmentReport">
