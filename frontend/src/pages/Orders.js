@@ -25,7 +25,7 @@ const columns = [
     dataIndex: 'date',
   },
   {
-    title: 'Action',
+    title: 'Order Status',
     dataIndex: 'action',
   },
   {
@@ -74,7 +74,8 @@ const Orders = () => {
     ),
     amount: `Rs.${order.totalPrice}`,
     date: new Date(order.createdAt).toLocaleDateString(),
-    action: (
+    action: order.orderStatus,
+    /*(
       <>
         <select
           name=""
@@ -89,9 +90,9 @@ const Orders = () => {
           <option value="Delivered">Delivered</option>
         </select>
       </>
-    ),
+    ),*/
   }));
-
+/*
   const updateOrderStatus = (a, b) => {
     dispatch(updateAOrder({ id: a, status: b }))
       .then(() => {
@@ -102,7 +103,7 @@ const Orders = () => {
         console.error(error);
       });
   };
-
+*/
   const status = filteredOrders.map(order => order.orderStatus);
   const totalIncome = filteredOrders.reduce((total, order) => total + order.totalPrice, 0);
   console.log(totalIncome)
@@ -116,8 +117,8 @@ const Orders = () => {
 
     const pdfData = filteredOrders.map((order, index) => [
       `${order.user?.firstname} ${order.user?.lastname}`,
-      order.totalPrice,
-      new Date(order.createdAt).toLocaleString(),
+      `Rs.${order.totalPrice}`,
+      new Date(order.createdAt).toLocaleDateString(),
       status[index],
     ]);
 
