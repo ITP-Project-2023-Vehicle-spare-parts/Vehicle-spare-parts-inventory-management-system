@@ -83,7 +83,7 @@ export default function UpdateShipmentReport() {
     pdf.setFontSize(16);
 
     // Add a title
-    pdf.text("Update Shipment Report - CMspare", 80, 30);
+    pdf.text("Updated Shipment Report - CMspare", 80, 30);
 
     // Create a table for client data
     const tableData = supplierReq.map((dataobj, index) => {
@@ -118,6 +118,42 @@ export default function UpdateShipmentReport() {
       bodyStyles: { valign: "middle" }, // Vertical alignment for cell content
       columnWidth: "wrap",
     });
+
+    let currentYPosition = pdf.lastAutoTable.finalY + 20; // Get the Y position of the last table row + 20 for padding
+
+    // Add shop address
+    pdf.setFontSize(14);
+    pdf.text('Shop Address:Ibbagamuwa', 10, currentYPosition);
+    
+    const shopAddress = [
+        "Chathura Moters (CM Spare)",
+        "Dambulla road",
+        "City : Dabulla, 60500",
+        "Phone: (+94)91 2245891",
+        "Email: chathuraspares@gmail.com "
+    ];
+    currentYPosition += 10; // Initial space before first address line
+
+    shopAddress.forEach(line => {
+        pdf.text(line, 10, currentYPosition);
+        currentYPosition += 10;
+    });
+
+    currentYPosition += 20; // add some spacing before the signature line
+
+    // Add signature placeholders
+    pdf.line(10, currentYPosition, 110, currentYPosition); // Signature line for supplier
+    pdf.text('Supplier Signature:', 10, currentYPosition + 10); 
+
+
+    
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+
+    pdf.text(`Date: ${formattedDate}`, 130, currentYPosition +10);
+    currentYPosition += 15;
+
+   // Signature line for shop representative
 
     // Save or display the PDF
     pdf.save("Update-Order_report.pdf"); // Save the PDF with a filename
