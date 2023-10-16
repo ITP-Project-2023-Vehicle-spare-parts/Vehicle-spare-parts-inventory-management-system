@@ -4,6 +4,8 @@
 #profile-details .container {
   max-width: 700px; /* Adjust the maximum width based on your design */
   margin: 0 auto;
+  height: 1000px;
+  width: 1000px;
 }
 
 /* Style the profile container */
