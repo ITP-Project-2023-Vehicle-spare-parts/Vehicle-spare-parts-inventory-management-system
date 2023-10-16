@@ -71,7 +71,7 @@ const Header = () => {
                   style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
                 >
                   <img src="/images/user.svg" alt="user" />
-                  <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
+                  <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '5px' }}>
                   {getUserFromLocalStorage
                     ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
                     : "Please login"}
@@ -120,9 +120,6 @@ const Header = () => {
                       </NavLink><b className="headerdash">|</b>
                       <NavLink to="/home/contact" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Contact
-                      </NavLink><b className="headerdash">|</b>
-                      <NavLink to="/home/about" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
-                        Promotion
                       </NavLink><b className="headerdash">|</b>
                       <NavLink to="/track-order" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Track Order

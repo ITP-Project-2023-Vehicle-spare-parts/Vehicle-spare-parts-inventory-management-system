@@ -2,6 +2,8 @@ import React, { useState,useEffect  } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import BreadCrumb from '../components/BreadCrumb';
+
 
 
 
@@ -119,6 +121,8 @@ const handleSubmit = async (e) => {
 };
 
   return (
+    <>
+    <BreadCrumb title="Warranty Claim" />
     <div style={{ 
      
       backgroundSize: 'cover',
@@ -129,9 +133,6 @@ const handleSubmit = async (e) => {
       
   }}>
 
-<div className="col-lg-9-mt-2 mb-2 p-3 pt-4 text-black">
-              <h1 style={{ textAlign: "left" ,paddingLeft:"90px" }}>Add New Warranty</h1>
-          </div>
           
       <div className="container shadow-lg p-3 mb-5  rounded" style={{background:"#87CEEB"}}>
 
@@ -239,5 +240,6 @@ const handleSubmit = async (e) => {
       </form>
     </div>
     </div>
+    </>
   );
 }
