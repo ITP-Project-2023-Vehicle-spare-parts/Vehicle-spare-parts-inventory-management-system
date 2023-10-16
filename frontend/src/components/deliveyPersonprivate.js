@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import './ViewProfile.css'; // Import your custom CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jsPDF from "jspdf";
 
@@ -9,7 +8,6 @@ function DeliveryPersonPrivate() {
   const [deliveryPerson, setDeliveryPerson] = useState(null);
 
   useEffect(() => {
-    // Fetch the profile details of the selected delivery person by email
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)
       .then((response) => {
         console.log(response); // Log the entire response
@@ -30,13 +28,13 @@ function DeliveryPersonPrivate() {
   
     // Set background color for the title
     pdfDoc.setFillColor(200, 200, 200); // RGB color for light gray
-    pdfDoc.rect(0, 0, 210, 20, 'F'); // Fill a rectangle as the background for the title
-    pdfDoc.setTextColor(0, 0, 0); // Set text color to black
+    pdfDoc.rect(0, 0, 210, 20, 'F'); 
+    pdfDoc.setTextColor(0, 0, 0); 
     pdfDoc.setFontSize(16);
     pdfDoc.text("User Profile Details", 10, 15);
   
     const img = new Image();
-    img.src = "/images/CMLogo.png"; // Replace with the actual image path
+    img.src = "/images/CMLogo.png"; 
     pdfDoc.addImage(img, "PNG", 10, 30, 40, 40);
   
     // Define the vertical position for text
