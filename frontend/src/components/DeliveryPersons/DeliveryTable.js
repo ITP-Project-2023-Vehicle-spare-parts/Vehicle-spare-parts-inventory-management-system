@@ -82,6 +82,9 @@ function DeliveryTable() {
     // Create a new jsPDF instance
     const pdfDoc = new jsPDF();
 
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+
     // Define table columns and their widths
     const columns = ["User Name", "Contact Number", "Email"];
     const colWidths = [60, 40, 80]; // Adjust column widths as needed
@@ -97,6 +100,7 @@ function DeliveryTable() {
 
     // Add additional text or content to the PDF
     pdfDoc.text("Delivery Person Report", 60, 30);
+
 
     // Create a table
     pdfDoc.autoTable({
@@ -124,8 +128,10 @@ function DeliveryTable() {
     pdfDoc.text("Signature of manager", 10, pdfDoc.internal.pageSize.height - 10);
 
     // Add address
-    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 80, 20);
-    pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 80, 15);
+    pdfDoc.setFontSize(10);
+    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 60, 20);
+    pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 15);
+    pdfDoc.text(`${formattedDate}`, 150, 25);
 
     // Save or download the PDF
     pdfDoc.save("delivery_report.pdf");
