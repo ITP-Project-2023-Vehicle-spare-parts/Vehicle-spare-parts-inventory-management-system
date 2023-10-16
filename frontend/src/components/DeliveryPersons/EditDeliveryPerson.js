@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './EditDeliveryPersonProfile.css'; // Import your custom CSS file
+import './EditDeliveryPersonProfile.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from 'react-hot-toast';
 
@@ -10,7 +10,7 @@ function EditDeliveryPerson() {
   const [deliveryPerson, setDeliveryPerson] = useState({
     deliverypersonname: '',
     deliverypersonGender: '',
-    // Add other form fields here
+
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -20,7 +20,6 @@ function EditDeliveryPerson() {
       .get(`http://localhost:8000/deliveryPerson/getById/${id}`)
       .then((response) => {
         const data = response.data;
-        // Check if the 'DeliveryPersons' object exists and contains 'deliverypersonname'
         if (data.DeliveryPersons && data.DeliveryPersons.DeliveryPersonID) {
           setDeliveryPerson(data.DeliveryPersons);
         } else {
@@ -33,7 +32,7 @@ function EditDeliveryPerson() {
   }, [id]);
 
   const validateForm = (e) => {
-    //const errors = {};
+
     const { name, value } = e.target;
     let errors = { ...formErrors };
 
@@ -149,7 +148,6 @@ function EditDeliveryPerson() {
       }
     }
     
-    // ... Add more validation rules for other fields ...
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -334,7 +332,6 @@ function EditDeliveryPerson() {
           </select>
         </div>
 
-        {/* Additional form elements with custom styles */}
         <div className="form-group">
           <label htmlFor="deliverypersonDOB">Date of Birth</label>
           <input
@@ -477,8 +474,6 @@ function EditDeliveryPerson() {
             <option value="colombo">Colombo</option>
           </select>
         </div>
-
-        {/* Add similar input fields with custom styles for other form properties */}
         
         <div className="form-group">
           <button type="submit" className="btn btn-primary">Update Profile</button>
