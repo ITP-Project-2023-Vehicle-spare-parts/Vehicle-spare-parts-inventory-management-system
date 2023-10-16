@@ -5,10 +5,10 @@
   margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 100px;
-  padding: 20px;
-  background: linear-gradient(to bottom, #b8afda, #4135e7); /* Gradient Background */
+  background: white; 
+  padding: 50px;
+  border-radius: 50px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
