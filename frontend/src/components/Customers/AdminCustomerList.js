@@ -162,7 +162,7 @@ const AdminCustomerList = () => {
         `${dataobj.firstname} ${dataobj.lastname}`,
         dataobj.email,
         dataobj.nic,
-        dataobj.city,
+        `${dataobj.street} ,${dataobj.city},${dataobj.state}`,
         dataobj.mobile,
         dataobj.isBlocked,
       ];
@@ -174,7 +174,7 @@ const AdminCustomerList = () => {
       "NIC",
       "Address",
       "Mobile",
-      "BlockedStatus",
+      "Blocked Status",
     ];
 
     // Set the table style
@@ -189,9 +189,18 @@ const AdminCustomerList = () => {
       body: tableData,
       startY: 40, // Adjust the vertical position
       margin: { horizontal: 10 },
-      columnStyles: { 0: { cellWidth: 50 } }, // Adjust the column width
+      //columnStyles: { 0: { cellWidth: 50 } }, // Adjust the column width
       bodyStyles: { valign: "middle" }, // Vertical alignment for cell content
-      columnWidth: "wrap",
+      columnWidth: "auto",
+
+      columnStyles: {
+        0: { columnWidth: 30 },
+        1: { columnWidth: 40 }, 
+        2: { columnWidth: 30 }, 
+        3: { columnWidth: 50 }, 
+        4: { columnWidth: 30 }, 
+        5: { columnWidth: 15 }, 
+      },
     });
 
     // Save or display the PDF
