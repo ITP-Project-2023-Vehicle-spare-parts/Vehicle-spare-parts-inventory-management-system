@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './ViewProfile.css'; // Import your custom CSS file
+import './ViewProfile.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jsPDF from "jspdf";
 import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '../firebase';
-//import path from 'path';
+
 
 function ProfileDetails() {
   const { deliveryPersonID } = useParams();
@@ -65,7 +65,7 @@ function ProfileDetails() {
     pdfDoc.text(`Profile Details - ${deliveryPerson.deliverypersonname}`, 10, 15);
   
     const img = new Image();
-    img.src = "/images/CMLogo.png"; // Replace with the actual image path
+    img.src = "/images/CMLogo.png"; 
     pdfDoc.addImage(img, "PNG", 10, 30, 40, 40);
   
     // Define the vertical position for text
@@ -77,11 +77,11 @@ function ProfileDetails() {
         const value = String(deliveryPerson[key]); // Ensure value is a string
   
         // Set text color to a different color (e.g., blue)
-        pdfDoc.setTextColor(0, 0, 255); // RGB color for blue
+        pdfDoc.setTextColor(0, 0, 255); 
         pdfDoc.text(`${key}:`, 10, yPos);
   
         // Set text color back to black for the value
-        pdfDoc.setTextColor(0, 0, 0); // Set text color to black
+        pdfDoc.setTextColor(0, 0, 0);
         pdfDoc.text(value, 90, yPos);
         pdfDoc.setFontSize(10);
         pdfDoc.text("In front of People's Bank,", pdfDoc.internal.pageSize.width - 60, 10);
