@@ -164,6 +164,7 @@ const Addproduct = () => {
     console.log(handleDesc)
     console.log(desc)
   return (
+    <div style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
     <div>
         <h3 className='mb-4 title text text-center'> Add Product...</h3>
         <div>
@@ -237,6 +238,7 @@ const Addproduct = () => {
             <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Add-Product</button>
             </form>
         </div>
+    </div>
     </div>
   )
 }
