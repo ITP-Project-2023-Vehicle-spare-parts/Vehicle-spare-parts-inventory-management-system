@@ -73,9 +73,9 @@ function ProfileDetails() {
   
     // Iterate through the deliveryPerson object and add details to the PDF
     for (const key in deliveryPerson) {
-      if (Object.hasOwnProperty.call(deliveryPerson, key)) {
+      if (Object.hasOwnProperty.call(deliveryPerson, key) && key !== 'imageUrl' && key !== '_id' && key !== 'deliverypersonReEnter' && key !== 'deliverypersonExperience') {
         const value = String(deliveryPerson[key]); // Ensure value is a string
-        
+  
         // Set text color to a different color (e.g., blue)
         pdfDoc.setTextColor(0, 0, 255); // RGB color for blue
         pdfDoc.text(`${key}:`, 10, yPos);
@@ -87,6 +87,8 @@ function ProfileDetails() {
         pdfDoc.text("In front of People's Bank,", pdfDoc.internal.pageSize.width - 60, 10);
         pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 15);
         pdfDoc.text(`${formattedDate}`, 150, 20);
+        pdfDoc.text(".....................................", 160, pdfDoc.internal.pageSize.height - 15);
+        pdfDoc.text("Signature of manager", 160, pdfDoc.internal.pageSize.height - 10);
   
         yPos += 10; // Increase vertical position for the next line
       }
@@ -96,6 +98,7 @@ function ProfileDetails() {
     const fileName = `user_profile_${deliveryPerson.DeliveryPersonID}.pdf`;
     pdfDoc.save(fileName);
   }
+  
   
   
 
