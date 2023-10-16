@@ -20,17 +20,14 @@ const DeliveryDashboard = () => {
 
   return (
     <div id='DeliveryDashBoard' className="dashboard-container">
-      {/* Navigation Bar */}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">
           Delivery Person Dashboard
         </a>
       </nav>
 
-      {/* Dashboard Content */}
       <div className="dashboard-content mt-4">
         <Row>
-          {/* Order Statistics Card */}
           <Col md={6}>
             <Card className="dashboard-card statistics-card">
               <Card.Body>
@@ -47,8 +44,6 @@ const DeliveryDashboard = () => {
               </Card.Body>
             </Card>
           </Col>
-
-          {/* Recent Orders Card */}
           <Col md={6}>
             <Card className="dashboard-card recent-orders-card">
               <Card.Body>
@@ -65,10 +60,7 @@ const DeliveryDashboard = () => {
             </Card>
           </Col>
         </Row>
-
-        {/* Additional Cards and Sections */}
         <Row>
-          {/* Additional Card 1 */}
           <Col md={4}>
             <Card className="dashboard-card additional-card">
               <Card.Body>
@@ -80,8 +72,6 @@ const DeliveryDashboard = () => {
               </Card.Body>
             </Card>
           </Col>
-
-          {/* Additional Card 2 */}
           <Col md={4}>
             <Card className="dashboard-card additional-card">
               <Card.Body>
@@ -93,8 +83,6 @@ const DeliveryDashboard = () => {
               </Card.Body>
             </Card>
           </Col>
-
-          {/* Additional Section */}
           <Col md={4}>
             <div className="additional-section">
               <h5>Delivery Tips</h5>
