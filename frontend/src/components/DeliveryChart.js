@@ -1,8 +1,4 @@
 import './DeliveryChart.css'
-// DeliveryChart.jsx
-
-// DeliveryChart.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -18,14 +14,6 @@ import {
 const DeliveryChart = () => {
     const [chartData, setChartData] = useState([]);
   
-// Inside useEffect in DeliveryChart.jsx
-// Inside useEffect in DeliveryChart.jsx
-// Inside useEffect in DeliveryChart.jsx
-// Inside useEffect in DeliveryChart.jsx
-// Inside useEffect in DeliveryChart.jsx
-// Inside your component function
-// Inside your component function
-// Inside your component function
 const [fakeData, setFakeData] = useState([]);
 
 useEffect(() => {
@@ -48,7 +36,7 @@ useEffect(() => {
     setFakeData(generatedFakeData);
     localStorage.setItem('fakeData', JSON.stringify(generatedFakeData));
   }
-}, []); // The effect will run only once during the initial component mount
+}, []); 
 
 useEffect(() => {
   // Fetch data from the backend
@@ -84,14 +72,7 @@ useEffect(() => {
 
   fetchData();
 }, [fakeData]); // Trigger the effect when fakeData changes
- // The effect will run only once during the initial component mount
- // The effect will run only once when fakeData is initially set
 
-  
-  
-  
-  
-   // Empty dependency array ensures useEffect runs once after initial render
   
 
   return (
