@@ -143,10 +143,8 @@ a{
 }
 
 .px-0:hover{
-  background-color: #87CEEB;
-  height: 25px;
-  border-radius: 35px !important;
-  color: #2A3847 !important;
+  text-decoration-color: var(--color-bf4800) !important;
+  text-shadow: 0 0 13px white; 
 }
 
 .headerdash{
