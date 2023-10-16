@@ -49,10 +49,10 @@ const Orders = () => {
                       <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{item?._id}</p>
                     </div>
                     <div className='col-3'>
-                      <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{item?.totalPrice}</p>
+                      <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{`Rs.${item?.totalPrice}`}</p>
                     </div>
                     <div className='col-3'>
-                      <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{item?.totalPriceAfterDiscount}</p>
+                      <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{`Rs.${item?.totalPriceAfterDiscount}`}</p>
                     </div>
                     <div className='col-3'>
                       <p style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{item?.orderStatus}</p>
@@ -82,7 +82,7 @@ const Orders = () => {
                                   <p className='text-white' style={{ fontSize: '16px', fontWeight: 'normal' }}>{i?.count}</p>
                                 </div>
                                 <div className='col-3'>
-                                  <p className='text-white' style={{ fontSize: '16px', fontWeight: 'normal' }}>{i?.price}</p>
+                                  <p className='text-white' style={{ fontSize: '16px', fontWeight: 'normal' }}>{`Rs.${i?.price}`}</p>
                                 </div>
                                 <div className='col-3'>
                                   <ul className='colors ps-0'>
