@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 
 function EditDeliveryPerson() {
   const { id } = useParams();
+  const [formData, setFormData] = useState({})
+
   const [deliveryPerson, setDeliveryPerson] = useState({
     deliverypersonname: '',
     deliverypersonGender: '',
@@ -30,6 +32,64 @@ function EditDeliveryPerson() {
         console.error('Error fetching data:', error);
       });
   }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    let errors = { ...formErrors };
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+
+    setFormErrors(errors);
+    setFormData({ ...formData, [name]: value });
+  };
 
   const validateForm = (e) => {
 
@@ -354,7 +414,7 @@ function EditDeliveryPerson() {
             id="deliverypersonContactNumber"
             name="deliverypersonContactNumber"
             value={deliveryPerson.deliverypersonContactNumber}
-            onChange={handleInputChange}
+            onChange={handleChange}
             onBlur={handleBlur}
           />
         </div>
