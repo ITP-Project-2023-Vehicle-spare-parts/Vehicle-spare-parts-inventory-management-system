@@ -21,6 +21,9 @@ const ProductCard = (props) => {
         data?.map((item, index)=>{
             return (
                 <div key={index} className={`${location.pathname === "/home/store" ? `gr-${grid}` : "col-3"}`}>
+                  <button className='border-0 bg-transparent' onClick={() => {
+                      navigate("product/" + item?._id)
+                    }}>
         <div className='product-card position-relative'>
             <div className='wishlist-icon position-absolute'>
                 <button className='border-0 bg-transparent' onClick={(e)=>{addWishlist(item?._id)}}>
@@ -37,8 +40,8 @@ const ProductCard = (props) => {
                 <h5 className='product-title'>
                     {item?.Title}
                   </h5>
-                  <ReactStars count={5} size={24} value={parseInt(item?.totalrating)} edit={false}
-                              activeColor={"#ffd700"}/>
+                  {/*<ReactStars count={5} size={24} value={parseInt(item?.totalrating)} edit={false} 
+                              activeColor={"#ffd700"}/>  */}
                   <br/><p className={`description ${grid === 12 ? "d-block" : "d-none"}`} style={{fontSize: '17px'}}
                           dangerouslySetInnerHTML={{__html: item?.description}}>
                 </p>
@@ -57,6 +60,7 @@ const ProductCard = (props) => {
                   </div>
                 </div>
               </div>
+              </button>
             </div>
           );
         })
