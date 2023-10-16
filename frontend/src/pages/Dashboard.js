@@ -79,8 +79,8 @@ const Dashboard = () => {
         key: i,
         name: orderState[i].user?.firstname + " " + orderState[i].user?.lastname,
         product: orderState[i].orderItems?.length,
-        price: orderState[i]?.totalPrice,
-        dprice: orderState[i]?.totalPriceAfterDiscount,
+        price: `Rs. ${orderState[i]?.totalPrice}`,
+        dprice: `Rs. ${orderState[i]?.totalPriceAfterDiscount}`,
         status: orderState[i]?.orderStatus,
       });
     }
