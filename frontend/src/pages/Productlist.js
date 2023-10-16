@@ -159,7 +159,7 @@ const Productlist = () => {
   `;
     doc.text(address, 140, 8);
 
-    doc.text(`Genereted in: ${currentDate}`, 75, 30);
+    doc.text(`Generated in: ${currentDate}`, 75, 30);
 
   
     const tableData = productState.map((product, index) => [
