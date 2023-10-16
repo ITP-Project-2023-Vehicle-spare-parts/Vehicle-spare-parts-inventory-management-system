@@ -111,13 +111,13 @@ const Header = () => {
                     <div className="d-flex align-items-center gap-15">
                       <NavLink to="/home" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Home
-                      </NavLink>
+                      </NavLink>&nbsp;
                       <NavLink to="/home/store" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Store
-                      </NavLink>
+                      </NavLink>&nbsp;
                       <NavLink to="/home/my-orders" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         My Orders
-                      </NavLink>
+                      </NavLink>&nbsp;
                       <NavLink to="/home/contact" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Contact
                       </NavLink>
