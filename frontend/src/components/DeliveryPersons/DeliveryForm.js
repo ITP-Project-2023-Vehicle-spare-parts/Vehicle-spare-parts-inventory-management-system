@@ -466,7 +466,7 @@ function DeliveryForm() {
   return (
     <div id="DeliveryForm">
       {/* <SupplierSideNavigation /> */}
-      
+      {/* <div style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}> */}
       <div className="home_content">
         <div className="text">
           <div className="text1">
@@ -797,6 +797,7 @@ function DeliveryForm() {
         </div>
       </div>
     </div>
+    // </div>
   );
 }
 

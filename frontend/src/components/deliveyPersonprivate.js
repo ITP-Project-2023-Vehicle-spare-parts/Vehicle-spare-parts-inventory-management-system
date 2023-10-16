@@ -44,7 +44,7 @@ function DeliveryPersonPrivate() {
   
     // Iterate through the deliveryPerson object and add details to the PDF
     for (const key in deliveryPerson) {
-      if (Object.hasOwnProperty.call(deliveryPerson, key)) {
+      if (Object.hasOwnProperty.call(deliveryPerson, key) && key !== 'imageUrl' && key !== '_id' && key !== 'deliverypersonReEnter' && key !== 'deliverypersonExperience') {
         const value = String(deliveryPerson[key]); // Ensure value is a string
         
         // Set text color to a different color (e.g., blue)

@@ -4,52 +4,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap");
 
 /* Container Styles */
-#DeliveryForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+
   
-  #DeliveryForm .home_content {
-    background-color: #bcdefa;
+ .home_content {
+    background-color: #ffffff;
     padding: 60px;
     border-radius: 50px;
     box-shadow: 5px 5px 10px rgba(64, 12, 185, 0.2);
   }
   
-  #DeliveryForm .text {
+.text {
     text-align: center;
     padding: 10px;
   }
   
-  #DeliveryForm  .text h1 {
+ .text h1 {
     font-size: 32px;
     margin-bottom: 20px;
     color: #2001ac;
   }
   
   /* Form Styles */
-  #DeliveryForm  .container {
-    background-color: #d6eaf7;
+.container {
+    background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(89, 98, 221, 0.993);
+    box-shadow: 10px 10px 10px rgba(245, 245, 245, 0.993);
   }
   
-  #DeliveryForm .form-label {
+.form-label {
     font-weight: bold;
     color: #333;
   }
   
   /* Input Styles */
-  #DeliveryForm  .form-control {
+.form-control {
     border: 2px solid #2d8dee;
     border-radius: 10px;
   }
   
   /* Button Styles */
-  #DeliveryForm .btn-primary {
+.btn-primary {
     background-color: #000305;
     border: none;
     border-radius: 5px;
@@ -57,16 +52,15 @@
     font-weight: bold;
   }
   
-  #DeliveryForm .btn-primary:hover {
+.btn-primary:hover {
     background-color: #000000;
   }
   
   /* Additional Styles */
-  #DeliveryForm .mb-5 {
+.mb-5 {
     margin-bottom: 1.5rem !important;
   }
-  
-  #DeliveryForm .bg-lightrounded {
+ .bg-lightrounded {
     background-color: #ffffff;
     border-radius: 5px;
   }
