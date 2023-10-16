@@ -65,21 +65,25 @@ function DeliveryTable() {
     // Create a new jsPDF instance
     const pdfDoc = new jsPDF();
 
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+
     // Define table columns and their widths
     const columns = ["User Name", "Contact Number", "Email"];
-    const colWidths = [60, 40, 80]; 
+    const colWidths = [60, 40, 80]; // Adjust column widths as needed
 
     // Define table header styles
-    const headerStyle = { fillColor: "#007bff", textColor: "#ffffff" }; 
-    const cellStyle = { textColor: "#000000" }; 
+    const headerStyle = { fillColor: "#007bff", textColor: "#ffffff" }; // Header background color: blue
+    const cellStyle = { textColor: "#000000" }; // Cell text color: black
 
     // Add an image to the PDF
     const img = new Image();
-    img.src = "/images/CMLogo.png";
+    img.src = "/images/CMLogo.png"; // Replace with the actual image path
     pdfDoc.addImage(img, "PNG", 10, 10, 40, 40);
 
     // Add additional text or content to the PDF
     pdfDoc.text("Delivery Person Report", 60, 30);
+
 
     // Create a table
     pdfDoc.autoTable({
@@ -89,9 +93,9 @@ function DeliveryTable() {
         dataobj.deliverypersonContactNumber,
         dataobj.deliverypersonEmail,
   
-
+        // Add more fields as needed
       ]),
-      startY: 60,
+      startY: 60, // Adjust the vertical position of the table
       styles: {
         textColor: cellStyle.textColor,
         valign: "middle",
@@ -107,8 +111,10 @@ function DeliveryTable() {
     pdfDoc.text("Signature of manager", 10, pdfDoc.internal.pageSize.height - 10);
 
     // Add address
-    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 80, 20);
-    pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 80, 15);
+    pdfDoc.setFontSize(10);
+    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 60, 20);
+    pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 15);
+    pdfDoc.text(`${formattedDate}`, 150, 25);
 
     // Save or download the PDF
     pdfDoc.save("delivery_report.pdf");
