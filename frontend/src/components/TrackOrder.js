@@ -89,23 +89,12 @@ const TrackOrder = () => {
           <div className="popup">
             {/* Position the popup between search bar and footer */}
             <div className="popup-content">
-              {/* Display order details here */}
               <h2>Order Details</h2>
               {orderDetails ? (
                 <div className="order-details-popup">
                   <p><strong>Order Status:</strong> {orderDetails.orderStatus}</p>
                   <p><strong>Total Price:</strong> ${orderDetails.totalPrice}</p>
                   <p><strong>Delivering Branch:</strong> {orderDetails.branch}</p>
-                  {/* <p><strong>Items:</strong></p> */}
-                  {/* <ul className="list-group mb-4">
-                    {orderDetails.orderItems.map((item) => (
-                      <li key={item._id} className="list-group-item">                         
-                        <strong>Color:</strong> {item.color}, 
-                        <strong>Quantity:</strong> {item.quantity}, 
-                        <strong>Price:</strong> Rs.{item.price}
-                      </li>
-                    ))}
-                  </ul> */}
                   <h3>Delivery Person Details</h3>
                   {deliveryPersonDetails ? (
                     <div className="delivery-person-details">
@@ -114,7 +103,6 @@ const TrackOrder = () => {
                       <p><strong>Name:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonname}</p>
                       <p><strong>Contact:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonContactNumber}</p>
                       <p><strong>Vehicle Number:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonVehicleNumber}</p>
-                      {/* Add other delivery person details as needed */}
                     </div>
                     </div>
                   ) : (
