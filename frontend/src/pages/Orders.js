@@ -25,7 +25,7 @@ const columns = [
     dataIndex: 'date',
   },
   {
-    title: 'Action',
+    title: 'Order Status',
     dataIndex: 'action',
   },
   {
@@ -72,9 +72,10 @@ const Orders = () => {
         <AiOutlineEye />
       </Link>
     ),
-    amount: order.totalPrice,
-    date: new Date(order.createdAt).toLocaleString(),
-    action: (
+    amount: `Rs.${order.totalPrice}`,
+    date: new Date(order.createdAt).toLocaleDateString(),
+    action: order.orderStatus,
+    /*(
       <>
         <select
           name=""
@@ -89,9 +90,9 @@ const Orders = () => {
           <option value="Delivered">Delivered</option>
         </select>
       </>
-    ),
+    ),*/
   }));
-
+/*
   const updateOrderStatus = (a, b) => {
     dispatch(updateAOrder({ id: a, status: b }))
       .then(() => {
@@ -102,7 +103,7 @@ const Orders = () => {
         console.error(error);
       });
   };
-
+*/
   const status = filteredOrders.map(order => order.orderStatus);
   const totalIncome = filteredOrders.reduce((total, order) => total + order.totalPrice, 0);
   console.log(totalIncome)
@@ -116,8 +117,8 @@ const Orders = () => {
 
     const pdfData = filteredOrders.map((order, index) => [
       `${order.user?.firstname} ${order.user?.lastname}`,
-      order.totalPrice,
-      new Date(order.createdAt).toLocaleString(),
+      `Rs.${order.totalPrice}`,
+      new Date(order.createdAt).toLocaleDateString(),
       status[index],
     ]);
 
@@ -135,6 +136,66 @@ const Orders = () => {
   const handleSearch = () => {
     dispatch(searchOrders(searchText));
   };
+
+  /*
+  
+  const pdfColumns = ['Name', 'Amount', 'Date', 'Status'];
+  const pdfData = filteredOrders.map((order, index) => [
+    `${order.user?.firstname} ${order.user?.lastname}`,
+    `Rs.${order.totalPrice}`,
+    new Date(order.createdAt).toLocaleDateString(),
+    status[index],
+  ]);
+
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
+  
+    const getBase64Image = (img) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL("image/png");
+      return dataURL;
+    };
+  
+    const img = new Image();
+    img.src = logoImage;
+    img.onload = () => {
+      const imgData = getBase64Image(img);
+  
+      doc.addImage(imgData, "PNG", 10, 10, 30, 30);
+  
+      const tableVerticalPosition = 50;
+      doc.autoTable({
+        columns: pdfColumns,
+        body: pdfData,
+        startY: tableVerticalPosition,
+      });
+  
+      doc.setFontSize(12);
+      doc.text(`Order Report`, 80, 10);
+  
+      const addressLines = [
+        'No.56,',
+        'Ibbagamuwa,',
+        'Kurunegala,',
+        '+94756982145',
+      ];
+  
+      
+      const addressX = 150; 
+      const addressY = 20; 
+      addressLines.forEach((line, index) => {
+        doc.text(line, addressX, addressY + (index * 5)); 
+      });
+  
+      doc.save('order_report.pdf');
+    };
+  };
+  
+  */
 
   return (
     <div>
