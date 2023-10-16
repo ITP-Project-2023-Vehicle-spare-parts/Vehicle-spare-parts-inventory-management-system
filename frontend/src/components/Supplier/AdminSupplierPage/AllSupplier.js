@@ -71,7 +71,7 @@ export default function AllSupplier() {
 
   const generatePDF = () => {
     const pdf = new jsPDF();
-    
+
     // Add the logo
     const logoURL = '/images/CMLogo.png';
     pdf.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
@@ -81,7 +81,7 @@ export default function AllSupplier() {
     pdf.setFontSize(16);
   
     // Add a title
-    pdf.text('Client Report - CMspare', 70, 20);
+    pdf.text('Supplier Report - CMspare', 70, 20);
   
     // Create a table for client data
     const tableData = Suppliers.map((dataobj, index) => {
@@ -96,14 +96,11 @@ export default function AllSupplier() {
     });
   
     const tableHeaders = ['Supplier Name', 'Company Name', 'Address', 'System Email', 'Provide Category'];
-  
+
     // Set the table style
     pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0); // Text color (black)
     
-    // Define the column widths and row heights
-
-  
     // Add the table
     pdf.autoTable({
       head: [tableHeaders],
@@ -114,10 +111,48 @@ export default function AllSupplier() {
       bodyStyles: { valign: 'middle' }, // Vertical alignment for cell content
       columnWidth: 'wrap',
     });
-  
-    // Save or display the PDF
-    pdf.save('supplier_report.pdf'); // Save the PDF with a filename
-  };
+
+    let currentYPosition = pdf.lastAutoTable.finalY + 20; // Get the Y position of the last table row + 20 for padding
+
+    // Add shop address
+    pdf.setFontSize(14);
+    pdf.text('Shop Address:Ibbagamuwa', 10, currentYPosition);
+    
+    const shopAddress = [
+        "Chathura Moters (CM Spare)",
+        "Dambulla road",
+        "City : Dabulla, 60500",
+        "Phone: (+94)91 2245891",
+        "Email: chathuraspares@gmail.com "
+    ];
+    currentYPosition += 10; // Initial space before first address line
+
+    shopAddress.forEach(line => {
+        pdf.text(line, 10, currentYPosition);
+        currentYPosition += 10;
+    });
+
+    currentYPosition += 20; // add some spacing before the signature line
+
+    // Add signature placeholders
+    pdf.line(10, currentYPosition, 110, currentYPosition); // Signature line for supplier
+    pdf.text('Supplier Signature:', 10, currentYPosition + 10); 
+
+
+    
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`;
+
+    pdf.text(`Date: ${formattedDate}`, 130, currentYPosition +10);
+    currentYPosition += 15;
+
+   // Signature line for shop representative
+   
+
+    // Save the updated PDF
+    pdf.save('supplier_report.pdf');
+};
+
 
 
   return (

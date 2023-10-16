@@ -160,7 +160,7 @@ export default function AddClient() {
           <div className="text1"></div>
 
           <div className="form-scroll-container">
-            <Form onSubmit={handleSubmit} className="container">
+            <Form onSubmit={handleSubmit} className="container" style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
               <h1>Add Clients...</h1>
               <Row className="mb-3">
                 <Form.Group as={Col}>
@@ -246,23 +246,26 @@ export default function AddClient() {
                     </span>
                   </Form.Label>
                   <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-company-name">
-                         Phone Number Needs to be a 10-digit number
-                        </Tooltip>
-                      }
-                    >
-                  <Form.Control
-                    className="shadow-lg p-3 mb-2 bg-white rounded"
-                    type="number"
-                    placeholder="Client Phone"
-                    value={ClientsPhone}
-                    id="ClientsPhone"
-                    onChange={(e) => {
-                      setPhone(e.target.value);
-                    }}
-                  />
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-company-name">
+                        Phone Number Needs to be a 10-digit number
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Control
+                      className="shadow-lg p-3 mb-2 bg-white rounded"
+                      type="number"
+                      placeholder="Client Phone"
+                      value={ClientsPhone}
+                      id="ClientsPhone"
+                      onChange={(e) => {
+                        if (e.target.value.length > 10) {
+                          toast.error("Phone number can only be 10 digits.");
+                        }
+                        setPhone(e.target.value.slice(0, 10)); // This will ensure the input value stays at 10 digits max
+                      }}
+                    />
                   </OverlayTrigger>
                   {formErrors.ClientsPhone && (
                     <div className="error-message">
@@ -317,7 +320,7 @@ export default function AddClient() {
                     id="ClientsState"
                     value={ClientsState}
                     style={{
-                      border: "3px solid #073dff",
+                      border: "1px solid #073dff",
                       borderRadius: "2px",
                       fontSize: "1.4rem",
                     }}
@@ -377,7 +380,7 @@ export default function AddClient() {
                     setStatus(e.target.value);
                   }}
                   style={{
-                    border: "3px solid #073dff",
+                    border: "1px solid #073dff",
                     borderRadius: "2px",
                     fontSize: "1.4rem",
                   }}
@@ -456,23 +459,23 @@ export default function AddClient() {
                     </span>
                   </Form.Label>
                   <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-company-name">
-                         Password Must be at least 6 characters long
-                        </Tooltip>
-                      }
-                    >
-                  <Form.Control
-                    className="shadow-lg p-3 mb-2 bg-lightrounded"
-                    type="password"
-                    placeholder="Login Password"
-                    id="SystemPassword"
-                    value={SystemPassword}
-                    onChange={(e) => {
-                      setsysPassword(e.target.value);
-                    }}
-                  />
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-company-name">
+                        Password Must be at least 6 characters long
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Control
+                      className="shadow-lg p-3 mb-2 bg-lightrounded"
+                      type="password"
+                      placeholder="Login Password"
+                      id="SystemPassword"
+                      value={SystemPassword}
+                      onChange={(e) => {
+                        setsysPassword(e.target.value);
+                      }}
+                    />
                   </OverlayTrigger>
                   {formErrors.SystemPassword && (
                     <div className="error-message">

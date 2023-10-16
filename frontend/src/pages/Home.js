@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
                 <h4>Every Engine spares</h4>
                 <h5>CT100, pulsar, etc...</h5>
                 <p>with supper discounts</p>
-                <Link className='button'>Order now</Link>
+                <NavLink className='button' to="/home/store">Order now</NavLink>
               </div> 
             </div>
           </div>

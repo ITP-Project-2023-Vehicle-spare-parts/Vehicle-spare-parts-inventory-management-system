@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import './BranchTable.css'; // Import your CSS file here
+import './BranchTable.css'; 
 
 function BranchTable() {
     const [branches, setBranches] = useState([]);

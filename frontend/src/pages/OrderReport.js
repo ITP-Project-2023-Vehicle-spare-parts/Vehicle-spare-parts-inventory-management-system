@@ -5,7 +5,9 @@ const OrderReport = ({ orders, status, totalIncome, totalProducts }) => {
   const generatePDF = () => {
     const doc = new jsPDF();
 
-   
+    // Add your logo to the PDF
+    const imgData = '../images/logo.png'; // Replace 'logo.png' with the path to your logo image
+    doc.addImage(imgData, 'PNG', 10, 10, 40, 40); // Adjust the coordinates and dimensions as needed
 
     // Define the columns for the PDF
     const columns = ['Name', 'Amount', 'Date', 'Status'];
@@ -32,11 +34,10 @@ const OrderReport = ({ orders, status, totalIncome, totalProducts }) => {
     // Save the PDF with a specific filename
     doc.save('order_report.pdf');
   };
-  console.log(generatePDF)
 
   return (
     <div>
-      <button onClick={generatePDF}></button>
+      <button onClick={generatePDF}>Generate PDF</button>
     </div>
   );
 };

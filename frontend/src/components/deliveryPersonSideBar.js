@@ -23,7 +23,7 @@ const DeliveryPersonSideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+   console.log(BiSolidUserDetail)
   useEffect(() => {
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)
       .then((response) => {

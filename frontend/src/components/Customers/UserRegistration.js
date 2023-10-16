@@ -10,8 +10,8 @@ export default function UserRegistration() {
   const [mobile, setmobile] = useState("");
   const [gender, setgender] = useState("");
   const [street, setstreet] = useState("");
-  const [City, setCity] = useState("");
-  const [State, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
   const [PostalCode, setPostalCode] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -55,8 +55,8 @@ export default function UserRegistration() {
         nic,
         gender,
         street,
-        State,
-        City,
+        state,
+        city,
         PostalCode,
         email,
         password,
@@ -135,6 +135,7 @@ export default function UserRegistration() {
                               <input
                                 type="text"
                                 name="firstname"
+                                placeholder="Enter your first name"
                                 id="firstname"
                                 value={firstname}
                                 onChange={(e) => {
@@ -154,6 +155,7 @@ export default function UserRegistration() {
                               </label>
                               <input
                                 name="lastname"
+                                placeholder="Enter your last name"
                                 type="text"
                                 id="lastname"
                                 value={lastname}
@@ -168,11 +170,12 @@ export default function UserRegistration() {
 
                         <div className="form-outline">
                           <label className="form-label" for="form3Example1m1">
-                            nic
+                            NIC
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="nic"
+                            placeholder="Enter your NIC number"
                             id="nic"
                             value={nic}
                             onChange={(e) => {
@@ -192,10 +195,14 @@ export default function UserRegistration() {
                           <input
                             type="number"
                             name="mobile"
+                            placeholder="Enter your mobile number"
                             id="mobile"
                             value={mobile}
                             onChange={(e) => {
-                              setmobile(e.target.value);
+                              if (e.target.value.length > 10) {
+                                toast.error("Phone number can only be 10 digits.");
+                              }
+                              setmobile(e.target.value.slice(0, 10)); // This will ensure the input value stays at 10 digits max
                             }}
                             className="form-control form-control-lg"
                             pattern="[0-9]{10}"
@@ -204,7 +211,7 @@ export default function UserRegistration() {
                           <br />
                         </div>
                         <div className="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                          <h6 className="mb-1 me-5">gender: </h6>
+                         <h5 className="mb-1 me-5"> <b>Gender: </b></h5>
 
                           <div className="form-check form-check-inline mb-0 me-4">
                             <input
@@ -252,6 +259,7 @@ export default function UserRegistration() {
                           <input
                             type="text"
                             id="street"
+                            placeholder="Enter street name"
                             name="street"
                             value={street}
                             onChange={(e) => {
@@ -267,15 +275,15 @@ export default function UserRegistration() {
                               className="select form-control"
                               id="state"
                               name="state"
-                              value={State}
+                              value={state}
                               onChange={(e) => {
                                 setState(e.target.value);
                               }}
                             >
-                              <option value="1">State</option>
-                              <option value="2">Southern</option>
-                              <option value="3">Western</option>
-                              <option value="4">Eastern</option>
+                              <option value="State">State</option>
+                              <option value="Southern">Southern</option>
+                              <option value="Western">Western</option>
+                              <option value="Eastern">Eastern</option>
                             </select>
                           </div>
                           <div className="col-md-6 mb-4">
@@ -283,7 +291,7 @@ export default function UserRegistration() {
                               className="select form-control"
                               id="city"
                               name="city"
-                              value={City}
+                              value={city}
                               onChange={(e) => {
                                 setCity(e.target.value);
                               }}
@@ -301,8 +309,9 @@ export default function UserRegistration() {
                             PostalCode
                           </label>
                           <input
-                          name="PostalCode"
-                            type="text"
+                            name="PostalCode"
+                            type="number"
+                            placeholder="Enter postal code"
                             id="PostalCode"
                             value={PostalCode}
                             onChange={(e) => {
@@ -318,6 +327,7 @@ export default function UserRegistration() {
                           </label>
                           <input
                             type="email"
+                            placeholder="Enter email address"
                             id="email"
                             value={email}
                             onChange={(e) => {
@@ -333,6 +343,7 @@ export default function UserRegistration() {
                           </label>
                           <input
                             type="password"
+                            placeholder="Enter password"
                             id="firstname"
                             value={password}
                             onChange={(e) => {
