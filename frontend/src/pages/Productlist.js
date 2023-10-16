@@ -139,12 +139,28 @@ const Productlist = () => {
     const doc = new jsPDF();
 
     const logoURL = '/images/CMLogo.png';
-    doc.addImage(logoURL, 'PNG', 10, 10, 50, 20);
+    doc.addImage(logoURL, 'PNG', 10, 10, 30, 20);
     
     doc.setFont('helvetica');
     doc.setFontSize(16);
 
     doc.text('...Products Report...', 70, 20);
+
+    doc.setFontSize(10);
+
+    const currentDate = new Date().toLocaleDateString();
+
+    const address = `
+    Chathura spare parts,
+    Dambulla road,
+    Ibbagamuwa
+    (+94)91 2245891
+    chathuraspares@gmail.com
+  `;
+    doc.text(address, 140, 8);
+
+    doc.text(`Genereted in: ${currentDate}`, 75, 30);
+
   
     const tableData = productState.map((product, index) => [
       product.productID,
