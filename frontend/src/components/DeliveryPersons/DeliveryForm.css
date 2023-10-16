@@ -38,13 +38,13 @@
   }
   
   /* Input Styles */
-.form-control {
+  #DeliveryForm .form-control {
     border: 2px solid #2d8dee;
     border-radius: 10px;
   }
   
   /* Button Styles */
-.btn-primary {
+  #DeliveryForm .btn-primary {
     background-color: #000305;
     border: none;
     border-radius: 5px;
@@ -52,15 +52,15 @@
     font-weight: bold;
   }
   
-.btn-primary:hover {
+  #DeliveryForm .btn-primary:hover {
     background-color: #000000;
   }
   
   /* Additional Styles */
-.mb-5 {
+  #DeliveryForm .mb-5 {
     margin-bottom: 1.5rem !important;
   }
- .bg-lightrounded {
+  #DeliveryForm .bg-lightrounded {
     background-color: #ffffff;
     border-radius: 5px;
   }
