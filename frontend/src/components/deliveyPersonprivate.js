@@ -24,6 +24,9 @@ function DeliveryPersonPrivate() {
 
   function generatePDF() {
     const pdfDoc = new jsPDF();
+
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
   
     // Set background color for the title
     pdfDoc.setFillColor(200, 200, 200); // RGB color for light gray
@@ -51,6 +54,12 @@ function DeliveryPersonPrivate() {
         // Set text color back to black for the value
         pdfDoc.setTextColor(0, 0, 0); // Set text color to black
         pdfDoc.text(value, 90, yPos);
+        pdfDoc.setFontSize(10);
+        pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 60, 15);
+        pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 10);
+        pdfDoc.text(`${formattedDate}`, 150, 20);
+        pdfDoc.text(".....................................", 160, pdfDoc.internal.pageSize.height - 15);
+        pdfDoc.text("Signature of manager", 160, pdfDoc.internal.pageSize.height - 10);
   
         yPos += 10; // Increase vertical position for the next line
       }
