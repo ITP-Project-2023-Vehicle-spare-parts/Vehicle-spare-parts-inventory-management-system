@@ -12,7 +12,6 @@ function DeliveryPersonCurrentOrder() {
   const [showOrderDetails, setShowOrderDetails] = useState(true);
   const [showButton, setShowButton] = useState(true);
   const email = sessionStorage.getItem("userEmail");
-  //const [selectedOrderStatus, setSelectedOrderStatus] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)
@@ -80,8 +79,6 @@ function DeliveryPersonCurrentOrder() {
         });
 
         console.log('Delivery person status updated to available.');
-
-        // Replace the following line with the actual code for navigating to the dashboard
         console.log('Navigating to dashboard...');
         window.location.href = '/delivery';
       }
