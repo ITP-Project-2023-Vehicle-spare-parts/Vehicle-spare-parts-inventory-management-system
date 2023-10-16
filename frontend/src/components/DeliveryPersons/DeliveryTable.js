@@ -24,6 +24,7 @@ function DeliveryTable() {
       });
   }, [id]);
 
+
   function DeleteDeliveryPerson(id) {
     Swal.fire({
       title: "Delete Delivery Person",

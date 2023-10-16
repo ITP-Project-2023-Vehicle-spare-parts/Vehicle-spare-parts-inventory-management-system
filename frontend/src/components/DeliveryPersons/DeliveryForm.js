@@ -118,8 +118,7 @@ function DeliveryForm() {
         }
       );
     } else {
-      // Handle other form fields
-      // ...
+
     }
     
 
@@ -291,9 +290,7 @@ function DeliveryForm() {
     if (!formData.deliverypersonDLexpire) {
       errors.deliverypersonDLexpire = 'DL Expire is required';
     }
-    // if (!formData.deliverypersonVehicleType) {
-    //   errors.deliverypersonVehicleType = 'Vehicle type is required';
-    // }
+
     if (!formData.deliverypersonUsername) {
       errors.deliverypersonUsername = 'User name is required';
     }
@@ -351,7 +348,7 @@ function DeliveryForm() {
       }
     }
     
-    // ... Add more validation rules for other fields ...
+
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -370,7 +367,7 @@ function DeliveryForm() {
           'http://localhost:8000/deliveryPerson/adddeliveryPersonController',
           {
             ...formData,
-            imageUrl: formData.imageUrl, // Include the imageUrl
+            imageUrl: formData.imageUrl, 
           }
         );
   
@@ -391,7 +388,7 @@ function DeliveryForm() {
             "http://localhost:8000/user/register/",
             newUser
           );
-          console.log(userResponse.status); // Log the HTTP status code
+          console.log(userResponse.status);
           console.log(userResponse.data);
   
           setBackendErrors({});
@@ -399,7 +396,7 @@ function DeliveryForm() {
         
         resetFormFields();
   
-        // ... Reset other states if needed
+
   
         toast.success("Successfully Add Delivery Person!", {
           duration: 3000,
@@ -465,7 +462,7 @@ function DeliveryForm() {
 
   return (
     <div id="DeliveryForm">
-      {/* <SupplierSideNavigation /> */}
+
       
       <div className="home_content">
         <div className="text">
@@ -594,9 +591,9 @@ function DeliveryForm() {
             </Row>
             
             
-            {/* <Row className="mb-3"> */}
+
               <Form.Label>Address</Form.Label>
-            {/* <Form.Group > */}
+
               <Form.Control
                 className={formErrors.deliverypersonAddress ? 'has-error' : ''}
                 type="text"
@@ -608,8 +605,7 @@ function DeliveryForm() {
               {formErrors.deliverypersonAddress && (
                   <div className="error-message">{formErrors.deliverypersonAddress}</div>
                 )}
-            {/* </Form.Group> */}
-            {/* </Row> */}
+
 
             
             <Row className="mb-3">
@@ -644,13 +640,13 @@ function DeliveryForm() {
               </Form.Group>
             </Row>
             <Form.Group as={Col}>
-  <Form.Label>Image</Form.Label>
-  <Form.Control
-    type="file"
-    name="image"
-    onChange={handleChange}
-  />
-</Form.Group>
+            <Form.Label>Image</Form.Label>
+               <Form.Control
+                  type="file"
+                   name="image"
+                   onChange={handleChange}
+                  />
+               </Form.Group>
             
             <Row className="mb-3">
               
