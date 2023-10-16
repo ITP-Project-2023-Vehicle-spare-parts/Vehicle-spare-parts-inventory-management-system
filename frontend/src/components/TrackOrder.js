@@ -3,12 +3,17 @@ import Header from './Header';
 import Footer from './Footer';
 import './TrackOrder.css';
 import axios from 'axios';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from './firebase';
+
+
 
 const TrackOrder = () => {
   const [orderId, setSearch] = useState('');
   const [orderDetails, setOrderDetails] = useState(null);
   const [deliveryPersonDetails, setDeliveryPersonDetails] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [deliveryPersonImage, setDeliveryPersonImage] = useState('');
 
   const fetchOrderDetails = async () => {
     try {
@@ -18,17 +23,38 @@ const TrackOrder = () => {
         setOrderDetails(response.data.DeliveryOrders);
         setShowPopup(true);
 
-        // Fetch delivery person details
         const deliveryPersonId = response.data.DeliveryOrders.deliveryPersonid;
-        console.log('Delivery Person ID:', deliveryPersonId);
 
         const deliveryPersonResponse = await axios.get(`http://localhost:8000/deliveryPerson/getById/${deliveryPersonId}`);
-        
+        const deliveryPersonID = deliveryPersonResponse.data.DeliveryPersons.DeliveryPersonID;
+
         if (deliveryPersonResponse.status === 200) {
           setDeliveryPersonDetails(deliveryPersonResponse.data);
-          console.log("Delivery Person Details:", deliveryPersonResponse.data); // Log directly
 
-          console.log("State Delivery Person Details:", deliveryPersonDetails);
+          // Fetch delivery person image
+          const possibleExtensions = ['jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG'];
+
+          let imageRef;
+          for (const ext of possibleExtensions) {
+            imageRef = ref(storage, `images/${deliveryPersonID}.${ext}`);
+            try {
+              await getDownloadURL(imageRef);
+              break;
+            } catch (error) {
+              imageRef = null;
+            }
+          }
+
+          if (imageRef) {
+            getDownloadURL(imageRef)
+              .then((url) => {
+                console.log('Delivery Person Image URL:', url);
+                setDeliveryPersonImage(url);
+              })
+              .catch((error) => console.error('Error getting delivery person image URL:', error));
+          } else {
+            console.error('No image found for the delivery person');
+          }
         } else {
           console.error('Failed to fetch delivery person details');
         }
@@ -83,10 +109,13 @@ const TrackOrder = () => {
                   <h3>Delivery Person Details</h3>
                   {deliveryPersonDetails ? (
                     <div className="delivery-person-details">
+                      <img className= "deliveryimage" src={deliveryPersonImage} alt="Delivery Person" />
+                      <div>
                       <p><strong>Name:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonname}</p>
                       <p><strong>Contact:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonContactNumber}</p>
                       <p><strong>Vehicle Number:</strong> {deliveryPersonDetails.DeliveryPersons.deliverypersonVehicleNumber}</p>
                       {/* Add other delivery person details as needed */}
+                    </div>
                     </div>
                   ) : (
                     <p>Loading delivery person details...</p>

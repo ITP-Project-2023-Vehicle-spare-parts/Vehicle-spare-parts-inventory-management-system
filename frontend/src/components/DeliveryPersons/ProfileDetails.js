@@ -4,17 +4,48 @@ import axios from 'axios';
 import './ViewProfile.css'; // Import your custom CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jsPDF from "jspdf";
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '../firebase';
+//import path from 'path';
 
 function ProfileDetails() {
   const { deliveryPersonID } = useParams();
   const [deliveryPerson, setDeliveryPerson] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
     // Fetch the profile details of the selected delivery person by ID
     axios.get("http://localhost:8000/deliveryPerson/get/"+deliveryPersonID)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setDeliveryPerson(response.data.DeliveryPersons);
+
+        // Construct the image path with different possible extensions
+        const possibleExtensions = ['jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG']; // Add more if needed
+
+        let imageRef;
+        (async () => {
+          for (const ext of possibleExtensions) {
+            imageRef = ref(storage, `images/${deliveryPersonID}.${ext}`);
+            try {
+              await getDownloadURL(imageRef);
+              break; // Break the loop if the image is found
+            } catch (error) {
+              imageRef = null; // Reset imageRef if not found
+            }
+          }
+
+          if (imageRef) {
+            getDownloadURL(imageRef)
+              .then((url) => {
+                console.log('Image URL:', url);
+                setImageUrl(url);
+              })
+              .catch((error) => console.error('Error getting image URL:', error));
+          } else {
+            console.error('No image found for the given extensions');
+          }
+        })();
       })
       .catch((error) => {
         console.error('Error fetching profile details:', error);
@@ -29,7 +60,7 @@ function ProfileDetails() {
     pdfDoc.rect(0, 0, 210, 20, 'F'); // Fill a rectangle as the background for the title
     pdfDoc.setTextColor(0, 0, 0); // Set text color to black
     pdfDoc.setFontSize(16);
-    pdfDoc.text("User Profile Details", 10, 15);
+    pdfDoc.text(`Profile Details - ${deliveryPerson.deliverypersonname}`, 10, 15);
   
     const img = new Image();
     img.src = "/images/CMLogo.png"; // Replace with the actual image path
@@ -70,6 +101,9 @@ function ProfileDetails() {
     <div id = 'profile-details' className="container">
       <div className="profile-container">
         <h2 className="profile-heading">User Profile</h2>
+        <div className="profile-picture">
+          <img src={imageUrl} alt="Delivery Person" />
+        </div>
         <form>
           <div className="row">
             <div className="col-md-6">
