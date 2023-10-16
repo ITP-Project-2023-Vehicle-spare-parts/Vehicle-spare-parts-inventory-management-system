@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactStars from 'react-rating-stars-component';
+//import ReactStars from 'react-rating-stars-component';
 import {Link, useLocation} from 'react-router-dom'
 import {useDispatch} from "react-redux";
 import {addToWishlist} from '../features/product/productSlice'

@@ -142,12 +142,15 @@ a{
   text-transform: uppercase;
 }
 
-.px-5:hover{
+.px-0:hover{
   background-color: #87CEEB;
-  color: #bf4800;
   height: 25px;
   border-radius: 35px !important;
   color: #2A3847 !important;
+}
+
+.headerdash{
+  color: var(--color-bf4800);
 }
 /*^^^Header CSS^^^ */
 
