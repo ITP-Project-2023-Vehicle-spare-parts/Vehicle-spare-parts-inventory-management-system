@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import "./BranchSales.css"; // Import your CSS file
+import "./BranchSales.css"; 
 
 const BranchSales = () => {
   const [data, setData] = useState([]);

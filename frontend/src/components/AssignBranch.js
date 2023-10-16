@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './AssignBranch.css'; // Import your CSS file here
+import './AssignBranch.css'; 
 
 function AssignBranch() {
   const [orderData, setOrderData] = useState([]);
@@ -9,7 +9,7 @@ function AssignBranch() {
   const [disabledButtons, setDisabledButtons] = useState({});
 
   useEffect(() => {
-    // Fetch data from the API endpoint for orders
+    
     axios
       .get("http://localhost:8000/allOrder/branchAdding")
       .then((response) => {
@@ -30,7 +30,7 @@ function AssignBranch() {
       })
       .then((response) => {
         alert("Branch location updated successfully!");
-        // Disable the button for the updated order
+        
         setDisabledButtons((prevDisabledButtons) => ({
           ...prevDisabledButtons,
           [id]: true,
@@ -49,7 +49,7 @@ function AssignBranch() {
       <table>
         <thead>
           <tr>
-            <th>Order ID</th>
+            {/* <th>Order ID</th> */}
             <th>Customer Name</th>
             <th>Shipping Address</th>
             <th>Order Status</th>
@@ -59,7 +59,7 @@ function AssignBranch() {
         <tbody>
           {orderData.map((order) => (
             <tr key={order._id}>
-              <td>{order._id}</td>
+              {/* <td>{order._id}</td> */}
               <td>{`${order.shippingInfo.firstName} ${order.shippingInfo.lastName}`}</td>
               <td>{`${order.shippingInfo.address}, ${order.shippingInfo.street}, ${order.shippingInfo.city}`}</td>
               <td>{order.orderStatus}</td>

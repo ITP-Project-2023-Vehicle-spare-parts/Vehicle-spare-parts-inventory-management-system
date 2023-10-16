@@ -6,7 +6,9 @@
   margin-top: 100px;
   margin-bottom: 100px;
   padding: 10px;
-  background: linear-gradient(to bottom, #e3e3f0, #dcdcdf); /* Gradient Background */
+  background: white;
+  padding: 50px;
+  border-radius: 50px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   font-family: 'Arial', sans-serif;
@@ -61,7 +63,7 @@
 }
 
 #EditBranch.edit-branch-container button[type="submit"] {
-  background: #cf0404;
+  background: #1b924f;
   color: white;
   border: none;
   padding: 15px 30px;
