@@ -32,7 +32,7 @@ const Cart = () => {
   const totalCount = userCart.reduce((total, cartProduct) => {
     return total + cartProduct.count;
   }, 0);
-
+console.log(totalCount)
   const totalAmount = userCart.reduce((total, cartProduct) => {
     return total + cartProduct.price * cartProduct.count;
   }, 0);

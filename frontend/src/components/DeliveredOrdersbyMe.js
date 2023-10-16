@@ -1,8 +1,6 @@
-// DeliveryPersonCurrentOrder.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './DeliveryPersonCurrentOrder.css'; // Import the external CSS file
+import './DeliveryPersonCurrentOrder.css';
 
 function DeliveryPersonCurrentOrder() {
   const [orderData, setOrderData] = useState([]);
@@ -41,7 +39,6 @@ function DeliveryPersonCurrentOrder() {
         });
     }
 
-    // Fetch order status options from your API
 
   }, [deliveryPerson]);
 
@@ -68,9 +65,7 @@ function DeliveryPersonCurrentOrder() {
 
       console.log('Order status updated successfully:', response.data);
 
-      // You might want to update the state or do other actions here
 
-      // Redirect to '/delivery'
       window.location.href = '/delivery';
 
     } catch (error) {
@@ -132,7 +127,6 @@ function DeliveryPersonCurrentOrder() {
                     <option value="Shipping">Shipping</option>
                     <option value="Estimated to Location in Few Hours">Estimated to Location in Few Hours</option>
                     <option value="Delivered">Delivered</option>
-                    {/* Add more status options as needed */}
                   </select>
                 </label>
               </div>

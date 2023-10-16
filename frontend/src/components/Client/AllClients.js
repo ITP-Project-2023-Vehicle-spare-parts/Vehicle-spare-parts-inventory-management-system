@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import jsPDF from 'jspdf';
-import 'jspdf-autotable'; // Import jspdf-autotable
+import jsPDF from "jspdf";
+import "jspdf-autotable"; // Import jspdf-autotable
 import toast from "react-hot-toast";
 
 export default function AllClient() {
@@ -25,7 +25,6 @@ export default function AllClient() {
             duration: 3000, // 3 seconds
             position: "top-center", // You can change the position if needed
           });
-          
         })
         .catch((err) => {
           alert(err.message);
@@ -53,24 +52,22 @@ export default function AllClient() {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
     });
-
- 
   }
 
   const generatePDF = () => {
     const pdf = new jsPDF();
-    
+
     // Add the logo
-    const logoURL = '/images/CMLogo.png';
-    pdf.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
-    
+    const logoURL = "/images/CMLogo.png";
+    pdf.addImage(logoURL, "PNG", 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
+
     // Set font styles
-    pdf.setFont('helvetica');
+    pdf.setFont("helvetica");
     pdf.setFontSize(16);
-  
+
     // Add a title
-    pdf.text('Client Report - CMspare', 70, 20);
-  
+    pdf.text("Client Report - CMspare", 70, 20);
+
     // Create a table for client data
     const tableData = clients.map((dataobj, index) => {
       return [
@@ -81,16 +78,21 @@ export default function AllClient() {
         dataobj.NoOfBranches,
       ];
     });
-  
-    const tableHeaders = ['Client Name', 'Address', 'Status', 'System Email', 'No Of Branches'];
-  
+
+    const tableHeaders = [
+      "Client Name",
+      "Address",
+      "Status",
+      "System Email",
+      "No Of Branches",
+    ];
+
     // Set the table style
     pdf.setFontSize(12);
     pdf.setTextColor(0, 0, 0); // Text color (black)
-    
+
     // Define the column widths and row heights
 
-  
     // Add the table
     pdf.autoTable({
       head: [tableHeaders],
@@ -98,12 +100,48 @@ export default function AllClient() {
       startY: 40, // Adjust the vertical position
       margin: { horizontal: 10 },
       columnStyles: { 0: { cellWidth: 50 } }, // Adjust the column width
-      bodyStyles: { valign: 'middle' }, // Vertical alignment for cell content
-      columnWidth: 'wrap',
+      bodyStyles: { valign: "middle" }, // Vertical alignment for cell content
+      columnWidth: "wrap",
     });
-  
+
+    let currentYPosition = pdf.lastAutoTable.finalY + 20; // Get the Y position of the last table row + 20 for padding
+
+    // Add shop address
+    pdf.setFontSize(14);
+    pdf.text("Shop Address:Ibbagamuwa", 10, currentYPosition);
+
+    const shopAddress = [
+      "Chathura Moters (CM Spare)",
+      "Dambulla road",
+      "City : Dabulla, 60500",
+      "Phone: (+94)91 2245891",
+      "Email: chathuraspares@gmail.com ",
+    ];
+    currentYPosition += 10; // Initial space before first address line
+
+    shopAddress.forEach((line) => {
+      pdf.text(line, 10, currentYPosition);
+      currentYPosition += 10;
+    });
+
+    currentYPosition += 20; // add some spacing before the signature line
+
+    // Add signature placeholders
+    pdf.line(10, currentYPosition, 110, currentYPosition); // Signature line for supplier
+    pdf.text("Supplier Signature:", 10, currentYPosition + 10);
+
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getFullYear()}`;
+
+    pdf.text(`Date: ${formattedDate}`, 130, currentYPosition + 10);
+    currentYPosition += 15;
+
+    // Signature line for shop representative
+
     // Save or display the PDF
-    pdf.save('client_report.pdf'); // Save the PDF with a filename
+    pdf.save("client_report.pdf"); // Save the PDF with a filename
   };
 
   function ViewClient(id) {
@@ -115,13 +153,23 @@ export default function AllClient() {
     console.log(id);
     localStorage.setItem("userID", id);
   }
-  
+
   return (
     <div id="AllClient">
       <body className="AllClient">
         <main class="table">
           <section class="table__header">
-          <Link to="/admin" style={{textDecoration:"none" ,backgroundColor:"transparent !important" }}><h1 style={{backgroundColor:"transparent !important"}}>Client's Details...</h1> </Link> 
+            <Link
+              to="/admin"
+              style={{
+                textDecoration: "none",
+                backgroundColor: "transparent !important",
+              }}
+            >
+              <h1 style={{ backgroundColor: "transparent !important" }}>
+                Client's Details...
+              </h1>{" "}
+            </Link>
             <div class="input-group">
               <input
                 type="search"
@@ -152,7 +200,6 @@ export default function AllClient() {
             </div>
           </section>
           <section class="table__body">
-          
             <table id="stock-table">
               <thead>
                 <tr>
@@ -207,17 +254,22 @@ export default function AllClient() {
                             style={{ margin: "10px" }}
                             onClick={() => DeleteClient(dataobj._id)}
                           ></button>
-                          <Link to="/Admin/client/Profile/:id"><button
-                            className="bx bx-info-circle bx-lg btn btn-outline-primary"
-                            style={{ margin: "10px" }}
-                            onClick={() => ViewClient(dataobj._id)}
-                          ></button></Link>
-                          
-                          <Link to="/Admin/client/profile/update/:id"> <button
-                            className="bx bx-pencil bx-lg btn btn-outline-warning"
-                            style={{ margin: "10px" }}
-                            onClick={() => UpdateClient(dataobj._id)}
-                          ></button></Link> 
+                          <Link to="/Admin/client/Profile/:id">
+                            <button
+                              className="bx bx-info-circle bx-lg btn btn-outline-primary"
+                              style={{ margin: "10px" }}
+                              onClick={() => ViewClient(dataobj._id)}
+                            ></button>
+                          </Link>
+
+                          <Link to="/Admin/client/profile/update/:id">
+                            {" "}
+                            <button
+                              className="bx bx-pencil bx-lg btn btn-outline-warning"
+                              style={{ margin: "10px" }}
+                              onClick={() => UpdateClient(dataobj._id)}
+                            ></button>
+                          </Link>
                         </td>
                       </tr>
                     </tbody>

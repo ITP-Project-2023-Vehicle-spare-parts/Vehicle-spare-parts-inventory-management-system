@@ -25,16 +25,16 @@ export const login = createAsyncThunk(
     }
 });
 
-// Create a new Redux action for fetching sales data
+
 export const getMonthlyData = createAsyncThunk(
     'orders/monthlydata',
     async (data, thunkAPI) => {
       try {
         const response = await authService.getMonthlyOrders(data);
-        console.log('Monthly Data Response:', response); // Log the response
+        console.log('Monthly Data Response:', response); 
         return response;
       } catch (error) {
-        console.error('Error fetching monthly data:', error); // Log the error
+        console.error('Error fetching monthly data:', error); 
         return thunkAPI.rejectWithValue(error);
       }
     }

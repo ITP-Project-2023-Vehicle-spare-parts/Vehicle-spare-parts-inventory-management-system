@@ -332,8 +332,11 @@ export default function AddSupplier() {
                     id="CompanyPhone"
                     value={CompanyPhone}
                     onChange={(e) => {
-                      setCPhone(e.target.value);
-                    }}
+                      if (e.target.value.length > 10) {
+                          toast.error('Phone number can only be 10 digits.');
+                      }
+                      setCPhone(e.target.value.slice(0, 10)); // This will ensure the input value stays at 10 digits max
+                  }}
                   />
                   </OverlayTrigger>
                   {formErrors.CompanyPhone && (
@@ -477,8 +480,11 @@ export default function AddSupplier() {
                       id="SupplierPhone"
                       value={SupplierPhone}
                       onChange={(e) => {
-                        setPhone(e.target.value);
-                      }}
+                        if (e.target.value.length > 10) {
+                            toast.error('Phone number can only be 10 digits.');
+                        }
+                        setPhone(e.target.value.slice(0, 10)); // This will ensure the input value stays at 10 digits max
+                    }}
                     />
                   </OverlayTrigger>
                     {formErrors.SupplierPhone && (

@@ -29,7 +29,7 @@ const Contact = () => {
     validationSchema: contactSchema,
     onSubmit: values => {
       dispatch(createQuery({ name: values.name, email: values.email, mobile: values.mobile, comment: values.comment }))
-      formik.resetForm(); // Clear the form after submission
+      formik.resetForm(); 
     },
   });
 

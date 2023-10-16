@@ -589,7 +589,7 @@ function DeliveryForm() {
               
 
                 <Form.Group as={Col}>
-                <Form.Label>Vehicle Type</Form.Label>
+                <Form.Label>Select Delivery Vehicle Type</Form.Label>
                 <Form.Select
                   className={formErrors.deliverypersonVehicleType ? 'has-error' : ''}
                   id="deliverypersonVehicleType"
@@ -598,7 +598,7 @@ function DeliveryForm() {
                 onChange={handleChange}
                >
                 
-                <option value="">Select Vehicle</option>
+                <option value="">Select Delivery Vehicle Type</option>
                <option value="Branch A">Bike</option>
                <option value="Branch B">Three wheel</option>
                 <option value="Branch C">Lorry</option>

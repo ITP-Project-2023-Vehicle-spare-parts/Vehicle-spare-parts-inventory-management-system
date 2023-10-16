@@ -26,7 +26,7 @@ function AddStock() {
         .get("http://localhost:8000/supplier/")
         .then((res) => {
           const formattedSuppliers = res.data.map((supplier) => {
-            return `${supplier.SupplierfirstName} ${supplier.SupplierlastName}`;
+            return `${supplier.SupplierfirstName} ${supplier.SupplierLastName}`;
           });
           setorgSupplier(formattedSuppliers);
           toast.success("Data Fetched Successfully!", {
@@ -105,20 +105,25 @@ function AddStock() {
         <br></br>
         <form onSubmit={handleSubmit}>
           <div className="form-row">
-            <div className="form-group col-md-6">
+
+          <div className="form-group col-md-6">
               <label htmlFor="productName" style={{ fontSize: "20px" }}>
                 Product Name
               </label>
 
               <select
-                name="disabled"
-                id="cars"
+                name="productName"
+                id="productName"
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
-                requiredclassName="form-control"
+                required
                 className="form-control custom-select"
                 style={{ fontSize: "20px" }}
               >
+                <option value="" disabled>
+                  Select a Product
+                </option>
+
                 {productState.map((i, j) => {
                   return (
                     <option key={j} value={i.Title}>
@@ -126,8 +131,10 @@ function AddStock() {
                     </option>
                   );
                 })}
+                
               </select>
             </div>
+            
 
             <div className="form-group col-md-6">
               <label htmlFor="productName" style={{ fontSize: "20px" }}>
