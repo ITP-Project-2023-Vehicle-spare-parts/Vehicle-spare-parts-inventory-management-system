@@ -2,7 +2,7 @@
 
 /* Style the container */
 #profile-details .container {
-  max-width: 800px; /* Adjust the maximum width based on your design */
+  max-width: 700px; /* Adjust the maximum width based on your design */
   margin: 0 auto;
 }
 
@@ -11,11 +11,12 @@
 background: linear-gradient(to right, rgb(120, 184, 240), #a7b8e7);
   border-radius: 50px;
   box-shadow: 5px 5px 5px rgba(1, 8, 14, 0.1);
-  padding: 30px;
+  padding: 50px;
 }
 
 /* Style the profile heading */
 #profile-details .profile-heading {
+  width: 70px;
   font-size: 28px;
   font-weight: bold;
   color: #0239d3f1;
