@@ -137,6 +137,66 @@ const Orders = () => {
     dispatch(searchOrders(searchText));
   };
 
+  /*
+  
+  const pdfColumns = ['Name', 'Amount', 'Date', 'Status'];
+  const pdfData = filteredOrders.map((order, index) => [
+    `${order.user?.firstname} ${order.user?.lastname}`,
+    `Rs.${order.totalPrice}`,
+    new Date(order.createdAt).toLocaleDateString(),
+    status[index],
+  ]);
+
+  const handleGenerateReport = () => {
+    const doc = new jsPDF();
+  
+    const getBase64Image = (img) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL("image/png");
+      return dataURL;
+    };
+  
+    const img = new Image();
+    img.src = logoImage;
+    img.onload = () => {
+      const imgData = getBase64Image(img);
+  
+      doc.addImage(imgData, "PNG", 10, 10, 30, 30);
+  
+      const tableVerticalPosition = 50;
+      doc.autoTable({
+        columns: pdfColumns,
+        body: pdfData,
+        startY: tableVerticalPosition,
+      });
+  
+      doc.setFontSize(12);
+      doc.text(`Order Report`, 80, 10);
+  
+      const addressLines = [
+        'No.56,',
+        'Ibbagamuwa,',
+        'Kurunegala,',
+        '+94756982145',
+      ];
+  
+      
+      const addressX = 150; 
+      const addressY = 20; 
+      addressLines.forEach((line, index) => {
+        doc.text(line, addressX, addressY + (index * 5)); 
+      });
+  
+      doc.save('order_report.pdf');
+    };
+  };
+  
+  */
+
   return (
     <div>
       <h3 className='mb-4 title' style={{ fontWeight: 'normal', fontSize: '35px', fontFamily: 'Arial, sans-serif' }}>Orders</h3>
