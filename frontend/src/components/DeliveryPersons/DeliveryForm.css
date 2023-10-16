@@ -18,21 +18,21 @@
     padding: 10px;
   }
   
- .text h1 {
+  #DeliveryForm .text h1 {
     font-size: 32px;
     margin-bottom: 20px;
     color: #2001ac;
   }
   
   /* Form Styles */
-.container {
+  #DeliveryForm .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 10px 10px 10px rgba(245, 245, 245, 0.993);
   }
   
-.form-label {
+  #DeliveryForm .form-label {
     font-weight: bold;
     color: #333;
   }
