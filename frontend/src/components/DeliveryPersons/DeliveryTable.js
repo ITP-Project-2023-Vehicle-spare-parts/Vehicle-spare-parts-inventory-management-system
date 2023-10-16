@@ -24,24 +24,6 @@ function DeliveryTable() {
       });
   }, [id]);
 
-  // const handleDelete = (id) => {
-  //     // Display a confirmation dialog
-  //     const isConfirmed = window.confirm('Are you sure you want to delete this delivery person?');
-
-  //     if (isConfirmed) {
-  //       // Send a DELETE request to your API endpoint
-  //       axios
-  //         .delete(`http://localhost:8000/deliveryPerson/delete/${id}`)
-  //         .then((response) => {
-  //           // Update the state to remove the deleted delivery person
-  //           setDeliveryPersons(deliveryPersons.filter((person) => person._id !== id));
-  //           alert('Delivery Person deleted successfully!');
-  //         })
-  //         .catch((error) => {
-  //           console.error('Error deleting delivery person:', error);
-  //         });
-  //     }
-  //   };
   function DeleteDeliveryPerson(id) {
     Swal.fire({
       title: "Delete Delivery Person",
@@ -62,8 +44,8 @@ function DeliveryTable() {
       buttonsStyling: false,
       reverseButtons: true,
       showLoaderOnConfirm: true,
-      confirmButtonClass: 'swal-confirm-button-custom', // Add custom class for confirm button
-      cancelButtonClass: 'swal-cancel-button-custom', // Add custom class for cancel button
+      confirmButtonClass: 'swal-confirm-button-custom', 
+      cancelButtonClass: 'swal-cancel-button-custom', 
       preConfirm: () => {
         return axios
           .delete(`http://localhost:8000/deliveryPerson/delete/${id}`)
@@ -84,15 +66,15 @@ function DeliveryTable() {
 
     // Define table columns and their widths
     const columns = ["User Name", "Contact Number", "Email"];
-    const colWidths = [60, 40, 80]; // Adjust column widths as needed
+    const colWidths = [60, 40, 80]; 
 
     // Define table header styles
-    const headerStyle = { fillColor: "#007bff", textColor: "#ffffff" }; // Header background color: blue
-    const cellStyle = { textColor: "#000000" }; // Cell text color: black
+    const headerStyle = { fillColor: "#007bff", textColor: "#ffffff" }; 
+    const cellStyle = { textColor: "#000000" }; 
 
     // Add an image to the PDF
     const img = new Image();
-    img.src = "/images/CMLogo.png"; // Replace with the actual image path
+    img.src = "/images/CMLogo.png";
     pdfDoc.addImage(img, "PNG", 10, 10, 40, 40);
 
     // Add additional text or content to the PDF
@@ -106,9 +88,9 @@ function DeliveryTable() {
         dataobj.deliverypersonContactNumber,
         dataobj.deliverypersonEmail,
   
-        // Add more fields as needed
+
       ]),
-      startY: 60, // Adjust the vertical position of the table
+      startY: 60,
       styles: {
         textColor: cellStyle.textColor,
         valign: "middle",
