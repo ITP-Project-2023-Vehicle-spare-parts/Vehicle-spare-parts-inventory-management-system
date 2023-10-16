@@ -75,7 +75,7 @@ function BranchDetails() {
   return (
     <div className='branch-details-container' id='BranchDetails'>
       <h2>View Branch Details</h2>
-      <p>Branch ID: {branch.BranchID}</p>
+      {/* <p>Branch ID: {branch.BranchID}</p> */}
       <p>Branch Name: {branch.BranchName}</p>
       <p>Manager ID: {branch.ManagerID}</p>
       <p>Manager Name: {branch.ManagerName}</p>

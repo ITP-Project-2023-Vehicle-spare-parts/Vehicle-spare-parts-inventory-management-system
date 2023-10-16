@@ -106,8 +106,8 @@
 
 
 #BranchTable .btn-primary {
-  background: linear-gradient(to bottom, #735bcd, #4f46cb);
-  color: white; /* White text color */
+  background: white;
+  color: black; /* White text color */
   border: none; /* No border */
   padding: 10px 20px; /* Padding inside the button */
   border-radius: 5px; /* Rounded corners */
