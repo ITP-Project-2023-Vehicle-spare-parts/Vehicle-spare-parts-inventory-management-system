@@ -64,19 +64,19 @@ const Header = () => {
                   <p className="mb-0">Favourites <br /> Wishlist</p>
                 </NavLink>
               </div>
-              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>
-                <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
-                  {getUserFromLocalStorage
-                    ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
-                    : "Please login"}
-                </h6>
+              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>  
                 <Link
                   to="/user/profile"
                   className="d-flex align-items-center gap-15 text-white"
                   style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
                 >
                   <img src="/images/user.svg" alt="user" />
-                  <p className="mb-0" style={{ whiteSpace: 'nowrap' }}>My Account</p>
+                  <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
+                  {getUserFromLocalStorage
+                    ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
+                    : "Please login"}
+                    <p className="mb-0" style={{ whiteSpace: 'nowrap' }}>My Account</p>
+                </h6>
                 </Link>
               </div>
 
