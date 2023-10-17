@@ -46,11 +46,13 @@ const ViewEnq = () => {
       title: 'Attribute',
       dataIndex: 'attribute',
       key: 'attribute',
+      //width : '200px'
     },
     {
       title: 'Value',
       dataIndex: 'value',
       key: 'value',
+      width : '850px'
     },
   ];
 
@@ -91,15 +93,36 @@ const ViewEnq = () => {
           className='form-control form-select'
           id=''
           onChange={(e) => setEnquiryStatus(e.target.value, getEnqId)}
+          style={{
+            fontSize: '20px', 
+            padding: '5px 10px',
+            width: '400px', 
+            lineHeight: '2',
+            textAlign: 'center', 
+            margin: '0 auto', 
+          }}
         >
-          <option value="Submitted">Submitted</option>
-          <option value="Contacted">Contacted</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Resolved">Resolved</option>
+          <option value="Submitted" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }}>
+            Submitted
+          </option>
+          <option value="Contacted" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }}>
+            Contacted
+          </option>
+          <option value="In Progress" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }}>
+            In Progress
+          </option>
+          <option value="Resolved" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }}>
+            Resolved
+          </option>
         </select>
       ),
     },
   ];
+
+  const tableStyle = {
+    fontSize: '14px', // Adjust font size as needed
+    width: '50%', // Adjust the width of the table
+  };
 
   return (
     <div>
