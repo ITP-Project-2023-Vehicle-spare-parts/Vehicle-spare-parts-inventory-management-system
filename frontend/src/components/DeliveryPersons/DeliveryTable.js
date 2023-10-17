@@ -112,9 +112,11 @@ function DeliveryTable() {
 
     // Add address
     pdfDoc.setFontSize(10);
-    pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 60, 20);
+    pdfDoc.text("56", pdfDoc.internal.pageSize.width - 60, 10);
     pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 15);
-    pdfDoc.text(`${formattedDate}`, 150, 25);
+    pdfDoc.text("kurunegala", pdfDoc.internal.pageSize.width - 60, 20);
+    pdfDoc.text("+94123456789", pdfDoc.internal.pageSize.width - 60, 27);
+    pdfDoc.text(`${formattedDate}`, 150, 30);
 
     // Save or download the PDF
     pdfDoc.save("delivery_report.pdf");
