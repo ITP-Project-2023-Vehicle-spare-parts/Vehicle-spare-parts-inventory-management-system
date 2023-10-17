@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';  // Add this import
+import { useDispatch } from 'react-redux'; 
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,7 +8,6 @@ import { Layout, Menu, Button, theme } from 'antd';
 import { Link } from "react-router-dom";
 import { AiOutlineDashboard, AiOutlineShoppingCart, AiOutlineLogout } from "react-icons/ai";
 import { BiUserCircle, BiSolidUserDetail } from "react-icons/bi";
-import { BsCardChecklist } from "react-icons/bs";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -23,7 +22,7 @@ const DeliveryPersonSideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+   console.log(BiSolidUserDetail)
   useEffect(() => {
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)
       .then((response) => {
@@ -82,6 +81,11 @@ const DeliveryPersonSideBar = () => {
               key: 'CurrentOrder',
               icon: <AiOutlineShoppingCart className='fs-4'/>,
               label: 'Current Working Order',
+            },
+            {
+              key: 'OrderHistory',
+              icon: <AiOutlineShoppingCart className='fs-4'/>,
+              label: 'Delivered Orders',
             },
             {
               key: 'signout',

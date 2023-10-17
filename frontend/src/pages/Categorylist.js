@@ -3,7 +3,6 @@ import {Table} from "antd";
 import {RiDeleteBin5Fill} from 'react-icons/ri';
 import {deleteCategory, getCategories} from '../features/pcategory/pcategorySlice';
 import { useDispatch, useSelector } from 'react-redux';
-//import {Link} from 'react-router-dom';
 import CustomModal from '../components/CustomModal';
 
 const columns = [

@@ -52,15 +52,16 @@ export default function ClientProfileUpdate() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    const phoneRegex = /^[0-9]{10}$/;
+    if (value.length > 10) {
+      toast.error("Cannot enter more than 10 digits.");
+      return; // Exit the function and don't update the state
+    }
 
-    if (name === 'ClientsPhone') {
-      if (!phoneRegex.test(value)) {
-        // Display an error message or handle the validation error as needed
-        // For example, you can show a toast or set an error state
-        // In this example, we'll use a toast notification
-        toast.error('Please enter a valid 10-digit phone number.');
-        return;
+    if (name === "ClientsPhone" ) {
+      const phoneRegex = /^[0-9]{1,10}$/; // This will match any number from 1 to 10 digits long
+
+      if (!phoneRegex.test(value) && value !== "") {
+        toast.error("Please enter a valid phone number.");
       }
     }
 

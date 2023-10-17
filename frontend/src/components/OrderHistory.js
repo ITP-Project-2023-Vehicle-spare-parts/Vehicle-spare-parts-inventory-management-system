@@ -28,8 +28,6 @@ const OrderDetails = () => {
         <>
           <h2>Order Details</h2>
           <p>Order ID: {orderDetails.order._id}</p>
-          {/* Remove the line below if you don't have user details */}
-          {/* <p>User ID: {orderDetails.user._id}</p> */}
           <p>Order Status: {orderDetails.order.orderStatus}</p>
           <p>Total Price: ${orderDetails.order.totalPrice}</p>
           <p>Items:</p>
@@ -40,7 +38,6 @@ const OrderDetails = () => {
               </li>
             ))}
           </ul>
-          {/* Display delivery person and user details as needed */}
         </>
       ) : (
         <p>Loading order details...</p>

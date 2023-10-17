@@ -54,7 +54,8 @@ const addDeliveryPerson = async (req, res) => {
             deliverypersonBranch: req.body.deliverypersonBranch,
             deliverypersonUsername: req.body.deliverypersonUsername,
             deliverypersonPassword: req.body.deliverypersonPassword,
-            deliverypersonReEnter: req.body.deliverypersonReEnter
+            deliverypersonReEnter: req.body.deliverypersonReEnter,
+            imageUrl: req.body.imageUrl,
             // ... other properties ...
         });
 

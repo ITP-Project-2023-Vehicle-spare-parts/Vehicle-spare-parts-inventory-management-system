@@ -62,6 +62,27 @@ body {
 .spacer {
   height: 800px; /* Adjust the height as needed */
 }
+.delivery-person-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.delivery-person-details img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 40px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.deliveryimage{
+  width: 1000px;
+  height: 150px;
+  border-radius: 50%;
+  overflow:hidden;
+  margin-bottom: 30px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
 
   
   /* .popup-content {

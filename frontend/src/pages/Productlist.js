@@ -14,9 +14,15 @@ import {AiOutlineFilePdf} from 'react-icons/ai';
 
 const columns = [
     {
-      title: 'Serial NO.',
+      title: 'Product ID.',
       dataIndex: 'productID',
       sorter: (a,b) => a.productID.length - b.productID.length,
+      align: 'left'
+    },
+    {
+      title: 'Serial NO.',
+      dataIndex: 'SerialNo',
+      sorter: (a,b) => a.SerialNo.length - b.SerialNo.length,
       align: 'left'
     },
     {
@@ -103,6 +109,7 @@ const Productlist = () => {
     data1.push({
         key: i + 1,
         productID: productState[i].productID,
+        SerialNo: productState[i].SerialNo,
         Title: productState[i].Title,
         price: productState[i].price,
         discount: productState[i].discount,
@@ -132,12 +139,28 @@ const Productlist = () => {
     const doc = new jsPDF();
 
     const logoURL = '/images/CMLogo.png';
-    doc.addImage(logoURL, 'PNG', 10, 10, 50, 20); // Adjust the coordinates and dimensions as needed
+    doc.addImage(logoURL, 'PNG', 10, 10, 30, 20);
     
     doc.setFont('helvetica');
     doc.setFontSize(16);
 
     doc.text('...Products Report...', 70, 20);
+
+    doc.setFontSize(10);
+
+    const currentDate = new Date().toLocaleDateString();
+
+    const address = `
+    Chathura spare parts,
+    Dambulla road,
+    Ibbagamuwa
+    (+94)91 2245891
+    chathuraspares@gmail.com
+  `;
+    doc.text(address, 140, 8);
+
+    doc.text(`Generated in: ${currentDate}`, 75, 30);
+
   
     const tableData = productState.map((product, index) => [
       product.productID,
@@ -191,7 +214,6 @@ const Productlist = () => {
       </div>
 
       <div className='bg-white'>
-        {/* Use filteredData instead of data1 here */}
         <Table columns={columns} dataSource={filteredData} />
       </div>
       <CustomModal hideModal={handleCancel} open={open} performAction={() => handleOk(productId)} title='Are you sure you want to delete this product.?' />

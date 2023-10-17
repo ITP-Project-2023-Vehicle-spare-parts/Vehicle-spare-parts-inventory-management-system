@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import 'semantic-ui-css/semantic.min.css';
 
 // Import your components here
 import AddSupplier from "./components/Supplier/AdminSupplierPage/AddSupplier";
@@ -116,6 +117,9 @@ import CustomerDetails from "./components/Customers/CustomerDetails";
 import DeliveryChart from "./components/DeliveryChart";
 import DeliveryDashboard from "./components/DeliveryDashboard";
 import DeliveryPersonCurrentOrder from "./components/DeliveryPersonCurrentOrder";
+import DeliveredOrderHistory from "./components/DeliveredOrderHistory";
+
+
 
 function App() {
   return (
@@ -199,6 +203,8 @@ function App() {
               path="/supplier/update/order"
               element={<UpdateShipmentReport />}
             />
+         
+
 
             <Route path="/admin" element={<MainLayout />}>
               <Route index element={<Dashboard />} />
@@ -330,6 +336,7 @@ function App() {
                <Route index element={<DeliveryDashboard />} />
                <Route path="UserProfile" element = {<DeliveryPersonPrivate />} />
                <Route path="CurrentOrder" element = {<DeliveryPersonCurrentOrder />} />
+               <Route path = "OrderHistory" element = {<DeliveredOrderHistory />} />
             </Route>
           </Routes>
         </div>

@@ -64,23 +64,23 @@ const Header = () => {
                   <p className="mb-0">Favourites <br /> Wishlist</p>
                 </NavLink>
               </div>
-              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}> {/* Add margin and flex styles */}
-                <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '50px' }}>
-                  {getUserFromLocalStorage
-                    ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
-                    : "Please login"}
-                </h6>
+              <div style={{ marginLeft: '20px', display: 'flex', flexDirection: 'column' }}>  
                 <Link
                   to="/user/profile"
                   className="d-flex align-items-center gap-15 text-white"
                   style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}
                 >
                   <img src="/images/user.svg" alt="user" />
-                  <p className="mb-0" style={{ whiteSpace: 'nowrap' }}>My Account</p>
+                  <h6 className="text-white text-center" style={{ fontSize: '18px', fontWeight: 'normal', color: '#333', marginLeft: '5px' }}>
+                  {getUserFromLocalStorage
+                    ? "Hi, " + getUserFromLocalStorage?.firstname +  "!"
+                    : "Please login"}
+                    <p className="mb-0" style={{ whiteSpace: 'nowrap' }}>My Account</p>
+                </h6>
                 </Link>
               </div>
 
-              <div style={{ marginLeft: '20px' }}> {/* Add margin here */}
+              <div style={{ marginLeft: '20px' }}>
                 <Link
                   to="/home/cart"
                   className="d-flex align-items-center gap-15 text-white"
@@ -108,26 +108,23 @@ const Header = () => {
               <div className="col-8">
                 <div className="menu-bottom d-flex align-items-center">
                   <div className="menu-links">
-                    <div className="d-flex align-items-center gap-15">
-                      <NavLink to="/home" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                    <div className="d-flex align-items-center gap-15 ">
+                      <NavLink to="/home" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Home
-                      </NavLink>
-                      <NavLink to="/home/store" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                      </NavLink><b className="headerdash">|</b>
+                      <NavLink to="/home/store" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Store
-                      </NavLink>
-                      <NavLink to="/home/my-orders" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                      </NavLink><b className="headerdash">|</b>
+                      <NavLink to="/home/my-orders" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         My Orders
-                      </NavLink>
-                      <NavLink to="/home/contact" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                      </NavLink><b className="headerdash">|</b>
+                      <NavLink to="/home/contact" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Contact
-                      </NavLink>
-                      <NavLink to="/home/about" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
-                        Promotion
-                      </NavLink>
-                      <NavLink to="/track-order" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                      </NavLink><b className="headerdash">|</b>
+                      <NavLink to="/track-order" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Track Order
-                      </NavLink>
-                      <NavLink to="/home/addclaim" className="text-white" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
+                      </NavLink><b className="headerdash">|</b>
+                      <NavLink to="/home/addclaim" className="text-white px-0" style={{ fontSize: '20px', fontWeight: 'normal', color: '#333', textDecoration: 'none' }}>
                         Service
                       </NavLink>
                     </div>

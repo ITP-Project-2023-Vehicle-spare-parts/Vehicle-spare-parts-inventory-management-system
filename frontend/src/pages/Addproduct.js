@@ -23,6 +23,14 @@ let schema = yup.object().shape({
       'Invalid Product ID. ID should be in "QQ11111111" format',
       value => /^[A-Z]{2}\d{8}$/.test(value)
     ),
+    SerialNo: yup
+    .string()
+    .required("Serial no. is required is required")
+    .test(
+      'is-valid-serial-no',
+      'Invalid serial no. serial no should be in "QQZZ1111111111" format',
+      value => /^[a-z]{4}\d{10}$/.test(value)
+    ),
   Title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   price: yup
@@ -126,6 +134,7 @@ const Addproduct = () => {
     enableReinitialize:true,
     initialValues:{
       productID: "",
+      SerialNo:"",
       Title: "",
       category: "",
       brand: "",
@@ -155,14 +164,22 @@ const Addproduct = () => {
     console.log(handleDesc)
     console.log(desc)
   return (
+    <div style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
     <div>
         <h3 className='mb-4 title text text-center'> Add Product...</h3>
         <div>
             <form onSubmit={formik.handleSubmit}>
-                <CustomInput type="text" label="Enter Product ID " name="productID" onCh={formik.handleChange("productID")} onBl={formik.handleBlur("productID")} val={formik.values.productID} />
+            
+            <CustomInput type="text" label="Enter Product ID " name="productID" onCh={formik.handleChange("productID")} onBl={formik.handleBlur("productID")} val={formik.values.productID} />
                   <div className='error'>
                     {formik.touched.productID && formik.errors.productID}
                   </div>
+            
+             <CustomInput type="text" label="Enter serial no: " name="SerialNo" onCh={formik.handleChange("SerialNo")} onBl={formik.handleBlur("SerialNo")} val={formik.values.SerialNo} />
+                  <div className='error'>
+                    {formik.touched.SerialNo && formik.errors.SerialNo}
+                  </div>
+             
                 <CustomInput type="text" label="Enter Product Title " name="Title" onCh={formik.handleChange("Title")} onBl={formik.handleBlur("Title")} val={formik.values.Title}/>
                   <div className='error'>
                     {formik.touched.Title && formik.errors.Title}
@@ -221,6 +238,7 @@ const Addproduct = () => {
             <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Add-Product</button>
             </form>
         </div>
+    </div>
     </div>
   )
 }

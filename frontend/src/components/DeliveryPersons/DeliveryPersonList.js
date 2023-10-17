@@ -1,59 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// function DeliveryPersonList({ orderId }) {
-//   const [deliveryPersons, setDeliveryPersons] = useState([]);
-//   const [selectedDeliveryPersons, setSelectedDeliveryPersons] = useState([]);
-
-//   useEffect(() => {
-//     // Fetch available delivery persons from your API
-//     axios.get('http://localhost:8000/deliveryPersons')
-//       .then((response) => {
-//         setDeliveryPersons(response.data);
-//       })
-//       .catch((error) => {
-//         console.error('Error fetching delivery persons:', error);
-//       });
-//   }, []);
-
-//   const handleCheckboxChange = (deliveryPersonId) => {
-//     // Toggle selection of delivery person
-//     if (selectedDeliveryPersons.includes(deliveryPersonId)) {
-//       setSelectedDeliveryPersons(selectedDeliveryPersons.filter((id) => id !== deliveryPersonId));
-//     } else {
-//       setSelectedDeliveryPersons([...selectedDeliveryPersons, deliveryPersonId]);
-//     }
-//   };
-
-//   const handleAssignClick = () => {
-//     // Assign selected delivery persons to the order
-//     axios.post(`http://localhost:8000/orders/assign/${orderId}`, {
-//       deliveryPersonIds: selectedDeliveryPersons,
-//     })
-//     .then((response) => {
-//       // Handle success (e.g., update the UI)
-//       console.log('Order assigned successfully:', response.data);
-
-//       // Redirect to the order list page or perform any other necessary actions
-//     })
-//     .catch((error) => {
-//       console.error('Error assigning delivery persons to the order:', error);
-//     });
-//   };
-
-//   return (
-//     <div>
-//       <h2>Available Delivery Persons</h2>
-//       <table>
-//         {/* ... Table header and rows as before */}
-//       </table>
-//       <button onClick={handleAssignClick}>Assign Delivery Persons</button>
-//     </div>
-//   );
-// }
-
-// export default DeliveryPersonList;
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -98,7 +42,7 @@ function AvailableDeliveryPersonList({ navigateToOrderList }) {
       console.log('Delivery persons assigned successfully.');
 
       // Navigate to the OrderList page by changing the URL
-      window.location.href = '/admin/orders'; // Change this URL to your OrderList page URL
+      window.location.href = '/admin/orders';
     })
     .catch((error) => {
       console.error('Error assigning delivery persons:', error);

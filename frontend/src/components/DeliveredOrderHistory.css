@@ -1,0 +1,55 @@
+/* DeliveredOrderHistory.css */
+
+/* Container styling */
+.container {
+    margin-top: 20px;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Table header styling */
+  .table thead th {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Style alternating rows for better readability */
+  .table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  /* Center align text in table cells */
+  .table tbody td {
+    text-align: center;
+  }
+  
+  /* Add some padding to the table cells */
+  .table td,
+  .table th {
+    padding: 12px;
+  }
+  
+  /* Loading message styling */
+  .loading-message {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Adjust loading spinner color */
+  .loading-spinner {
+    color: #007bff;
+  }
+  
