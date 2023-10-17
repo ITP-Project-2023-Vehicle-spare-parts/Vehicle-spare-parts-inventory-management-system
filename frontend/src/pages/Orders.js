@@ -8,6 +8,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import "../CSS/Admin.css";
+import logoImage from "../images/logo.png";
 
 const { Search } = Input;
 
@@ -110,6 +111,7 @@ const Orders = () => {
   const totalProducts = filteredOrders.length;
   console.log(totalProducts)
 
+  /*
   const handleGenerateReport = () => {
     const doc = new jsPDF();
 
@@ -130,6 +132,12 @@ const Orders = () => {
     doc.setFontSize(12);
     doc.text(`Order Report`, 80, 10);
 
+    // Get the current date
+  const currentDate = new Date().toLocaleDateString();
+
+  // Add the generated date at the end of the page
+  doc.text(`Date: ${currentDate}`, 10, doc.autoTable.previous.finalY + 10);
+
     doc.save('order_report.pdf');
   };
 
@@ -137,7 +145,9 @@ const Orders = () => {
     dispatch(searchOrders(searchText));
   };
 
-  /*
+  */
+
+  
   
   const pdfColumns = ['Name', 'Amount', 'Date', 'Status'];
   const pdfData = filteredOrders.map((order, index) => [
@@ -167,7 +177,7 @@ const Orders = () => {
   
       doc.addImage(imgData, "PNG", 10, 10, 30, 30);
   
-      const tableVerticalPosition = 50;
+      const tableVerticalPosition = 60;
       doc.autoTable({
         columns: pdfColumns,
         body: pdfData,
@@ -177,25 +187,36 @@ const Orders = () => {
       doc.setFontSize(12);
       doc.text(`Order Report`, 80, 10);
   
+      // Define the address lines
       const addressLines = [
-        'No.56,',
-        'Ibbagamuwa,',
+        '56,',
         'Kurunegala,',
-        '+94756982145',
+        'Ibbagamuwa,',
+        '+94123456789',
       ];
   
-      
-      const addressX = 150; 
-      const addressY = 20; 
+      // Add the address lines to the top right side of the page
+      const addressX = 150; // Adjust the X-coordinate as needed
+      const addressY = 20; // Adjust the Y-coordinate as needed
+  
       addressLines.forEach((line, index) => {
-        doc.text(line, addressX, addressY + (index * 5)); 
+        doc.text(line, addressX, addressY + (index * 10)); // Adjust the spacing (10) as needed
       });
+
+      // Get the current date
+  const currentDate = new Date().toLocaleDateString();
+
+  // Add the generated date at the end of the page
+  doc.text(`Date: ${currentDate}`, 10, doc.autoTable.previous.finalY + 10);
   
       doc.save('order_report.pdf');
     };
   };
   
-  */
+  
+  const handleSearch = () => {
+    dispatch(searchOrders(searchText));
+  };
 
   return (
     <div>
