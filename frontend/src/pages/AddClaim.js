@@ -1,13 +1,16 @@
 import React, { useState,useEffect  } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 import Swal from "sweetalert2";
 import BreadCrumb from '../components/BreadCrumb';
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../features/product/productSlice";
 
 
 
 
 export default function AddClaim() {
+  const [productName, setProductName] = useState("")
   const [productname, setproductname] = useState("");
   const [billno, setbillno] = useState("");
   const [purchasedate, setpurchasedate] = useState("");
@@ -17,9 +20,12 @@ export default function AddClaim() {
   const [email, setemail] = useState("");
   const [contactNo, setcontactno] = useState("");
   const [existingBillNos, setExistingBillNos] = useState([]);
+  const productState = useSelector((state) => state.product.products)
   // Maintain a list of unique billno values
   
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getProducts());
     // Fetch existing bill numbers from your API or wherever you store them
     // For now, let's assume you have an API endpoint to fetch the existing bill numbers
     axios.get("http://localhost:8000/warrenty/existingBillNos")
@@ -61,10 +67,10 @@ export default function AddClaim() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!productname || !billno || !purchasedate || !claimdate || !branch || !description || !email || !contactNo) {
-    alert("All fields are required.");
-    return;
-  }
+  //if (!productname || !billno || !purchasedate || !claimdate || !branch || !description || !email || !contactNo) {
+   // alert("All fields are required.");
+    //return;
+  //}
 
   if (!validateEmail(email)) {
     alert("Invalid email address");
@@ -141,10 +147,28 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit}>
       <div className="mb-3 text-white">
             <label htmlFor="fullname" className="form-label">product name</label>
-            <input type="text" className="form-control ml-2 mr-5" id="fullname" placeholder="Enter product name"
-              required onChange={(e) => {
-                setproductname(e.target.value);
-              }} />
+            <select
+                name="productName"
+                id="productName"
+                value={productName}
+                required onChange={(e) => setProductName(e.target.value)}
+                
+                className="form-control custom-select"
+                style={{ fontSize: "20px" }}
+              >
+                <option value="" disabled>
+                  Select a Product
+                </option>
+
+                {productState.map((i, j) => {
+                  return (
+                    <option key={j} value={i.Title}>
+                      {i.Title}
+                    </option>
+                  );
+                })}
+                
+              </select>
           </div>
 
           <div className="mb-3 text-white">
