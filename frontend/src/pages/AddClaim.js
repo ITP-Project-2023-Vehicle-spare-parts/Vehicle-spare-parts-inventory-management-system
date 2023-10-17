@@ -3,11 +3,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import BreadCrumb from '../components/BreadCrumb';
+import { useSelector } from "react-redux";
 
 
 
 
 export default function AddClaim() {
+  const [productName, setProductName] = useState("")
   const [productname, setproductname] = useState("");
   const [billno, setbillno] = useState("");
   const [purchasedate, setpurchasedate] = useState("");
@@ -17,6 +19,7 @@ export default function AddClaim() {
   const [email, setemail] = useState("");
   const [contactNo, setcontactno] = useState("");
   const [existingBillNos, setExistingBillNos] = useState([]);
+  const productState = useSelector((state) => state.product.products)
   // Maintain a list of unique billno values
   
   useEffect(() => {
@@ -141,10 +144,28 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit}>
       <div className="mb-3 text-white">
             <label htmlFor="fullname" className="form-label">product name</label>
-            <input type="text" className="form-control ml-2 mr-5" id="fullname" placeholder="Enter product name"
-              required onChange={(e) => {
-                setproductname(e.target.value);
-              }} />
+            <select
+                name="productName"
+                id="productName"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                required
+                className="form-control custom-select"
+                style={{ fontSize: "20px" }}
+              >
+                <option value="" disabled>
+                  Select a Product
+                </option>
+
+                {productState.map((i, j) => {
+                  return (
+                    <option key={j} value={i.Title}>
+                      {i.Title}
+                    </option>
+                  );
+                })}
+                
+              </select>
           </div>
 
           <div className="mb-3 text-white">
