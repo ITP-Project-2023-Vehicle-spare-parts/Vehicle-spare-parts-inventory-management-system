@@ -39,6 +39,12 @@ function StockReport() {
     console.log(table)
     pdf.autoTable({ html: '#stock-table' });
 
+    // Get the current date
+  const currentDate = new Date().toLocaleDateString();
+
+  // Add the generated date at the end of the page
+  pdf.text(`Date: ${currentDate}`, 10, pdf.autoTable.previous.finalY + 10);
+
     // Save the PDF with a specific name
     pdf.save('stock_report.pdf');
   };
