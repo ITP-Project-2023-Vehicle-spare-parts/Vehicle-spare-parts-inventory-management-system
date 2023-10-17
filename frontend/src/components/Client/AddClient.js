@@ -160,7 +160,7 @@ export default function AddClient() {
           <div className="text1"></div>
 
           <div className="form-scroll-container">
-            <Form onSubmit={handleSubmit} className="container">
+            <Form onSubmit={handleSubmit} className="container" style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
               <h1>Add Clients...</h1>
               <Row className="mb-3">
                 <Form.Group as={Col}>
@@ -320,7 +320,7 @@ export default function AddClient() {
                     id="ClientsState"
                     value={ClientsState}
                     style={{
-                      border: "3px solid #073dff",
+                      border: "1px solid #073dff",
                       borderRadius: "2px",
                       fontSize: "1.4rem",
                     }}
@@ -380,7 +380,7 @@ export default function AddClient() {
                     setStatus(e.target.value);
                   }}
                   style={{
-                    border: "3px solid #073dff",
+                    border: "1px solid #073dff",
                     borderRadius: "2px",
                     fontSize: "1.4rem",
                   }}

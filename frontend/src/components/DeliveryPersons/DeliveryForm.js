@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import "boxicons/css/boxicons.min.css";
 import "./DeliveryForm.css";
@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import toast from 'react-hot-toast';
+import { storage, ref, uploadBytesResumable, getDownloadURL } from "../firebase";
 
 
 function DeliveryForm() {
@@ -28,10 +29,10 @@ function DeliveryForm() {
     deliverypersonUsername: '',
     deliverypersonPassword: '',
     deliverypersonReEnter: '',
+    imageUrl: '',
   });
 
   const [formErrors, setFormErrors] = useState({});
-
   const [passwordValidation, setPasswordValidation] = useState({
     lowercase: false,
     uppercase: false,
@@ -41,6 +42,7 @@ function DeliveryForm() {
 
   const [showPasswordConditions, setShowPasswordConditions] = useState(false);
   const [backendErrors, setBackendErrors] = useState({});
+  const [latestDeliveryPersonID, setLatestDeliveryPersonID] = useState('');
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
@@ -59,6 +61,28 @@ function DeliveryForm() {
       symbol: symbolRegex.test(password),
     });
   };
+  useEffect(() => {
+    // Fetch the latest DeliveryPersonID from the backend
+    const fetchLatestDeliveryPersonID = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/deliveryPerson/latestID');
+        setLatestDeliveryPersonID(response.data.latestID);
+      } catch (error) {
+        console.error('Error fetching latest DeliveryPersonID:', error);
+      }
+    };
+
+    fetchLatestDeliveryPersonID();
+    handleAutoIncrement(); // Automatically increment DeliveryPersonID
+  }, [latestDeliveryPersonID]);
+
+  const handleAutoIncrement = () => {
+    if (latestDeliveryPersonID) {
+      const numericPart = parseInt(latestDeliveryPersonID.slice(2), 10) + 1;
+      const newDeliveryPersonID = `DP${numericPart.toString().padStart(4, '0')}`;
+      setFormData((prevFormData) => ({ ...prevFormData, DeliveryPersonID: newDeliveryPersonID }));
+    }
+  };
 
   const handlePasswordClick = () => {
     setShowPasswordConditions(true);
@@ -69,8 +93,34 @@ function DeliveryForm() {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     let errors = { ...formErrors };
+
+    
+    if (name === 'image') {
+      const image = files[0];
+      const storageRef = ref(storage, `images/${image.name}`);
+      
+      const uploadTask = uploadBytesResumable(storageRef, image);
+
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          // Handle progress or other events
+        },
+        (error) => {
+          console.error('Error uploading image:', error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            setFormData({ ...formData, imageUrl: downloadURL });
+          });
+        }
+      );
+    } else {
+
+    }
+    
 
     if (name === 'deliverypersonContactNumber') {
       if (!/^\d+$/.test(value)) {
@@ -240,9 +290,7 @@ function DeliveryForm() {
     if (!formData.deliverypersonDLexpire) {
       errors.deliverypersonDLexpire = 'DL Expire is required';
     }
-    if (!formData.deliverypersonVehicleType) {
-      errors.deliverypersonVehicleType = 'Vehicle type is required';
-    }
+
     if (!formData.deliverypersonUsername) {
       errors.deliverypersonUsername = 'User name is required';
     }
@@ -300,12 +348,13 @@ function DeliveryForm() {
       }
     }
     
-    // ... Add more validation rules for other fields ...
+
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -316,7 +365,10 @@ function DeliveryForm() {
         // Send a POST request to your API endpoint
         const response = await axios.post(
           'http://localhost:8000/deliveryPerson/adddeliveryPersonController',
-          formData
+          {
+            ...formData,
+            imageUrl: formData.imageUrl, 
+          }
         );
   
         console.log(response.status);
@@ -336,35 +388,15 @@ function DeliveryForm() {
             "http://localhost:8000/user/register/",
             newUser
           );
-          console.log(userResponse.status); // Log the HTTP status code
+          console.log(userResponse.status);
           console.log(userResponse.data);
   
           setBackendErrors({});
         }
+        
+        resetFormFields();
   
-        // Clear the form
-        setFormData({
-          // ... (Reset form fields)
-          DeliveryPersonID: '',
-          deliverypersonname: '',
-          deliverypersonGender: '',
-          deliverypersonDOB: '',
-          deliverypersonContactNumber: '',
-          deliverypersonEmail: '',
-          deliverypersonNIC: '',
-          deliverypersonAddress: '',
-          deliverypersonDLN: '',
-          deliverypersonDLexpire: '',
-          deliverypersonExperience: '',
-          deliverypersonVehicleType: '',
-          deliverypersonVehicleNumber: '',
-          deliverypersonBranch: '',
-          deliverypersonUsername: '',
-          deliverypersonPassword: '',
-          deliverypersonReEnter: '',
-        });
-  
-        // ... Reset other states if needed
+
   
         toast.success("Successfully Add Delivery Person!", {
           duration: 3000,
@@ -393,12 +425,44 @@ function DeliveryForm() {
           console.error('Error submitting data:', error);
         }
     }}
+    
+    
   };
+  const resetFormFields = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      DeliveryPersonID: '',
+      deliverypersonname: '',
+      deliverypersonGender: '',
+      deliverypersonDOB: '',
+      deliverypersonContactNumber: '',
+      deliverypersonEmail: '',
+      deliverypersonNIC: '',
+      deliverypersonAddress: '',
+      deliverypersonDLN: '',
+      deliverypersonDLexpire: '',
+      deliverypersonExperience: '',
+      deliverypersonVehicleType: '',
+      deliverypersonVehicleNumber: '',
+      deliverypersonBranch: '',
+      deliverypersonUsername: '',
+      deliverypersonPassword: '',
+      deliverypersonReEnter: '',
+      imageUrl: '',
+    }));
+  };
+  
+  useEffect(() => {
+    if (latestDeliveryPersonID) {
+      resetFormFields();
+      handleAutoIncrement();
+    }
+  }, [latestDeliveryPersonID]);
   
 
   return (
     <div id="DeliveryForm">
-      {/* <SupplierSideNavigation /> */}
+
       
       <div className="home_content">
         <div className="text">
@@ -410,23 +474,17 @@ function DeliveryForm() {
 
           <Form onSubmit={handleSubmit} className="container">
             <Row className="mb-3">
-              <Form.Group as={Col}>
-                <Form.Label>Delivery Person ID</Form.Label>
-                <Form.Control
-                  className={formErrors.DeliveryPersonID || backendErrors.DeliveryPersonID ? 'has-error' : ''}
-                  type="text"
-                  id="DeliveryPersonID"
-                  name="DeliveryPersonID"
-                  value={formData.DeliveryPersonID}
-                  onChange={handleChange}
-                  />
-                  {formErrors.DeliveryPersonID && (
-                  <div className="error-message">{formErrors.DeliveryPersonID}</div>
-                )}
-                 {backendErrors.DeliveryPersonID && (
-                  <div className="error-message">{backendErrors.DeliveryPersonID}</div>
-                )}
-              </Form.Group>
+            <Form.Label>Delivery Person ID</Form.Label>
+            <Form.Group as={Col}>
+              <Form.Control
+                readOnly
+                type="text"
+                id="DeliveryPersonID"
+                name="DeliveryPersonID"
+                value={formData.DeliveryPersonID}
+                onChange={handleChange}
+              /> 
+        </Form.Group>
               </Row>
 
               <Row className="mb-3">
@@ -533,9 +591,9 @@ function DeliveryForm() {
             </Row>
             
             
-            {/* <Row className="mb-3"> */}
+
               <Form.Label>Address</Form.Label>
-            {/* <Form.Group > */}
+
               <Form.Control
                 className={formErrors.deliverypersonAddress ? 'has-error' : ''}
                 type="text"
@@ -547,8 +605,7 @@ function DeliveryForm() {
               {formErrors.deliverypersonAddress && (
                   <div className="error-message">{formErrors.deliverypersonAddress}</div>
                 )}
-            {/* </Form.Group> */}
-            {/* </Row> */}
+
 
             
             <Row className="mb-3">
@@ -582,7 +639,14 @@ function DeliveryForm() {
                 )}
               </Form.Group>
             </Row>
-            
+            <Form.Group as={Col}>
+            <Form.Label>Image</Form.Label>
+               <Form.Control
+                  type="file"
+                   name="image"
+                   onChange={handleChange}
+                  />
+               </Form.Group>
             
             <Row className="mb-3">
               
@@ -599,9 +663,9 @@ function DeliveryForm() {
                >
                 
                 <option value="">Select Delivery Vehicle Type</option>
-               <option value="Branch A">Bike</option>
-               <option value="Branch B">Three wheel</option>
-                <option value="Branch C">Lorry</option>
+               <option value="Bike">Bike</option>
+               <option value="Three wheel">Three wheel</option>
+                <option value="Lorry">Lorry</option>
                 </Form.Select>
                 {formErrors.deliverypersonVehicleType && (
                   <div className="error-message">{formErrors.deliverypersonVehicleType}</div>

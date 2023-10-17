@@ -72,7 +72,7 @@ function OrderHistoryTable() {
     // Generate PDF report
     const doc = new jsPDF();
 
-    const logoDataURL = '/images/CMLogo.png'; // replace with your image path
+    const logoDataURL = '/images/CMLogo.png'; 
     doc.addImage(logoDataURL, 'PNG', 10, 10, 30, 30);
 
     doc.text('Order History Report', 70, 35);

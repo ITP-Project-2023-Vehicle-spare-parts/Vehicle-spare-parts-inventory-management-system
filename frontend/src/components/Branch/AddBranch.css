@@ -15,7 +15,9 @@
   margin-bottom: 100px;
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to bottom, #735bcd, #4f46cb); /* Gradient Background */
+  background: white; 
+  padding: 50px;
+  border-radius: 50px;
   text-align: center;
   justify-content: center;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -51,7 +53,7 @@
   width: calc(100% - 20px);
   padding: 18px; /* Adjusted Padding */
   margin-bottom: 30px; /* Adjusted Margin */
-  border: 2px solid #ffcc29; /* Vibrant Yellow Border */
+  border: 2px solid #0c0901; /* Vibrant Yellow Border */
   border-radius: 10px;
   font-size: 20px;
   color: #333333;
@@ -71,7 +73,7 @@
 }
 
 #AddBranch button[type="submit"] {
-  background: #e63a3a; /* Vibrant Green Button */
+  background: #217a42; /* Vibrant Green Button */
   color: rgb(6, 5, 5);
   border: none;
   padding: 22px 50px; /* Adjusted Padding */

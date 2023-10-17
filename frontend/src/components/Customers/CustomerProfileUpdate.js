@@ -45,7 +45,22 @@ export default function CustomerProfileUpdate() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    const phoneRegex = /^[0-9]{10}$/;
+     // Check if the value is longer than 10 digits
+     if (value.length > 10) {
+      toast.error("Cannot enter more than 10 digits.");
+      return; // Exit the function and don't update the state
+    }
+
+    if (name === "mobile") {
+      const phoneRegex = /^[0-9]{1,10}$/; // This will match any number from 1 to 10 digits long
+
+      if (!phoneRegex.test(value) && value !== "") {
+        toast.error("Please enter a valid phone number.");
+      }
+    }
+
+
+   /* const phoneRegex = /^[0-9]{10}$/;
 
     if (name === "mobile") {
       if (!phoneRegex.test(value)) {
@@ -55,7 +70,7 @@ export default function CustomerProfileUpdate() {
         toast.error("Please enter a valid 10-digit phone number.");
         return;
       }
-    }
+    }*/
 
     setUser((prevCustomer) => ({
       ...prevCustomer,

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
-import './TrackOrderDetails.css'; // Import your custom CSS file
+import './TrackOrderDetails.css';
 
 const TrackOrderDetails = () => {
   const { orderId } = useParams();
@@ -50,7 +50,6 @@ const TrackOrderDetails = () => {
                 </li>
               ))}
             </ul>
-            {/* Add more details as needed */}
           </div>
         ) : (
           <p>Loading order details...</p>

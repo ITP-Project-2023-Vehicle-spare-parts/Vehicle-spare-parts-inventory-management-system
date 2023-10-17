@@ -24,8 +24,8 @@ function BillAssign() {
     axios.get(`http://localhost:8000/allOrder/getOrderByID/${id}`)
       .then((response) => {
         const data = response.data;
-        if (data && data.DeliveryOrders) { // Check for DeliveryOrders property
-          setOrder(data.DeliveryOrders); // Access DeliveryOrders property
+        if (data && data.DeliveryOrders) { 
+          setOrder(data.DeliveryOrders); 
         } else {
           console.error('API Response:', data);
           setError('Order data not found in the API response.');
@@ -107,7 +107,7 @@ function BillAssign() {
 
   const generatePDF = () => {
     const doc = new jsPDF();
-    // Add custom header
+    
   doc.setFontSize(18);
   doc.text('Chathura Motors', 105, 15, { align: 'center' });
     doc.text('Order Items:', 20, 20);
@@ -150,7 +150,7 @@ function BillAssign() {
             <input
               key={index}
               type="text"
-              value={item.product} // Display product names
+              value={item.product} 
               readOnly
               className='readonly-input'
               onChange={(e) => handleOrderItemsChange(index, 'product', e.target.value)}
@@ -215,7 +215,7 @@ function BillAssign() {
           <option value="Batticalo">Batticalo</option>
   </select>
         </div>
-        {/* Add other input fields for order properties */}
+        
         <div>
           <button type="submit">Update</button>
         </div>
