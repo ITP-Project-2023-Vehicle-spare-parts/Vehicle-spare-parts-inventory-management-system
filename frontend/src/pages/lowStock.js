@@ -63,7 +63,7 @@ useEffect(() => {
             <th style={stocktableHeaderStyle}>Stock Quantity</th>
             <th style={stocktableHeaderStyle}>Re Order Level</th>
             <th style={stocktableHeaderStyle}>Needed Stock Quantity</th>
-            <th style={stocktableHeaderStyle}>Order status</th>
+            
           </tr>
         </thead>
         <tbody>
@@ -74,9 +74,7 @@ useEffect(() => {
               <td style={stocktableCellStyle}>{stock.stockQuantity}</td>
               <td style={stocktableCellStyle}>{stock.reorderpoint}</td>
               <td style={stocktableCellStyle}>{stock.reorderpoint - stock.stockQuantity}</td>
-              <td style={stocktableCellStyle}>
-                <button className="order-status-button">{stock.orderStatus}</button>
-              </td>
+              
             </tr>
           ))}
         </tbody>
