@@ -37,7 +37,7 @@ const columns = [
   {
     title: 'Mobile',
     dataIndex: 'mobile',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -47,7 +47,7 @@ const columns = [
   {
     title: 'Status',
     dataIndex: 'status',
-    // Add CSS styles to the column
+    
     style: {
       fontSize: '20px',
       fontWeight: 'bold',
@@ -113,13 +113,13 @@ const Enquiries = () => {
         }, 100);
       })
       .catch((error) => {
-        toast.error("Failed to delete inquiry"); // Show an error toast
+        toast.error("Failed to delete inquiry"); 
         console.error(error);
       });
   };
 
   useEffect(() => {
-    // Close the status updated toast after a delay
+    
     if (statusUpdated) {
       const timer = setTimeout(() => {
         setStatusUpdated(false);
@@ -141,11 +141,14 @@ const Enquiries = () => {
           className="form-control form-select"
           id=""
           onChange={(e) => setEnquiryStatus(e.target.value, enqState[i]._id)}
+          style={{
+            fontSize: '20px',
+          }}
         >
-          <option value="Submitted">Submitted</option>
-          <option value="Contacted">Contacted</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Resolved">Resolved</option>
+          <option value="Submitted" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }} >Submitted</option>
+          <option value="Contacted" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }} >Contacted</option>
+          <option value="In Progress" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }} >In Progress</option>
+          <option value="Resolved" style={{ color: 'black', fontWeight: 'normal', fontSize: '20px' }} >Resolved</option>
         </select>
       ),
       action: (
