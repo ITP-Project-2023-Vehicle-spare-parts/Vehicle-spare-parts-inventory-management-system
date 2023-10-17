@@ -85,7 +85,7 @@ function AllClaims() {
 
   return (
     <div className="container">
-      <h1 className="page-title">All Claims</h1>
+      <h1 className="page-title" style={{ fontSize: '40px' }} >All Claims</h1>
 
       <div className="search-container">
         <input
@@ -93,6 +93,11 @@ function AllClaims() {
           placeholder="Search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: '300px',     // Adjust the width as needed
+            height: '40px',     // Adjust the height as needed
+            fontSize: '16px'   // Adjust the font size as needed
+          }}
         />
       </div>
 
@@ -127,6 +132,7 @@ function AllClaims() {
               <td>
                 <Link
                   to={`/admin/updates/${claim._id}/${claim.billno}`}
+                  
                   className="update"
                 >
                   Update

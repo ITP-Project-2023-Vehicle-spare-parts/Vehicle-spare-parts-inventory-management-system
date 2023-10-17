@@ -153,6 +153,10 @@ const AdminCustomerList = () => {
     pdf.setFont("helvetica");
     pdf.setFontSize(16);
 
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
+
+
     // Add a title
     pdf.text("Customer Report - CMspare", 70, 20);
 
@@ -202,6 +206,12 @@ const AdminCustomerList = () => {
         5: { columnWidth: 15 }, 
       },
     });
+
+    // Add address
+    pdf.setFontSize(10);
+    
+    pdf.text(`${formattedDate}`, 150, 25);
+
 
     // Save or display the PDF
     pdf.save("Customer-report.pdf"); // Save the PDF with a filename

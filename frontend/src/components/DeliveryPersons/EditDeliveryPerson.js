@@ -523,7 +523,7 @@ function EditDeliveryPerson() {
             id="deliverypersonBranch"
             name="deliverypersonBranch"
             value={deliveryPerson.deliverypersonBranch}
-            onChange={handleInputChange}
+            // onChange={handleInputChange}
           >
             <option value="">Select Branch</option>
             <option value="Galle">Galle</option>
