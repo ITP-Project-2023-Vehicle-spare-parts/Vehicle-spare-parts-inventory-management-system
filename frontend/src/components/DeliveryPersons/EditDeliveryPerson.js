@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import './EditDeliveryPersonProfile.css'; // Import your custom CSS file
+import './EditDeliveryPersonProfile.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from 'react-hot-toast';
 
 function EditDeliveryPerson() {
   const { id } = useParams();
+  const [formData, setFormData] = useState({})
+
   const [deliveryPerson, setDeliveryPerson] = useState({
     deliverypersonname: '',
     deliverypersonGender: '',
-    // Add other form fields here
+
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -20,7 +22,6 @@ function EditDeliveryPerson() {
       .get(`http://localhost:8000/deliveryPerson/getById/${id}`)
       .then((response) => {
         const data = response.data;
-        // Check if the 'DeliveryPersons' object exists and contains 'deliverypersonname'
         if (data.DeliveryPersons && data.DeliveryPersons.DeliveryPersonID) {
           setDeliveryPerson(data.DeliveryPersons);
         } else {
@@ -32,8 +33,66 @@ function EditDeliveryPerson() {
       });
   }, [id]);
 
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    let errors = { ...formErrors };
+    if (name === 'deliverypersonContactNumber') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonContactNumber = 'Contact Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonContactNumber;
+      }
+    }
+    if (name === 'deliverypersonname') {
+      if (!value) {
+        errors.deliverypersonname = 'Full Name is required';
+      } else if (!/^\S+(\s+\S+)+$/.test(value)) {
+        errors.deliverypersonname = 'Please enter the full name';
+      } else {
+        delete errors.deliverypersonname;
+      }
+    }
+    if (name === 'deliverypersonDOB') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate > currentDate) {
+        errors.deliverypersonDOB = 'Date of Birth cannot be a future date';
+      } else {
+        delete errors.deliverypersonDOB;
+      }
+    }
+    if (name === 'deliverypersonEmail') {
+      if (!/^\S+@\S+\.\S+$/.test(value)) {
+        errors.deliverypersonEmail = 'Email is invalid';
+      } else {
+        delete errors.deliverypersonEmail;
+      }
+    }
+    if (name === 'deliverypersonDLN') {
+      if (!/^\d+$/.test(value)) {
+        errors.deliverypersonDLN = 'Driving License Number must contain only numeric values';
+      } else {
+        delete errors.deliverypersonDLN;
+      }
+    }
+    if (name === 'deliverypersonDLexpire') {
+      const selectedDate = new Date(value);
+      const currentDate = new Date();
+  
+      if (selectedDate < currentDate) {
+        errors.deliverypersonDLexpire = 'Expire date cannot be a past date';
+      } else {
+        delete errors.deliverypersonDLexpire;
+      }
+    }
+
+    setFormErrors(errors);
+    setFormData({ ...formData, [name]: value });
+  };
+
   const validateForm = (e) => {
-    //const errors = {};
+
     const { name, value } = e.target;
     let errors = { ...formErrors };
 
@@ -149,7 +208,6 @@ function EditDeliveryPerson() {
       }
     }
     
-    // ... Add more validation rules for other fields ...
 
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -334,7 +392,6 @@ function EditDeliveryPerson() {
           </select>
         </div>
 
-        {/* Additional form elements with custom styles */}
         <div className="form-group">
           <label htmlFor="deliverypersonDOB">Date of Birth</label>
           <input
@@ -357,7 +414,7 @@ function EditDeliveryPerson() {
             id="deliverypersonContactNumber"
             name="deliverypersonContactNumber"
             value={deliveryPerson.deliverypersonContactNumber}
-            onChange={handleInputChange}
+            onChange={handleChange}
             onBlur={handleBlur}
           />
         </div>
@@ -477,8 +534,6 @@ function EditDeliveryPerson() {
             <option value="colombo">Colombo</option>
           </select>
         </div>
-
-        {/* Add similar input fields with custom styles for other form properties */}
         
         <div className="form-group">
           <button type="submit" className="btn btn-primary">Update Profile</button>

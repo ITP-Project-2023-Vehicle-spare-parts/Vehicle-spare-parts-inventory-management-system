@@ -52,23 +52,26 @@ export default function UpdateProfileAdmin() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    const phoneRegex = /^[0-9]{10}$/;
+    // Check if the value is longer than 10 digits
+    if (value.length > 10) {
+      toast.error("Cannot enter more than 10 digits.");
+      return; // Exit the function and don't update the state
+    }
 
     if (name === "CompanyPhone" || name === "SupplierPhone") {
-      if (!phoneRegex.test(value)) {
-        // Display an error message or handle the validation error as needed
-        // For example, you can show a toast or set an error state
-        // In this example, we'll use a toast notification
-        toast.error("Please enter a valid 10-digit phone number.");
-        return;
+      const phoneRegex = /^[0-9]{1,10}$/; // This will match any number from 1 to 10 digits long
+
+      if (!phoneRegex.test(value) && value !== "") {
+        toast.error("Please enter a valid phone number.");
       }
     }
 
+    // Update the state
     setSupplier((prevSupplier) => ({
       ...prevSupplier,
       [name]: value,
     }));
-  };
+};
 
   const updateData = () => {
     axios

@@ -43,6 +43,7 @@ const Addcategory = () => {
   });
 
   return (
+    <div style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
     <div>
         <h3 className='mb-4 title text-center'> Add Category</h3>
         <div>
@@ -54,6 +55,7 @@ const Addcategory = () => {
                 <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Add-category</button>
             </form>
         </div>
+    </div>
     </div>
   )
 }

@@ -4,15 +4,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap");
 
 /* Container Styles */
-#DeliveryForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+
   
-  #DeliveryForm .home_content {
-    background-color: #bcdefa;
+#DeliveryForm .home_content {
+    background-color: #ffffff;
     padding: 60px;
     border-radius: 50px;
     box-shadow: 5px 5px 10px rgba(64, 12, 185, 0.2);
@@ -23,18 +18,18 @@
     padding: 10px;
   }
   
-  #DeliveryForm  .text h1 {
+  #DeliveryForm .text h1 {
     font-size: 32px;
     margin-bottom: 20px;
     color: #2001ac;
   }
   
   /* Form Styles */
-  #DeliveryForm  .container {
-    background-color: #d6eaf7;
+  #DeliveryForm .container {
+    background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(89, 98, 221, 0.993);
+    box-shadow: 10px 10px 10px rgba(245, 245, 245, 0.993);
   }
   
   #DeliveryForm .form-label {
@@ -43,7 +38,7 @@
   }
   
   /* Input Styles */
-  #DeliveryForm  .form-control {
+  #DeliveryForm .form-control {
     border: 2px solid #2d8dee;
     border-radius: 10px;
   }
@@ -65,7 +60,6 @@
   #DeliveryForm .mb-5 {
     margin-bottom: 1.5rem !important;
   }
-  
   #DeliveryForm .bg-lightrounded {
     background-color: #ffffff;
     border-radius: 5px;

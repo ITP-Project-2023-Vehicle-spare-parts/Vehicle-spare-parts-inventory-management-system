@@ -139,6 +139,7 @@ const Addproduct = () => {
     };
 */
   return (
+    <div style={{ backgroundColor: 'white', padding: '50px',borderRadius: '50px' }}>
     <div>
         <h2 className='mb-4 title text text-center'> Update Product...</h2><br/><br/>
         <div>
@@ -212,6 +213,7 @@ const Addproduct = () => {
             <button className='btn btn-success border-0 rounded-3 my-5 productSubmitbtn' type="Submit"> Edit-Product</button>
             </form>
         </div>
+    </div>
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import './ViewProfile.css'; // Import your custom CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jsPDF from "jspdf";
 
@@ -9,7 +8,6 @@ function DeliveryPersonPrivate() {
   const [deliveryPerson, setDeliveryPerson] = useState(null);
 
   useEffect(() => {
-    // Fetch the profile details of the selected delivery person by email
     axios.get(`http://localhost:8000/deliveryPerson/getByMail/${email}`)
       .then((response) => {
         console.log(response); // Log the entire response
@@ -24,16 +22,19 @@ function DeliveryPersonPrivate() {
 
   function generatePDF() {
     const pdfDoc = new jsPDF();
+
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`;
   
     // Set background color for the title
     pdfDoc.setFillColor(200, 200, 200); // RGB color for light gray
-    pdfDoc.rect(0, 0, 210, 20, 'F'); // Fill a rectangle as the background for the title
-    pdfDoc.setTextColor(0, 0, 0); // Set text color to black
+    pdfDoc.rect(0, 0, 210, 20, 'F'); 
+    pdfDoc.setTextColor(0, 0, 0); 
     pdfDoc.setFontSize(16);
     pdfDoc.text("User Profile Details", 10, 15);
   
     const img = new Image();
-    img.src = "/images/CMLogo.png"; // Replace with the actual image path
+    img.src = "/images/CMLogo.png"; 
     pdfDoc.addImage(img, "PNG", 10, 30, 40, 40);
   
     // Define the vertical position for text
@@ -41,7 +42,7 @@ function DeliveryPersonPrivate() {
   
     // Iterate through the deliveryPerson object and add details to the PDF
     for (const key in deliveryPerson) {
-      if (Object.hasOwnProperty.call(deliveryPerson, key)) {
+      if (Object.hasOwnProperty.call(deliveryPerson, key) && key !== 'imageUrl' && key !== '_id' && key !== 'deliverypersonReEnter' && key !== 'deliverypersonExperience') {
         const value = String(deliveryPerson[key]); // Ensure value is a string
         
         // Set text color to a different color (e.g., blue)
@@ -51,6 +52,12 @@ function DeliveryPersonPrivate() {
         // Set text color back to black for the value
         pdfDoc.setTextColor(0, 0, 0); // Set text color to black
         pdfDoc.text(value, 90, yPos);
+        pdfDoc.setFontSize(10);
+        pdfDoc.text("In front of People's Bank", pdfDoc.internal.pageSize.width - 60, 15);
+        pdfDoc.text("Ibbagamuwa", pdfDoc.internal.pageSize.width - 60, 10);
+        pdfDoc.text(`${formattedDate}`, 150, 20);
+        pdfDoc.text(".....................................", 160, pdfDoc.internal.pageSize.height - 15);
+        pdfDoc.text("Signature of manager", 160, pdfDoc.internal.pageSize.height - 10);
   
         yPos += 10; // Increase vertical position for the next line
       }

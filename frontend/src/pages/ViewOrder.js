@@ -75,7 +75,7 @@ const ViewOrder = () => {
       name: orderState?.orderItems[i]?.product.Title,
       brand: orderState?.orderItems[i]?.product.brand,
       count: orderState?.orderItems[i]?.count,
-      amount: orderState?.orderItems[i]?.price,
+      amount: `Rs.${orderState?.orderItems[i]?.price}`,
       color: orderState?.orderItems[i]?.color,
     });
   }
