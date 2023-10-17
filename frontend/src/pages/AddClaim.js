@@ -1,9 +1,10 @@
 import React, { useState,useEffect  } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useActionData } from "react-router-dom";
 import Swal from "sweetalert2";
 import BreadCrumb from '../components/BreadCrumb';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../features/product/productSlice";
 
 
 
@@ -22,7 +23,9 @@ export default function AddClaim() {
   const productState = useSelector((state) => state.product.products)
   // Maintain a list of unique billno values
   
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getProducts());
     // Fetch existing bill numbers from your API or wherever you store them
     // For now, let's assume you have an API endpoint to fetch the existing bill numbers
     axios.get("http://localhost:8000/warrenty/existingBillNos")
@@ -64,10 +67,10 @@ export default function AddClaim() {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!productname || !billno || !purchasedate || !claimdate || !branch || !description || !email || !contactNo) {
-    alert("All fields are required.");
-    return;
-  }
+  //if (!productname || !billno || !purchasedate || !claimdate || !branch || !description || !email || !contactNo) {
+   // alert("All fields are required.");
+    //return;
+  //}
 
   if (!validateEmail(email)) {
     alert("Invalid email address");
@@ -148,8 +151,8 @@ const handleSubmit = async (e) => {
                 name="productName"
                 id="productName"
                 value={productName}
-                onChange={(e) => setProductName(e.target.value)}
-                required
+                required onChange={(e) => setProductName(e.target.value)}
+                
                 className="form-control custom-select"
                 style={{ fontSize: "20px" }}
               >
