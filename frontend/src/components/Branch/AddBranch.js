@@ -78,7 +78,7 @@ console.log('Form has errors. Please correct them.');
     <div className='container' id='AddBranch'>
       <h2>Add New Branch</h2>
       <form onSubmit={handleSubmit}>
-        {/* <div>
+        { <div>
           <label htmlFor="BranchID">Branch ID:</label>
           <input
             type="text"
@@ -87,7 +87,7 @@ console.log('Form has errors. Please correct them.');
             value={formData.BranchID}
             onChange={handleChange}
           />
-        </div> */}
+        </div> }
         <div>
           <label htmlFor="BranchName">Branch Name:</label>
           <input
