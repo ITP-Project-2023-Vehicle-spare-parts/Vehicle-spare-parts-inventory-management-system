@@ -12,6 +12,7 @@ import { getProducts } from "../features/product/productSlice";
 export default function AddClaim() {
   const [productName, setProductName] = useState("")
   const [productname, setproductname] = useState("");
+  const productOptions = ["Tyres", "Light", "Nuts"];
   const [billno, setbillno] = useState("");
   const [purchasedate, setpurchasedate] = useState("");
   const [claimdate, setclaimdate] = useState("");
@@ -150,9 +151,13 @@ const handleSubmit = async (e) => {
             <select
                 name="productName"
                 id="productName"
-                value={productName}
-                required onChange={(e) => setProductName(e.target.value)}
-                
+                value={productname || productName}
+                required
+                onChange={(e) => {
+                  const selectedValue = e.target.value;
+                  setProductName(selectedValue);
+                  setproductname(selectedValue);
+                }}
                 className="form-control custom-select"
                 style={{ fontSize: "20px" }}
               >
@@ -160,14 +165,11 @@ const handleSubmit = async (e) => {
                   Select a Product
                 </option>
 
-                {productState.map((i, j) => {
-                  return (
-                    <option key={j} value={i.Title}>
-                      {i.Title}
-                    </option>
-                  );
-                })}
-                
+                {productOptions.map((item, index) => (
+                  <option key={index} value={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
           </div>
 
